@@ -3,6 +3,9 @@
 /yii_test
 /yii_test.bat
 
+# node modules folder
+node_modules/
+
 # phpstorm project files
 .idea
 
@@ -38,6 +41,7 @@ phpunit.phar
 /frontend/web/index.php
 /frontend/web/index-test.php
 /frontend/web/robots.txt
+/frontend/runtime
 /backend/web/index.php
 /backend/web/index-test.php
 /backend/web/robots.txt
