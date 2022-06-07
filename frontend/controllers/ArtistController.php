@@ -21,6 +21,16 @@ class ArtistController extends Controller
                 ]
             ],
         ]);
-        return $this->render('index');
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionView($slug)
+    {
+        $model = Artist::findOne(['slug' => $slug]);
+        return $this->render('view', [
+            'model' => $model,
+        ]);
     }
 }

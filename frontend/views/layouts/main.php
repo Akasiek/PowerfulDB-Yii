@@ -33,6 +33,9 @@ AppAsset::register($this);
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0"/>
 
+        <!-- SWIPER.JS -->
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
 
     </head>
     <body class="bg-secondary-dark text-main-light font-serif">
@@ -41,11 +44,11 @@ AppAsset::register($this);
 
     <main role="main" class="flex relative ml-72">
 
-        <div class="fixed top-0 left-0">
+        <div class="fixed top-0 left-0 z-50">
             <?php echo $this->render('sidebar/_sidebar'); ?>
         </div>
 
-        <div class="w-full">
+        <div class="w-full z-10">
             <?= $content ?>
         </div>
     </main>

@@ -2,10 +2,12 @@
 
 namespace frontend\controllers;
 
+use common\models\Artist;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -75,7 +77,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index/index');
+        $artist = new ActiveDataProvider([
+            'query' => Artist::find()->with('createdBy'),
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+        ]);
+        return $this->render('index/index', [
+            'artist' => $artist,
+        ]);
     }
 
     /**
