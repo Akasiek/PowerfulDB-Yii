@@ -39,31 +39,31 @@ use yii\helpers\Url;
 
         <!-- MAIN OPTIONS -->
         <div class="flex gap-3 flex-col">
-            <?php echo $this->render('_main-option', [
+            <?php echo $this->render('_main_option', [
                 'text' => 'Home Page',
                 'icon' => 'home',
                 'url' => '/',
             ]) ?>
 
-            <?php echo $this->render('_main-option', [
+            <?php echo $this->render('_main_option', [
                 'text' => 'Artists',
                 'icon' => 'mic_external_on',
                 'url' => '/artist',
             ]) ?>
 
-            <?php echo $this->render('_main-option', [
+            <?php echo $this->render('_main_option', [
                 'text' => 'Add artist',
                 'icon' => 'person_add',
                 'url' => '/artist/create',
             ]) ?>
 
-            <?php echo $this->render('_main-option', [
+            <?php echo $this->render('_main_option', [
                 'text' => 'Albums',
                 'icon' => 'album',
                 'url' => '/album',
             ]) ?>
 
-            <?php echo $this->render('_main-option', [
+            <?php echo $this->render('_main_option', [
                 'text' => 'Users',
                 'icon' => 'group',
                 'url' => '/user',
@@ -73,14 +73,14 @@ use yii\helpers\Url;
         <hr class="border-t-2 border-t-[rgba(255,255,255,0.15)]">
 
         <!-- SIDE OPTIONS -->
-        <?php echo $this->render('_main-option', [
+        <?php echo $this->render('_main_option', [
             'text' => 'About',
             'icon' => 'info',
             'url' => '/about',
         ]) ?>
 
         <!-- PROFILE / LOG IN -->
-        <div class="login text-secondary-dark bg-main-accent absolute left-0 right-0 bottom-0  px-4 py-3">
+        <div class="text-secondary-dark bg-main-accent absolute left-0 right-0 bottom-0 px-4 py-3">
             <?php
             if (Yii::$app->user->isGuest): ?>
                 <a href="<?php echo Url::to('/site/login') ?>"
