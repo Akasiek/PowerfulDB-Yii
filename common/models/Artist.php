@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
 use Yii;
 
 /**
- * This is the model class for table "artists".
+ * This is the model class for table "artist".
  *
  * @property int $id
  * @property string $name
@@ -19,14 +19,14 @@ use Yii;
  * @property User $createdBy
  * @property User $updatedBy
  */
-class Artists extends \yii\db\ActiveRecord
+class Artist extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'artists';
+        return 'artist';
     }
 
     /**
@@ -53,7 +53,7 @@ class Artists extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'slug' => 'Slug',
-            'bg_image_url' => 'Bg Image Url',
+            'bg_image_url' => 'Background Image Url',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
@@ -64,7 +64,7 @@ class Artists extends \yii\db\ActiveRecord
     /**
      * Gets query for [[CreatedBy]].
      *
-     * @return \yii\db\ActiveQuery|UserQuery
+     * @return \yii\db\ActiveQuery|\common\models\query\UserQuery
      */
     public function getCreatedBy()
     {
@@ -74,7 +74,7 @@ class Artists extends \yii\db\ActiveRecord
     /**
      * Gets query for [[UpdatedBy]].
      *
-     * @return \yii\db\ActiveQuery|UserQuery
+     * @return \yii\db\ActiveQuery|\common\models\query\UserQuery
      */
     public function getUpdatedBy()
     {
@@ -83,10 +83,10 @@ class Artists extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return ArtistsQuery the active query used by this AR class.
+     * @return \common\models\query\ArtistQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new ArtistsQuery(get_called_class());
+        return new \common\models\query\ArtistQuery(get_called_class());
     }
 }

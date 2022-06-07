@@ -1,13 +1,13 @@
 <?php
 
-namespace app\models;
+namespace common\models\query;
 
 /**
- * This is the ActiveQuery class for [[Artists]].
+ * This is the ActiveQuery class for [[\common\models\Artist]].
  *
- * @see Artists
+ * @see \common\models\Artist
  */
-class ArtistsQuery extends \yii\db\ActiveQuery
+class ArtistQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class ArtistsQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Artists[]|array
+     * @return \common\models\Artist[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class ArtistsQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Artists|array|null
+     * @return \common\models\Artist|array|null
      */
     public function one($db = null)
     {

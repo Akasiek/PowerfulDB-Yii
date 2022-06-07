@@ -35,7 +35,7 @@ AppAsset::register($this);
 
 
     </head>
-    <body class="bg-secondary-dark">
+    <body class="bg-secondary-dark text-main-light font-serif">
     <?php $this->beginBody() ?>
 
 

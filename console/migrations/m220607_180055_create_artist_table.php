@@ -3,20 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%artists}}`.
+ * Handles the creation of table `{{%artist}}`.
  * Has foreign keys to the tables:
  *
  * - `{{%user}}`
  * - `{{%user}}`
  */
-class m220607_180055_create_artists_table extends Migration
+class m220607_180055_create_artist_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%artists}}', [
+        $this->createTable('{{%artist}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string(256)->notNull(),
             'slug' => $this->string(256)->notNull(),
@@ -29,15 +29,15 @@ class m220607_180055_create_artists_table extends Migration
 
         // creates index for column `created_by`
         $this->createIndex(
-            '{{%idx-artists-created_by}}',
-            '{{%artists}}',
+            '{{%idx-artist-created_by}}',
+            '{{%artist}}',
             'created_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-artists-created_by}}',
-            '{{%artists}}',
+            '{{%fk-artist-created_by}}',
+            '{{%artist}}',
             'created_by',
             '{{%user}}',
             'id',
@@ -46,15 +46,15 @@ class m220607_180055_create_artists_table extends Migration
 
         // creates index for column `updated_by`
         $this->createIndex(
-            '{{%idx-artists-updated_by}}',
-            '{{%artists}}',
+            '{{%idx-artist-updated_by}}',
+            '{{%artist}}',
             'updated_by'
         );
 
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
-            '{{%fk-artists-updated_by}}',
-            '{{%artists}}',
+            '{{%fk-artist-updated_by}}',
+            '{{%artist}}',
             'updated_by',
             '{{%user}}',
             'id',
@@ -69,28 +69,28 @@ class m220607_180055_create_artists_table extends Migration
     {
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-artists-created_by}}',
-            '{{%artists}}'
+            '{{%fk-artist-created_by}}',
+            '{{%artist}}'
         );
 
         // drops index for column `created_by`
         $this->dropIndex(
-            '{{%idx-artists-created_by}}',
-            '{{%artists}}'
+            '{{%idx-artist-created_by}}',
+            '{{%artist}}'
         );
 
         // drops foreign key for table `{{%user}}`
         $this->dropForeignKey(
-            '{{%fk-artists-updated_by}}',
-            '{{%artists}}'
+            '{{%fk-artist-updated_by}}',
+            '{{%artist}}'
         );
 
         // drops index for column `updated_by`
         $this->dropIndex(
-            '{{%idx-artists-updated_by}}',
-            '{{%artists}}'
+            '{{%idx-artist-updated_by}}',
+            '{{%artist}}'
         );
 
-        $this->dropTable('{{%artists}}');
+        $this->dropTable('{{%artist}}');
     }
 }
