@@ -6,7 +6,7 @@ use yii\helpers\Url;
 ?>
 
 
-<aside class="h-screen !w-72 w-1/4 position-fixed transition-all" id="sidebar">
+<aside class="h-screen !w-72 w-96 position-fixed transition-all" id="sidebar">
     <div class="bg-main-dark h-full p-5 gap-6 flex flex-col font-serif font-bold relative">
 
         <!-- LOGO -->
@@ -48,25 +48,25 @@ use yii\helpers\Url;
             <?php echo $this->render('_main-option', [
                 'text' => 'Artists',
                 'icon' => 'mic_external_on',
-                'url' => '/artists',
+                'url' => '/artist',
             ]) ?>
 
             <?php echo $this->render('_main-option', [
-                'text' => 'Add artists',
+                'text' => 'Add artist',
                 'icon' => 'person_add',
-                'url' => '/artists/create',
+                'url' => '/artist/create',
             ]) ?>
 
             <?php echo $this->render('_main-option', [
                 'text' => 'Albums',
                 'icon' => 'album',
-                'url' => '/albums',
+                'url' => '/album',
             ]) ?>
 
             <?php echo $this->render('_main-option', [
                 'text' => 'Users',
                 'icon' => 'group',
-                'url' => '/users',
+                'url' => '/user',
             ]) ?>
         </div>
 
