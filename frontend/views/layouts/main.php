@@ -39,11 +39,13 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
 
 
-    <main role="main" class="flex">
+    <main role="main" class="flex relative ml-72">
 
-        <?php echo $this->render('sidebar/_sidebar'); ?>
+        <div class="fixed top-0 left-0">
+            <?php echo $this->render('sidebar/_sidebar'); ?>
+        </div>
 
-        <div>
+        <div class="w-full">
             <?= $content ?>
         </div>
     </main>
