@@ -6,4 +6,8 @@
     .shadow-accent {
         @apply drop-shadow-[0_0_15px_rgba(78,255,166,0.3)];
     }
+
+    /*.submit-btn {*/
+    /*    @apply */
+    /*}*/
 }

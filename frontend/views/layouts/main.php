@@ -1,73 +1,21 @@
 <?php
-
 /**
- * @var View $this
- * @var string $content
+ * @var $content string
  */
 
-use frontend\assets\AppAsset;
-use yii\helpers\Html;
-use yii\web\View;
-
-
-AppAsset::register($this);
+$this->beginContent('@frontend/views/layouts/base.php');
 ?>
-<?php $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>" class="h-100">
-    <head>
-        <meta charset="<?= Yii::$app->charset ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <?php $this->registerCsrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
 
-        <!-- GOOGLE FONTS -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Staatliches&display=swap"
-              rel="stylesheet">
+<div class="flex relative ml-72">
 
-        <!-- GOOGLE ICONS -->
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0"/>
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0"/>
+    <div class="fixed top-0 left-0 z-50">
+        <?php echo $this->render('sidebar/_sidebar'); ?>
+    </div>
 
-
-        <!-- SWIPER.JS -->
-        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-
-        <style>
-            :root {
-                --swiper-theme-color: #4EFFA6;
-                --swiper-navigation-size: 30px;
-            }
-
-            .swiper-button-next::after, .swiper-button-prev::after {
-                display: none;
-            }
-        </style>
-
-    </head>
-    <body class="bg-secondary-dark text-main-light font-serif">
-    <?php $this->beginBody() ?>
-
-
-    <main role="main" class="flex relative ml-72">
-
-        <div class="fixed top-0 left-0 z-50">
-            <?php echo $this->render('sidebar/_sidebar'); ?>
-        </div>
-
-        <div class="w-full z-10">
-            <?= $content ?>
-        </div>
+    <main role="main" class="w-full z-10">
+        <?= $content ?>
     </main>
 
+</div>
 
-    <?php $this->endBody() ?>
-    </body>
-    </html>
-<?php $this->endPage();
+<?php $this->endContent(); ?>
