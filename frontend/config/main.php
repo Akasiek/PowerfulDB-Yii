@@ -40,6 +40,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/about' => '/site/about',
                 '/artist/create' => '/artist/create',
                 '/artist/<slug>' => '/artist/view',
             ],
