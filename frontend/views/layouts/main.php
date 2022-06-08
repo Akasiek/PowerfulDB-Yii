@@ -1,8 +1,9 @@
 <?php
 
-/** @var View $this */
-
-/** @var string $content */
+/**
+ * @var View $this
+ * @var string $content
+ */
 
 use frontend\assets\AppAsset;
 use yii\helpers\Html;
