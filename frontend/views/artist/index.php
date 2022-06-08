@@ -17,7 +17,7 @@ use yii\data\ActiveDataProvider;
 //        'class' => \yii\bootstrap4\LinkPager::class,
 //    ],
         'itemView' => '_artist_card',
-        'layout' => '<div class="flex flex-wrap gap-6">{items}</div>{pager}',
+        'layout' => '<div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">{items}</div>{pager}',
         'itemOptions' => [
             'tag' => false,
         ],
