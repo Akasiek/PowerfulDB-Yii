@@ -9,7 +9,7 @@ use common\models\Artist;
 
 
 <?php
-echo $this->render('_artist_jumbotron', [
+echo $this->render('components/_artist_jumbotron', [
     'model' => $model,
 ]);
 ?>
