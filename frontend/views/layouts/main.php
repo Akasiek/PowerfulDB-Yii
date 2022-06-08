@@ -33,9 +33,21 @@ AppAsset::register($this);
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0"/>
 
+
         <!-- SWIPER.JS -->
         <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
+        <style>
+            :root {
+                --swiper-theme-color: #4EFFA6;
+                --swiper-navigation-size: 30px;
+            }
+
+            .swiper-button-next::after, .swiper-button-prev::after {
+                display: none;
+            }
+        </style>
 
     </head>
     <body class="bg-secondary-dark text-main-light font-serif">

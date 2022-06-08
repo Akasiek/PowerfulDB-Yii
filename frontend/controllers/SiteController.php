@@ -77,7 +77,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $artist = new ActiveDataProvider([
+        $artists = new ActiveDataProvider([
             'query' => Artist::find()->with('createdBy'),
             'sort' => [
                 'defaultOrder' => [
@@ -86,7 +86,7 @@ class SiteController extends Controller
             ],
         ]);
         return $this->render('index/index', [
-            'artist' => $artist,
+            'artists' => $artists,
         ]);
     }
 
