@@ -53,6 +53,14 @@ class ArtistController extends Controller
 
     public function actionCreate()
     {
-        return $this->render('create');
+        $model = new Artist();
+
+        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'slug' => $model->slug]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
     }
 }

@@ -7,6 +7,12 @@
         @apply drop-shadow-[0_0_15px_rgba(78,255,166,0.3)];
     }
 
+    .input-style {
+        @apply w-full rounded-3xl bg-secondary-dark border-2 border-main-accent px-4 py-2
+        focus:outline-0 focus:shadow-accent transition duration-150
+        placeholder:text-gray-500
+    }
+
     /*.submit-btn {*/
     /*    @apply */
     /*}*/
