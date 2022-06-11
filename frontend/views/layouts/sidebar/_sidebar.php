@@ -85,8 +85,8 @@ use yii\helpers\Url;
             if (Yii::$app->user->isGuest): ?>
                 <a href="<?php echo Url::to('/site/login') ?>"
                    class="flex items-center justify-start gap-4">
-                    <p class="material-symbols-rounded !text-3xl">
-                        account_circle
+                    <p class="material-symbols-outlined ">
+                        login
                     </p>
                     <p class="font-bold text-lg">
                         Log in
