@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\artist */
+/* @var $model common\models\Artist */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Artists', 'url' => ['index']];
@@ -32,6 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'slug',
+            'full_name',
+            'birth_date',
+            'death_date',
             'bg_image_url:url',
             'created_at',
             'created_by',

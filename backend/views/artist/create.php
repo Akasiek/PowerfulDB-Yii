@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\artist */
+/* @var $model common\models\Artist */
 
 $this->title = 'Create Artist';
 $this->params['breadcrumbs'][] = ['label' => 'Artists', 'url' => ['index']];

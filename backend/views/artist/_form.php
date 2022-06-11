@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\artist */
+/* @var $model common\models\Artist */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -13,6 +13,12 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'birth_date')->input('date') ?>
+
+    <?= $form->field($model, 'death_date')->input('date') ?>
 
     <?= $form->field($model, 'bg_image_url')->textInput(['maxlength' => true]) ?>
 

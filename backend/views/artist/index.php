@@ -29,14 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'slug',
-            'bg_image_url:url',
-            'created_at',
+            'full_name',
+            //'birth_date',
+            //'death_date',
+            //'bg_image_url:url',
+            //'created_at',
             //'created_by',
             //'updated_at',
             //'updated_by',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, artist $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Artist $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                 }
             ],
