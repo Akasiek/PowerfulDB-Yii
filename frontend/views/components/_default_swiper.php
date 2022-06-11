@@ -11,7 +11,7 @@ use yii\data\ActiveDataProvider;
     <div class="swiper-wrapper">
         <?php foreach ($dataProvider->getModels() as $model): ?>
             <div class="swiper-slide select-none">
-                <?php echo $this->render('_artist_card', ['model' => $model]); ?>
+                <?php echo $this->render('_default_card', ['model' => $model]); ?>
             </div>
         <?php endforeach; ?>
     </div>

@@ -527,12 +527,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   z-index: 20 !important;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .ml-72 {
   margin-left: 18rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .mb-3 {
@@ -549,6 +553,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 
 .flex {
@@ -741,11 +749,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: transparent;
 }
 
-.bg-blue-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
-}
-
 .\!bg-cover {
   background-size: cover !important;
 }
@@ -770,14 +773,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-5 {
   padding: 1.25rem;
-}
-
-.p-6 {
-  padding: 1.5rem;
-}
-
-.p-10 {
-  padding: 2.5rem;
 }
 
 .py-14 {
@@ -815,6 +810,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1rem;
 }
 
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .px-7 {
   padding-left: 1.75rem;
   padding-right: 1.75rem;
@@ -838,16 +838,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-12 {
   padding-left: 3rem;
   padding-right: 3rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
-.py-7 {
-  padding-top: 1.75rem;
-  padding-bottom: 1.75rem;
 }
 
 .pb-5 {
