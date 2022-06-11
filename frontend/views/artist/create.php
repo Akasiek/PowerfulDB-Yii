@@ -4,14 +4,15 @@
 <div class="py-14 px-20">
     <form method="POST">
 
-        <h1 class="text-5xl font-sans mb-8">Add an artist</h1>
+        <h1 class="text-5xl font-sans mb-2">Add an artist</h1>
 
         <div class="flex flex-col gap-10 w-[30rem]">
 
-            <p><b class="text-red-500">Warning:</b> Artist can be only a solo artist or a band.<br>
-                If you want to add a <b>musician</b> that belongs to an artist go
+
+            <p><b class="text-red-500">Warning:</b> Artist can be only a solo artist or a member of a band.<br>
+                If you want to add a <b>band</b> go
                 <a class="text-main-accent hover:underline"
-                   href="<?php echo \yii\helpers\Url::to('member/create') ?>">here</a>
+                   href="<?php echo \yii\helpers\Url::to('band/create') ?>">here</a>
             </p>
 
             <?php
@@ -19,7 +20,7 @@
                 'label' => 'Artist name',
                 'id' => 'artist-name',
                 'name' => 'artist-name',
-                'placeholder' => 'Iron Maiden',
+                'placeholder' => 'Jack White',
             ])
             ?>
 

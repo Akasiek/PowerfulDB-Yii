@@ -52,9 +52,9 @@ use yii\helpers\Url;
             ]) ?>
 
             <?php echo $this->render('_main_option', [
-                'text' => 'Add artist',
-                'icon' => 'person_add',
-                'url' => '/artist/create',
+                'text' => 'Bands',
+                'icon' => 'groups',
+                'url' => '/band',
             ]) ?>
 
             <?php echo $this->render('_main_option', [
@@ -65,7 +65,7 @@ use yii\helpers\Url;
 
             <?php echo $this->render('_main_option', [
                 'text' => 'Users',
-                'icon' => 'group',
+                'icon' => 'account_circle',
                 'url' => '/user',
             ]) ?>
         </div>
