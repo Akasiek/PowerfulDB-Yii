@@ -8,18 +8,18 @@ use yii\helpers\Html;
 
 ?>
 <a href="<?php echo \yii\helpers\Url::to(['/artist/view', 'slug' => $model->slug]) ?>">
-    <div class="rounded-3xl w-full h-44 !bg-cover flex flex-col justify-end items-start snap-start scroll-pl-3"
-         style="background: linear-gradient(180deg, rgba(94, 43, 255, 0) 38.54%,
-                 rgba(94, 43, 255, 0.5) 100%),
-                 linear-gradient(0deg, rgba(94, 43, 255, 0.15),
-                 rgba(94, 43, 255, 0.15)),
+    <div class="rounded-3xl w-full h-48 !bg-cover flex flex-col justify-end items-start snap-start scroll-pl-3"
+         style="background: linear-gradient(180deg, rgba(94, 43, 255, 0) 25%,
+                 rgba(94, 43, 255, 0.75) 100%),
+                 linear-gradient(0deg, rgba(94, 43, 255, 0.1),
+                 rgba(94, 43, 255, 0.1)),
                  url('<?php echo $model->bg_image_url ?>'),
                  #292A33">
 
-        <div class="px-7 pb-5 w-full">
+        <div class="px-7 pb-4 w-full">
 
-            <h3 class="font-sans text-2xl truncate"><?php echo $model->name ?></h3>
-            <p class="text-xs truncate">
+            <h3 class="font-sans text-3xl truncate"><?php echo $model->name ?></h3>
+            <p class="text-sm truncate">
                 <?php
                 // TODO: Genres
                 echo "Blues Rock • Experimental Rock"
