@@ -2,7 +2,7 @@
 const swiper = new Swiper('.swiper', {
 
     // Optional parameters
-    loop: true,
+    loop: false,
     grabCursor: true,
 
     // Navigation arrows
