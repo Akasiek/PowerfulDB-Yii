@@ -13,11 +13,14 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/output.css',
+        'css/slimselect.min.css',
     ];
     public $js = [
         'js/sidebar.js',
         'js/swiper.js',
         'js/isImage.js',
+        'js/slimselect.min.js',
+        'js/slimselect.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
