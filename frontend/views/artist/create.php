@@ -6,6 +6,9 @@
 use common\models\Artist;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Url;
+use yii\web\View;
+
+$this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
 
 ?>
 
@@ -80,12 +83,5 @@ use yii\helpers\Url;
 </div>
 
 <script>
-    const bgImgUrl = document.getElementById('artist-bg_image_url');
-    const userImg = document.getElementById('user_image');
-
-    bgImgUrl.addEventListener('input', (e) => {
-        const url = e.target.value;
-        if (isImage(url)) userImg.src = url;
-        else userImg.src = '<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>';
-    });
+    showBgImage('artist-bg_image_url', 'user_image', '<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>');
 </script>

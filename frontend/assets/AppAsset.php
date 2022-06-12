@@ -12,13 +12,14 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/reset.css',
         'css/output.css',
         'css/slimselect.min.css',
     ];
     public $js = [
         'js/sidebar.js',
-        'js/swiper.js',
         'js/isImage.js',
+        'js/swiper.js',
         'js/slimselect.min.js',
         'js/slimselect.js',
     ];

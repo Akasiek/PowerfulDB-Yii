@@ -45,15 +45,10 @@ AppAsset::register($this);
                 --swiper-navigation-size: 30px;
             }
 
-            ::-webkit-calendar-picker-indicator {
-                filter: invert(1);
-            }
-
             .swiper-button-next::after, .swiper-button-prev::after {
                 display: none;
             }
         </style>
-
     </head>
     <body class="bg-secondary-dark text-main-light font-serif">
     <?php $this->beginBody() ?>
