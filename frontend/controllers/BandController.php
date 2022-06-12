@@ -33,4 +33,17 @@ class BandController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionCreate()
+    {
+        $model = new Band();
+
+        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'slug' => $model->slug]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
 }
