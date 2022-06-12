@@ -67,6 +67,7 @@ use yii\helpers\Url;
         <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image"
              class="w-full aspect-[315/175] object-cover object-center" alt="image uploaded by the user"/>
 
+        <!-- SUBMIT BUTTON -->
         <div class="text-right">
             <input type="submit" value="Submit"
                    class="bg-main-accent py-2 px-5 rounded-3xl text-secondary-dark font-bold cursor-pointer ">
