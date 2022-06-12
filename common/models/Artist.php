@@ -34,6 +34,7 @@ class Artist extends \yii\db\ActiveRecord
             [
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'name',
+                'ensureUnique' => true,
             ],
         ];
     }
