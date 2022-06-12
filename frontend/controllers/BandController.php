@@ -25,4 +25,12 @@ class BandController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionView($slug)
+    {
+        $model = Band::findOne(['slug' => $slug]);
+        return $this->render('view', [
+            'model' => $model,
+        ]);
+    }
 }

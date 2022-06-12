@@ -1,9 +1,10 @@
 <?php
 /**
- * @var $model Artist
+ * @var $model Artist | Band
  */
 
 use common\models\Artist;
+use common\models\Band;
 
 include Yii::getAlias('@frontend/web/ageDiff.php');
 
@@ -19,7 +20,7 @@ include Yii::getAlias('@frontend/web/ageDiff.php');
 
 
         <div class="flex flex-col gap-1">
-            <?php if ($model->full_name): ?>
+            <?php if (isset($model->full_name)): ?>
                 <p class="text-gray-300 italic"><?php echo $model->full_name ?></p>
             <?php endif; ?>
             <h3 class="font-sans text-7xl"><?php echo $model->name ?></h3>
@@ -33,8 +34,8 @@ include Yii::getAlias('@frontend/web/ageDiff.php');
             ?>
         </p>
 
-        <div class="mt-2">
-            <?php if ($model->birth_date): ?>
+        <?php if (isset($model->birth_date)): ?>
+            <div class="mt-2">
 
                 <p>
                     Age: <?php echo ageDiff($model->birth_date, $model->death_date) ?> years old
@@ -44,14 +45,26 @@ include Yii::getAlias('@frontend/web/ageDiff.php');
                     Born: <?php echo Yii::$app->formatter->asDate($model->birth_date, 'long') ?>
                 </p>
 
-                <?php if ($model->death_date): ?>
+                <?php if (isset($model->death_date)): ?>
                     <p class="text-gray-300">
                         Died: <?php echo Yii::$app->formatter->asDate($model->death_date, 'long') ?>
                     </p>
                 <?php endif; ?>
+            </div>
+        <?php endif; ?>
 
-            <?php endif; ?>
-        </div>
+        <?php if (isset($model->founding_year)): ?>
+            <div class="mt-2">
+
+                <p>
+                    Years
+                    active: <?php
+                    echo $model->founding_year . ' - ';
+                    echo $model->breakup_year ?? "present"; ?>
+                </p>
+
+            </div>
+        <?php endif; ?>
 
     </div>
 </div>

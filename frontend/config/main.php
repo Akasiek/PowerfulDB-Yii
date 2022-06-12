@@ -43,6 +43,8 @@ return [
                 '/about' => '/site/about',
                 '/artist/create' => '/artist/create',
                 '/artist/<slug>' => '/artist/view',
+                '/band/create' => '/band/create',
+                '/band/<slug>' => '/band/view',
             ],
         ],
         'assetManager' => [
