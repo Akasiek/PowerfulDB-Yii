@@ -17,10 +17,10 @@ use yii\helpers\Url;
     <div class="flex flex-col gap-10 w-[30rem] xl:w-[40rem]">
 
 
-        <p><b class="text-red-500 animate-pulse">Warning:</b> Artist can be only a solo artist or a member of a
+        <p><b class="text-red-500">Warning:</b> Artist can be <b>only</b> a solo artist or a member of a
             band. If you want to add a <b>band</b> go
             <a class="text-main-accent hover:underline"
-               href="<?php echo Url::to('band/create') ?>">here</a>
+               href="<?php echo Url::to('/band/create') ?>">here</a>
         </p>
 
         <!-- NAME INPUT -->
