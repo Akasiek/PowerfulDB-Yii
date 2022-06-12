@@ -23,37 +23,31 @@ use yii\helpers\Url;
                href="<?php echo Url::to('band/create') ?>">here</a>
         </p>
 
-        <!--        --><?php
-        //        echo $this->render('@frontend/views/form/_input_text', [
-        //            'label' => 'Artist name',
-        //            'id' => 'artist-name',
-        //            'name' => 'name',
-        //            'placeholder' => 'Jack White',
-        //            'bold' => true,
-        //            'value' => $model->name,
-        //        ])
-        //        ?>
-
+        <!-- NAME INPUT -->
         <?= $form->field($model, 'name', ['template' =>
             '<div class="text-2xl mb-5">{label}</div>
             {input}
             <div class="text-red-500 mt-2">{error}</div>'])
             ->textInput(['maxlength' => 255, 'class' => 'input-style', 'placeholder' => 'Jack White']) ?>
 
+        <!-- FULL NAME INPUT -->
         <?= $form->field($model, 'full_name', ['template' =>
             '<div class="text-2xl mb-5">{label}</div>
             {input}
             <div class="text-red-500 mt-2">{error}</div>'])
             ->textInput(['maxlength' => 255, 'class' => 'input-style', 'placeholder' => 'John Anthony White']) ?>
 
+
         <div class="grid grid-cols-2 gap-10">
 
+            <!-- BIRTH DATE INPUT -->
             <?= $form->field($model, 'birth_date', ['template' =>
                 '<div class="text-2xl mb-5">{label}</div>
             {input}
             <div class="text-red-500 mt-2">{error}</div>'])
                 ->input('date', ['class' => 'input-style']) ?>
 
+            <!-- DEATH DATE INPUT -->
             <?= $form->field($model, 'death_date', ['template' =>
                 '<div class="text-2xl mb-5">{label}</div>
             {input}
@@ -62,13 +56,14 @@ use yii\helpers\Url;
 
         </div>
 
+        <!-- BACKGROUND IMAGE URL INPUT -->
         <?= $form->field($model, 'bg_image_url', ['template' =>
             '<div class="text-2xl mb-5">{label}</div>
             {input}
             <div class="text-red-500 mt-2">{error}</div>'])
             ->textInput(['maxlength' => 2048, 'class' => 'input-style', 'placeholder' => 'Url']) ?>
 
-
+        <!-- BACKGROUND IMAGE PREVIEW -->
         <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image"
              class="w-full aspect-[315/175] object-cover object-center" alt="image uploaded by the user"/>
 
