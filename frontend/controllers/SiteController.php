@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Artist;
+use common\models\Band;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -85,8 +86,18 @@ class SiteController extends Controller
                 ]
             ],
         ]);
+
+        $bands = new ActiveDataProvider([
+            'query' => Band::find()->with('createdBy'),
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+        ]);
         return $this->render('index/index', [
             'artists' => $artists,
+            'bands' => $bands,
         ]);
     }
 
