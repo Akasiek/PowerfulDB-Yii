@@ -84,6 +84,26 @@ class Album extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[CreatedBy]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\UserQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
+    }
+
+    /**
+     * Gets query for [[UpdatedBy]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\UserQuery
+     */
+    public function getUpdatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updated_by']);
+    }
+
+    /**
      * Gets query for [[Artist]].
      *
      * @return \yii\db\ActiveQuery|\common\models\query\ArtistQuery
