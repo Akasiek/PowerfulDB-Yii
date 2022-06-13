@@ -11,24 +11,26 @@ else $author = $model->band;
 
 ?>
 
-<div class="truncate">
+<div class="group">
 
     <a href="<?php echo Url::to([
         '/album/view',
         'slug' => $model->slug,
-        'author_slug' => $author->slug
-    ]) ?>">
-        <img src="<?php echo $model->artwork_url ?>" alt="Album artwork">
+    ]) ?>"
+    >
+
+        <img src="<?php echo $model->artwork_url ?>" alt="Album artwork"
+             class="shadow-lg group-hover:scale-95 transition-transform ease-in-out">
     </a>
 
-    <div class="flex flex-col gap-0 p-2">
-        <p class="text-xl truncate">
+    <div class="flex flex-col gap-0 p-2 truncate">
+        <p class="text-md lg:text-lg truncate">
             <a href="<?php echo Url::to([
                 '/album/view',
                 'slug' => $model->slug,
-                'author_slug' => $author->slug
             ]) ?>"
-               class="hover:underline transition underline-offset-2">
+               class="hover:underline transition underline-offset-2"
+               title="<?php echo $model->title ?>">
                 <?php echo $model->title ?>
             </a>
         </p>
