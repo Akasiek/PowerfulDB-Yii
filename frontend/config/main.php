@@ -41,10 +41,15 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '/about' => '/site/about',
+
                 '/artist/create' => '/artist/create',
                 '/artist/<slug>' => '/artist/view',
+
                 '/band/create' => '/band/create',
                 '/band/<slug>' => '/band/view',
+
+                '/album/create' => '/album/create',
+                '/album/<author_slug>-<slug>' => '/album/view',
             ],
         ],
         'assetManager' => [
