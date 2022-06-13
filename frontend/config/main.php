@@ -49,7 +49,7 @@ return [
                 '/band/<slug>' => '/band/view',
 
                 '/album/create' => '/album/create',
-                '/album/<author_slug>-<slug>' => '/album/view',
+                '/album/<slug>' => '/album/view',
             ],
         ],
         'assetManager' => [

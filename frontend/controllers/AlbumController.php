@@ -29,9 +29,9 @@ class AlbumController extends Controller
         ]);
     }
 
-    public function actionView($slug, $author_slug)
+    public function actionView($slug)
     {
-        $model = Album::findOne(['slug' => $slug, 'author_slug' => $author_slug]);
+        $model = Album::findOne(['slug' => $slug]);
         return $this->render('view', [
             'model' => $model,
         ]);
