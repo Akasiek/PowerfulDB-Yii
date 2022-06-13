@@ -14,6 +14,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/reset.css',
         'css/output.css',
+        'css/slimselect.css',
         'css/slimselect.min.css',
     ];
     public $js = [

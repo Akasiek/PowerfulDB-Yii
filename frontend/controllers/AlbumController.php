@@ -36,4 +36,30 @@ class AlbumController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionCreate()
+    {
+        $model = new Album();
+
+
+        if ($model->load(\Yii::$app->request->post())) {
+
+            // Check if author is an artist or band and set the appropriate id
+            $author_id = \Yii::$app->request->post('author_id');
+            $author = explode('-', $author_id);
+            if ($author[0] == 'artist') {
+                $model->artist_id = $author[1];
+            } else {
+                $model->band_id = $author[1];
+            }
+
+            if ($model->save()) {
+                return $this->redirect(['view', 'slug' => $model->slug]);
+            }
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
 }

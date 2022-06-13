@@ -1,0 +1,67 @@
+.ss-main .ss-single-selected {
+    background-color: transparent !important;
+    border: 0 !important;
+}
+
+.ss-main .ss-single-selected .placeholder {
+    color: #F3EFF5 !important;
+}
+
+.ss-main .ss-single-selected .placeholder .ss-disabled {
+    color: rgb(107 114 128) !important;
+}
+
+.ss-content {
+    border: #292A33 2px solid !important;
+    width: 24rem !important;
+}
+
+.ss-search {
+    background-color: #1B1C22 !important;
+}
+
+.ss-search input {
+    background-color: #1B1C22 !important;
+    border: #4EFFA6 2px solid !important;
+    border-radius: 25px !important;
+    padding-block: 20px !important;
+    padding-inline: 20px !important;
+}
+
+.ss-search input:focus {
+    box-shadow: 0 0 10px rgba(78, 255, 166, 0.3) !important;
+}
+
+.ss-list {
+    background-color: #1B1C22 !important;
+    color: #F3EFF5 !important;
+}
+
+.ss-option:hover {
+    background-color: #4EFFA6 !important;
+    color: #1B1C22 !important;
+}
+
+.ss-option-selected {
+    background-color: #4EFFA6 !important;
+    color: #292A33 !important;
+}
+
+.ss-list::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.ss-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.ss-list::-webkit-scrollbar-thumb {
+    background: rgba(78, 255, 166, 0.75);
+    border-radius: 10px;
+}
+
+.ss-list::-webkit-scrollbar-thumb:hover {
+    background: #4EFFA6;
+    border-radius: 10px;
+}
