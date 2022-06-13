@@ -4,7 +4,7 @@
  */
 
 use common\models\Band;
-use yii\bootstrap4\ActiveForm;
+use kartik\form\ActiveForm;
 use yii\web\View;
 
 $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
@@ -19,37 +19,33 @@ $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
     <div class="flex flex-col gap-10 w-[30rem] xl:w-[40rem]">
 
         <!-- NAME INPUT -->
-        <?= $form->field($model, 'name', ['template' =>
-            '<div class="text-2xl mb-5">{label}</div>
-            {input}
-            <div class="text-red-500 mt-2">{error}</div>'])
-            ->textInput(['maxlength' => 255, 'class' => 'input-style', 'placeholder' => 'Iron Maiden']) ?>
+        <?= $form->field($model, 'name', [
+            'labelOptions' => ['class' => 'text-2xl'],
+            'errorOptions' => ['class' => 'text-red-500'],
+        ])->textInput(['maxlength' => 255, 'class' => 'input-style', 'placeholder' => 'Iron Maiden']) ?>
 
 
         <div class="grid grid-cols-2 gap-10">
 
             <!-- FOUNDING YEAR INPUT -->
-            <?= $form->field($model, 'founding_year', ['template' =>
-                '<div class="text-2xl mb-5">{label}</div>
-            {input}
-            <div class="text-red-500 mt-2">{error}</div>'])
-                ->input('number', ['class' => 'input-style', 'placeholder' => '1975']) ?>
+            <?= $form->field($model, 'founding_year', [
+                'labelOptions' => ['class' => 'text-2xl'],
+                'errorOptions' => ['class' => 'text-red-500'],
+            ])->input('number', ['class' => 'input-style', 'placeholder' => '1975']) ?>
 
             <!-- BREAK-UP YEAR INPUT -->
-            <?= $form->field($model, 'breakup_year', ['template' =>
-                '<div class="text-2xl mb-5">{label}</div>
-            {input}
-            <div class="text-red-500 mt-2">{error}</div>'])
-                ->input('number', ['class' => 'input-style', 'placeholder' => '2010 (if broken)']) ?>
+            <?= $form->field($model, 'breakup_year', [
+                'labelOptions' => ['class' => 'text-2xl'],
+                'errorOptions' => ['class' => 'text-red-500'],
+            ])->input('number', ['class' => 'input-style', 'placeholder' => '2010 (if broke up)']) ?>
 
         </div>
 
         <!-- BACKGROUND IMAGE URL INPUT -->
-        <?= $form->field($model, 'bg_image_url', ['template' =>
-            '<div class="text-2xl mb-5">{label}</div>
-            {input}
-            <div class="text-red-500 mt-2">{error}</div>'])
-            ->textInput(['maxlength' => 2048, 'class' => 'input-style', 'placeholder' => 'Url']) ?>
+        <?= $form->field($model, 'bg_image_url', [
+            'labelOptions' => ['class' => 'text-2xl'],
+            'errorOptions' => ['class' => 'text-red-500'],
+        ])->textInput(['maxlength' => 2048, 'class' => 'input-style', 'placeholder' => 'Url']) ?>
 
         <!-- BACKGROUND IMAGE PREVIEW -->
         <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image"

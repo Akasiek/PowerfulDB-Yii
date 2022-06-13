@@ -4,7 +4,7 @@
  */
 
 use common\models\Artist;
-use yii\bootstrap4\ActiveForm;
+use kartik\form\ActiveForm;
 use yii\helpers\Url;
 use yii\web\View;
 
@@ -13,7 +13,9 @@ $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
 ?>
 
 <div class="py-14 px-20 w-full flex justify-center items-center">
-    <?php $form = ActiveForm::begin() ?>
+    <?php $form = ActiveForm::begin([
+        'type' => ActiveForm::TYPE_VERTICAL,
+    ]) ?>
 
     <h1 class="text-5xl font-sans mb-2">Add an artist</h1>
 
@@ -27,49 +29,56 @@ $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
         </p>
 
         <!-- NAME INPUT -->
-        <?= $form->field($model, 'name', ['template' =>
-            '<div class="text-2xl mb-5">{label}</div>
-            {input}
-            <div class="text-red-500 mt-2">{error}</div>'])
-            ->textInput(['maxlength' => 255, 'class' => 'input-style', 'placeholder' => 'Jack White']) ?>
+        <?= $form->field($model, 'name', [
+            'labelOptions' => ['class' => 'text-2xl'],
+            'errorOptions' => ['class' => 'text-red-500'],
+        ])->textInput([
+            'maxlength' => 255,
+            'class' => 'input-style',
+            'placeholder' => 'Jack White'
+        ]) ?>
 
         <!-- FULL NAME INPUT -->
-        <?= $form->field($model, 'full_name', ['template' =>
-            '<div class="text-2xl mb-5">{label}</div>
-            {input}
-            <div class="text-red-500 mt-2">{error}</div>'])
-            ->textInput(['maxlength' => 255, 'class' => 'input-style', 'placeholder' => 'John Anthony White']) ?>
+        <?= $form->field($model, 'full_name', [
+            'labelOptions' => ['class' => 'text-2xl'],
+            'errorOptions' => ['class' => 'text-red-500'],
+        ])->textInput([
+            'maxlength' => 255,
+            'class' => 'input-style',
+            'placeholder' => 'John Anthony White (provide if different)',
+        ]) ?>
 
 
         <div class="grid grid-cols-2 gap-10">
 
             <!-- BIRTH DATE INPUT -->
-            <?= $form->field($model, 'birth_date', ['template' =>
-                '<div class="text-2xl mb-5">{label}</div>
-            {input}
-            <div class="text-red-500 mt-2">{error}</div>'])
-                ->input('date', ['class' => 'input-style']) ?>
+            <?= $form->field($model, 'birth_date', [
+                'labelOptions' => ['class' => 'text-2xl'],
+                'errorOptions' => ['class' => 'text-red-500'],
+            ])->input('date', ['class' => 'input-style']) ?>
 
             <!-- DEATH DATE INPUT -->
-            <?= $form->field($model, 'death_date', ['template' =>
-                '<div class="text-2xl mb-5">{label}</div>
-            {input}
-            <div class="text-red-500 mt-2">{error}</div>'])
-                ->input('date', ['class' => 'input-style']) ?>
+            <?= $form->field($model, 'death_date', [
+                'labelOptions' => ['class' => 'text-2xl'],
+                'errorOptions' => ['class' => 'text-red-500'],
+            ])->input('date', ['class' => 'input-style']) ?>
 
         </div>
 
         <!-- BACKGROUND IMAGE URL INPUT -->
-        <?= $form->field($model, 'bg_image_url', ['template' =>
-            '<div class="text-2xl mb-5">{label}</div>
-            {input}
-            <div class="text-red-500 mt-2">{error}</div>'])
-            ->textInput(['maxlength' => 2048, 'class' => 'input-style', 'placeholder' => 'Url']) ?>
+        <?= $form->field($model, 'bg_image_url', [
+            'labelOptions' => ['class' => 'text-2xl'],
+            'errorOptions' => ['class' => 'text-red-500'],
+        ])->textInput([
+            'maxlength' => 2048,
+            'class' => 'input-style',
+            'placeholder' => 'Url'
+        ]) ?>
 
         <!-- BACKGROUND IMAGE PREVIEW -->
         <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image"
              class="w-full aspect-[315/175] object-cover object-center" alt="image uploaded by the user"/>
-        
+
         <!-- SUBMIT BUTTON -->
         <div class="text-right">
             <input type="submit" value="Submit"

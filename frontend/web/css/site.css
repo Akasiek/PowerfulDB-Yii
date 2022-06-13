@@ -8,7 +8,7 @@
     }
 
     .input-style {
-        @apply w-full rounded-3xl bg-transparent border-2 border-main-accent px-4 py-2
+        @apply w-full rounded-3xl bg-transparent border-2 border-main-accent px-4 py-2 my-2
         focus:outline-0 focus:shadow-accent transition duration-150
         placeholder:text-gray-500
     }
