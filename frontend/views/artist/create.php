@@ -69,7 +69,7 @@ $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
         <!-- BACKGROUND IMAGE PREVIEW -->
         <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image"
              class="w-full aspect-[315/175] object-cover object-center" alt="image uploaded by the user"/>
-
+        
         <!-- SUBMIT BUTTON -->
         <div class="text-right">
             <input type="submit" value="Submit"
@@ -77,7 +77,6 @@ $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
         </div>
     </div>
 
-    <?php echo $form->errorSummary($model) ?>
 
     <?php ActiveForm::end() ?>
 </div>

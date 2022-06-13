@@ -62,8 +62,6 @@ $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
         </div>
     </div>
 
-    <?php echo $form->errorSummary($model) ?>
-
     <?php ActiveForm::end() ?>
 </div>
 
