@@ -7,9 +7,10 @@
 use common\models\Artist;
 use common\models\Band;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 ?>
-<a href="<?php echo \yii\helpers\Url::to(['/' . (isset($baseUrl) ? $baseUrl : Yii::$app->controller->id) . '/view', 'slug' => $model->slug]) ?>">
+<a href="<?php echo Url::to(['/' . (isset($baseUrl) ? $baseUrl : Yii::$app->controller->id) . '/view', 'slug' => $model->slug]) ?>">
     <div class="rounded-3xl w-full h-48 !bg-cover flex flex-col justify-end items-start snap-start scroll-pl-3
                 group overflow-hidden !bg-center"
          style="background: linear-gradient(180deg, rgba(94, 43, 255, 0) 25%,
