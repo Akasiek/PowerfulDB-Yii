@@ -53,7 +53,7 @@ class Album extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
+            [['title', 'slug'], 'required'],
             [['band_id', 'artist_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['artwork_url'], 'string', 'max' => 2048],

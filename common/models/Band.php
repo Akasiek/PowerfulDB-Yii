@@ -49,6 +49,7 @@ class Band extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'slug'], 'required'],
             [['founding_year', 'breakup_year', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['bg_image_url'], 'string', 'max' => 2048],

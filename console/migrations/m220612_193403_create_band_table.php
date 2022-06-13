@@ -14,8 +14,8 @@ class m220612_193403_create_band_table extends Migration
     {
         $this->createTable('{{%band}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(),
-            'slug' => $this->string(),
+            'name' => $this->string()->notNull(),
+            'slug' => $this->string()->notNull(),
             'founding_year' => $this->integer(4),
             'breakup_year' => $this->integer(4),
             'bg_image_url' => $this->string(2048),

@@ -18,9 +18,9 @@ class m220607_180055_create_artist_table extends Migration
     {
         $this->createTable('{{%artist}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(256)->notNull(),
-            'slug' => $this->string(256)->notNull(),
-            'full_name' => $this->string(256),
+            'name' => $this->string()->notNull(),
+            'slug' => $this->string()->notNull(),
+            'full_name' => $this->string(),
             'birth_date' => $this->date(),
             'death_date' => $this->date(),
             'bg_image_url' => $this->string(2048),

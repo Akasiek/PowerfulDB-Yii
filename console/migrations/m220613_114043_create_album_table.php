@@ -19,7 +19,7 @@ class m220613_114043_create_album_table extends Migration
         $this->createTable('{{%album}}', [
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull(),
-            'slug' => $this->string(),
+            'slug' => $this->string()->notNull(),
             'band_id' => $this->integer(),
             'artist_id' => $this->integer(),
             'artwork_url' => $this->string(2048),
