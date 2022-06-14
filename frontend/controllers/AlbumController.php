@@ -10,11 +10,23 @@ class AlbumController extends Controller
 {
     public function actionIndex()
     {
+        $query = Album::find()
+            ->with('createdBy')
+            ->leftJoin('artist', 'artist.id = album.artist_id')
+            ->leftJoin('band', 'band.id = album.band_id');
+
+        // Check if any filters are set
+        $filters = \Yii::$app->request->get();
+        if (isset($filters['from_year']) && $filters['from_year'] != '') {
+            $query->andWhere('YEAR(release_date) >= :from_year', [':from_year' => $filters['from_year']]);
+        }
+        if (isset($filters['to_year']) && $filters['to_year'] != '') {
+            $query->andWhere('YEAR(release_date) <= :to_year', [':to_year' => $filters['to_year']]);
+        }
+
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Album::find()
-                ->with('createdBy')
-                ->leftJoin('artist', 'artist.id = album.artist_id')
-                ->leftJoin('band', 'band.id = album.band_id'),
+            'query' => $query,
             'pagination' => [
                 'pageSize' => 20,
             ],

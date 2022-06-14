@@ -4,15 +4,19 @@
  */
 
 use yii\data\ActiveDataProvider;
+use yii\helpers\Html;
+use yii\widgets\Pjax;
 
 ?>
 
 <div class="px-14 py-8">
 
-    <?php echo $this->render('@frontend/views/components/_group_title') ?>
+    <?= $this->render('@frontend/views/components/_group_title') ?>
+
+    <?= $this->render('_album_sort_filter') ?>
 
 
-    <?php echo \yii\widgets\ListView::widget([
+    <?= \yii\widgets\ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_album_card',
         'layout' => '<div class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-x-8 gap-y-12">{items}</div>{pager}',
