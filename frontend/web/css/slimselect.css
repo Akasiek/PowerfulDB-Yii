@@ -1,10 +1,12 @@
 .ss-main .ss-single-selected {
     background-color: transparent !important;
     border: 0 !important;
+    padding: 0 !important;
 }
 
 .ss-main .ss-single-selected .placeholder {
     color: #F3EFF5 !important;
+    overflow: visible !important;
 }
 
 .ss-main .ss-single-selected .placeholder .ss-disabled {
@@ -24,8 +26,9 @@
     background-color: #1B1C22 !important;
     border: #4EFFA6 2px solid !important;
     border-radius: 25px !important;
-    padding-block: 20px !important;
+    padding-block: 18px !important;
     padding-inline: 20px !important;
+    color: #F3EFF5 !important;
 }
 
 .ss-search input:focus {
