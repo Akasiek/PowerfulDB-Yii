@@ -1,9 +1,11 @@
 <?php
 /**
  * @var $dataProvider ActiveDataProvider
+ * @var $sort Sort
  */
 
 use yii\data\ActiveDataProvider;
+use yii\data\Sort;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
@@ -13,7 +15,9 @@ use yii\widgets\Pjax;
 
     <?= $this->render('@frontend/views/components/_group_title') ?>
 
-    <?= $this->render('_album_sort_filter') ?>
+    <?= $this->render('_album_sort_filter', [
+        'sort' => $sort,
+    ]) ?>
 
 
     <?= \yii\widgets\ListView::widget([

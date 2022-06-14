@@ -4,16 +4,37 @@ namespace frontend\controllers;
 
 use common\models\Album;
 use yii\data\ActiveDataProvider;
+use yii\data\Sort;
 use yii\web\Controller;
 
 class AlbumController extends Controller
 {
     public function actionIndex()
     {
+        $sort = new Sort([
+            'attributes' => [
+                'title' => [
+                    'asc' => ['album.title' => SORT_ASC],
+                    'desc' => ['album.title' => SORT_DESC],
+                    'default' => SORT_ASC,
+                    'label' => 'Title',
+                ],
+                'release_date' => [
+                    'asc' => ['album.release_date' => SORT_ASC],
+                    'desc' => ['album.release_date' => SORT_DESC],
+                    'default' => SORT_ASC,
+                    'label' => 'Release Date',
+                ],
+            ],
+            'defaultOrder' => ['release_date' => SORT_DESC],
+        ]);
+
         $query = Album::find()
             ->with('createdBy')
             ->leftJoin('artist', 'artist.id = album.artist_id')
-            ->leftJoin('band', 'band.id = album.band_id');
+            ->leftJoin('band', 'band.id = album.band_id')
+            ->orderBy($sort->orders);
+
 
         // Check if any filters are set
         $filters = \Yii::$app->request->get();
@@ -38,6 +59,7 @@ class AlbumController extends Controller
         ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'sort' => $sort,
         ]);
     }
 

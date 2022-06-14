@@ -1,7 +1,14 @@
+.ss-main {
+    padding-block: 0.75rem;
+    padding-inline: 1rem;
+}
+
 .ss-main .ss-single-selected {
     background-color: transparent !important;
     border: 0 !important;
     padding: 0 !important;
+    gap: 0.5rem;
+    height: auto !important;
 }
 
 .ss-main .ss-single-selected .placeholder {
@@ -49,6 +56,7 @@
     background-color: #4EFFA6 !important;
     color: #292A33 !important;
 }
+
 
 .ss-list::-webkit-scrollbar {
     width: 0.5rem;
