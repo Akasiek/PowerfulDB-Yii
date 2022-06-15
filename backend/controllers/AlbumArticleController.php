@@ -2,16 +2,16 @@
 
 namespace backend\controllers;
 
-use common\models\Album;
+use common\models\AlbumArticle;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AlbumController implements the CRUD actions for Album model.
+ * AlbumArticleController implements the CRUD actions for AlbumArticle model.
  */
-class AlbumController extends Controller
+class AlbumArticleController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,14 +32,14 @@ class AlbumController extends Controller
     }
 
     /**
-     * Lists all Album models.
+     * Lists all AlbumArticle models.
      *
      * @return string
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Album::find(),
+            'query' => AlbumArticle::find(),
             /*
             'pagination' => [
                 'pageSize' => 50
@@ -58,7 +58,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * Displays a single Album model.
+     * Displays a single AlbumArticle model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -71,13 +71,13 @@ class AlbumController extends Controller
     }
 
     /**
-     * Creates a new Album model.
+     * Creates a new AlbumArticle model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Album();
+        $model = new AlbumArticle();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -93,7 +93,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * Updates an existing Album model.
+     * Updates an existing AlbumArticle model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -113,7 +113,7 @@ class AlbumController extends Controller
     }
 
     /**
-     * Deletes an existing Album model.
+     * Deletes an existing AlbumArticle model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -126,17 +126,16 @@ class AlbumController extends Controller
         return $this->redirect(['index']);
     }
 
-
     /**
-     * Finds the Album model based on its primary key value.
+     * Finds the AlbumArticle model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return Album the loaded model
+     * @return AlbumArticle the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Album::findOne(['id' => $id])) !== null) {
+        if (($model = AlbumArticle::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

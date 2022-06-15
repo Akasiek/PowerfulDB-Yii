@@ -41,8 +41,12 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/album/article' => '/album-article/',
             ],
         ],
+        'assetManager' => [
+            'appendTimestamp' => true,
+        ]
     ],
     'params' => $params,
 ];

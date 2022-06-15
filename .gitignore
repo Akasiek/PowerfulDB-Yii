@@ -46,4 +46,8 @@ phpunit.phar
 /backend/web/index.php
 /backend/web/index-test.php
 /backend/web/robots.txt
+/backend/web/assets
 /backend/runtime
+
+# VS Code workspace folder
+/.vs
