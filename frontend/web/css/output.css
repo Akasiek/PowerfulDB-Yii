@@ -804,12 +804,26 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 18rem !important;
 }
 
+.w-max {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.w-\[20rem\] {
+  width: 20rem;
+}
+
 .max-w-screen-lg {
   max-width: 1024px;
 }
 
 .max-w-screen-xl {
   max-width: 1280px;
+}
+
+.max-w-sm {
+  max-width: 24rem;
 }
 
 .flex-1 {
@@ -1220,6 +1234,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-main-light {
   --tw-text-opacity: 1;
   color: rgb(243 239 245 / var(--tw-text-opacity));
+}
+
+.underline {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .underline-offset-2 {

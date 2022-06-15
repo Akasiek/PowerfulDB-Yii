@@ -23,9 +23,9 @@ $articleText = $model->getAlbumArticule()->asArray()->one()['text'] ?? '';
     <div class="px-14 py-8">
 
         <?= $this->render('_album_article', [
+            'model' => $model,
             'articleText' => $articleText,
         ]); ?>
 
     </div>
-
 </div>
