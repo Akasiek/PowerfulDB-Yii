@@ -104,6 +104,16 @@ class Artist extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[Album]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\AlbumQuery
+     */
+    public function getAlbums()
+    {
+        return $this->hasMany(Album::className(), ['artist_id' => 'id']);
+    }
+
+    /**
      * {@inheritdoc}
      * @return \common\models\query\ArtistQuery the active query used by this AR class.
      */

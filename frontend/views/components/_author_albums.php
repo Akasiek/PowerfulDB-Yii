@@ -1,0 +1,109 @@
+<?php
+
+/**
+ * @var $model Artist | Band
+ */
+
+use common\models\Artist;
+use common\models\Band;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\Pjax;
+
+
+$displayStyle = Yii::$app->cache->get('album_display_style');
+// Check if pjax send a new display style
+
+if ($displayStyle === false) {
+    $displayStyle = 'grid';
+    Yii::$app->cache->set('album_display_style', $displayStyle);
+}
+if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
+    $displayStyle = Yii::$app->request->post('displayStyle');
+    Yii::$app->cache->set('album_display_style', $displayStyle);
+}
+
+Pjax::begin(['id' => 'album-display-style-pjax']); ?>
+<?php if ($model->getAlbums()->count() !== 0): ?>
+    <div class="w-full max-w-screen-xl m-auto">
+        <div class="flex gap-20 justify-between items-center">
+            <div>
+                <h1 class="font-sans text-5xl">Albums</h1>
+            </div>
+            <div class="flex gap-4">
+
+
+                <?= Html::button('grid_view', [
+                    'class' => 'material-symbols-rounded !text-3xl',
+                    'data-method' => 'post',
+                    'data-pjax' => '1',
+                    'data-params' => [
+                        'displayStyle' => 'grid',
+                    ],
+                ]) ?>
+                <?= Html::button('list', [
+                    'class' => 'material-symbols-rounded !text-3xl',
+                    'data-method' => 'post',
+                    'data-pjax' => '1',
+                    'data-params' => [
+                        'displayStyle' => 'list',
+                    ],
+                ]) ?>
+
+
+            </div>
+        </div>
+        <hr class="max-w-sm   border-t-2 border-t-main-accent mt-2 mb-6">
+
+        <?php if ($displayStyle === 'grid'): ?>
+            <div class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-x-8 gap-y-12">
+                <?php foreach ($model->getAlbums()->all() as $album): ?>
+                    <a href="<?= Url::to(['/album/view', 'slug' => $album->slug,]) ?>"
+                       class="group transition">
+                        <div class="text-center">
+                            <img class="mb-2" src="<?= $album->artwork_url ?>" alt="Album artwork">
+
+                            <p class="text-base lg:text-lg truncate group-hover:underline"
+                               title="<?= $album->title ?>">
+                                <?= $album->title ?>
+                            </p>
+
+                            <p class="text-sm truncate text-gray-400">
+                                <?= Yii::$app->formatter->asDate($album->release_date, 'Y') ?>
+                            </p>
+                        </div>
+                    </a>
+                <?php endforeach ?>
+            </div>
+
+        <?php elseif ($displayStyle === 'list'): ?>
+
+            <div class="max-w-screen-lg flex flex-col justify-center items-center m-auto">
+                <?php foreach ($model->getAlbums()->all() as $album): ?>
+                    <a href="<?= Url::to(['/album/view', 'slug' => $album->slug,]) ?>"
+                       class="w-full">
+                        <div class="flex justify-center items-center w-full">
+                            <div class="h-36 m-10">
+                                <img src="<?= $album->artwork_url ?>" alt="Album artwork" class="h-full">
+
+                            </div>
+
+                            <div class="col-span-2 w-full flex-1">
+                                <h2 class="text-2xl"><?= $album->title ?></h2>
+                                <p class="italic text-gray-400">
+                                    <?= Yii::$app->formatter->asDate($album->release_date, 'long') ?>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <hr class="my-8 border-t-2 border-t-gray-700 w-[60%] mx-auto">
+
+                <?php endforeach ?>
+            </div>
+
+        <?php endif ?>
+    </div>
+<?php
+endif;
+Pjax::end();
+?>

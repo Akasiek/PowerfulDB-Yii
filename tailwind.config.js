@@ -13,6 +13,9 @@ module.exports = {
             fontFamily: {
                 'serif': ['Lora', 'serif'],
                 'sans': ['Staatliches', 'sans-serif'],
+            },
+            gridTemplateColumns: {
+                'auto-fill': 'repeat(auto-fill, 12rem)',
             }
         },
     },
