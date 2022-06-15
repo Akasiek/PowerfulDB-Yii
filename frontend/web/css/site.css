@@ -30,4 +30,42 @@
         peer-placeholder-shown:top-2 peer-focus:-top-3.5
         peer-focus:text-gray-300 peer-focus:text-sm
     }
+
+    @layer base {
+        .article-style > h1 {
+            @apply text-5xl font-sans my-7
+        }
+
+        .article-style > h2 {
+            @apply text-4xl font-sans my-5
+        }
+
+        .article-style > h3 {
+            @apply text-3xl font-sans my-3
+        }
+
+        .article-style > h4 {
+            @apply text-2xl my-1.5
+        }
+
+        .article-style > h5 {
+            @apply text-xl my-1.5
+        }
+
+        .article-style > h6 {
+            @apply text-lg my-1.5
+        }
+
+        .article-style > p {
+            @apply text-base leading-7 my-2
+        }
+
+        .article-style > hr {
+            @apply my-8 border-t-2 border-t-gray-700 w-[60%] mx-auto
+        }
+
+        .article-style > * img {
+            @apply my-8 mx-auto
+        }
+    }
 }

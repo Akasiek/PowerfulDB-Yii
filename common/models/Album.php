@@ -124,6 +124,16 @@ class Album extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[AlbumArticle]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\AlbumArticleQuery
+     */
+    public function getAlbumArticule()
+    {
+        return $this->hasOne(AlbumArticle::className(), ['album_id' => 'id']);
+    }
+
+    /**
      * {@inheritdoc}
      * @return \common\models\query\AlbumQuery the active query used by this AR class.
      */
