@@ -54,7 +54,7 @@ $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
         <!-- SUBMIT BUTTON -->
         <div class="text-right">
             <input type="submit" value="Submit"
-                   class="bg-main-accent py-2 px-5 rounded-3xl text-secondary-dark font-bold cursor-pointer ">
+                   class="btn-style">
         </div>
     </div>
 

@@ -14,8 +14,8 @@
     }
 
     .btn-style {
-        @apply w-full rounded-3xl bg-transparent border-2 border-main-accent
-        px-3 py-1.5 my-2 cursor-pointer transition text-center
+        @apply rounded-3xl bg-transparent border-2 border-main-accent
+        px-5 py-1.5 cursor-pointer transition text-center
         hover:bg-main-accent hover:text-secondary-dark hover:shadow-accent
     }
 

@@ -8,7 +8,6 @@ use common\models\Artist;
 use common\models\Band;
 use yii\web\View;
 use kartik\form\ActiveForm;
-use kartik\select2\Select2;
 
 $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
 
@@ -87,7 +86,7 @@ array_walk($bands, function (&$band) {
         <!-- SUBMIT BUTTON -->
         <div class="text-right">
             <input type="submit" value="Submit"
-                   class="bg-main-accent py-2 px-5 rounded-3xl text-secondary-dark font-bold cursor-pointer ">
+                   class="btn-style">
         </div>
     </div>
 

@@ -61,8 +61,8 @@ $to_year = Yii::$app->request->get('to_year');
         </div>
 
         <div class="flex gap-5">
-            <input type="submit" value="Filter" class="btn-style w-24">
-            <?= Html::a('Reset', ['/album/'], ['class' => 'btn-style w-24']) ?>
+            <input type="submit" value="Filter" class="btn-style">
+            <?= Html::a('Reset', ['/album/'], ['class' => 'btn-style']) ?>
         </div>
     </div>
 
