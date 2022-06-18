@@ -22,7 +22,7 @@ use common\models\Album;
     <div class="article-style max-w-screen-lg text-justify">
         <p>There is no article for this album yet. You can go ahead and
             <?= \yii\helpers\Html::a('create article for this album',
-                ['album-article/create', 'slug' => $model->slug],
+                ['album/article-create', 'slug' => $model->slug],
                 ['class' => 'underline hover:text-main-accent transition-colors']) ?>
         </p>
     </div>

@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Album;
+use common\models\AlbumArticle;
 use yii\data\ActiveDataProvider;
 use yii\data\Sort;
 use yii\web\Controller;
@@ -93,6 +94,25 @@ class AlbumController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionArticleCreate($slug)
+    {
+        $model = new AlbumArticle();
+
+        $album = Album::findOne(['slug' => $slug]);
+
+        if ($model->load(\Yii::$app->request->post())) {
+            $model->album_id = $album->id;
+            if ($model->save()) {
+                return $this->redirect(['view', 'slug' => $slug]);
+            }
+        } else {
+            return $this->render('article/create', [
+                'model' => $model,
+                'slug' => $slug,
             ]);
         }
     }
