@@ -43,6 +43,7 @@ return [
             'rules' => [
                 '/album/article' => '/album-article/',
                 '/band/article' => '/band-article/',
+                '/artist/article' => '/artist-article/',
             ],
         ],
         'assetManager' => [
