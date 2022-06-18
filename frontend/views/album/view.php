@@ -8,7 +8,7 @@ use common\models\Album;
 if ($model->artist_id) $author = $model->artist;
 else $author = $model->band;
 
-$articleText = $model->getAlbumArticule()->asArray()->one()['text'] ?? '';
+$articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
 $otherAlbums = $author->getAlbums()->where('id != :id', ['id' => $model->id])->limit(10)->all();
 ?>
 
@@ -20,9 +20,9 @@ $otherAlbums = $author->getAlbums()->where('id != :id', ['id' => $model->id])->l
 
 
 <div class="flex flex-col justify-center items-center mt-5">
-    <div class="px-14 py-8">
+    <div class="px-14 py-8 max-w-screen-lg w-full">
 
-        <?= $this->render('_album_article', [
+        <?= $this->render('@frontend/views/components/_render_article', [
             'model' => $model,
             'articleText' => $articleText,
         ]); ?>

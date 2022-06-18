@@ -11,6 +11,8 @@ use yii\widgets\Pjax;
 // Wierd fix for pjax to not scroll to top
 $this->registerJs('$.pjax.defaults.scrollTo = false;', \yii\web\View::POS_LOAD);
 
+$articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
+
 ?>
 
 <?php
@@ -20,8 +22,14 @@ echo $this->render('@frontend/views/components/_default_jumbotron', [
 ?>
 
 <div class="flex flex-col justify-center items-center mt-5">
-    <div class="px-14 py-8 w-full ">
-        <!-- TODO: ARTIST ARTICLE -->
+    <div class="px-14 py-8 max-w-screen-lg w-full">
+
+        <div class="mb-16">
+            <?= $this->render('@frontend/views/components/_render_article', [
+                'model' => $model,
+                'articleText' => $articleText,
+            ]); ?>
+        </div>
 
         <?= $this->render('@frontend/views/components/_author_albums', [
             'model' => $model,

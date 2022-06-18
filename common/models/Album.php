@@ -128,7 +128,7 @@ class Album extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery|\common\models\query\AlbumArticleQuery
      */
-    public function getAlbumArticule()
+    public function getArticle()
     {
         return $this->hasOne(AlbumArticle::className(), ['album_id' => 'id']);
     }

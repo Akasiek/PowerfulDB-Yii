@@ -686,6 +686,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: auto;
 }
 
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .mb-6 {
   margin-bottom: 1.5rem;
 }
@@ -740,6 +745,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
 }
 
 .flex {

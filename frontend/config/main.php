@@ -47,6 +47,7 @@ return [
 
                 '/band/create' => '/band/create',
                 '/band/<slug>' => '/band/view',
+                '/band/<slug>/article/create' => '/band/article-create',
 
                 '/album/' => '/album/index',
                 '/album/create' => '/album/create',

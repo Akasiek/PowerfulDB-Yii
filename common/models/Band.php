@@ -106,6 +106,16 @@ class Band extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[BandArticle]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\AlbumArticleQuery
+     */
+    public function getArticle()
+    {
+        return $this->hasOne(BandArticle::className(), ['band_id' => 'id']);
+    }
+
+    /**
      * {@inheritdoc}
      * @return \common\models\query\BandQuery the active query used by this AR class.
      */
