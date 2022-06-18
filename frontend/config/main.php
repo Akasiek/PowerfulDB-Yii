@@ -44,6 +44,7 @@ return [
 
                 '/artist/create' => '/artist/create',
                 '/artist/<slug>' => '/artist/view',
+                '/artist/<slug>/article/create' => '/artist/article-create',
 
                 '/band/create' => '/band/create',
                 '/band/<slug>' => '/band/view',

@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Artist;
+use common\models\ArtistArticle;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -59,6 +60,23 @@ class ArtistController extends Controller
             return $this->redirect(['view', 'slug' => $model->slug]);
         } else {
             return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionArticleCreate($slug)
+    {
+        $model = new ArtistArticle();
+        $artist = Artist::findOne(['slug' => $slug]);
+
+        if ($model->load(\Yii::$app->request->post())) {
+            $model->artist_id = $artist->id;
+            if ($model->save()) {
+                return $this->redirect(['view', 'slug' => $slug]);
+            }
+        } else {
+            return $this->render('article/create', [
                 'model' => $model,
             ]);
         }
