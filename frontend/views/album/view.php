@@ -4,12 +4,17 @@
  */
 
 use common\models\Album;
+use yii\web\NotFoundHttpException;
+
+if (!isset($model)) throw new NotFoundHttpException('Album not found');
+
 
 if ($model->artist_id) $author = $model->artist;
 else $author = $model->band;
 
 $articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
 $otherAlbums = $author->getAlbums()->where('id != :id', ['id' => $model->id])->limit(10)->all();
+
 ?>
 
 

@@ -6,10 +6,13 @@
 use common\models\Band;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
 use yii\widgets\Pjax;
 
 // Wierd fix for pjax to not scroll to top
 $this->registerJs('$.pjax.defaults.scrollTo = false;', \yii\web\View::POS_LOAD);
+
+if (!isset($model)) throw new NotFoundHttpException('Band not found');
 
 $articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
 
