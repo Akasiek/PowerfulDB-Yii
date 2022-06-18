@@ -112,7 +112,6 @@ class AlbumController extends Controller
         } else {
             return $this->render('article/create', [
                 'model' => $model,
-                'slug' => $slug,
             ]);
         }
     }

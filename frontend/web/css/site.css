@@ -60,6 +60,10 @@
             @apply text-base leading-7 my-2
         }
 
+        .article-style > * a {
+            @apply text-main-accent hover:underline
+        }
+
         .article-style > hr {
             @apply my-8 border-t-2 border-t-gray-700 w-[60%] mx-auto
         }
