@@ -10,28 +10,31 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
+$albums = $model->getAlbums()->orderBy('release_date')->all();
+$albumsCount = count($albums);
 
-$displayStyle = Yii::$app->cache->get('album_display_style');
 // Check if pjax send a new display style
-
+$displayStyle = Yii::$app->cache->get('album_display_style');
+// If not, use the default display style
 if ($displayStyle === false) {
     $displayStyle = 'grid';
     Yii::$app->cache->set('album_display_style', $displayStyle);
 }
+// If pjax send a new display style, use it
 if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
     $displayStyle = Yii::$app->request->post('displayStyle');
     Yii::$app->cache->set('album_display_style', $displayStyle);
 }
 
+
 Pjax::begin(['id' => 'album-display-style-pjax']); ?>
-<?php if ($model->getAlbums()->count() !== 0): ?>
-    <div class="w-full max-w-screen-xl m-auto">
+<?php if ($albumsCount !== 0): ?>
+    <div class="w-full m-auto">
         <div class="flex gap-20 justify-between items-center">
             <div>
                 <h1 class="font-sans text-5xl">Albums</h1>
             </div>
             <div class="flex gap-4">
-
 
                 <?= Html::button('grid_view', [
                     'class' => 'material-symbols-rounded !text-3xl',
@@ -50,14 +53,13 @@ Pjax::begin(['id' => 'album-display-style-pjax']); ?>
                     ],
                 ]) ?>
 
-
             </div>
         </div>
         <hr class="max-w-sm   border-t-2 border-t-main-accent mt-2 mb-6">
 
         <?php if ($displayStyle === 'grid'): ?>
-            <div class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-x-8 gap-y-12">
-                <?php foreach ($model->getAlbums()->all() as $album): ?>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+                <?php foreach ($albums as $album): ?>
                     <a href="<?= Url::to(['/album/view', 'slug' => $album->slug,]) ?>"
                        class="group transition">
                         <div class="text-center">
@@ -78,8 +80,9 @@ Pjax::begin(['id' => 'album-display-style-pjax']); ?>
 
         <?php elseif ($displayStyle === 'list'): ?>
 
-            <div class="max-w-screen-lg flex flex-col justify-center items-center m-auto">
-                <?php foreach ($model->getAlbums()->all() as $album): ?>
+            <div class="flex flex-col justify-center items-center m-auto">
+                <?php $i = 0 ?>
+                <?php foreach ($albums as $album): ?>
                     <a href="<?= Url::to(['/album/view', 'slug' => $album->slug,]) ?>"
                        class="w-full">
                         <div class="flex justify-center items-center w-full">
@@ -96,7 +99,9 @@ Pjax::begin(['id' => 'album-display-style-pjax']); ?>
                             </div>
                         </div>
                     </a>
-                    <hr class="my-8 border-t-2 border-t-gray-700 w-[60%] mx-auto">
+                    <?php if (++$i !== $albumsCount): ?>
+                        <hr class="my-8 border-t-2 border-t-gray-700 w-[60%] mx-auto">
+                    <?php endif ?>
 
                 <?php endforeach ?>
             </div>
