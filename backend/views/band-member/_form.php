@@ -30,6 +30,10 @@ $bandsMap = ArrayHelper::map($bands, 'id', 'name');
         'prompt' => 'Select a band',
     ]) ?>
 
+    <?= $form->field($model, 'join_year')->textInput() ?>
+
+    <?= $form->field($model, 'quit_year')->textInput() ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

@@ -36,6 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Band name',
                 'attribute' => 'band.name',
             ],
+            'join_year',
+            'quit_year',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, BandMember $model, $key, $index, $column) {

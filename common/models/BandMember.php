@@ -11,6 +11,8 @@ use Yii;
  * @property string|null $name
  * @property int|null $artist_id
  * @property int|null $band_id
+ * @property int|null $join_year
+ * @property int|null $quit_year
  *
  * @property Artist $artist
  * @property Band $band
@@ -31,7 +33,7 @@ class BandMember extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['artist_id', 'band_id'], 'integer'],
+            [['artist_id', 'band_id', 'join_year', 'quit_year'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['artist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Artist::className(), 'targetAttribute' => ['artist_id' => 'id']],
             [['band_id'], 'exist', 'skipOnError' => true, 'targetClass' => Band::className(), 'targetAttribute' => ['band_id' => 'id']],
@@ -48,6 +50,8 @@ class BandMember extends \yii\db\ActiveRecord
             'name' => 'Name',
             'artist_id' => 'Artist ID',
             'band_id' => 'Band ID',
+            'join_year' => 'Join Year',
+            'quit_year' => 'Quit Year',
         ];
     }
 
