@@ -107,7 +107,7 @@ class Band extends \yii\db\ActiveRecord
 
     public function getMembers()
     {
-        return $this->hasMany(BandMember::className(), ['band_id' => 'id']);
+        return $this->hasMany(BandMember::className(), ['band_id' => 'id'])->orderBy('join_year');
     }
 
     /**
