@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.two-line-truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 @layer components {
     .shadow-accent {
         @apply drop-shadow-[0_0_15px_rgba(78,255,166,0.3)];

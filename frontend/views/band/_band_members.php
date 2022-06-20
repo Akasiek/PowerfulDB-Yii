@@ -54,6 +54,15 @@ $bandMembers = $model->getMembers()->asArray()->all();
                             ?>
                         </p>
                     <?php endif ?>
+
+                    <?php if ($member['roles'] !== ''): ?>
+                        <div class="w-80">
+                            <p id="roles" class="text-sm mt-1 text-gray-400 two-line-truncate "
+                               title="<?= $member['roles'] ?>">
+                                <?= $member['roles'] ?>
+                            </p>
+                        </div>
+                    <?php endif ?>
                 </div>
 
             </div>
