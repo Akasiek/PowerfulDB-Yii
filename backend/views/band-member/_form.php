@@ -34,6 +34,8 @@ $bandsMap = ArrayHelper::map($bands, 'id', 'name');
 
     <?= $form->field($model, 'quit_year')->textInput() ?>
 
+    <?= $form->field($model, 'roles')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

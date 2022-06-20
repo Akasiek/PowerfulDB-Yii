@@ -41,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'join_year',
             'quit_year',
+            'roles',
         ],
     ]) ?>
 
