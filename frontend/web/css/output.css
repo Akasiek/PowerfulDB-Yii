@@ -861,6 +861,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 20rem;
 }
 
+.w-64 {
+  width: 16rem;
+}
+
 .max-w-screen-lg {
   max-width: 1024px;
 }

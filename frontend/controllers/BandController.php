@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Band;
 use common\models\BandArticle;
+use common\models\BandMember;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 
@@ -51,7 +52,6 @@ class BandController extends Controller
     public function actionArticleCreate($slug)
     {
         $model = new BandArticle();
-
         $band = Band::findOne(['slug' => $slug]);
 
         if ($model->load(\Yii::$app->request->post())) {
@@ -62,6 +62,24 @@ class BandController extends Controller
         } else {
             return $this->render('article/create', [
                 'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionMemberAdd($slug)
+    {
+        $model = new BandMember();
+        $band = Band::findOne(['slug' => $slug]);
+
+        if ($model->load(\Yii::$app->request->post())) {
+            $model->band_id = $band->id;
+            if ($model->save()) {
+                return $this->redirect(['view', 'slug' => $slug]);
+            }
+        } else {
+            return $this->render('member_add', [
+                'model' => $model,
+                'band' => $band,
             ]);
         }
     }
