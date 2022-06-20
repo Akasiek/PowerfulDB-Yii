@@ -50,30 +50,33 @@ array_walk($bands, function (&$band) {
         ]) ?>
 
         <!-- ARTIST ID INPUT -->
-        <select id="select-slim" name="author_id" class="input-style">
+        <div>
+            <label for="author_id" class="text-2xl">Choose artist or band</label>
+            <select id="select-slim" name="author_id" class="input-style">
 
-            <!-- If artist is set, use it as a default value. Otherwise create a placeholder option-->
-            <?php if (isset($paramArtist)): ?>
-                <option value="<?= 'artist-' . $paramArtist->id ?>" selected><?= $paramArtist->name ?></option>
-            <?php elseif (isset($paramBand)): ?>
-                <option value="<?= 'band-' . $paramBand->id ?>" selected><?= $paramBand->name ?></option>
-            <?php else: ?>
-                <option data-placeholder="true">Select an author</option>
-            <?php endif; ?>
+                <!-- If artist is set, use it as a default value. Otherwise create a placeholder option-->
+                <?php if (isset($paramArtist)): ?>
+                    <option value="<?= 'artist-' . $paramArtist->id ?>" selected><?= $paramArtist->name ?></option>
+                <?php elseif (isset($paramBand)): ?>
+                    <option value="<?= 'band-' . $paramBand->id ?>" selected><?= $paramBand->name ?></option>
+                <?php else: ?>
+                    <option data-placeholder="true">Select an author</option>
+                <?php endif; ?>
 
-            <optgroup label="Artists">
-                <?php foreach ($artists as $artist): ?>
-                    <option value="<?= $artist['id'] ?>"><?= $artist['name'] ?></option>
-                <?php endforeach; ?>
-            </optgroup>
+                <optgroup label="Artists">
+                    <?php foreach ($artists as $artist): ?>
+                        <option value="<?= $artist['id'] ?>"><?= $artist['name'] ?></option>
+                    <?php endforeach; ?>
+                </optgroup>
 
-            <optgroup label="Bands">
-                <?php foreach ($bands as $band): ?>
-                    <option value="<?= $band['id'] ?>"><?= $band['name'] ?></option>
-                <?php endforeach; ?>
-            </optgroup>
+                <optgroup label="Bands">
+                    <?php foreach ($bands as $band): ?>
+                        <option value="<?= $band['id'] ?>"><?= $band['name'] ?></option>
+                    <?php endforeach; ?>
+                </optgroup>
 
-        </select>
+            </select>
+        </div>
 
         <!-- RELEASE DATE INPUT -->
         <?= $form->field($model, 'release_date', [
