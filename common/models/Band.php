@@ -105,6 +105,11 @@ class Band extends \yii\db\ActiveRecord
         return $this->hasMany(Album::className(), ['band_id' => 'id']);
     }
 
+    public function getMembers()
+    {
+        return $this->hasMany(BandMember::className(), ['band_id' => 'id']);
+    }
+
     /**
      * Gets query for [[BandArticle]].
      *
