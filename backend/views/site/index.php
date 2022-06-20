@@ -14,6 +14,7 @@ $this->title = 'My Yii Application';
     <div class="col d-flex flex-column">
         <a href="<?php echo \yii\helpers\Url::to('/band') ?>" class="btn btn-primary m-2">Band Panel</a>
         <a href="<?php echo \yii\helpers\Url::to('/band/article') ?>" class="btn btn-primary m-2">Band Article Panel</a>
+        <a href="<?php echo \yii\helpers\Url::to('/band-member') ?>" class="btn btn-primary m-2">Band Member Panel</a>
     </div>
 
     <div class="col d-flex flex-column">
