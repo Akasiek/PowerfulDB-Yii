@@ -28,8 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'artist_id',
-            'band_id',
+            [
+                'label' => 'Artist name',
+                'attribute' => 'artist.name',
+            ],
+            [
+                'label' => 'Band name',
+                'attribute' => 'band.name',
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, BandMember $model, $key, $index, $column) {

@@ -31,8 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
-            'artist_id',
-            'band_id',
+            [
+                'label' => 'Artist name',
+                'attribute' => 'artist.name',
+            ],
+            [
+                'label' => 'Band name',
+                'attribute' => 'band.name',
+            ],
         ],
     ]) ?>
 
