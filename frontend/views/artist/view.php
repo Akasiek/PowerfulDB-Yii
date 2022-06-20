@@ -11,8 +11,6 @@ $this->registerJs('$.pjax.defaults.scrollTo = false;', \yii\web\View::POS_LOAD);
 
 if (!isset($model)) throw new NotFoundHttpException('Artist not found');
 
-$articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
-
 ?>
 
 
@@ -28,7 +26,6 @@ echo $this->render('@frontend/views/components/_default_jumbotron', [
         <div class="mb-16">
             <?= $this->render('@frontend/views/components/_render_article', [
                 'model' => $model,
-                'articleText' => $articleText,
             ]); ?>
         </div>
 

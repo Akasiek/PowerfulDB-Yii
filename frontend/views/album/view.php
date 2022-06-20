@@ -12,8 +12,7 @@ if (!isset($model)) throw new NotFoundHttpException('Album not found');
 if ($model->artist_id) $author = $model->artist;
 else $author = $model->band;
 
-$articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
-$otherAlbums = $author->getAlbums()->where('id != :id', ['id' => $model->id])->limit(10)->all();
+//$otherAlbums = $author->getAlbums()->where('id != :id', ['id' => $model->id])->limit(10)->all();
 
 ?>
 
@@ -29,13 +28,9 @@ $otherAlbums = $author->getAlbums()->where('id != :id', ['id' => $model->id])->l
 
         <?= $this->render('@frontend/views/components/_render_article', [
             'model' => $model,
-            'articleText' => $articleText,
         ]); ?>
 
-        <!-- ALBUM BY THE SAME AUTHOR-->
-        <!-- TODO!-->
-        <?php if ($otherAlbums): ?>
-        <?php endif ?>
+        <!-- TODO: ALBUM BY THE SAME AUTHOR-->
 
     </div>
 </div>

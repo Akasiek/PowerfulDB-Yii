@@ -9,6 +9,8 @@ use common\models\Artist;
 use common\models\Band;
 use yii\helpers\Html;
 
+$articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
+
 ?>
 <?php if ($articleText): ?>
 
