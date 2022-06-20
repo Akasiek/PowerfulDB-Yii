@@ -23,21 +23,19 @@ echo $this->render('@frontend/views/components/_default_jumbotron', [
 ?>
 
 <div class="flex flex-col justify-center items-center mt-5">
-    <div class="px-14 py-8 max-w-screen-lg w-full">
+    <div class="px-14 py-8 max-w-screen-lg w-full flex flex-col gap-16">
 
-        <div class="mb-16">
-            <?= $this->render('@frontend/views/components/_render_article', [
-                'model' => $model,
-            ]); ?>
-        </div>
+        <?= $this->render('@frontend/views/components/_render_article', [
+            'model' => $model,
+        ]); ?>
 
-        <div>
-            <?= $this->render('_band_members', [
-                'model' => $model,
-            ]); ?>
-        </div>
 
         <?= $this->render('@frontend/views/components/_author_albums', [
+            'model' => $model,
+        ]); ?>
+
+
+        <?= $this->render('_band_members', [
             'model' => $model,
         ]); ?>
     </div>
