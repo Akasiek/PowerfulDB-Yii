@@ -12,21 +12,15 @@ use yii\helpers\Html;
 $articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
 
 ?>
-<?php if ($articleText): ?>
+<div>
+    <h1 class="font-sans text-5xl">Article</h1>
+    <hr class="max-w-sm  border-t-2 border-t-main-accent mt-2 mb-6">
 
-    <div>
-        <h1 class="font-sans text-5xl">Article</h1>
-        <hr class="max-w-sm border-t-2 border-t-main-accent mt-2 mb-8">
+    <?php if ($articleText): ?>
         <div class="mx-auto article-style w-full text-justify">
             <?= $articleText ?>
         </div>
-    </div>
-
-<?php else: ?>
-
-    <div>
-        <h1 class="font-sans text-5xl">Article</h1>
-        <hr class="max-w-sm  border-t-2 border-t-main-accent mt-2 mb-6">
+    <?php else: ?>
         <div class="article-style text-justify">
             <p>There is no article for this album yet. You can go ahead and
                 <?= Html::a('create article for this ' . ($baseUrl ?? Yii::$app->controller->id),
@@ -34,7 +28,6 @@ $articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
                     ['class' => 'underline hover:text-main-accent transition-colors']) ?>
             </p>
         </div>
-    </div>
-
-<?php endif; ?>
-
+    <?php endif; ?>
+    
+</div>
