@@ -13,9 +13,9 @@ $to_year = Yii::$app->request->get('to_year');
 
 <div>
     <?= Html::beginForm(['/album/'], 'get'); ?>
-    <div class="flex items-center justify-between mb-10 mt-[-1rem]">
+    <div class="flex items-center  flex-wrap justify-between gap-5 mb-10 mt-[-1rem]">
 
-        <div class="flex items-center gap-10">
+        <div class="flex items-center  gap-10">
             <div class="flex flex-col justify-center gap-2">
                 <p>Sort</p>
                 <div>
@@ -45,14 +45,14 @@ $to_year = Yii::$app->request->get('to_year');
                 <div class="flex gap-1 border-2 border-main-accent rounded-3xl px-3 py-1">
 
                     <input type="number" name="from_year" value="<?= $from_year ?>"
-                           class="bg-transparent text-center focus:outline-0
+                           class="w-16 bg-transparent text-center focus:outline-0
                            placeholder:text-gray-600"
                            min="1900" max="2099" placeholder="1900">
 
                     <p>-</p>
 
                     <input type="number" name="to_year" value="<?= $to_year ?>"
-                           class="bg-transparent text-center focus:outline-0
+                           class="w-16 bg-transparent text-center focus:outline-0
                            placeholder:text-gray-600"
                            min="1900" max="2099" placeholder="<?= date('Y') ?>">
                 </div>
