@@ -11,6 +11,14 @@ use kartik\form\ActiveForm;
 
 $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
 
+// Check if there is a band or artist id parameter in the url
+if (isset($_GET['band_id'])) {
+    $paramBand = Band::find()->where(['id' => $_GET['band_id']])->one();
+} elseif (isset($_GET['artist_id'])) {
+    $paramArtist = Artist::find()->where(['id' => $_GET['artist_id']])->one();
+}
+
+// Create an array of options for dropdown list for selecting artists and bands
 $artists = Artist::find()
     ->select(['id', 'name'])->orderBy('name')->asArray()->all();
 $bands = Band::find()
@@ -43,7 +51,16 @@ array_walk($bands, function (&$band) {
 
         <!-- ARTIST ID INPUT -->
         <select id="select-slim" name="author_id" class="input-style">
-            <option data-placeholder="true">Select an author</option>
+
+            <!-- If artist is set, use it as a default value. Otherwise create a placeholder option-->
+            <?php if (isset($paramArtist)): ?>
+                <option value="<?= 'artist-' . $paramArtist->id ?>" selected><?= $paramArtist->name ?></option>
+            <?php elseif (isset($paramBand)): ?>
+                <option value="<?= 'band-' . $paramBand->id ?>" selected><?= $paramBand->name ?></option>
+            <?php else: ?>
+                <option data-placeholder="true">Select an author</option>
+            <?php endif; ?>
+
             <optgroup label="Artists">
                 <?php foreach ($artists as $artist): ?>
                     <option value="<?= $artist['id'] ?>"><?= $artist['name'] ?></option>

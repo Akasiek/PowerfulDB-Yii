@@ -26,37 +26,38 @@ if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
     Yii::$app->cache->set('album_display_style', $displayStyle);
 }
 
+?>
 
-Pjax::begin(['id' => 'album-display-style-pjax']); ?>
-<?php if ($albumsCount !== 0): ?>
-    <div class="w-full m-auto">
-        <div class="flex gap-20 justify-between items-center">
-            <div>
-                <h1 class="font-sans text-5xl">Albums</h1>
-            </div>
-            <div class="flex gap-4">
 
-                <?= Html::button('grid_view', [
-                    'class' => 'material-symbols-rounded !text-3xl',
-                    'data-method' => 'post',
-                    'data-pjax' => '1',
-                    'data-params' => [
-                        'displayStyle' => 'grid',
-                    ],
-                ]) ?>
-                <?= Html::button('list', [
-                    'class' => 'material-symbols-rounded !text-3xl',
-                    'data-method' => 'post',
-                    'data-pjax' => '1',
-                    'data-params' => [
-                        'displayStyle' => 'list',
-                    ],
-                ]) ?>
-
-            </div>
+<div class="w-full m-auto">
+    <div class="flex gap-20 justify-between items-center">
+        <div>
+            <h1 class="font-sans text-5xl">Albums</h1>
         </div>
-        <hr class="max-w-sm   border-t-2 border-t-main-accent mt-2 mb-6">
+        <div class="flex gap-4">
 
+            <?= Html::button('grid_view', [
+                'class' => 'material-symbols-rounded !text-3xl',
+                'data-method' => 'post',
+                'data-pjax' => '1',
+                'data-params' => [
+                    'displayStyle' => 'grid',
+                ],
+            ]) ?>
+            <?= Html::button('list', [
+                'class' => 'material-symbols-rounded !text-3xl',
+                'data-method' => 'post',
+                'data-pjax' => '1',
+                'data-params' => [
+                    'displayStyle' => 'list',
+                ],
+            ]) ?>
+
+        </div>
+    </div>
+    <hr class="max-w-sm   border-t-2 border-t-main-accent mt-2 mb-6">
+    <?php if ($albumsCount !== 0): ?>
+        <?php Pjax::begin(['id' => 'album-display-style-pjax']); ?>
         <?php if ($displayStyle === 'grid'): ?>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
                 <?php foreach ($albums as $album): ?>
@@ -107,8 +108,17 @@ Pjax::begin(['id' => 'album-display-style-pjax']); ?>
             </div>
 
         <?php endif ?>
-    </div>
-<?php
-endif;
-Pjax::end();
-?>
+        <?php Pjax::end(); ?>
+
+    <?php else: ?>
+
+        <div class="article-style text-justify">
+            <p>This <?= Yii::$app->controller->id ?> has no albums yet. You can go ahead and
+                <?= Html::a('add album by this ' . ($baseUrl ?? Yii::$app->controller->id),
+                    ['/album/create', Yii::$app->controller->id . '_id' => $model->id],
+                    ['class' => 'underline hover:text-main-accent transition-colors']) ?>
+            </p>
+        </div>
+
+    <?php endif; ?>
+</div>
