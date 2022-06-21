@@ -79,21 +79,23 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $artists = new ActiveDataProvider([
-            'query' => Artist::find()->with('createdBy'),
+            'query' => Artist::find()->limit(12),
             'sort' => [
                 'defaultOrder' => [
                     'created_at' => SORT_DESC,
                 ]
             ],
+            'pagination' => false
         ]);
 
         $bands = new ActiveDataProvider([
-            'query' => Band::find()->with('createdBy'),
+            'query' => Band::find()->limit(12),
             'sort' => [
                 'defaultOrder' => [
                     'created_at' => SORT_DESC,
                 ]
             ],
+            'pagination' => false
         ]);
         return $this->render('index/index', [
             'artists' => $artists,
