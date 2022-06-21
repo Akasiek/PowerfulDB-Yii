@@ -73,6 +73,8 @@ class BandController extends Controller
 
         if ($model->load(\Yii::$app->request->post())) {
             $model->band_id = $band->id;
+            if ($model->artist_id === '0') $model->artist_id = null;
+
             if ($model->save()) {
                 return $this->redirect(['view', 'slug' => $slug]);
             }
