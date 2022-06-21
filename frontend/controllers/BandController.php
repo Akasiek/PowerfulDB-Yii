@@ -18,14 +18,10 @@ class BandController extends Controller
                 'name' => [
                     'asc' => ['band.name' => SORT_ASC],
                     'desc' => ['band.name' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => 'Name',
                 ],
-                'birth_date' => [
+                'founding_year' => [
                     'asc' => ['band.founding_year' => SORT_ASC],
                     'desc' => ['band.founding_year' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => 'Founding Year',
                 ],
             ],
             'defaultOrder' => ['name' => SORT_ASC],

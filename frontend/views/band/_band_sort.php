@@ -26,8 +26,8 @@ use yii\helpers\Html;
                     echo Html::dropDownList('sort', $sortValue, [
                         'name' => 'Name Ascending',
                         '-name' => 'Name Descending',
-                        'birth_date' => 'Created Last',
-                        '-birth_date' => 'Created First',
+                        'founding_year' => 'Created Last',
+                        '-founding_year' => 'Created First',
                     ], [
                         'class' => 'input-style m-0 !py-2',
                         'id' => 'select-slim',
