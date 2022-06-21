@@ -21,11 +21,15 @@ return [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'viewPath' => '@common/mail',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'encryption' => 'tls',
+                'host' => getenv('MAILGUN_SMTP_SERVER'),
+                'port' => getenv('MAILGUN_SMTP_PORT'),
+                'username' => getenv('MAILGUN_SMTP_LOGIN'),
+                'password' => getenv('MAILGUN_SMTP_PASSWORD'),
+            ],
         ],
     ],
 ];
