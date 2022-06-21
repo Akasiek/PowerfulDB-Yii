@@ -11,7 +11,6 @@ use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 $albums = $model->getAlbums()->orderBy('release_date')->all();
-$albumsCount = count($albums);
 
 // Check if pjax send a new display style
 $displayStyle = Yii::$app->cache->get('album_display_style');
@@ -60,55 +59,18 @@ if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
             </div>
         </div>
         <hr class="max-w-sm   border-t-2 border-t-main-accent mt-2 mb-6">
-        <?php if ($albumsCount !== 0): ?>
+        <?php if (count($albums) !== 0): ?>
             <?php if ($displayStyle === 'grid'): ?>
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-                    <?php foreach ($albums as $album): ?>
-                        <a href="<?= Url::to(['/album/view', 'slug' => $album->slug,]) ?>"
-                           class="group transition">
-                            <div class="text-center">
-                                <img class="mb-2" src="<?= $album->artwork_url ?>" alt="Album artwork">
 
-                                <p class="text-base lg:text-lg truncate group-hover:underline"
-                                   title="<?= $album->title ?>">
-                                    <?= $album->title ?>
-                                </p>
-
-                                <p class="text-sm truncate text-gray-400">
-                                    <?= Yii::$app->formatter->asDate($album->release_date, 'Y') ?>
-                                </p>
-                            </div>
-                        </a>
-                    <?php endforeach ?>
-                </div>
+                <?= $this->render('_author_albums_grid', [
+                    'albums' => $albums,
+                ]) ?>
 
             <?php elseif ($displayStyle === 'list'): ?>
 
-                <div class="flex flex-col justify-center items-center m-auto">
-                    <?php $i = 0 ?>
-                    <?php foreach ($albums as $album): ?>
-                        <a href="<?= Url::to(['/album/view', 'slug' => $album->slug,]) ?>"
-                           class="w-full">
-                            <div class="flex justify-center items-center w-full">
-                                <div class="h-36 m-10">
-                                    <img src="<?= $album->artwork_url ?>" alt="Album artwork" class="h-full">
-
-                                </div>
-
-                                <div class="col-span-2 w-full flex-1">
-                                    <h2 class="text-2xl"><?= $album->title ?></h2>
-                                    <p class="italic text-gray-400">
-                                        <?= Yii::$app->formatter->asDate($album->release_date, 'long') ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <?php if (++$i !== $albumsCount): ?>
-                            <hr class="my-8 border-t-2 border-t-gray-700 w-[60%] mx-auto">
-                        <?php endif ?>
-
-                    <?php endforeach ?>
-                </div>
+                <?= $this->render('_author_albums_list', [
+                    'albums' => $albums,
+                ]) ?>
 
             <?php endif ?>
 

@@ -30,7 +30,7 @@ echo $this->render('@frontend/views/components/_default_jumbotron', [
         ]); ?>
 
 
-        <?= $this->render('@frontend/views/components/_author_albums', [
+        <?= $this->render('@frontend/views/components/author_albums/_author_albums', [
             'model' => $model,
         ]); ?>
 
