@@ -9,7 +9,7 @@ use yii\data\ActiveDataProvider;
 
 <div class="px-14 py-8">
 
-    <?php echo $this->render('@frontend/views/components/_group_title') ?>
+    <?php echo $this->render('@frontend/views/components/_index_page_title') ?>
 
 
     <?php echo \yii\widgets\ListView::widget([
