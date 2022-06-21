@@ -3,20 +3,28 @@
  * @var $dataProvider ActiveDataProvider
  */
 
+use yii\bootstrap4\LinkPager;
 use yii\data\ActiveDataProvider;
+use yii\widgets\ListView;
 
 ?>
 <div class="px-14 py-8">
 
     <?php echo $this->render('@frontend/views/components/_index_page_title') ?>
 
-    <?php echo \yii\widgets\ListView::widget([
+    <?php echo ListView::widget([
         'dataProvider' => $dataProvider,
+        'pager' => [
+            'class' => LinkPager::class,
+        ],
         'itemView' => '@frontend/views/components/_default_card',
-        'layout' => '<div class="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-12">{items}</div>{pager}',
+        'layout' => '<div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 
+                                 gap-x-8 gap-y-12 xl:gap-x-12 xl:gap-y-20">
+                         {items}
+                     </div>
+                     {pager}',
         'itemOptions' => [
             'tag' => false,
         ],
     ]) ?>
-
 </div>
