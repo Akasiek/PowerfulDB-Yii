@@ -61,7 +61,7 @@ $membersArrays = [
                         <div class="flex justify-center items-center w-full my-9">
 
                             <?php if (isset($artist) && $artist->bg_image_url !== null): ?>
-                                <div class="h-36 ml-10 aspect-square rounded-full">
+                                <div class="h-32 ml-10 aspect-square rounded-full">
                                     <img src="<?= $artist->bg_image_url ?>" alt="Album artwork"
                                          class="h-full w-full object-cover object-center rounded-full">
                                 </div>
@@ -70,9 +70,11 @@ $membersArrays = [
                             <div class="col-span-2 ml-10 w-full flex-1">
                                 <div class="flex items-center gap-2">
                                     <?php if ($member['name'] !== ''): ?>
-                                        <h2 class="text-xl"><?= $member['name'] ?></h2>
+                                        <h2 class="text-2xl"><?= $member['name'] ?></h2>
                                     <?php elseif (isset($artist)): ?>
-                                        <h2 class="text-xl"><?= $artist->name ?></h2>
+                                        <?= Html::a($artist->name, ['/artist/view', 'slug' => $artist->slug], [
+                                            'class' => 'text-2xl underline hover:text-main-accent transition-colors'
+                                        ]) ?>
                                     <?php endif ?>
 
                                     <?php if ($member['join_year'] !== ''): ?>
