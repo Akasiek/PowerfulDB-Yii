@@ -23,7 +23,7 @@ use yii\widgets\Pjax;
     <?= \yii\widgets\ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_album_card',
-        'layout' => '<div class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-x-8 gap-y-12">{items}</div>{pager}',
+        'layout' => '<div class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 gap-x-8 gap-y-12">{items}</div>{pager}',
         'itemOptions' => [
             'tag' => false,
         ],
