@@ -24,7 +24,9 @@
     "yiisoft/yii2-bootstrap4": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
     "kartik-v/yii2-widget-activeform": "dev-master",
-    "2amigos/yii2-tinymce-widget": "~1.1"
+    "2amigos/yii2-tinymce-widget": "~1.1",
+    "fxp/composer-asset-plugin": "*",
+    "ext-gd": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",
@@ -36,9 +38,7 @@
     "codeception/module-filesystem": "^1.0",
     "codeception/verify": "~0.5.0 || ~1.1.0",
     "symfony/browser-kit": ">=2.7 <=4.2.4",
-    "purrweb/yii2-heroku": "*",
-    "fxp/composer-asset-plugin": "*",
-    "ext-gd": "*"
+    "purrweb/yii2-heroku": "*"
   },
   "config": {
     "process-timeout": 1800,
