@@ -30,7 +30,7 @@ $artists = Artist::find()->asArray()->all();
         <!-- ARTIST INPUT -->
         <div>
             <label for="author_id" class="text-2xl">Choose artist</label>
-            <select id="select-slim" name="artist_id" class="input-style">
+            <select id="select-slim" name="BandMember[artist_id]" class="input-style">
                 <option data-placeholder="true">Select an artist</option>
                 <?php foreach ($artists as $artist): ?>
                     <option value="<?= $artist['id'] ?>"><?= $artist['name'] ?></option>
