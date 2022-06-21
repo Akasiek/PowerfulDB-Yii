@@ -6,25 +6,40 @@ use common\models\Band;
 use common\models\BandArticle;
 use common\models\BandMember;
 use yii\data\ActiveDataProvider;
+use yii\data\Sort;
 use yii\web\Controller;
 
 class BandController extends Controller
 {
     public function actionIndex()
     {
+        $sort = new Sort([
+            'attributes' => [
+                'name' => [
+                    'asc' => ['band.name' => SORT_ASC],
+                    'desc' => ['band.name' => SORT_DESC],
+                    'default' => SORT_ASC,
+                    'label' => 'Name',
+                ],
+                'birth_date' => [
+                    'asc' => ['band.founding_year' => SORT_ASC],
+                    'desc' => ['band.founding_year' => SORT_DESC],
+                    'default' => SORT_ASC,
+                    'label' => 'Founding Year',
+                ],
+            ],
+            'defaultOrder' => ['name' => SORT_ASC],
+        ]);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Band::find()->with('createdBy'),
+            'query' => Band::find()->orderBy($sort->orders),
             'pagination' => [
                 'pageSize' => 20,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'created_at' => SORT_DESC,
-                ]
             ],
         ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'sort' => $sort,
         ]);
     }
 

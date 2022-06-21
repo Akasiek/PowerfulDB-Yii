@@ -1,16 +1,22 @@
 <?php
 /**
  * @var $dataProvider ActiveDataProvider
+ * @var $sort Sort
  */
 
 use yii\bootstrap4\LinkPager;
 use yii\data\ActiveDataProvider;
+use yii\data\Sort;
 use yii\widgets\ListView;
 
 ?>
 <div class="px-14 py-8">
 
     <?php echo $this->render('@frontend/views/components/_index_page_title') ?>
+
+    <?= $this->render('_band_sort', [
+        'sort' => $sort,
+    ]) ?>
 
     <?php echo ListView::widget([
         'dataProvider' => $dataProvider,
