@@ -62,8 +62,14 @@ $membersArrays = [
 
                             <?php if (isset($artist) && $artist->bg_image_url !== null): ?>
                                 <div class="h-32 ml-10 aspect-square rounded-full">
-                                    <img src="<?= $artist->bg_image_url ?>" alt="Album artwork"
-                                         class="h-full w-full object-cover object-center rounded-full">
+                                    <?= Html::a(Html::img($artist->bg_image_url,
+                                        [
+                                            'class' => 'h-full w-full object-cover object-center rounded-full shadow-xl
+                                            border-2 border-main-dark hover:shadow-accent hover:border-main-accent
+                                            transition-all duration-100 ease-in-out',
+                                            'alt' => 'Artist background image'
+                                        ]),
+                                        ['/artist/view', 'slug' => $artist->slug]) ?>
                                 </div>
                             <?php endif ?>
 

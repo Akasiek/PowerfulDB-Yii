@@ -1030,6 +1030,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 2px;
 }
 
+.border-4 {
+  border-width: 4px;
+}
+
+.border-0 {
+  border-width: 0px;
+}
+
 .border-t-2 {
   border-top-width: 2px;
 }
@@ -1037,6 +1045,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-main-accent {
   --tw-border-opacity: 1;
   border-color: rgb(78 255 166 / var(--tw-border-opacity));
+}
+
+.border-secondary-accent {
+  --tw-border-opacity: 1;
+  border-color: rgb(94 43 255 / var(--tw-border-opacity));
+}
+
+.border-main-dark {
+  --tw-border-opacity: 1;
+  border-color: rgb(41 42 51 / var(--tw-border-opacity));
 }
 
 .border-t-main-accent {
@@ -1356,6 +1374,35 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-secondary-accent {
+  --tw-shadow-color: #5E2BFF;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.outline-4 {
+  outline-width: 4px;
+}
+
+.outline-main-accent {
+  outline-color: #4EFFA6;
+}
+
+.drop-shadow-xl {
+  --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.drop-shadow {
+  --tw-drop-shadow: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .transition-transform {
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1392,6 +1439,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-duration: 300ms;
 }
 
+.duration-100 {
+  transition-duration: 100ms;
+}
+
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1421,6 +1472,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:shadow-accent:hover {
   --tw-drop-shadow: drop-shadow(0 0 15px rgba(78,255,166,0.3));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.hover\:border-2:hover {
+  border-width: 2px;
+}
+
+.hover\:border-main-accent:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(78 255 166 / var(--tw-border-opacity));
 }
 
 .hover\:bg-main-accent:hover {
@@ -1568,5 +1628,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .\32xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .\32xl\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
