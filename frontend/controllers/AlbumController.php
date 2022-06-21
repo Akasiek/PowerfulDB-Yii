@@ -52,11 +52,6 @@ class AlbumController extends Controller
             'pagination' => [
                 'pageSize' => 20,
             ],
-            'sort' => [
-                'defaultOrder' => [
-                    'created_at' => SORT_DESC,
-                ]
-            ],
         ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider,

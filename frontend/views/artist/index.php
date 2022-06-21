@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $dataProvider ActiveDataProvider
+ * @var $sort Sort
  */
 
 use yii\bootstrap4\LinkPager;
@@ -12,6 +13,10 @@ use yii\widgets\ListView;
 <div class="px-14 py-8">
 
     <?php echo $this->render('@frontend/views/components/_index_page_title') ?>
+
+    <?= $this->render('_artist_sort', [
+        'sort' => $sort,
+    ]) ?>
 
 
     <?php echo ListView::widget([
