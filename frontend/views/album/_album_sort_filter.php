@@ -45,14 +45,14 @@ $to_year = Yii::$app->request->get('to_year');
                 <div class="flex gap-1 border-2 border-main-accent rounded-3xl px-3 py-1">
 
                     <input type="number" name="from_year" value="<?= $from_year ?>"
-                           class="w-16 bg-transparent text-center focus:outline-0
+                           class="w-12 bg-transparent text-center focus:outline-0
                            placeholder:text-gray-600"
                            min="1900" max="2099" placeholder="1900">
 
                     <p>-</p>
 
                     <input type="number" name="to_year" value="<?= $to_year ?>"
-                           class="w-16 bg-transparent text-center focus:outline-0
+                           class="w-12 bg-transparent text-center focus:outline-0
                            placeholder:text-gray-600"
                            min="1900" max="2099" placeholder="<?= date('Y') ?>">
                 </div>
