@@ -17,21 +17,16 @@ class AlbumController extends Controller
                 'title' => [
                     'asc' => ['album.title' => SORT_ASC],
                     'desc' => ['album.title' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => 'Title',
                 ],
                 'release_date' => [
                     'asc' => ['album.release_date' => SORT_ASC],
                     'desc' => ['album.release_date' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => 'Release Date',
                 ],
             ],
             'defaultOrder' => ['release_date' => SORT_DESC],
         ]);
 
         $query = Album::find()
-            ->with('createdBy')
             ->leftJoin('artist', 'artist.id = album.artist_id')
             ->leftJoin('band', 'band.id = album.band_id')
             ->orderBy($sort->orders);

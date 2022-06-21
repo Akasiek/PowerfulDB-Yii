@@ -34,14 +34,10 @@ class ArtistController extends Controller
                 'name' => [
                     'asc' => ['artist.name' => SORT_ASC],
                     'desc' => ['artist.name' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => 'Name',
                 ],
                 'birth_date' => [
                     'asc' => ['artist.birth_date' => SORT_ASC],
                     'desc' => ['artist.birth_date' => SORT_DESC],
-                    'default' => SORT_ASC,
-                    'label' => 'Birth Date',
                 ],
             ],
             'defaultOrder' => ['name' => SORT_ASC],
