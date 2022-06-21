@@ -40,7 +40,8 @@ else $author = $model->band;
                 '/' . ($model->artist_id ? 'artist' : 'band') . '/view/',
                 'slug' => $author->slug
             ]) ?>"
-               class="hover:underline transition">
+               class="hover:underline transition"
+               title="<?php echo $author->name ?>">
                 <?php echo $author->name ?>
             </a>
         </p>
