@@ -124,6 +124,26 @@ class Artist extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[BandMember]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\BandMemberQuery
+     */
+    public function getBands()
+    {
+        return $this->hasMany(Band::className(), ['id' => 'band_id'])->viaTable('band_member', ['artist_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[BandMember]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\BandMemberQuery
+     */
+    public function getMemberInfo()
+    {
+        return $this->hasMany(BandMember::className(), ['artist_id' => 'id'])->with('band');
+    }
+
+    /**
      * {@inheritdoc}
      * @return \common\models\query\ArtistQuery the active query used by this AR class.
      */

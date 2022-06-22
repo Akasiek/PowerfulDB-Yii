@@ -14,6 +14,15 @@
         @apply drop-shadow-[0_0_15px_rgba(78,255,166,0.3)];
     }
 
+    .cool-underline {
+        @apply content-[''] h-[2px] w-full absolute left-0 bottom-0 scale-x-0 origin-bottom-right transition-transform
+        duration-[0.1s] ease-in-out
+    }
+
+    .cool-underline-hover {
+        @apply scale-x-100 origin-bottom-left
+    }
+
     .input-style {
         @apply w-full rounded-3xl bg-transparent border-2 border-main-accent px-4 py-2 my-2
         focus:outline-none focus:shadow-accent focus-visible:outline-none transition duration-150
