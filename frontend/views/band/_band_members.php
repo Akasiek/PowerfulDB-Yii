@@ -20,11 +20,22 @@ $membersArrays = [
     'current' => $bandCurrentMembers,
     'past' => $bandPastMembers,
 ];
+
+
 ?>
-<?php if (empty($membersArrays)): ?>
-    <div>
+<div>
+    <div class="flex items-center gap-4">
         <h1 class="font-sans text-5xl">Members</h1>
-        <hr class="max-w-sm border-t-2 border-t-main-accent mt-2 mb-8">
+        <?php if (!Yii::$app->user->isGuest) {
+            echo Html::a('add', ['/band/member-add', 'slug' => $model->slug],
+                ['class' => 'material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-main-accent']);
+        } ?>
+    </div>
+
+    <hr class="max-w-sm border-t-2 border-t-main-accent mt-2 mb-8">
+
+    <?php if (empty($bandMembers)): ?>
+
         <div class="article-style text-justify">
             <p>This band has no members added. You can go ahead and
                 <?= Html::a('add member for this band',
@@ -32,19 +43,9 @@ $membersArrays = [
                     ['class' => 'underline hover:text-main-accent transition-colors']) ?>
             </p>
         </div>
-    </div>
-<?php else: ?>
-    <div>
-        <div class="flex items-center gap-4">
-            <h1 class="font-sans text-5xl">Members</h1>
-            <?php if (!Yii::$app->user->isGuest) {
-                echo Html::a('add', ['/band/member-add', 'slug' => $model->slug],
-                    ['class' => 'material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-main-accent']);
-            } ?>
-        </div>
 
-        <hr class="max-w-sm border-t-2 border-t-main-accent mt-2 mb-8">
-
+    <?php else: ?>
+    
         <?php foreach ($membersArrays as $arrayName => $members): ?>
             <?php if (!empty($members)): ?>
                 <div class="mt-8 mb-12">
@@ -118,5 +119,5 @@ $membersArrays = [
             <?php endif ?>
         <?php endforeach; ?>
 
-    </div>
-<?php endif; ?>
+    <?php endif; ?>
+</div>
