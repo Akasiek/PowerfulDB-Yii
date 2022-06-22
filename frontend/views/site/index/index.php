@@ -6,12 +6,29 @@
  * @var $bands ActiveDataProvider
  */
 
+use ruturajmaniyar\widgets\toast\ToastrFlashMessage;
 use yii\data\ActiveDataProvider;
 
 $this->title = 'My Yii Application';
 ?>
 <div>
     <?php echo $this->render('_jumbotron'); ?>
+
+    <?php if (Yii::$app->session->hasFlash('success')): ?>
+        <?= ToastrFlashMessage::widget([
+            'type' => 'success',
+            'title' => 'Success',
+            'message' => Yii::$app->session->getFlash('success')
+        ]); ?>
+    <?php endif; ?>
+
+    <?php if (Yii::$app->session->hasFlash('error')): ?>
+        <?= ToastrFlashMessage::widget([
+            'type' => 'error',
+            'title' => 'Error',
+            'message' => Yii::$app->session->getFlash('error')
+        ]); ?>
+    <?php endif; ?>
 
     <div class="py-8 px-12 flex flex-col gap-20">
 
