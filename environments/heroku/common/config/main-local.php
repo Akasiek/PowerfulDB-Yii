@@ -25,7 +25,7 @@ return [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'encryption' => 'tls',
-                'host' => 'powerfuldb.herokuapp.com',
+                'host' => getenv('MAILGUN_DOMAIN'),
                 'port' => getenv('MAILGUN_SMTP_PORT'),
                 'username' => getenv('MAILGUN_SMTP_LOGIN'),
                 'password' => getenv('MAILGUN_SMTP_PASSWORD'),
