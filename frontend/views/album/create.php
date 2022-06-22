@@ -50,8 +50,8 @@ array_walk($bands, function (&$band) {
         ]) ?>
 
         <!-- ARTIST ID INPUT -->
-        <div>
-            <label for="author_id" class="text-2xl">Choose artist or band</label>
+        <div class="required">
+            <label for="author_id" class="text-2xl has-star">Choose artist or band</label>
             <select id="select-slim" name="author_id" class="input-style">
 
                 <!-- If artist is set, use it as a default value. Otherwise create a placeholder option-->
@@ -60,7 +60,7 @@ array_walk($bands, function (&$band) {
                 <?php elseif (isset($paramBand)): ?>
                     <option value="<?= 'band-' . $paramBand->id ?>" selected><?= $paramBand->name ?></option>
                 <?php else: ?>
-                    <option data-placeholder="true">Select an author</option>
+                    <option data-placeholder="true" value="">Select an author</option>
                 <?php endif; ?>
 
                 <optgroup label="Artists">
@@ -76,6 +76,10 @@ array_walk($bands, function (&$band) {
                 </optgroup>
 
             </select>
+            <!-- Display custom error message for author_id -->
+            <p class="text-red-500">
+                <?= Yii::$app->session->getFlash('author_id') ?>
+            </p>
         </div>
 
         <!-- RELEASE DATE INPUT -->
@@ -102,6 +106,10 @@ array_walk($bands, function (&$band) {
                  class="w-44 aspect-square object-cover object-center" alt="image uploaded by the user"/>
         </div>
 
+        <!-- Display custom error message when album is a duplicate -->
+        <p class="text-red-500">
+            <?= Yii::$app->session->getFlash('duplicate') ?>
+        </p>
 
         <!-- SUBMIT BUTTON -->
         <div class="text-right">

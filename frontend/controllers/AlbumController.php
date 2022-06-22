@@ -66,16 +66,38 @@ class AlbumController extends Controller
     {
         $model = new Album();
 
-
         if ($model->load(\Yii::$app->request->post())) {
 
-            // Check if author is an artist or band and set the appropriate id
+            // Check if author_id is set. If not, send an error message.
             $author_id = \Yii::$app->request->post('author_id');
+            if ($author_id == '') {
+                \Yii::$app->session->setFlash('author_id', 'Please select an artist or a band.');
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
+
+            // Check if author is an artist or band and set the appropriate id
             $author = explode('-', $author_id);
             if ($author[0] == 'artist') {
                 $model->artist_id = $author[1];
             } else {
                 $model->band_id = $author[1];
+            }
+
+            // Check if the album already exists
+            $duplicate = Album::find()
+                ->where(
+                    'artist_id = :artist_id OR band_id = :band_id',
+                    [':artist_id' => $model->artist_id, ':band_id' => $model->band_id]
+                )
+                ->andWhere('title = :title', [':title' => $model->title])
+                ->one();
+            if ($duplicate) {
+                \Yii::$app->session->setFlash('duplicate', 'This album already exists.');
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
             }
 
             if ($model->save()) {
