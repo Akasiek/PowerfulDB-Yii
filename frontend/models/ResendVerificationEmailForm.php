@@ -50,7 +50,7 @@ class ResendVerificationEmailForm extends Model
         return Yii::$app
             ->mailer
             ->compose(
-                ['html' => 'emailVerify-html', 'text' => 'emailVerify-text'],
+                ['html' => '@common/mail/emailVerify-html', 'text' => '@common/mail/emailVerify-text'],
                 ['user' => $user]
             )
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
