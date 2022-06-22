@@ -47,7 +47,7 @@ class PasswordResetRequestForm extends Model
         if (!$user) {
             return false;
         }
-
+        
         if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
             $user->generatePasswordResetToken();
             if (!$user->save()) {
@@ -58,7 +58,7 @@ class PasswordResetRequestForm extends Model
         return Yii::$app
             ->mailer
             ->compose(
-                ['html' => '@common/mail/passwordResetToken-html', 'text' => '@common/mail/passwordResetToken-text'],
+                ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
                 ['user' => $user]
             )
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
