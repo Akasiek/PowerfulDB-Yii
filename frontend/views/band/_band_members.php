@@ -37,8 +37,10 @@ $membersArrays = [
     <div>
         <div class="flex items-center gap-4">
             <h1 class="font-sans text-5xl">Members</h1>
-            <?= Html::a('add', ['/band/member-add', 'slug' => $model->slug],
-                ['class' => 'material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-main-accent']) ?>
+            <?php if (!Yii::$app->user->isGuest) {
+                echo Html::a('add', ['/band/member-add', 'slug' => $model->slug],
+                    ['class' => 'material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-main-accent']);
+            } ?>
         </div>
 
         <hr class="max-w-sm border-t-2 border-t-main-accent mt-2 mb-8">

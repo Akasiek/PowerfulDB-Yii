@@ -33,8 +33,10 @@ if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
 
             <div class="flex items-center gap-4">
                 <h1 class="font-sans text-5xl">Albums</h1>
-                <?= Html::a('add', ['/album/create', Yii::$app->controller->id . '_id' => $model->id],
-                    ['class' => 'material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-main-accent']) ?>
+                <?php if (!Yii::$app->user->isGuest) {
+                    echo Html::a('add', ['/album/create', Yii::$app->controller->id . '_id' => $model->id],
+                        ['class' => 'material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-main-accent']);
+                } ?>
             </div>
 
             <div class="flex gap-4">
