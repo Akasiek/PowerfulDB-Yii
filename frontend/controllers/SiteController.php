@@ -157,6 +157,7 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        $this->layout = 'blank';
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
@@ -175,6 +176,7 @@ class SiteController extends Controller
      */
     public function actionRequestPasswordReset()
     {
+        $this->layout = 'blank';
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
@@ -247,6 +249,7 @@ class SiteController extends Controller
      */
     public function actionResendVerificationEmail()
     {
+        $this->layout = 'blank';
         $model = new ResendVerificationEmailForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {

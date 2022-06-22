@@ -887,6 +887,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 24rem;
 }
 
+.max-w-screen-sm {
+  max-width: 640px;
+}
+
+.max-w-\[30rem\] {
+  max-width: 30rem;
+}
+
+.max-w-md {
+  max-width: 28rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -933,6 +945,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .items-start {
   align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
@@ -993,6 +1009,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .gap-3 {
   gap: 0.75rem;
+}
+
+.gap-8 {
+  gap: 2rem;
 }
 
 .gap-x-8 {
