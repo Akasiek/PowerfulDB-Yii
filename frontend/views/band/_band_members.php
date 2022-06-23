@@ -72,7 +72,7 @@ $membersArrays = [
 
                             <div class="col-span-2 ml-10 w-full flex-1">
                                 <div class="flex items-center gap-2">
-                                    <?php if ($member->name !== '' || !isset($member->name)): ?>
+                                    <?php if ($member->name !== null): ?>
                                         <h2 class="text-2xl"><?= $member->name ?></h2>
                                     <?php elseif (isset($member->artist)): ?>
                                         <?= Html::a($member->artist->name,
