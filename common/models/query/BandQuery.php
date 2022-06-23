@@ -31,4 +31,9 @@ class BandQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function byKeyword($keyword)
+    {
+        return $this->orWhere("\"name\" ILIKE :keyword", [':keyword' => '%' . $keyword . '%']);
+    }
 }

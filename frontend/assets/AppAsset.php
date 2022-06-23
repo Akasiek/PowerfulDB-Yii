@@ -18,7 +18,6 @@ class AppAsset extends AssetBundle
         'css/slimselect.min.css',
     ];
     public $js = [
-        'js/sidebar.js',
         'js/isImage.js',
         'js/swiper.js',
         'js/slimselect.min.js',

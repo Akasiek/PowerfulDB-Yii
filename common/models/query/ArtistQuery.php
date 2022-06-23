@@ -31,4 +31,11 @@ class ArtistQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function byKeyword($keyword)
+    {
+        return $this
+            ->orWhere("\"name\" ILIKE :keyword", [':keyword' => '%' . $keyword . '%'])
+            ->orWhere("\"full_name\" ILIKE :keyword", [':keyword' => '%' . $keyword . '%']);
+    }
 }

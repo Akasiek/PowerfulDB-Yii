@@ -1,18 +1,19 @@
 <?php
 /**
  * @var $dataProvider ActiveDataProvider
- * @var $baseUrl string
  */
 
 use yii\data\ActiveDataProvider;
 
 ?>
 
-<div class="swiper default-swiper w-full relative">
+<div class="swiper album-swiper w-full relative">
     <div class="swiper-wrapper">
         <?php foreach ($dataProvider->getModels() as $model): ?>
             <div class="swiper-slide select-none">
-                <?php echo $this->render('_default_card', ['model' => $model, 'baseUrl' => $baseUrl]); ?>
+
+                <?= $this->render('@frontend/views/album/_album_card', ['model' => $model]); ?>
+
             </div>
         <?php endforeach; ?>
     </div>

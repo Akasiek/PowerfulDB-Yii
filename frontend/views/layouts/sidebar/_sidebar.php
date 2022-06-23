@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Pjax;
 
 ?>
 
@@ -20,25 +21,29 @@ use yii\helpers\Url;
             </a>
         </div>
 
+
         <!-- SEARCHBAR -->
-        <div class="relative flex items-center">
+        <form action="/search" method="get" class="relative flex items-center">
             <input
                     class="w-full px-4 py-1.5 border-2 border-main-accent rounded-3xl bg-transparent font-bold text-lg text-main-light
                     focus:outline-none focus:bg-main-accent focus:text-secondary-dark focus:placeholder:text-secondary-dark
                     shadow-accent peer transition-all duration-300"
-                    id="searchInput"
+                    id="search-input"
                     type="text"
                     placeholder="Search..."
-                    autocomplete="none">
+                    autocomplete="none"
+                    name="keyword">
             <div class="absolute flex right-4 text-main-accent peer-focus:text-main-dark transition-all duration-300">
                     <span class="material-symbols-rounded cursor-pointer ">
                         search
                     </span>
             </div>
-        </div>
+
+        </form>
 
         <!-- MAIN OPTIONS -->
-        <div class="flex gap-3 flex-col">
+        <div class="flex flex-col gap-3">
+
             <?php echo $this->render('_main_option', [
                 'text' => 'Home Page',
                 'icon' => 'home',
@@ -79,52 +84,62 @@ use yii\helpers\Url;
             'url' => '/about',
         ]) ?>
 
-        <!-- PROFILE / LOG IN -->
-        <div class="text-secondary-dark bg-main-accent absolute left-0 right-0 bottom-0 px-4 py-3">
-            <?php
-            if (Yii::$app->user->isGuest): ?>
-                <a href="<?php echo Url::to('/site/login') ?>"
-                   class="flex items-center justify-start gap-4">
-                    <p class="material-symbols-outlined ">
-                        login
-                    </p>
-                    <p class="font-bold text-lg">
-                        Log in
-                    </p>
-                </a>
-            <?php else: ?>
-                <div class="flex items-center gap-4">
-                    <div class="aspect-square flex-none">
-                        <!-- TODO: Avatar display-->
-                        <?php echo Html::a(
-                            Html::img(
-                                'https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg',
-                                ['class' => 'rounded-full h-8 object-cover']
-                            ), ['/users/view', 'id' => Yii::$app->user->identity->id])
-                        ?>
-                    </div>
-                    <div class="truncate pr-6">
-                        <p class="text-xl truncate">
-                            <?php echo Html::a(
-                                Yii::$app->user->identity->username,
-                                ['/users/view', 'id' => Yii::$app->user->identity->id]
-                            ) ?>
-                        </p>
-                    </div>
-
-                    <div class="absolute right-4 flex">
-                        <a href="<?php echo Url::to('/site/logout') ?>"
-                           data-method="post"
-                           class="material-symbols-outlined text-secondary-dark font-normal">
-                            logout
-                        </a>
-                    </div>
-                </div>
-            <?php endif; ?>
-
-        </div>
 
     </div>
 
+    <!-- PROFILE / LOG IN -->
+    <div class="text-secondary-dark bg-main-accent absolute left-0 right-0 bottom-0 px-4 py-3">
+        <?php
+        if (Yii::$app->user->isGuest): ?>
+            <a href="<?php echo Url::to('/site/login') ?>"
+               class="flex items-center justify-start gap-4">
+                <p class="material-symbols-outlined ">
+                    login
+                </p>
+                <p class="font-bold text-lg">
+                    Log in
+                </p>
+            </a>
+        <?php else: ?>
+            <div class="flex items-center gap-4">
+                <div class="aspect-square flex-none">
+                    <!-- TODO: Avatar display-->
+                    <?php echo Html::a(
+                        Html::img(
+                            'https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg',
+                            ['class' => 'rounded-full h-8 object-cover']
+                        ), ['/users/view', 'id' => Yii::$app->user->identity->id])
+                    ?>
+                </div>
+                <div class="truncate pr-6">
+                    <p class="text-xl font-bold truncate">
+                        <?php echo Html::a(
+                            Yii::$app->user->identity->username,
+                            ['/users/view', 'id' => Yii::$app->user->identity->id]
+                        ) ?>
+                    </p>
+                </div>
+
+                <div class="absolute right-4 flex">
+                    <a href="<?php echo Url::to('/site/logout') ?>"
+                       data-method="post"
+                       class="material-symbols-outlined text-secondary-dark font-normal">
+                        logout
+                    </a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+    </div>
+
+
 </aside>
 
+
+<script>
+    const sidebar = document.getElementById('sidebar');
+    const searchInput = document.getElementById('search-input');
+
+    searchInput.addEventListener('focus', () => sidebar.classList.remove('!w-72'));
+    searchInput.addEventListener('blur', () => sidebar.classList.add('!w-72'));
+</script>
