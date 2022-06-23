@@ -53,8 +53,7 @@ $membersArrays = [
                     <h3 class="text-xl capitalize"><?= $arrayName ?> members</h3>
                     <hr class="w-52 border-t-2 border-t-gray-400 mt-1 mb-8">
 
-                    <?php $i = 0 ?>
-                    <?php foreach ($members as $member): ?>
+                    <?php foreach ($members as $index => $member): ?>
 
                         <div class="flex justify-center items-center w-full my-9">
 
@@ -73,8 +72,8 @@ $membersArrays = [
 
                             <div class="col-span-2 ml-10 w-full flex-1">
                                 <div class="flex items-center gap-2">
-                                    <?php if ($member['name'] !== ''): ?>
-                                        <h2 class="text-2xl"><?= $member['name'] ?></h2>
+                                    <?php if ($member->name !== ''): ?>
+                                        <h2 class="text-2xl"><?= $member->name ?></h2>
                                     <?php elseif (isset($member->artist)): ?>
                                         <?= Html::a($member->artist->name,
                                             ['/artist/view', 'slug' => $member->artist->slug], [
@@ -82,23 +81,23 @@ $membersArrays = [
                                             ]) ?>
                                     <?php endif ?>
 
-                                    <?php if ($member['join_year'] !== ''): ?>
+                                    <?php if ($member->join_year !== ''): ?>
                                         <p class="mb-1 text-gray-600">|</p>
                                         <p class="italic text-gray-400">
-                                            <?= $member['join_year'] ?>
+                                            <?= $member->join_year ?>
                                             <?php
-                                            if ($member['quit_year'] !== null) echo ' - ' . $member['quit_year'];
+                                            if ($member->quit_year !== null) echo ' - ' . $member->quit_year;
                                             else echo ' - present';
                                             ?>
                                         </p>
                                     <?php endif ?>
                                 </div>
 
-                                <?php if ($member['roles'] !== ''): ?>
+                                <?php if ($member->roles !== ''): ?>
                                     <div class="w-80">
                                         <p id="roles" class="text-sm mt-1 text-gray-400 two-line-truncate "
-                                           title="<?= $member['roles'] ?>">
-                                            <?= $member['roles'] ?>
+                                           title="<?= $member->roles ?>">
+                                            <?= $member->roles ?>
                                         </p>
                                     </div>
                                 <?php endif ?>
@@ -106,7 +105,7 @@ $membersArrays = [
 
                         </div>
 
-                        <?php if (++$i !== count($members)): ?>
+                        <?php if ($index + 1 !== count($members)): ?>
                             <hr class="my-8 border-t-2 border-t-gray-700 w-[60%] mx-auto">
                         <?php endif ?>
                     <?php endforeach; ?>
