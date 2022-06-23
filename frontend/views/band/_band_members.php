@@ -7,12 +7,13 @@ use common\models\Artist;
 use common\models\Band;
 use yii\helpers\Html;
 
-$bandMembers = $model->getMembers()->asArray()->all();
+$bandMembers = $model->getMembers()->all();
+
 //Get current members of band
 $bandCurrentMembers = [];
 $bandPastMembers = [];
 foreach ($bandMembers as $member) {
-    if ($member['quit_year'] === null) $bandCurrentMembers[] = $member;
+    if ($member->quit_year === null) $bandCurrentMembers[] = $member;
     else $bandPastMembers[] = $member;
 }
 
@@ -45,7 +46,7 @@ $membersArrays = [
         </div>
 
     <?php else: ?>
-    
+
         <?php foreach ($membersArrays as $arrayName => $members): ?>
             <?php if (!empty($members)): ?>
                 <div class="mt-8 mb-12">
@@ -55,24 +56,18 @@ $membersArrays = [
                     <?php $i = 0 ?>
                     <?php foreach ($members as $member): ?>
 
-                        <?php if ($member['artist_id'] !== null) {
-                            $artist = Artist::findOne($member['artist_id']);
-                        } else {
-                            $artist = null;
-                        } ?>
-
                         <div class="flex justify-center items-center w-full my-9">
 
-                            <?php if (isset($artist) && $artist->bg_image_url !== null): ?>
+                            <?php if (isset($member->artist) && $member->artist->bg_image_url !== null): ?>
                                 <div class="h-32 ml-10 aspect-square rounded-full">
-                                    <?= Html::a(Html::img($artist->bg_image_url,
+                                    <?= Html::a(Html::img($member->artist->bg_image_url,
                                         [
                                             'class' => 'h-full w-full object-cover object-center rounded-full shadow-xl
                                             border-2 border-main-dark hover:shadow-accent hover:border-main-accent
                                             transition-all duration-100 ease-in-out',
-                                            'alt' => 'Artist background image'
+                                            'alt' => $member->artist->name . ' background image'
                                         ]),
-                                        ['/artist/view', 'slug' => $artist->slug]) ?>
+                                        ['/artist/view', 'slug' => $member->artist->slug]) ?>
                                 </div>
                             <?php endif ?>
 
@@ -80,10 +75,11 @@ $membersArrays = [
                                 <div class="flex items-center gap-2">
                                     <?php if ($member['name'] !== ''): ?>
                                         <h2 class="text-2xl"><?= $member['name'] ?></h2>
-                                    <?php elseif (isset($artist)): ?>
-                                        <?= Html::a($artist->name, ['/artist/view', 'slug' => $artist->slug], [
-                                            'class' => 'text-2xl underline hover:text-main-accent transition-colors'
-                                        ]) ?>
+                                    <?php elseif (isset($member->artist)): ?>
+                                        <?= Html::a($member->artist->name,
+                                            ['/artist/view', 'slug' => $member->artist->slug], [
+                                                'class' => 'text-2xl underline hover:text-main-accent transition-colors'
+                                            ]) ?>
                                     <?php endif ?>
 
                                     <?php if ($member['join_year'] !== ''): ?>
