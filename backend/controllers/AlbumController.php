@@ -39,15 +39,11 @@ class AlbumController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Album::find(),
+            'query' => Album::find()->leftJoin('artist', 'artist.id = album.artist_id')->with('artist')
+                ->leftJoin('band', 'band.id = album.band_id')->with('band'),
             /*
             'pagination' => [
                 'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
             ],
             */
         ]);
