@@ -32,7 +32,8 @@ use yii\widgets\Pjax;
                     type="text"
                     placeholder="Search..."
                     autocomplete="none"
-                    name="keyword">
+                    name="keyword"
+                    minlength="2">
             <div class="absolute flex right-4 text-main-accent peer-focus:text-main-dark transition-all duration-300">
                     <span class="material-symbols-rounded cursor-pointer ">
                         search

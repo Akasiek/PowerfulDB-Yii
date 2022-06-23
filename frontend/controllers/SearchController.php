@@ -7,6 +7,7 @@ use common\models\Artist;
 use common\models\Band;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
+use yii\web\BadRequestHttpException;
 
 class SearchController extends Controller
 {
@@ -17,6 +18,11 @@ class SearchController extends Controller
      */
     public function actionIndex($keyword)
     {
+        // If keyword is shorted than 2 characters, display error message
+        if (strlen($keyword) < 2) {
+            throw new BadRequestHttpException('Keyword must be at least 2 characters long.');
+        }
+
         $artists = new ActiveDataProvider([
             'query' => Artist::find()->byKeyword($keyword),
             'sort' => [
