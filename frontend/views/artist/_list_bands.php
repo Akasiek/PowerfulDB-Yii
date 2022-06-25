@@ -35,7 +35,9 @@ $memberships = $model->getMemberInfo()->orderBy('join_year DESC')->all();
                             <?= $membership->band->name ?>
                         </h1>
 
-                        <p class='text-center w-80 text-sm'><?= $membership->roles ?></p>
+                        <p class='text-center w-80 text-sm two-line-truncate' title="<?= $membership->roles ?>">
+                            <?= $membership->roles ?>
+                        </p>
 
                         <p class="text-gray-200 italic">
                             <?= $membership->join_year ?> - <?= $membership->quit_year ?? 'present' ?>
