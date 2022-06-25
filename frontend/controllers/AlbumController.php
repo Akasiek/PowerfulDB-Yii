@@ -35,10 +35,10 @@ class AlbumController extends Controller
         // Check if any filters are set
         $filters = \Yii::$app->request->get();
         if (isset($filters['from_year']) && $filters['from_year'] != '') {
-            $query->andWhere('YEAR(release_date) >= :from_year', [':from_year' => $filters['from_year']]);
+            $query->andWhere('EXTRACT(YEAR FROM release_date) >= :from_year', [':from_year' => $filters['from_year']]);
         }
         if (isset($filters['to_year']) && $filters['to_year'] != '') {
-            $query->andWhere('YEAR(release_date) <= :to_year', [':to_year' => $filters['to_year']]);
+            $query->andWhere('EXTRACT(YEAR FROM release_date) <= :to_year', [':to_year' => $filters['to_year']]);
         }
 
 
