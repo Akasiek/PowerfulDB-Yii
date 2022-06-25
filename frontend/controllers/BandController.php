@@ -27,8 +27,37 @@ class BandController extends Controller
             'defaultOrder' => ['name' => SORT_ASC],
         ]);
 
+        $query = Band::find()->orderBy($sort->orders);
+
+        // Check if any filters are set
+        $filters = \Yii::$app->request->get();
+        if (isset($filters['founding_from_year']) && !empty($filters['founding_from_year'])) {
+            $query->andWhere(
+                'founding_year >= :from_year',
+                [':from_year' => $filters['founding_from_year']]
+            );
+        }
+        if (isset($filters['founding_to_year']) && !empty($filters['founding_to_year'])) {
+            $query->andWhere(
+                'founding_year <= :to_year',
+                [':to_year' => $filters['founding_to_year']]
+            );
+        }
+        if (isset($filters['break_up_from_year']) && !empty($filters['break_up_from_year'])) {
+            $query->andWhere(
+                'breakup_year >= :from_year',
+                [':from_year' => $filters['break_up_from_year']]
+            );
+        }
+        if (isset($filters['break_up_to_year']) && !empty($filters['break_up_to_year'])) {
+            $query->andWhere(
+                'breakup_year <= :to_year',
+                [':to_year' => $filters['break_up_to_year']]
+            );
+        }
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Band::find()->orderBy($sort->orders),
+            'query' => $query,
             'pagination' => [
                 'pageSize' => 20,
             ],
