@@ -17,7 +17,7 @@ else $author = $model->band;
 ?>
 
 
-<?= $this->render('_album_jumbotron', [
+<?= $this->render('_view_album_jumbotron', [
     'model' => $model,
     'author' => $author,
 ]); ?>

@@ -14,7 +14,7 @@ use yii\widgets\ListView;
 
     <?php echo $this->render('@frontend/views/components/_index_page_title') ?>
 
-    <?= $this->render('_artist_sort', [
+    <?= $this->render('_index_artist_sort', [
         'sort' => $sort,
     ]) ?>
 

@@ -15,7 +15,7 @@ use yii\widgets\Pjax;
 
     <?= $this->render('@frontend/views/components/_index_page_title') ?>
 
-    <?= $this->render('_album_sort_filter', [
+    <?= $this->render('_index_album_sort_filter', [
         'sort' => $sort,
     ]) ?>
 

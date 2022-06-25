@@ -31,7 +31,7 @@ echo $this->render('@frontend/views/components/_default_jumbotron', [
             'model' => $model,
         ]); ?>
 
-        <?= $this->render('_list_bands', [
+        <?= $this->render('_view_artist_band_memberships', [
             'model' => $model,
         ]); ?>
 
