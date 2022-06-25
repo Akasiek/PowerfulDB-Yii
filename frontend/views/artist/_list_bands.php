@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 //$bands = $model->getBands()->all();
-$memberships = $model->getMemberInfo()->orderBy('join_year ASC')->all();
+$memberships = $model->getMemberInfo()->orderBy('join_year DESC')->all();
 
 ?>
 <?php if (count($memberships) !== 0): ?>
@@ -18,7 +18,7 @@ $memberships = $model->getMemberInfo()->orderBy('join_year ASC')->all();
         <hr class="max-w-sm  border-t-2 border-t-main-accent mt-2 mb-6">
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            
+
             <?php foreach ($memberships as $index => $membership): ?>
                 <a href="<?= Url::to(['band/view', 'slug' => $membership->band->slug]) ?>"
                    class="relative overflow-hidden flex items-center justify-center rounded-2xl block
