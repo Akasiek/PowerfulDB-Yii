@@ -9,7 +9,7 @@ $this->beginContent('@frontend/views/layouts/base.php');
 <div class="flex relative ml-72">
 
     <div class="fixed top-0 left-0 z-50">
-        <?php echo $this->render('sidebar/_sidebar'); ?>
+        <?php echo $this->render('sidebar/sidebar'); ?>
     </div>
 
     <main role="main" class="w-full z-10">
