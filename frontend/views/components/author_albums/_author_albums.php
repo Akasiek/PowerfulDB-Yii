@@ -40,9 +40,8 @@ if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
             </div>
 
             <div class="flex gap-4">
-
                 <?= Html::button('grid_view', [
-                    'class' => 'material-symbols-rounded !text-3xl',
+                    'class' => 'material-symbols-rounded !text-3xl' . ($displayStyle === 'grid' ? ' text-main-accent' : ''),
                     'data-method' => 'post',
                     'data-pjax' => '1',
                     'data-params' => [
@@ -50,7 +49,7 @@ if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
                     ],
                 ]) ?>
                 <?= Html::button('list', [
-                    'class' => 'material-symbols-rounded !text-3xl',
+                    'class' => 'material-symbols-rounded !text-3xl' . ($displayStyle === 'list' ? ' text-main-accent' : ''),
                     'data-method' => 'post',
                     'data-pjax' => '1',
                     'data-params' => [
