@@ -28,7 +28,7 @@ use yii\helpers\Url;
         <div class="px-7 pb-4 w-full z-30">
 
             <h3 class="font-sans text-3xl truncate xl:translate-y-5
-                       group-hover:translate-y-0 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+                       group-hover:translate-y-0 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]">
                 <?php echo $model->name ?>
             </h3>
             <p class="text-sm truncate xl:translate-y-10 drop-shadow-md
