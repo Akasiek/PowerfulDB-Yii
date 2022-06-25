@@ -29,7 +29,7 @@ $memberships = $model->getMemberInfo()->orderBy('join_year DESC')->all();
                     <img src="<?= $membership->band->bg_image_url ?>" alt="<?= $membership->name ?> background image"
                          class="absolute w-full h-full object-center object-cover opacity-25">
 
-                    <div class="z-10 flex flex-col items-center  justify-center w-full h-full group  ">
+                    <div class="z-10 flex flex-col items-center justify-center w-full h-full group gap-1">
 
                         <h1 class="font-sans text-4xl relative after:cool-underline after:bg-main-light group-hover:after:cool-underline-hover">
                             <?= $membership->band->name ?>
