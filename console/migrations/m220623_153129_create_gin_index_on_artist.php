@@ -13,6 +13,7 @@ class m220623_153129_create_gin_index_on_artist extends Migration
     public function up()
     {
         $this->execute("CREATE INDEX CONCURRENTLY index_artist_on_name_trigram ON artist USING gin (name gin_trgm_ops);");
+        $this->execute("CREATE INDEX CONCURRENTLY index_artist_on_slug_trigram ON artist USING gin (slug gin_trgm_ops);");
         $this->execute("CREATE INDEX CONCURRENTLY index_artist_on_full_name_trigram ON artist USING gin (full_name gin_trgm_ops);");
     }
 
@@ -22,6 +23,7 @@ class m220623_153129_create_gin_index_on_artist extends Migration
     public function down()
     {
         $this->execute("DROP INDEX CONCURRENTLY index_artist_on_name_trigram");
+        $this->execute("DROP INDEX CONCURRENTLY index_artist_on_slug_trigram");
         $this->execute("DROP INDEX CONCURRENTLY index_artist_on_full_name_trigram");
     }
 

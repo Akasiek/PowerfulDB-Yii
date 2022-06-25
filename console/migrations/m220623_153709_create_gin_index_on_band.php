@@ -13,6 +13,7 @@ class m220623_153709_create_gin_index_on_band extends Migration
     public function up()
     {
         $this->execute("CREATE INDEX CONCURRENTLY index_band_on_name_trigram ON band USING gin (name gin_trgm_ops);");
+        $this->execute("CREATE INDEX CONCURRENTLY index_band_on_slug_trigram ON band USING gin (slug gin_trgm_ops);");
     }
 
     /**
@@ -21,6 +22,7 @@ class m220623_153709_create_gin_index_on_band extends Migration
     public function down()
     {
         $this->execute("DROP INDEX CONCURRENTLY index_band_on_name_trigram");
+        $this->execute("DROP INDEX CONCURRENTLY index_band_on_slug_trigram");
     }
 
     /*

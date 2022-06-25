@@ -37,7 +37,10 @@ class AlbumQuery extends \yii\db\ActiveQuery
         return $this->leftJoin('artist', 'artist.id = album.artist_id')
             ->leftJoin('band', 'band.id = album.band_id')
             ->orWhere('"title" ILIKE :keyword', [':keyword' => '%' . $keyword . '%'])
+            ->orWhere('"album"."slug" ILIKE :keyword', [':keyword' => '%' . $keyword . '%'])
             ->orWhere('"band"."name" ILIKE :keyword', [':keyword' => '%' . $keyword . '%'])
-            ->orWhere('"artist"."name" ILIKE :keyword', [':keyword' => '%' . $keyword . '%']);
+            ->orWhere('"band"."slug" ILIKE :keyword', [':keyword' => '%' . $keyword . '%'])
+            ->orWhere('"artist"."name" ILIKE :keyword', [':keyword' => '%' . $keyword . '%'])
+            ->orWhere('"artist"."slug" ILIKE :keyword', [':keyword' => '%' . $keyword . '%']);
     }
 }

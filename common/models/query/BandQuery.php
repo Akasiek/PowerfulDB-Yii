@@ -34,6 +34,7 @@ class BandQuery extends \yii\db\ActiveQuery
 
     public function byKeyword($keyword)
     {
-        return $this->orWhere("\"name\" ILIKE :keyword", [':keyword' => '%' . $keyword . '%']);
+        return $this->orWhere('"name" ILIKE :keyword', [':keyword' => '%' . $keyword . '%']);
+        return $this->orWhere('"slug" ILIKE :keyword', [':keyword' => '%' . $keyword . '%']);
     }
 }
