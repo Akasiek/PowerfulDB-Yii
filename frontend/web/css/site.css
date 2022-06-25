@@ -16,76 +16,76 @@
 
     .cool-underline {
         @apply content-[''] h-[2px] w-full absolute left-0 bottom-0 scale-x-0 origin-bottom-right transition-transform
-        duration-[0.1s] ease-in-out
+        duration-[0.1s] ease-in-out;
     }
 
     .cool-underline-hover {
-        @apply scale-x-100 origin-bottom-left
+        @apply scale-x-100 origin-bottom-left;
     }
 
     .input-style {
         @apply w-full rounded-3xl bg-transparent border-2 border-main-accent px-4 py-2 my-2
         focus:outline-none focus:shadow-accent focus-visible:outline-none transition duration-150
-        placeholder:text-gray-500
+        placeholder:text-gray-500;
     }
 
     .btn-style {
         @apply rounded-3xl bg-transparent border-2 border-main-accent
         px-5 py-1.5 cursor-pointer transition text-center
-        hover:bg-main-accent hover:text-secondary-dark hover:shadow-accent
+        hover:bg-main-accent hover:text-secondary-dark hover:shadow-accent;
     }
 
     .floating-label-input {
         @apply h-10 w-full border-b-2 border-gray-300 text-main-light bg-transparent
-        placeholder-transparent focus:outline-none focus:border-main-accent
+        placeholder-transparent focus:outline-none focus:border-main-accent;
     }
 
     .floating-label-label {
         @apply absolute left-0 -top-3.5 text-gray-400 text-sm transition-all bg-transparent
         peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-600
         peer-placeholder-shown:top-2 peer-focus:-top-3.5
-        peer-focus:text-gray-300 peer-focus:text-sm
+        peer-focus:text-gray-300 peer-focus:text-sm;
     }
 
     @layer base {
         .article-style > h1 {
-            @apply text-5xl font-sans my-7
+            @apply text-5xl font-sans my-7;
         }
 
         .article-style > h2 {
-            @apply text-4xl font-sans my-5
+            @apply text-4xl font-sans my-5;
         }
 
         .article-style > h3 {
-            @apply text-3xl font-sans my-3
+            @apply text-3xl font-sans my-3;
         }
 
         .article-style > h4 {
-            @apply text-2xl my-1.5
+            @apply text-2xl my-1.5;
         }
 
         .article-style > h5 {
-            @apply text-xl my-1.5
+            @apply text-xl my-1.5;
         }
 
         .article-style > h6 {
-            @apply text-lg my-1.5
+            @apply text-lg my-1.5;
         }
 
         .article-style > p {
-            @apply text-base leading-7 my-2
+            @apply text-base leading-7 my-2;
         }
 
         .article-style > * a {
-            @apply text-main-accent hover:underline
+            @apply text-main-accent hover:underline;
         }
 
         .article-style > hr {
-            @apply my-8 border-t-2 border-t-gray-700 w-[60%] mx-auto
+            @apply my-8 border-t-2 border-t-gray-700 w-[60%] mx-auto;
         }
 
         .article-style > * img {
-            @apply my-8 mx-auto
+            @apply my-8 mx-auto;
         }
     }
 }

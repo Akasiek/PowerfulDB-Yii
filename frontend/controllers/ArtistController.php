@@ -54,7 +54,8 @@ class ArtistController extends Controller
             );
         }
         if (isset($filters['birth_to_year']) && $filters['birth_to_year'] != '') {
-            $query->andWhere('
+            $query->andWhere(
+                '
             EXTRACT(YEAR FROM birth_date) <= :to_year',
                 [':to_year' => $filters['birth_to_year']]
             );
@@ -66,7 +67,8 @@ class ArtistController extends Controller
             );
         }
         if (isset($filters['death_to_year']) && $filters['death_to_year'] != '') {
-            $query->andWhere('
+            $query->andWhere(
+                '
             EXTRACT(YEAR FROM death_date) <= :to_year',
                 [':to_year' => $filters['death_to_year']]
             );
