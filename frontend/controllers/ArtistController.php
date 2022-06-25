@@ -43,8 +43,37 @@ class ArtistController extends Controller
             'defaultOrder' => ['name' => SORT_ASC],
         ]);
 
+        $query = Artist::find()->orderBy($sort->orders);
+
+        // Check if any filters are set
+        $filters = \Yii::$app->request->get();
+        if (isset($filters['birth_from_year']) && $filters['birth_from_year'] != '') {
+            $query->andWhere(
+                'EXTRACT(YEAR FROM birth_date) >= :from_year',
+                [':from_year' => $filters['birth_from_year']]
+            );
+        }
+        if (isset($filters['birth_to_year']) && $filters['birth_to_year'] != '') {
+            $query->andWhere('
+            EXTRACT(YEAR FROM birth_date) <= :to_year',
+                [':to_year' => $filters['birth_to_year']]
+            );
+        }
+        if (isset($filters['death_from_year']) && $filters['death_from_year'] != '') {
+            $query->andWhere(
+                'EXTRACT(YEAR FROM death_date) >= :from_year',
+                [':from_year' => $filters['death_from_year']]
+            );
+        }
+        if (isset($filters['death_to_year']) && $filters['death_to_year'] != '') {
+            $query->andWhere('
+            EXTRACT(YEAR FROM death_date) <= :to_year',
+                [':to_year' => $filters['death_to_year']]
+            );
+        }
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Artist::find()->orderBy($sort->orders),
+            'query' => $query,
             'pagination' => [
                 'pageSize' => 20,
             ],

@@ -40,7 +40,7 @@ class AlbumController extends Controller
         if (isset($filters['to_year']) && $filters['to_year'] != '') {
             $query->andWhere('EXTRACT(YEAR FROM release_date) <= :to_year', [':to_year' => $filters['to_year']]);
         }
-
+ 
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
