@@ -12,8 +12,8 @@ use yii\helpers\Url;
     <?php foreach ($albums as $album): ?>
         <a href="<?= Url::to(['/album/view', 'slug' => $album->slug,]) ?>"
            class="group transition">
-            <div class="text-center">
-                <img class="mb-2" src="<?= $album->artwork_url ?>" alt="Album artwork">
+            <div class="flex flex-col justify-center items-center group">
+                <img class="mb-2 group-hover:scale-95 transition" src="<?= $album->artwork_url ?>" alt="Album artwork">
 
                 <p class="text-base lg:text-lg truncate group-hover:underline"
                    title="<?= $album->title ?>">
