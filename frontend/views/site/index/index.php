@@ -14,7 +14,7 @@ $this->title = 'My Yii Application';
 <div>
     <?php echo $this->render('_jumbotron'); ?>
 
-    <?php if (Yii::$app->session->hasFlash('success')): ?>
+    <?php if (Yii::$app->session->hasFlash('success')) : ?>
         <?= ToastrFlashMessage::widget([
             'type' => 'success',
             'title' => 'Success',
@@ -22,7 +22,7 @@ $this->title = 'My Yii Application';
         ]); ?>
     <?php endif; ?>
 
-    <?php if (Yii::$app->session->hasFlash('error')): ?>
+    <?php if (Yii::$app->session->hasFlash('error')) : ?>
         <?= ToastrFlashMessage::widget([
             'type' => 'error',
             'title' => 'Error',
@@ -52,7 +52,9 @@ $this->title = 'My Yii Application';
                 'dataProvider' => $bands,
                 'baseUrl' => 'band'
             ]); ?>
-
         </div>
+
+        <?php echo $this->render('on_this_day/_on_this_day'); ?>
+
     </div>
 </div>
