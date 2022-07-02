@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'slug',
+            // 'slug',
             'founding_year',
             'breakup_year',
             //'bg_image_url:url',

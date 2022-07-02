@@ -28,10 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'slug',
+            // 'slug',
             'full_name',
-            //'birth_date',
-            //'death_date',
+            'birth_date',
+            'death_date',
             //'bg_image_url:url',
             //'created_at',
             //'created_by',
