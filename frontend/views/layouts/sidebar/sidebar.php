@@ -30,7 +30,7 @@ use yii\widgets\Pjax;
                     focus:outline-none focus:bg-main-accent focus:text-secondary-dark focus:placeholder:text-secondary-dark
                     shadow-accent peer transition-all duration-300" id="search-input" type="text" placeholder="Search..." autocomplete="none" name="keyword" minlength="2">
             <div class="absolute flex right-4 text-main-accent peer-focus:text-main-dark transition-all duration-300">
-                <input type="submit" value="search" class="material-symbols-rounded cursor-pointer" />
+                <input id="search-submit" type="submit" value="search" class="material-symbols-rounded cursor-pointer disabled:cursor-default" />
             </div>
 
         </form>
@@ -126,3 +126,20 @@ use yii\widgets\Pjax;
     </div>
 
 </aside>
+
+<script>
+    // If search input value length is smaller than 2, disable search submit button
+    const searchInput = document.getElementById('search-input');
+    const searchSubmit = document.getElementById('search-submit');
+
+    const searchSubmitDisable = () => {
+        if (searchInput.value.length < 2) {
+            searchSubmit.disabled = true;
+        } else {
+            searchSubmit.disabled = false;
+        }
+    };
+
+    searchSubmitDisable();
+    searchInput.addEventListener('input', searchSubmitDisable);
+</script>

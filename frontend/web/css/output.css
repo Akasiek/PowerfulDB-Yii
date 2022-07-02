@@ -973,6 +973,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   cursor: pointer;
 }
 
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.\!cursor-pointer {
+  cursor: pointer !important;
+}
+
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -1477,6 +1485,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   opacity: 0.95;
 }
 
+.opacity-50 {
+  opacity: 0.5;
+}
+
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -1722,9 +1734,32 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(27 28 34 / var(--tw-text-opacity));
 }
 
+.disabled\:cursor-not-allowed:disabled {
+  cursor: not-allowed;
+}
+
+.disabled\:cursor-default:disabled {
+  cursor: default;
+}
+
 .disabled\:border-gray-400:disabled {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
+.disabled\:text-gray-400:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.disabled\:text-gray-600:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.disabled\:text-gray-50:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(249 250 251 / var(--tw-text-opacity));
 }
 
 .disabled\:placeholder\:line-through:disabled::-moz-placeholder {
@@ -1780,6 +1815,36 @@ Ensure the default browser behavior of the `hidden` attribute.
 .peer:focus ~ .peer-focus\:text-main-dark {
   --tw-text-opacity: 1;
   color: rgb(41 42 51 / var(--tw-text-opacity));
+}
+
+.peer:focus ~ .peer-focus\:text-secondary-dark {
+  --tw-text-opacity: 1;
+  color: rgb(27 28 34 / var(--tw-text-opacity));
+}
+
+.peer:focus ~ .peer-focus\:text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.peer:focus ~ .peer-focus\:text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.peer:focus ~ .peer-focus\:text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+.peer:focus ~ .disabled\:peer-focus\:text-gray-600:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.peer:focus ~ .disabled\:peer-focus\:text-secondary-accent:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(94 43 255 / var(--tw-text-opacity));
 }
 
 .peer:disabled ~ .peer-disabled\:line-through {
