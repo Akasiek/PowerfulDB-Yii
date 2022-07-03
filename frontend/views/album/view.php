@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $model Album
  */
@@ -23,7 +24,7 @@ else $author = $model->band;
 ]); ?>
 
 
-<div class="flex flex-col justify-center items-center mt-5">
+<div class="flex flex-col justify-center items-center mt-10">
     <div class="px-14 py-8 max-w-screen-lg w-full">
 
         <?= $this->render('@frontend/views/components/_render_article', [

@@ -134,6 +134,16 @@ class Album extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[Genre]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\GenreQuery
+     */
+    public function getGenres()
+    {
+        return $this->hasMany(Genre::className(), ['id' => 'genre_id'])->viaTable('album_genre', ['album_id' => 'id']);
+    }
+
+    /**
      * {@inheritdoc}
      * @return \common\models\query\AlbumQuery the active query used by this AR class.
      */

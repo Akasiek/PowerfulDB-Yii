@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $model Album
  * @var $author Artist | Band
@@ -7,6 +8,9 @@
 use common\models\Album;
 use common\models\Artist;
 use common\models\Band;
+use common\models\Genre;
+
+$genres = $model->getGenres()->all();
 
 ?>
 
@@ -19,9 +23,9 @@ use common\models\Band;
         <div class="flex flex-col gap-2">
 
             <a href="<?php echo \yii\helpers\Url::to([
-                '/' . ($model->artist_id ? 'artist' : 'band') . '/view/',
-                'slug' => $author->slug
-            ]) ?>" class="hover:underline">
+                            '/' . ($model->artist_id ? 'artist' : 'band') . '/view/',
+                            'slug' => $author->slug
+                        ]) ?>" class="hover:underline">
                 <h3 class="text-lg lg:text-2xl"><?php echo $author->name ?></h3>
             </a>
 
@@ -35,13 +39,18 @@ use common\models\Band;
                 ?>
             </p>
 
-            <p class="italic text-sm lg:text-base">
-                <?php
-                // TODO: Genres
-                echo 'Heavy Metal • Hard Rock';
-                ?>
-            </p>
-
+            <?php if (!empty($genres)) : ?>
+                <p class="italic text-sm lg:text-base">
+                    <?php
+                    foreach ($genres as $index => $genre) {
+                        echo $genre->name . ' ';
+                        if ($index < count($genres) - 1) {
+                            echo '• ';
+                        }
+                    }
+                    ?>
+                </p>
+            <?php endif; ?>
         </div>
     </div>
 
