@@ -21,6 +21,8 @@ $this->title = 'My Yii Application';
         <a href="<?php echo \yii\helpers\Url::to('/album') ?>" class="btn btn-primary m-2">Album Panel</a>
         <a href="<?php echo \yii\helpers\Url::to('/album/article') ?>" class="btn btn-primary m-2">Album Article
             Panel</a>
+        <a href="<?php echo \yii\helpers\Url::to('/album/genre') ?>" class="btn btn-primary m-2">Album Genre
+            Panel</a>
     </div>
     <div class="col d-flex flex-column">
         <a href="<?php echo \yii\helpers\Url::to('/genre') ?>" class="btn btn-primary m-2">Genre Panel</a>

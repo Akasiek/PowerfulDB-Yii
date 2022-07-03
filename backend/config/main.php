@@ -42,6 +42,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '/album/article' => '/album-article/',
+                '/album/genre' => '/album-genre/',
                 '/band/article' => '/band-article/',
                 '/artist/article' => '/artist-article/',
             ],
