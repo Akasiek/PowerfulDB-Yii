@@ -29,8 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             // 'slug',
-            'band_id',
-            'artist_id',
+            [
+                'label' => 'Artist name',
+                'attribute' => 'artist.name',
+            ],
+            [
+                'label' => 'Band name',
+                'attribute' => 'band.name',
+            ],
             'release_date',
             //'artwork_url:url',
             //'created_at',
