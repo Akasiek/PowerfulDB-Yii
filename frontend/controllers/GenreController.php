@@ -30,6 +30,9 @@ class GenreController extends Controller
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
         ]);
 
         return $this->render('index', [

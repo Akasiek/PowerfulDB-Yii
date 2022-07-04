@@ -16,6 +16,18 @@ use \yii\widgets\ListView;
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
+        'pager' => [
+            'options' => [
+                'class' => 'my-8 flex rounded-lg bg-main-dark w-fit overflow-hidden',
+            ],
+            'linkOptions' => [
+                'class' => 'flex justify-center items-center py-3 px-4',
+            ],
+            'pageCssClass' => 'flex hover:opacity-60',
+            'disabledPageCssClass' => 'py-3 px-4 text-gray-500',
+            'activePageCssClass' => 'bg-secondary-accent',
+            'maxButtonCount' => 6,
+        ],
         'itemView' => '_genre_view',
         'layout' => '<div class="flex flex-col gap-14">{items}</div>{pager}',
         'itemOptions' => [

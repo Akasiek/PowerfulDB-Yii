@@ -23,7 +23,8 @@ use kartik\form\ActiveForm;
         ])->textInput([
             'maxlength' => 255,
             'class' => 'input-style',
-            'placeholder' => 'Progressive Rock'
+            'placeholder' => 'Progressive Rock',
+            'autoFocus' => true,
         ]) ?>
 
         <!-- SUBMIT BUTTON -->
