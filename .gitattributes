@@ -1,1 +1,3 @@
 frontend/web/js/* linguist-vendored
+frontend/web/assets/* linguist-vendored
+backend/web/assets/* linguist-vendored
