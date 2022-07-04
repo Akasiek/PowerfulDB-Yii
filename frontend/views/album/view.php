@@ -25,13 +25,15 @@ else $author = $model->band;
 
 
 <div class="flex flex-col justify-center items-center mt-10">
-    <div class="px-14 py-8 max-w-screen-lg w-full">
+    <div class="flex flex-col gap-16 px-14 py-8 max-w-screen-lg w-full">
 
         <?= $this->render('@frontend/views/components/_render_article', [
             'model' => $model,
         ]); ?>
 
-        <!-- TODO: ALBUM BY THE SAME AUTHOR-->
+        <?= $this->render('_view_albums_by_same_author', [
+            'model' => $model,
+        ]); ?>
 
     </div>
 </div>
