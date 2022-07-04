@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
+            'slug',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Genre $model, $key, $index, $column) {
