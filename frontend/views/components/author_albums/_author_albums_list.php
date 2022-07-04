@@ -19,7 +19,7 @@ use yii\helpers\Url;
                 </div>
 
                 <div class="col-span-2 w-full flex-1">
-                    <h2 class="text-2xl"><?= $album->title ?></h2>
+                    <h2 class="text-xl font-bold"><?= $album->title ?></h2>
                     <p class="italic text-gray-400">
                         <?= Yii::$app->formatter->asDate($album->release_date, 'long') ?>
                     </p>

@@ -28,14 +28,14 @@ $genreText = implode(' • ', array_map(function ($genre) {
 
     <div class="flex flex-col gap-0 p-2 truncate">
 
-        <p class="text-md lg:text-lg truncate">
+        <h3 class="text-base font-bold lg:text-lg truncate">
             <a href="<?= Url::to([
                             '/album/view',
                             'slug' => $model->slug,
                         ]) ?>" class="hover:underline transition underline-offset-2" title="<?= $model->title ?>">
                 <?= $model->title ?>
             </a>
-        </p>
+        </h3>
 
         <p class="text-sm truncate italic">
             <a href="<?= Url::to([
