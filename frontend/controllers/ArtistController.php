@@ -43,7 +43,9 @@ class ArtistController extends Controller
             'defaultOrder' => ['name' => SORT_ASC],
         ]);
 
-        $query = Artist::find()->orderBy($sort->orders);
+        $query = Artist::find()->orderBy($sort->orders)
+            ->leftJoin('album_genre', 'album_genre.artist_id = artist.id')
+            ->leftJoin('genre', 'genre.id = album_genre.genre_id');
 
         // Check if any filters are set
         $filters = \Yii::$app->request->get();
@@ -73,11 +75,17 @@ class ArtistController extends Controller
                 [':to_year' => $filters['death_to_year']]
             );
         }
+        if (isset($filters['genre']) && !empty($filters['genre'])) {
+            $query->andWhere(
+                'genre.name ILIKE :genre',
+                [':genre' => '%' . $filters['genre'] . '%']
+            );
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => 26,
             ],
         ]);
         return $this->render('index', [

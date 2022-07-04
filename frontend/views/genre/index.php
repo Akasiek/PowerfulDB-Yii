@@ -17,7 +17,7 @@ use \yii\widgets\ListView;
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemView' => '_genre_view',
-        'layout' => '<div class="flex flex-col gap-12">{items}</div>{pager}',
+        'layout' => '<div class="flex flex-col gap-14">{items}</div>{pager}',
         'itemOptions' => [
             'tag' => false,
         ],

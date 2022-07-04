@@ -16,7 +16,9 @@ use yii\behaviors\SluggableBehavior;
  */
 class Genre extends \yii\db\ActiveRecord
 {
-    public $countGenre;
+    public $countAlbum;
+    public $countBand;
+    public $countArtist;
 
     /**
      * {@inheritdoc}

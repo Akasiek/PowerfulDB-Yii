@@ -27,7 +27,9 @@ class BandController extends Controller
             'defaultOrder' => ['name' => SORT_ASC],
         ]);
 
-        $query = Band::find()->orderBy($sort->orders);
+        $query = Band::find()->orderBy($sort->orders)
+            ->leftJoin('album_genre', 'album_genre.band_id = band.id')
+            ->leftJoin('genre', 'genre.id = album_genre.genre_id');
 
         // Check if any filters are set
         $filters = \Yii::$app->request->get();
@@ -53,6 +55,12 @@ class BandController extends Controller
             $query->andWhere(
                 'breakup_year <= :to_year',
                 [':to_year' => $filters['break_up_to_year']]
+            );
+        }
+        if (isset($filters['genre']) && !empty($filters['genre'])) {
+            $query->andWhere(
+                'genre.name ILIKE :genre',
+                [':genre' => '%' . $filters['genre'] . '%']
             );
         }
 

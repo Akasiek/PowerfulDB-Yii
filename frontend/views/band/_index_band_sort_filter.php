@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $sort Sort
  */
@@ -10,6 +11,7 @@ $founding_from_year = Yii::$app->request->get('founding_from_year');
 $founding_to_year = Yii::$app->request->get('founding_to_year');
 $break_up_from_year = Yii::$app->request->get('break_up_from_year');
 $break_up_to_year = Yii::$app->request->get('break_up_to_year');
+$genre = Yii::$app->request->get('genre');
 
 ?>
 
@@ -18,7 +20,7 @@ $break_up_to_year = Yii::$app->request->get('break_up_to_year');
 
     <div class="flex items-center  flex-wrap justify-between gap-5 mb-10 mt-[-1rem]">
 
-        <div class="flex items-center  gap-10">
+        <div class="flex items-center flex-wrap gap-x-8 gap-y-5">
             <div class="flex flex-col justify-center gap-2">
                 <p>Sort</p>
                 <div>
@@ -45,17 +47,13 @@ $break_up_to_year = Yii::$app->request->get('break_up_to_year');
                 <p>Formation year:</p>
                 <div class="flex w-fit gap-1 border-2 border-main-accent rounded-3xl px-3 py-1">
 
-                    <input type="number" name="founding_from_year" value="<?= $founding_from_year ?>"
-                           class="w-12 bg-transparent text-center focus:outline-0
-                           placeholder:text-gray-600"
-                           min="1900" max="2099" placeholder="1900">
+                    <input type="number" name="founding_from_year" value="<?= $founding_from_year ?>" class="w-12 bg-transparent text-center focus:outline-0
+                           placeholder:text-gray-600" min="1900" max="2099" placeholder="1900">
 
                     <p>-</p>
 
-                    <input type="number" name="founding_to_year" value="<?= $founding_to_year ?>"
-                           class="w-12 bg-transparent text-center focus:outline-0
-                           placeholder:text-gray-600"
-                           min="1900" max="2099" placeholder="<?= date('Y') ?>">
+                    <input type="number" name="founding_to_year" value="<?= $founding_to_year ?>" class="w-12 bg-transparent text-center focus:outline-0
+                           placeholder:text-gray-600" min="1900" max="2099" placeholder="<?= date('Y') ?>">
                 </div>
 
             </div>
@@ -64,17 +62,24 @@ $break_up_to_year = Yii::$app->request->get('break_up_to_year');
                 <p>Break up year:</p>
                 <div class="flex w-fit gap-1 border-2 border-main-accent rounded-3xl px-3 py-1">
 
-                    <input type="number" name="break_up_from_year" value="<?= $break_up_from_year ?>"
-                           class="w-12 bg-transparent text-center focus:outline-0
-                           placeholder:text-gray-600"
-                           min="1900" max="2099" placeholder="1900">
+                    <input type="number" name="break_up_from_year" value="<?= $break_up_from_year ?>" class="w-12 bg-transparent text-center focus:outline-0
+                           placeholder:text-gray-600" min="1900" max="2099" placeholder="1900">
 
                     <p>-</p>
 
-                    <input type="number" name="break_up_to_year" value="<?= $break_up_to_year ?>"
-                           class="w-12 bg-transparent text-center focus:outline-0
-                           placeholder:text-gray-600"
-                           min="1900" max="2099" placeholder="<?= date('Y') ?>">
+                    <input type="number" name="break_up_to_year" value="<?= $break_up_to_year ?>" class="w-12 bg-transparent text-center focus:outline-0
+                           placeholder:text-gray-600" min="1900" max="2099" placeholder="<?= date('Y') ?>">
+                </div>
+
+            </div>
+
+            <div class="flex flex-col justify-center gap-2">
+                <p>Genre:</p>
+                <div class="flex gap-1 border-2 border-main-accent rounded-3xl px-3 py-1">
+
+                    <input type="text" name="genre" value="<?= $genre ?>" class="w-28 bg-transparent focus:outline-0
+                   placeholder:text-gray-600" placeholder="Rock">
+
                 </div>
 
             </div>

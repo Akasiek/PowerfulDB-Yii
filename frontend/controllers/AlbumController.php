@@ -29,6 +29,8 @@ class AlbumController extends Controller
         $query = Album::find()
             ->leftJoin('artist', 'artist.id = album.artist_id')
             ->leftJoin('band', 'band.id = album.band_id')
+            ->leftJoin('album_genre', 'album_genre.album_id = album.id')
+            ->leftJoin('genre', 'genre.id = album_genre.genre_id')
             ->orderBy($sort->orders);
 
 
@@ -39,6 +41,9 @@ class AlbumController extends Controller
         }
         if (isset($filters['to_year']) && $filters['to_year'] != '') {
             $query->andWhere('EXTRACT(YEAR FROM release_date) <= :to_year', [':to_year' => $filters['to_year']]);
+        }
+        if (isset($filters['genre']) && $filters['genre'] != '') {
+            $query->andWhere('genre.name ILIKE :genre', [':genre' => '%' . $filters['genre'] . '%']);
         }
 
 

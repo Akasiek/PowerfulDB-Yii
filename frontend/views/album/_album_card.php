@@ -7,8 +7,12 @@
 use common\models\Album;
 use yii\helpers\Url;
 
-//if ($model->artist_id) $author = $model->artist;
-//else $author = $model->band;
+$genres = $model->getGenres()->all();
+$genreText = implode(' • ', array_map(function ($genre) {
+    return $genre->name;
+}, $genres));
+
+
 
 ?>
 
@@ -42,5 +46,10 @@ use yii\helpers\Url;
             </a>
         </p>
 
+        <?php if (!empty($genres)) : ?>
+            <p class="text-xs truncate italic text-gray-300" title="<?= $genreText ?>">
+                <?= $genreText ?>
+            </p>
+        <?php endif; ?>
     </div>
 </div>

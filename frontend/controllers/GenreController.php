@@ -11,10 +11,16 @@ class GenreController extends Controller
     public function actionIndex()
     {
         // Get all genres and their count in album_genre table
-        $query = Genre::find()->select(['genre.name', 'genre.slug', 'COUNT(album_genre.album_id) AS countGenre'])
+        $query = Genre::find()->select([
+            'genre.name',
+            'genre.slug',
+            'COUNT(album_genre.album_id) AS countAlbum',
+            'COUNT(album_genre.artist_id) AS countArtist',
+            'COUNT(album_genre.band_id) AS countBand',
+        ])
             ->leftJoin('album_genre', 'album_genre.genre_id = genre.id')
             ->groupBy(['genre.name', 'genre.slug'])
-            ->orderBy('countGenre DESC');
+            ->orderBy('countAlbum DESC, countBand DESC, countArtist DESC');
 
         // Check if name filter is set
         $filters = \Yii::$app->request->get();
