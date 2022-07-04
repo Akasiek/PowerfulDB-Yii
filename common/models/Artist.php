@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\models\query\GenreQuery;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 
@@ -131,6 +132,21 @@ class Artist extends \yii\db\ActiveRecord
     public function getBands()
     {
         return $this->hasMany(Band::className(), ['id' => 'band_id'])->viaTable('band_member', ['artist_id' => 'id']);
+    }
+
+    /** 
+     * Gets query for [[Genre]].
+     * 
+     * @return \yii\db\ActiveQuery|\common\models\query\GenreQuery 
+     */
+    public function getGenres()
+    {
+        return Genre::find()
+            ->select(['genre.name', 'COUNT(genre.name) AS countgenre'])
+            ->innerJoin('album_genre', 'album_genre.genre_id = genre.id')
+            ->where(['album_genre.artist_id' => $this->id])
+            ->groupBy('genre.name')
+            ->orderBy('countgenre DESC');
     }
 
     /**

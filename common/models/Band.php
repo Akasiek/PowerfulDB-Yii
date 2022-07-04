@@ -123,6 +123,21 @@ class Band extends \yii\db\ActiveRecord
         return $this->hasOne(BandArticle::className(), ['band_id' => 'id']);
     }
 
+    /** 
+     * Gets query for [[Genre]].
+     * 
+     * @return \yii\db\ActiveQuery|\common\models\query\GenreQuery 
+     */
+    public function getGenres()
+    {
+        return Genre::find()
+            ->select(['genre.name', 'COUNT(genre.name) AS countgenre'])
+            ->innerJoin('album_genre', 'album_genre.genre_id = genre.id')
+            ->where(['album_genre.band_id' => $this->id])
+            ->groupBy('genre.name')
+            ->orderBy('countgenre DESC');
+    }
+
     /**
      * {@inheritdoc}
      * @return \common\models\query\BandQuery the active query used by this AR class.
