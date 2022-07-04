@@ -50,7 +50,7 @@ class AlbumController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 24,
+                'pageSize' => 29,
             ],
         ]);
         return $this->render('index', [
