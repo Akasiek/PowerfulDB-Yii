@@ -814,6 +814,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 1.5rem;
 }
 
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
 .block {
   display: block;
 }
@@ -872,6 +876,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-44 {
   height: 11rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-full {
@@ -1060,6 +1068,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 0.75rem;
 }
 
+.gap-12 {
+  gap: 3rem;
+}
+
 .gap-x-8 {
   -moz-column-gap: 2rem;
        column-gap: 2rem;
@@ -1111,6 +1123,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-main-dark {
   --tw-border-opacity: 1;
   border-color: rgb(41 42 51 / var(--tw-border-opacity));
+}
+
+.border-gray-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
 }
 
 .border-t-main-accent {
@@ -1664,6 +1681,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-scale-x: 1.25;
   --tw-scale-y: 1.25;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.group:hover .group-hover\:border-main-accent {
+  --tw-border-opacity: 1;
+  border-color: rgb(78 255 166 / var(--tw-border-opacity));
+}
+
+.group:hover .group-hover\:text-main-accent {
+  --tw-text-opacity: 1;
+  color: rgb(78 255 166 / var(--tw-text-opacity));
+}
+
+.group:hover .group-hover\:text-main-light {
+  --tw-text-opacity: 1;
+  color: rgb(243 239 245 / var(--tw-text-opacity));
 }
 
 .group:hover .group-hover\:underline {

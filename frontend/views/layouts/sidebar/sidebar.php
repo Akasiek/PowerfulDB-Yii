@@ -63,6 +63,12 @@ use yii\widgets\Pjax;
             ]) ?>
 
             <?= $this->render('_main_option', [
+                'text' => 'Genres',
+                'icon' => 'format_list_bulleted',
+                'url' => '/genre',
+            ]) ?>
+
+            <?= $this->render('_main_option', [
                 'text' => 'Users',
                 'icon' => 'account_circle',
                 'url' => '/user',

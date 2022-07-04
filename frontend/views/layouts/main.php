@@ -13,7 +13,7 @@ $this->beginContent('@frontend/views/layouts/base.php');
         <?php echo $this->render('sidebar/sidebar'); ?>
     </div>
 
-    <main role="main" class="w-full z-10">
+    <main role="main" class="w-full min-h-screen z-10">
         <?= $content ?>
     </main>
 
