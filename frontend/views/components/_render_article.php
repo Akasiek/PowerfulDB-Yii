@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $model Album | Band | Artist
  * @var $articleText string
@@ -16,18 +17,20 @@ $articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
     <h1 class="font-sans text-5xl">Article</h1>
     <hr class="max-w-sm  border-t-2 border-t-main-accent mt-2 mb-6">
 
-    <?php if ($articleText): ?>
+    <?php if ($articleText) : ?>
         <div class="mx-auto article-style w-full text-justify">
             <?= $articleText ?>
         </div>
-    <?php else: ?>
+    <?php else : ?>
         <div class="article-style text-justify">
             <p>There is no article for this album yet. You can go ahead and
-                <?= Html::a('create article for this ' . ($baseUrl ?? Yii::$app->controller->id),
+                <?= Html::a(
+                    'create article for this ' . ($baseUrl ?? Yii::$app->controller->id),
                     ['/' . ($baseUrl ?? Yii::$app->controller->id) . '/article-create', 'slug' => $model->slug],
-                    ['class' => 'underline hover:text-main-accent transition-colors']) ?>
+                    ['class' => 'hover:underline text-main-accent']
+                ) ?>
             </p>
         </div>
     <?php endif; ?>
-    
+
 </div>
