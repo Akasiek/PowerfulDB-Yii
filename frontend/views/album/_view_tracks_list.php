@@ -6,6 +6,7 @@
 
 use common\models\Album;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 // Fetch tracks of this album from Track table
 $tracks = $model->getTracks()->all();
@@ -31,21 +32,13 @@ $fullLength .= $length['minutes'] . ($length['minutes'] === 1 ? ' minute ' : ' m
 $fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' seconds');
 ?>
 
-<?php if (!empty($tracks)) : ?>
 
-    <div>
-        <div class="flex items-center gap-4">
-            <h1 class="font-sans text-5xl">Albums</h1>
-            <?php if (!Yii::$app->user->isGuest) {
-                echo Html::a(
-                    'add',
-                    ['/album/track-add', Yii::$app->controller->id . '_id' => $model->id],
-                    ['class' => 'material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-main-accent']
-                );
-            } ?>
-        </div>
-        <hr class="max-w-sm  border-t-2 border-t-main-accent mt-2 mb-6">
+<div>
+    <h1 class="font-sans text-5xl">Tracks</h1>
 
+    <hr class="max-w-sm  border-t-2 border-t-main-accent mt-2 mb-6">
+
+    <?php if (!empty($tracks)) : ?>
         <div class=" gap-x-10">
             <?php foreach ($tracks as $index => $track) : ?>
                 <div class="flex justify-between">
@@ -71,8 +64,9 @@ $fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' s
             Album's full length: <span class="text-main-light"><?= $fullLength ?></span>
         </p>
 
-    </div>
+    <?php else : ?>
 
-<?php else : ?>
+        <p>Album has no tracks yet. You can go ahead and <a href="<?= Url::to(['/album/track-add', 'slug' => $model->slug]) ?>" class="text-main-accent hover:underline">add tracks here</a></p>
 
-<?php endif; ?>
+    <?php endif; ?>
+</div>

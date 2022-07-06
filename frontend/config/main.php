@@ -58,6 +58,7 @@ return [
                 '/album/<slug>' => '/album/view',
                 '/album/<slug>/article/create' => '/album/article-create',
                 '/album/<slug>/genre/add' => '/album/genre-add',
+                '/album/<slug>/track/add' => '/album/track-add',
             ],
         ],
         'assetManager' => [

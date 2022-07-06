@@ -156,4 +156,28 @@ class AlbumController extends Controller
             ]);
         }
     }
+
+    public function actionTrackAdd($slug)
+    {
+        $album = Album::findOne(['slug' => $slug]);
+
+        $tracks = \Yii::$app->request->post('tracks');
+        if ($tracks) {
+            $tracksDuration = \Yii::$app->request->post('tracks-duration');
+
+            foreach ($tracks as $position => $track) {
+                $trackModel = new Track();
+                $trackModel->album_id = $album->id;
+                $trackModel->title = $track;
+                $trackModel->duration = $tracksDuration[$position];
+                $trackModel->position = $position;
+                $trackModel->save();
+            }
+            return $this->redirect(['/album/view', 'slug' => $slug]);
+        } else {
+            return $this->render('track/add', [
+                'album' => $album,
+            ]);
+        }
+    }
 }

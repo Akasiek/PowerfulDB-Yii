@@ -38,7 +38,7 @@ $genres = $model->getGenres()->all();
             </p>
 
             <?php if (!empty($genres)) : ?>
-                <p class="italic text-sm lg:text-base">
+                <p class="italic">
                     <?php
                     foreach ($genres as $index => $genre) {
                         echo $genre->name . ' ';
