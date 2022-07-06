@@ -48,7 +48,7 @@ $genres = $model->getGenres()->all();
                     }
                     ?>
                 </p>
-            <?php else : ?>
+            <?php elseif (!Yii::$app->user->isGuest) : ?>
                 <a class="text-sm underline text-gray-400" href="<?= Url::to(['/album/genre-add', 'slug' => $model->slug]) ?>">
                     Add genres
                 </a>

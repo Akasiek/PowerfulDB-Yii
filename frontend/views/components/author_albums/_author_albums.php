@@ -82,12 +82,23 @@ if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
     <?php else : ?>
 
         <div class="article-style text-justify">
-            <p>This <?= Yii::$app->controller->id ?> has no albums yet. You can go ahead and
-                <?= Html::a(
-                    'add album by this ' . ($baseUrl ?? Yii::$app->controller->id),
-                    ['/album/create', Yii::$app->controller->id . '_id' => $model->id],
-                    ['class' => 'underline hover:text-main-accent transition-colors']
-                ) ?>
+            <p>This <?= Yii::$app->controller->id ?> has no albums yet.
+                <?php if (!Yii::$app->user->isGuest) : ?>
+
+                    You can go ahead and
+                    <?= Html::a(
+                        'add album by this ' . ($baseUrl ?? Yii::$app->controller->id),
+                        ['/album/create', Yii::$app->controller->id . '_id' => $model->id],
+                        ['class' => 'hover:underline text-main-accent']
+                    ) ?>
+                <?php else : ?>
+                    <?= Html::a(
+                        'Log in to add them',
+                        ['/login'],
+                        ['class' => 'hover:underline text-main-accent']
+                    ) ?>
+                <?php endif; ?>
+
             </p>
         </div>
 

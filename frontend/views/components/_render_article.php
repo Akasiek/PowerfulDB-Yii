@@ -9,6 +9,7 @@ use common\models\Album;
 use common\models\Artist;
 use common\models\Band;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
 
@@ -23,12 +24,21 @@ $articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
         </div>
     <?php else : ?>
         <div class="article-style text-justify">
-            <p>There is no article for this album yet. You can go ahead and
-                <?= Html::a(
-                    'create article for this ' . ($baseUrl ?? Yii::$app->controller->id),
-                    ['/' . ($baseUrl ?? Yii::$app->controller->id) . '/article-create', 'slug' => $model->slug],
-                    ['class' => 'hover:underline text-main-accent']
-                ) ?>
+            <p>There is no article for this album yet.
+                <?php if (!Yii::$app->user->isGuest) : ?>
+                    You can go ahead and
+                    <?= Html::a(
+                        'create article for this ' . ($baseUrl ?? Yii::$app->controller->id),
+                        ['/' . ($baseUrl ?? Yii::$app->controller->id) . '/article-create', 'slug' => $model->slug],
+                        ['class' => 'hover:underline text-main-accent']
+                    ) ?>
+                <?php else : ?>
+                    <?= Html::a(
+                        'Log in to add it',
+                        ['/login'],
+                        ['class' => 'hover:underline text-main-accent']
+                    ) ?>
+                <?php endif; ?>
             </p>
         </div>
     <?php endif; ?>
