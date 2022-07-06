@@ -64,10 +64,8 @@ class AlbumController extends Controller
     public function actionView($slug)
     {
         $model = Album::find()->where(['slug' => $slug])->with('artist', 'band')->one();
-        $tracks = Track::find()->where(['album_id' => $model->id])->all();
         return $this->render('view', [
             'model' => $model,
-            'tracks' => $tracks,
         ]);
     }
 

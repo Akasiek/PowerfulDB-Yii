@@ -2,7 +2,6 @@
 
 /**
  * @var $model Album
- * @var $track Track
  */
 
 use common\models\Album;
@@ -25,6 +24,10 @@ if (!isset($model)) throw new NotFoundHttpException('Album not found');
     <div class="flex flex-col gap-16 px-14 py-8 max-w-screen-lg w-full">
 
         <?= $this->render('@frontend/views/components/_render_article', [
+            'model' => $model,
+        ]); ?>
+
+        <?= $this->render('_view_tracks_list', [
             'model' => $model,
         ]); ?>
 
