@@ -14,6 +14,10 @@ use Yii;
  * @property int|null $join_year
  * @property int|null $quit_year
  * @property string|null $roles
+ * @property int|null $created_at
+ * @property int|null $created_by
+ * @property int|null $updated_at
+ * @property int|null $updated_by
  *
  * @property Artist $artist
  * @property Band $band
@@ -34,7 +38,8 @@ class BandMember extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['artist_id', 'band_id', 'join_year', 'quit_year'], 'integer'],
+            [['artist_id', 'band_id', 'join_year', 'quit_year', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
+            [['artist_id', 'band_id', 'join_year', 'quit_year', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['name', 'roles'], 'string', 'max' => 255],
             [['artist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Artist::className(), 'targetAttribute' => ['artist_id' => 'id']],
             [['band_id'], 'exist', 'skipOnError' => true, 'targetClass' => Band::className(), 'targetAttribute' => ['band_id' => 'id']],
@@ -54,6 +59,10 @@ class BandMember extends \yii\db\ActiveRecord
             'join_year' => 'Join Year',
             'quit_year' => 'Quit Year',
             'roles' => 'Roles',
+            'created_at' => 'Created At',
+            'created_by' => 'Created By',
+            'updated_at' => 'Updated At',
+            'updated_by' => 'Updated By',
         ];
     }
 

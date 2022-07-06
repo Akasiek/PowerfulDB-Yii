@@ -35,6 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
             'album_id',
             'duration',
+            'created_at',
+            'updated_at',
+            'created_by',
+            'updated_by',
         ],
     ]) ?>
 

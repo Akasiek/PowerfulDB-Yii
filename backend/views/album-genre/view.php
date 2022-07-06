@@ -46,6 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Band name',
                 'attribute' => 'band.name',
             ],
+            'created_at',
+            'created_by',
+            'updated_at',
+            'updated_by',
         ],
     ]) ?>
 

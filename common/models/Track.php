@@ -13,7 +13,11 @@ use yii\behaviors\SluggableBehavior;
  * @property string $slug
  * @property int|null $album_id
  * @property string|null $duration
- * @property int $position 
+ * @property int $position
+ * @property int|null $created_at
+ * @property int|null $created_by
+ * @property int|null $updated_at
+ * @property int|null $updated_by
  *
  * @property Album $album
  */
@@ -48,8 +52,8 @@ class Track extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'slug', 'position'], 'required'],
-            [['album_id', 'position'], 'default', 'value' => null],
-            [['album_id', 'position'], 'integer'],
+            [['album_id', 'position', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
+            [['album_id', 'position', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['duration'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['album_id'], 'exist', 'skipOnError' => true, 'targetClass' => Album::className(), 'targetAttribute' => ['album_id' => 'id']],
@@ -68,6 +72,10 @@ class Track extends \yii\db\ActiveRecord
             'album_id' => 'Album ID',
             'duration' => 'Duration',
             'position' => 'Position',
+            'created_at' => 'Created At',
+            'created_by' => 'Created By',
+            'updated_at' => 'Updated At',
+            'updated_by' => 'Updated By',
         ];
     }
 
@@ -88,5 +96,17 @@ class Track extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \common\models\query\TrackQuery(get_called_class());
+    }
+
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        if ($this->isNewRecord) {
+            $this->created_at = time();
+            $this->created_by = Yii::$app->user->id;
+        }
+        $this->updated_at = time();
+        $this->updated_by = Yii::$app->user->id;
+
+        return parent::save($runValidation, $attributeNames);
     }
 }

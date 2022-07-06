@@ -10,6 +10,10 @@ use Yii;
  * @property int $id
  * @property int|null $artist_id
  * @property string|null $text
+ * @property int|null $created_at
+ * @property int|null $created_by
+ * @property int|null $updated_at
+ * @property int|null $updated_by
  *
  * @property Artist $artist
  */
@@ -29,7 +33,8 @@ class ArtistArticle extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['artist_id'], 'integer'],
+            [['artist_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
+            [['artist_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['text'], 'string'],
             [['artist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Artist::className(), 'targetAttribute' => ['artist_id' => 'id']],
         ];
@@ -44,6 +49,10 @@ class ArtistArticle extends \yii\db\ActiveRecord
             'id' => 'ID',
             'artist_id' => 'Artist ID',
             'text' => 'Text',
+            'created_at' => 'Created At',
+            'created_by' => 'Created By',
+            'updated_at' => 'Updated At',
+            'updated_by' => 'Updated By',
         ];
     }
 

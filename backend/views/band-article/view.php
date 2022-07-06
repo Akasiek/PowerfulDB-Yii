@@ -32,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'band_id',
             'text:ntext',
+            'created_at',
+            'created_by',
+            'updated_at',
+            'updated_by',
         ],
     ]) ?>
 

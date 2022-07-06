@@ -10,6 +10,10 @@ use Yii;
  * @property int $id
  * @property int|null $band_id
  * @property string|null $text
+ * @property int|null $created_at
+ * @property int|null $created_by
+ * @property int|null $updated_at
+ * @property int|null $updated_by
  *
  * @property Band $band
  */
@@ -29,7 +33,8 @@ class BandArticle extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['band_id'], 'integer'],
+            [['band_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
+            [['band_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['text'], 'string'],
             [['band_id'], 'exist', 'skipOnError' => true, 'targetClass' => Band::className(), 'targetAttribute' => ['band_id' => 'id']],
         ];
@@ -44,6 +49,10 @@ class BandArticle extends \yii\db\ActiveRecord
             'id' => 'ID',
             'band_id' => 'Band ID',
             'text' => 'Text',
+            'created_at' => 'Created At',
+            'created_by' => 'Created By',
+            'updated_at' => 'Updated At',
+            'updated_by' => 'Updated By',
         ];
     }
 

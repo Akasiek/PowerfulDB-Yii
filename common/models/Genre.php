@@ -11,6 +11,10 @@ use yii\behaviors\SluggableBehavior;
  * @property int $id
  * @property string $name
  * @property string $slug
+ * @property int|null $created_at
+ * @property int|null $created_by
+ * @property int|null $updated_at
+ * @property int|null $updated_by
  *
  * @property AlbumGenre[] $albumGenres
  */
@@ -49,6 +53,8 @@ class Genre extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'slug'], 'required'],
+            [['created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
+            [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['name', 'slug'], 'string', 'max' => 255],
             [['name'], 'unique'],
         ];
@@ -63,6 +69,10 @@ class Genre extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'slug' => 'Slug',
+            'created_at' => 'Created At',
+            'created_by' => 'Created By',
+            'updated_at' => 'Updated At',
+            'updated_by' => 'Updated By',
         ];
     }
 
@@ -83,5 +93,17 @@ class Genre extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \common\models\query\GenreQuery(get_called_class());
+    }
+
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        if ($this->isNewRecord) {
+            $this->created_at = time();
+            $this->created_by = Yii::$app->user->id;
+        }
+        $this->updated_at = time();
+        $this->updated_by = Yii::$app->user->id;
+
+        return parent::save($runValidation, $attributeNames);
     }
 }
