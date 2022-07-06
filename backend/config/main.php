@@ -41,10 +41,19 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '/album/article' => '/album-article/',
-                '/album/genre' => '/album-genre/',
-                '/band/article' => '/band-article/',
-                '/artist/article' => '/artist-article/',
+                '/backend/album' => '/album/',
+                '/backend/album/article' => '/album-article/',
+                '/backend/album/genre' => '/album-genre/',
+                '/backend/track' => '/track/',
+
+                '/backend/band' => '/band/',
+                '/backend/band/article' => '/band-article/',
+                '/backend/band/member' => '/band-member/',
+
+                '/backend/artist/article' => '/artist-article/',
+                '/backend/artist' => '/artist/',
+
+                '/backend/genre' => '/genre/',
             ],
         ],
         'assetManager' => [
