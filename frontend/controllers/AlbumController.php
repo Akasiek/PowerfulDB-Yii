@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Album;
 use common\models\AlbumArticle;
+use common\models\AlbumGenre;
 use yii\data\ActiveDataProvider;
 use yii\data\Sort;
 use yii\web\Controller;
@@ -129,6 +130,28 @@ class AlbumController extends Controller
         } else {
             return $this->render('article/create', [
                 'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionGenreAdd($slug)
+    {
+        $album = Album::findOne(['slug' => $slug]);
+
+        $genres = \Yii::$app->request->post('genres');
+        if ($genres) {
+            foreach ($genres as $genre) {
+                $albumGenre = new AlbumGenre();
+                $albumGenre->genre_id = $genre;
+                $albumGenre->album_id = $album->id;
+                if ($album->artist_id) $albumGenre->artist_id = $album->artist_id;
+                else $albumGenre->band_id = $album->band_id;
+                $albumGenre->save();
+            }
+            return $this->redirect(['/album/view', 'slug' => $slug]);
+        } else {
+            return $this->render('genre/add', [
+                'album' => $album,
             ]);
         }
     }

@@ -1,18 +1,19 @@
 .ss-main {
-    padding-block: 0.75rem;
-    padding-inline: 1rem;
+    padding: 0 !important;
+    margin: 0.5rem 0 !important;
 }
 
 .ss-main .ss-single-selected {
     background-color: transparent !important;
     border: 0 !important;
-    padding: 0 !important;
+    padding-block: 0.75rem !important;
+    padding-inline: 1rem !important;
     gap: 0.5rem;
     height: auto !important;
 }
 
 .ss-main .ss-single-selected .placeholder {
-    color: #F3EFF5 !important;
+    color: #f3eff5 !important;
     overflow: visible !important;
 }
 
@@ -21,21 +22,21 @@
 }
 
 .ss-content {
-    border: #292A33 2px solid !important;
+    border: #292a33 2px solid !important;
     width: 24rem !important;
 }
 
 .ss-search {
-    background-color: #1B1C22 !important;
+    background-color: #1b1c22 !important;
 }
 
 .ss-search input {
-    background-color: #1B1C22 !important;
-    border: #4EFFA6 2px solid !important;
+    background-color: #1b1c22 !important;
+    border: #4effa6 2px solid !important;
     border-radius: 25px !important;
     padding-block: 18px !important;
     padding-inline: 20px !important;
-    color: #F3EFF5 !important;
+    color: #f3eff5 !important;
 }
 
 .ss-search input:focus {
@@ -43,20 +44,19 @@
 }
 
 .ss-list {
-    background-color: #1B1C22 !important;
-    color: #F3EFF5 !important;
+    background-color: #1b1c22 !important;
+    color: #f3eff5 !important;
 }
 
 .ss-option:hover {
-    background-color: #4EFFA6 !important;
-    color: #1B1C22 !important;
+    background-color: #4effa6 !important;
+    color: #1b1c22 !important;
 }
 
 .ss-option-selected {
-    background-color: #4EFFA6 !important;
-    color: #292A33 !important;
+    background-color: #4effa6 !important;
+    color: #292a33 !important;
 }
-
 
 .ss-list::-webkit-scrollbar {
     width: 0.5rem;
@@ -73,6 +73,55 @@
 }
 
 .ss-list::-webkit-scrollbar-thumb:hover {
-    background: #4EFFA6;
+    background: #4effa6;
     border-radius: 10px;
+}
+
+/* Multi select */
+.ss-multi-selected {
+    padding-block: 0.75rem !important;
+    padding-inline: 1rem !important;
+    background-color: transparent !important;
+    border: 0 !important;
+}
+
+.ss-add {
+    align-items: center !important;
+    justify-content: center !important;
+    flex: auto !important;
+    margin: 0 0.3rem 0 0 !important;
+}
+
+.ss-multi-selected .ss-values {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.ss-multi-selected .ss-values .ss-disabled {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.ss-multi-selected .ss-values .ss-disabled {
+    color: rgb(107 114 128) !important;
+}
+
+.ss-multi-selected .ss-values .ss-value {
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #4effa6 !important;
+    border-radius: 4rem !important;
+    color: #1b1c22 !important;
+    font-weight: bold !important;
+}
+
+.ss-multi-selected .ss-values .ss-value .ss-value-text {
+    padding-left: 10px !important;
+    padding-block: 5px !important;
+    margin: 0 !important;
+}
+
+.ss-multi-selected .ss-values .ss-value .ss-value-delete {
+    padding: 5px 7px !important;
+    margin: 0 !important;
 }

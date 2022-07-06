@@ -57,6 +57,7 @@ return [
                 '/album/create' => '/album/create',
                 '/album/<slug>' => '/album/view',
                 '/album/<slug>/article/create' => '/album/article-create',
+                '/album/<slug>/genre/add' => '/album/genre-add',
             ],
         ],
         'assetManager' => [

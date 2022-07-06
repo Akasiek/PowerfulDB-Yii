@@ -9,6 +9,7 @@ use common\models\Album;
 use common\models\Artist;
 use common\models\Band;
 use common\models\Genre;
+use yii\helpers\Url;
 
 $genres = $model->getGenres()->all();
 
@@ -50,6 +51,10 @@ $genres = $model->getGenres()->all();
                     }
                     ?>
                 </p>
+            <?php else : ?>
+                <a class="text-sm underline text-gray-400" href="<?= Url::to(['/album/genre-add', 'slug' => $model->slug]) ?>">
+                    Add genres
+                </a>
             <?php endif; ?>
         </div>
     </div>
