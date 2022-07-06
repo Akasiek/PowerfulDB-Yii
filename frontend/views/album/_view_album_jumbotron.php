@@ -2,12 +2,9 @@
 
 /**
  * @var $model Album
- * @var $author Artist | Band
  */
 
 use common\models\Album;
-use common\models\Artist;
-use common\models\Band;
 use common\models\Genre;
 use yii\helpers\Url;
 
@@ -19,18 +16,18 @@ $genres = $model->getGenres()->all();
 
     <div class="flex justify-center items-center gap-5 xl:gap-10 max-w-screen-xl px-16">
         <div>
-            <img src="<?php echo $model->artwork_url ?>" alt="Album artwork" class="w-96">
+            <img src="<?= $model->artwork_url ?>" alt="Album artwork" class="w-96">
         </div>
         <div class="flex flex-col gap-2">
 
-            <a href="<?php echo \yii\helpers\Url::to([
+            <a href="<?= \yii\helpers\Url::to([
                             '/' . ($model->artist_id ? 'artist' : 'band') . '/view/',
-                            'slug' => $author->slug
+                            'slug' => $model->artist->slug ?? $model->band->slug,
                         ]) ?>" class="hover:underline">
-                <h3 class="text-lg lg:text-2xl"><?php echo $author->name ?></h3>
+                <h3 class="text-lg lg:text-2xl"><?= $model->artist->name ?? $model->band->name ?></h3>
             </a>
 
-            <h1 class="text-2xl lg:text-5xl font-bold"><?php echo $model->title ?></h1>
+            <h1 class="text-2xl lg:text-5xl font-bold"><?= $model->title ?></h1>
 
             <p class="text-gray-400 text-sm lg:text-base">
                 <?php

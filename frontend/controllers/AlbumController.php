@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Album;
 use common\models\AlbumArticle;
 use common\models\AlbumGenre;
+use common\models\Track;
 use yii\data\ActiveDataProvider;
 use yii\data\Sort;
 use yii\web\Controller;
@@ -62,9 +63,11 @@ class AlbumController extends Controller
 
     public function actionView($slug)
     {
-        $model = Album::findOne(['slug' => $slug]);
+        $model = Album::find()->where(['slug' => $slug])->with('artist', 'band')->one();
+        $tracks = Track::find()->where(['album_id' => $model->id])->all();
         return $this->render('view', [
             'model' => $model,
+            'tracks' => $tracks,
         ]);
     }
 

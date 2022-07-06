@@ -2,16 +2,14 @@
 
 /**
  * @var $model Album
+ * @var $track Track
  */
 
 use common\models\Album;
+use common\models\Track;
 use yii\web\NotFoundHttpException;
 
 if (!isset($model)) throw new NotFoundHttpException('Album not found');
-
-
-if ($model->artist_id) $author = $model->artist;
-else $author = $model->band;
 
 //$otherAlbums = $author->getAlbums()->where('id != :id', ['id' => $model->id])->limit(10)->all();
 
@@ -20,7 +18,6 @@ else $author = $model->band;
 
 <?= $this->render('_view_album_jumbotron', [
     'model' => $model,
-    'author' => $author,
 ]); ?>
 
 
