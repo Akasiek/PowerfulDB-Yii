@@ -47,7 +47,7 @@ $genreText = implode(' • ', array_map(function ($genre) {
         </p>
 
         <?php if (!empty($genres)) : ?>
-            <p class="text-xs truncate italic text-gray-300" title="<?= $genreText ?>">
+            <p class="text-xs truncate italic text-gray-400" title="<?= $genreText ?>">
                 <?= $genreText ?>
             </p>
         <?php endif; ?>
