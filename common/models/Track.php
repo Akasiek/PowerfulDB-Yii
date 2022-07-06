@@ -13,6 +13,7 @@ use yii\behaviors\SluggableBehavior;
  * @property string $slug
  * @property int|null $album_id
  * @property string|null $duration
+ * @property int $position 
  *
  * @property Album $album
  */
@@ -46,9 +47,9 @@ class Track extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'slug'], 'required'],
-            [['album_id'], 'default', 'value' => null],
-            [['album_id'], 'integer'],
+            [['title', 'slug', 'position'], 'required'],
+            [['album_id', 'position'], 'default', 'value' => null],
+            [['album_id', 'position'], 'integer'],
             [['duration'], 'safe'],
             [['title', 'slug'], 'string', 'max' => 255],
             [['album_id'], 'exist', 'skipOnError' => true, 'targetClass' => Album::className(), 'targetAttribute' => ['album_id' => 'id']],
@@ -66,6 +67,7 @@ class Track extends \yii\db\ActiveRecord
             'slug' => 'Slug',
             'album_id' => 'Album ID',
             'duration' => 'Duration',
+            'position' => 'Position',
         ];
     }
 

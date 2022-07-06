@@ -17,6 +17,8 @@ $albumMap = ArrayHelper::map(Album::find()->asArray()->all(), 'id', 'title');
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'position')->input('number', ['min' => '1', 'step' => '1']) ?>
+
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'album_id')->dropDownList($albumMap, [

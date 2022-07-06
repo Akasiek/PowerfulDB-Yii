@@ -27,9 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            'position',
             'title',
-            'slug',
-            'album_id',
+            // 'slug',
+            [
+                'label' => 'Album',
+                'attribute' => 'album.title',
+            ],
             'duration',
             [
                 'class' => ActionColumn::className(),
