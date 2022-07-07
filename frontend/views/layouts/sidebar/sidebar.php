@@ -102,14 +102,25 @@ use yii\widgets\Pjax;
         <?php else : ?>
             <div class="flex items-center gap-4">
                 <div class="aspect-square flex-none">
-                    <!-- TODO: Avatar display-->
-                    <?= Html::a(
-                        Html::img(
-                            'https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg',
-                            ['class' => 'rounded-full h-8 object-cover']
-                        ),
-                        ['/users/view', 'id' => Yii::$app->user->identity->id]
-                    )
+                    <?php
+                    $profilePicUrl = Yii::$app->user->identity->profile_pic_url;
+                    if ($profilePicUrl) {
+                        echo Html::a(
+                            Html::img(
+                                $profilePicUrl,
+                                ['class' => 'rounded-full h-8 object-cover']
+                            ),
+                            ['/users/view', 'id' => Yii::$app->user->identity->id]
+                        );
+                    } else {
+                        echo Html::a(
+                            Html::img(
+                                'https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg',
+                                ['class' => 'rounded-full h-8 object-cover']
+                            ),
+                            ['/users/view', 'id' => Yii::$app->user->identity->id]
+                        );
+                    }
                     ?>
                 </div>
                 <div class="truncate pr-6">
