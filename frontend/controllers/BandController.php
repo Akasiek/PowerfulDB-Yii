@@ -11,6 +11,26 @@ use yii\web\Controller;
 
 class BandController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => [
+                    'create',
+                    'article-create',
+                    'member-add'
+                ],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $sort = new Sort([

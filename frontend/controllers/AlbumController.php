@@ -12,6 +12,27 @@ use yii\web\Controller;
 
 class AlbumController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => [
+                    'create',
+                    'article-create',
+                    'genre-add',
+                    'track-add'
+                ],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         $sort = new Sort([
