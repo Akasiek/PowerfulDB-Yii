@@ -42,16 +42,16 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '/backend/album' => '/album/',
-                '/backend/album/article' => '/album-article/',
-                '/backend/album/genre' => '/album-genre/',
+                '/backend/album-article' => '/album-article/',
+                '/backend/album-genre' => '/album-genre/',
                 '/backend/track' => '/track/',
 
                 '/backend/band' => '/band/',
-                '/backend/band/article' => '/band-article/',
-                '/backend/band/member' => '/band-member/',
+                '/backend/band-article' => '/band-article/',
+                '/backend/band-member' => '/band-member/',
 
-                '/backend/artist/article' => '/artist-article/',
                 '/backend/artist' => '/artist/',
+                '/backend/artist-article' => '/artist-article/',
 
                 '/backend/genre' => '/genre/',
             ],
