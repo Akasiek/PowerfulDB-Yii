@@ -108,7 +108,7 @@ use yii\widgets\Pjax;
                         echo Html::a(
                             Html::img(
                                 $profilePicUrl,
-                                ['class' => 'rounded-full h-8 object-cover']
+                                ['class' => 'rounded-full w-full h-8 aspect-square object-cover object-center']
                             ),
                             ['/users/view', 'id' => Yii::$app->user->identity->id]
                         );
