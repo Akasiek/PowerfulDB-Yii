@@ -41,6 +41,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/backend/user' => '/user/',
+
                 '/backend/album' => '/album/',
                 '/backend/album-article' => '/album-article/',
                 '/backend/album-genre' => '/album-genre/',
