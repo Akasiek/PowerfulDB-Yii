@@ -22,6 +22,8 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property string $profile_pic_url
+ * @property string $about_text
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -56,6 +58,8 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            [['profile_pic_url'], 'string', 'max' => 1024],
+            [['about_text'], 'string'],
         ];
     }
 
@@ -110,7 +114,8 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken($token)
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
@@ -149,6 +154,23 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->auth_key;
     }
+
+    /** 
+     * {@inheritdoc}
+     */
+    public function getProfilePic()
+    {
+        return $this->profile_pic_url;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAboutText()
+    {
+        return $this->about_text;
+    }
+
 
     /**
      * {@inheritdoc}
