@@ -64,7 +64,7 @@ use yii\widgets\Pjax;
 
             <?= $this->render('_main_option', [
                 'text' => 'Genres',
-                'icon' => 'format_list_bulleted',
+                'icon' => 'collections_bookmark',
                 'url' => '/genre',
             ]) ?>
 
