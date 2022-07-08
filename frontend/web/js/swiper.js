@@ -91,3 +91,29 @@ const albumViewSwiper = new Swiper(".album-view-swiper", {
         },
     },
 });
+
+const userSwiper = new Swiper(".user-swiper", {
+    slidesPerView: 2.1,
+    spaceBetween: 20,
+    grabCursor: true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    autoplay: {
+        delay: 7500,
+    },
+    breakpoints: {
+        1020: {
+            slidesPerView: 3.6,
+        },
+        1280: {
+            slidesPerView: 4.3,
+            spaceBetween: 30,
+        },
+        1600: {
+            slidesPerView: 6.3,
+            spaceBetween: 40,
+        },
+    },
+});

@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Album;
 use common\models\Artist;
 use common\models\Band;
+use common\models\User;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\BadRequestHttpException;
@@ -47,11 +48,21 @@ class SearchController extends Controller
                 ]
             ],
         ]);
+        $users = new ActiveDataProvider([
+            'query' => User::find()->byKeyword($keyword),
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+        ]);
+
         return $this->render('index', [
             'keyword' => $keyword,
             'artists' => $artists,
             'bands' => $bands,
             'albums' => $albums,
+            'users' => $users,
         ]);
     }
 }
