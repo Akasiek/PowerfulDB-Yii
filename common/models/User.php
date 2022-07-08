@@ -283,6 +283,9 @@ class User extends ActiveRecord implements IdentityInterface
         $trackContrib = Track::find()->where(['created_by' => $this->id])->select(
             'album_id, count(*) as track_count, date(to_timestamp(track.created_at)) as created_date'
         )->with('album')->groupBy(['created_at', 'album_id'])->all();
+        $bandMemberContrib = BandMember::find()->where(['created_by' => $this->id])->select(
+            'band_id, count(*) as member_count, date(to_timestamp(band_member.created_at)) as created_date'
+        )->with('band')->groupBy(['created_date', 'band_id'])->all();
 
         $contribs = [];
         foreach ($albumsContrib as $album) $contribs[] = $album;
@@ -290,6 +293,7 @@ class User extends ActiveRecord implements IdentityInterface
         foreach ($bandsContrib as $band) $contribs[] = $band;
         foreach ($genresContrib as $genre) $contribs[] = $genre;
         foreach ($trackContrib as $track) $contribs[] = $track;
+        foreach ($bandMemberContrib as $bandMember) $contribs[] = $bandMember;
 
         // TODO: Array of edit contribs
 

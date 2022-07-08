@@ -8,6 +8,7 @@ use common\models\Album;
 use common\models\Artist;
 use common\models\Band;
 use common\models\AlbumGenre;
+use common\models\BandMember;
 use common\models\Track;
 use yii\helpers\Html;
 ?>
@@ -92,6 +93,22 @@ use yii\helpers\Html;
                 <?= Html::a(
                     $contrib->album->title,
                     ['album/view', 'slug' => $contrib->album->slug],
+                    ['class' => 'italic text-main-accent hover:underline']
+                ) ?>
+            </p>
+        <?php elseif ($contrib instanceof BandMember) : ?>
+            <span class="material-symbols-rounded !text-xl">
+                person_add
+            </span>
+            <p>
+                <?= $model->username . ' added '; ?>
+                <span class="font-bold">
+                    <?= $contrib->member_count . ($contrib->member_count === 1 ? ' member ' : ' members ') ?>
+                </span>
+                <?= ' to the band called ' ?>
+                <?= Html::a(
+                    $contrib->band->name,
+                    ['band/view', 'slug' => $contrib->band->slug],
                     ['class' => 'italic text-main-accent hover:underline']
                 ) ?>
             </p>
