@@ -24,6 +24,10 @@ use Yii;
  */
 class AlbumGenre extends \yii\db\ActiveRecord
 {
+    public $created_date = '';
+    public $updated_date = '';
+    public $genre_count = '';
+
     /**
      * {@inheritdoc}
      */

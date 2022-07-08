@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
+use yii\data\ArrayDataProvider;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -231,5 +232,79 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /** 
+     * Get count of contributions of a user
+     */
+    public function getContributionsCount()
+    {
+        $albumsCount = Album::find()->where(['created_by' => $this->id])->count();
+        $artistsCount = Artist::find()->where(['created_by' => $this->id])->count();
+        $bandsCount = Band::find()->where(['created_by' => $this->id])->count();
+        $genresCount = AlbumGenre::find()->where(['created_by' => $this->id])->count();
+        $tracksCount = Track::find()->where(['created_by' => $this->id])->count();
+        $bandMembersCount = BandMember::find()->where(['created_by' => $this->id])->count();
+        $articlesCount = (AlbumArticle::find()->where(['created_by' => $this->id])->count() +
+            ArtistArticle::find()->where(['created_by' => $this->id])->count() +
+            BandArticle::find()->where(['created_by' => $this->id])->count()
+        );
+        // TODO: Edits submission count
+
+        return [
+            'albums' => $albumsCount,
+            'artists' => $artistsCount,
+            'bands' => $bandsCount,
+            'genres' => $genresCount,
+            'tracks' => $tracksCount,
+            'bandMembers' => $bandMembersCount,
+            'articles' => $articlesCount,
+        ];
+    }
+
+    /** 
+     * Get all contributions of a user and date they were created
+     */
+    public function getContributions()
+    {
+        // Get all contribitions of a user with date column
+        $albumsContrib = Album::find()->where(['created_by' => $this->id])->select(
+            'album.*, date(to_timestamp(album.created_at)) as created_date'
+        )->with('artist', 'band')->all();
+        $artistsContrib = Artist::find()->where(['created_by' => $this->id])->select(
+            'artist.*, date(to_timestamp(artist.created_at)) as created_date'
+        )->all();
+        $bandsContrib = Band::find()->where(['created_by' => $this->id])->select(
+            'band.*, date(to_timestamp(band.created_at)) as created_date'
+        )->all();
+        $genresContrib = AlbumGenre::find()->where(['created_by' => $this->id])->select(
+            'album_id, count(*) as genre_count, date(to_timestamp(album_genre.created_at)) as created_date'
+        )->with('album', 'genre')->groupBy(['created_at', 'album_id'])->all();
+        $trackContrib = Track::find()->where(['created_by' => $this->id])->select(
+            'album_id, count(*) as track_count, date(to_timestamp(track.created_at)) as created_date'
+        )->with('album')->groupBy(['created_at', 'album_id'])->all();
+
+        $contribs = [];
+        foreach ($albumsContrib as $album) $contribs[] = $album;
+        foreach ($artistsContrib as $artist) $contribs[] = $artist;
+        foreach ($bandsContrib as $band) $contribs[] = $band;
+        foreach ($genresContrib as $genre) $contribs[] = $genre;
+        foreach ($trackContrib as $track) $contribs[] = $track;
+
+        // TODO: Array of edit contribs
+
+        // Sort contribs array by date in descending order
+        usort($contribs, function ($a, $b) {
+            return $b->created_date <=> $a->created_date;
+        });
+
+        $arrayDataProvider = new ArrayDataProvider([
+            'allModels' => $contribs,
+            'pagination' => [
+                'pageSize' => 24,
+            ],
+        ]);
+
+        return $arrayDataProvider;
     }
 }

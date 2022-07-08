@@ -26,6 +26,9 @@ use yii\behaviors\SluggableBehavior;
  */
 class Artist extends \yii\db\ActiveRecord
 {
+    public $created_date = '';
+    public $updated_date = '';
+
     /**
      * {@inheritdoc}
      */

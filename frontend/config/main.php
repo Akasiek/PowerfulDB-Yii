@@ -42,6 +42,8 @@ return [
             'rules' => [
                 '/about' => '/site/about',
 
+                '/user/<id>' => '/user/view',
+
                 '/artist/' => '/artist/index',
                 '/artist/create' => '/artist/create',
                 '/artist/<slug>' => '/artist/view',
