@@ -74,4 +74,16 @@ class BandArticle extends \yii\db\ActiveRecord
     {
         return new \common\models\query\BandArticleQuery(get_called_class());
     }
+
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        if ($this->isNewRecord) {
+            $this->created_at = time();
+            $this->created_by = Yii::$app->user->id;
+        }
+        $this->updated_at = time();
+        $this->updated_by = Yii::$app->user->id;
+
+        return parent::save($runValidation, $attributeNames);
+    }
 }
