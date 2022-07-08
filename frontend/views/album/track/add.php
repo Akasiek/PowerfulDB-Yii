@@ -14,7 +14,7 @@ $tracks = Yii::$app->request->get('tracks');
 if (!isset($tracks)) $tracks = 10;
 ?>
 
-<div class="py-14 px-20 mt-24 w-full flex flex-col justify-center items-center">
+<div class="py-14 px-20 w-full flex flex-col justify-center items-center">
 
     <h1 class="text-5xl font-sans mb-3 w-[30rem] xl:w-[40rem]">Add tracks to album <?= $album->title ?></h1>
 
@@ -31,9 +31,8 @@ if (!isset($tracks)) $tracks = 10;
             <?php for ($i = 1; $i <= $tracks; $i++) : ?>
 
                 <div>
-                    <label for="tracks[<?= $i ?>]" class="text-lg has-star">Track <?= $i ?></label>
-                    <div class="flex gap-5">
-                        <input require name="tracks[<?= $i ?>]" class="input-style py-1 w-full">
+                    <div class="flex gap-4 items-center">
+                        <input require name="tracks[<?= $i ?>]" class="input-style py-1 w-full" placeholder="<?= $i ?>.">
                         <input require name="tracks-duration[<?= $i ?>]" class="input-style py-1 w-48" type="time" step="1" value="00:00:00">
                     </div>
                 </div>
