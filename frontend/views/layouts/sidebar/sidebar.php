@@ -102,32 +102,20 @@ use yii\widgets\Pjax;
         <?php else : ?>
             <div class="flex items-center gap-4">
                 <div class="aspect-square flex-none">
-                    <?php
-                    $profilePicUrl = Yii::$app->user->identity->profile_pic_url;
-                    if ($profilePicUrl) {
-                        echo Html::a(
-                            Html::img(
-                                $profilePicUrl,
-                                ['class' => 'rounded-full w-full h-8 aspect-square object-cover object-center']
-                            ),
-                            ['/users/view', 'id' => Yii::$app->user->identity->id]
-                        );
-                    } else {
-                        echo Html::a(
-                            Html::img(
-                                'https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg',
-                                ['class' => 'rounded-full h-8 object-cover']
-                            ),
-                            ['/users/view', 'id' => Yii::$app->user->identity->id]
-                        );
-                    }
+                    <?= Html::a(
+                        Html::img(
+                            Yii::$app->user->identity->profile_pic_url ?? 'https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg',
+                            ['class' => 'rounded-full w-full h-8 aspect-square object-cover object-center']
+                        ),
+                        ['/user/view', 'id' => Yii::$app->user->identity->id]
+                    );
                     ?>
                 </div>
                 <div class="truncate pr-6">
                     <p class="text-xl font-bold truncate">
                         <?= Html::a(
                             Yii::$app->user->identity->username,
-                            ['/users/view', 'id' => Yii::$app->user->identity->id]
+                            ['/user/view', 'id' => Yii::$app->user->identity->id]
                         ) ?>
                     </p>
                 </div>
