@@ -14,7 +14,7 @@ $counts = $model->getContributionsCount();
 <div class="rounded-3xl bg-main-dark overflow-hidden min-w-[18rem] h-fit">
     <div class="bg-main-accent pb-4 flex flex-col items-center">
         <div class="flex flex-wrap w-full gap-4 items-center py-4 px-6 max-w-[24rem]">
-            <img src="<?= $model->profile_pic_url ?>" alt="Profile picture of a user" class="h-20 rounded-full object-center object-cover aspect-square">
+            <img src="<?= $model->profile_pic_url ?? 'https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg' ?>" alt="Profile picture of a user" class="h-20 rounded-full object-center object-cover aspect-square">
             <h2 class="text-lg font-bold text-secondary-dark" title="<?= $model->username ?>">
                 <?= $model->username ?>
             </h2>
