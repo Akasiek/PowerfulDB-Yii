@@ -20,9 +20,11 @@ $counts = $model->getContributionsCount();
             </h2>
         </div>
 
-        <div class="py-2 px-6 text-secondary-dark max-w-[20rem]">
-            <?= $model->about_text ?>
-        </div>
+        <?php if ($model->about_text) : ?>
+            <div class="py-2 px-6 text-secondary-dark max-w-[20rem]">
+                <?= $model->about_text ?>
+            </div>
+        <?php endif; ?>
     </div>
 
     <div class="mx-6 pt-6 pb-6">
