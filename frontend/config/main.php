@@ -41,6 +41,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '/about' => '/site/about',
+                '/login' => '/site/login',
 
                 '/user/<id>' => '/user/view',
 
