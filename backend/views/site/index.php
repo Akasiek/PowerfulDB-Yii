@@ -4,6 +4,9 @@
 
 $this->title = 'My Yii Application';
 ?>
+<div>
+    Today is <?= date('Y-m-d') ?>
+</div>
 <div class="site-index row">
     <div class="col d-flex flex-column">
         <a href="<?php echo \yii\helpers\Url::to('/backend/user') ?>" class="btn btn-primary mx-0.5 my-1">User Panel</a>
