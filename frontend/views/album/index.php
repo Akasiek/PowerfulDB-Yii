@@ -9,7 +9,7 @@ use \yii\widgets\ListView;
 
 ?>
 
-<div class="px-14 py-8">
+<div class="px-6 lg:px-14 py-8">
 
     <?= $this->render('@frontend/views/components/_index_page_title') ?>
 
@@ -22,7 +22,7 @@ use \yii\widgets\ListView;
         'dataProvider' => $dataProvider,
         'pager' => [
             'options' => [
-                'class' => 'my-8 flex rounded-lg bg-main-dark w-fit overflow-hidden',
+                'class' => 'my-8 mx-auto flex rounded-lg bg-main-dark w-fit overflow-hidden',
             ],
             'linkOptions' => [
                 'class' => 'flex justify-center items-center py-3 px-4',
@@ -33,10 +33,8 @@ use \yii\widgets\ListView;
             'maxButtonCount' => 6,
         ],
         'itemView' => '_album_card',
-        'layout' => '<div class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 gap-x-8 gap-y-12">{items}</div>{pager}',
-        'itemOptions' => [
-            'tag' => false,
-        ],
+        'layout' => '<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6
+        gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">{items}</div>{pager}',
     ]) ?>
 
 

@@ -26,7 +26,7 @@ $genreText = implode(' • ', array_map(function ($genre) {
         <img src="<?= $model->artwork_url ?>" alt="Album artwork" class="shadow-lg group-hover:scale-95 transition-transform ease-in-out">
     </a>
 
-    <div class="flex flex-col gap-0 p-2 truncate">
+    <div class="flex flex-col px-1 py-2 md:p-2 truncate">
 
         <h3 class="text-base font-bold lg:text-lg truncate">
             <a href="<?= Url::to([
