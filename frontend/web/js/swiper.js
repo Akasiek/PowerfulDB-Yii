@@ -1,7 +1,7 @@
 // Initializing swipers
 const swiper = new Swiper(".default-swiper", {
     // Default parameters
-    slidesPerView: 1.2,
+    slidesPerView: 1.3,
     spaceBetween: 20,
 
     // Optional parameters
@@ -19,7 +19,10 @@ const swiper = new Swiper(".default-swiper", {
     },
 
     breakpoints: {
-        720: {
+        440: {
+            slidesPerView: 1.7,
+        },
+        640: {
             slidesPerView: 2.3,
             spaceBetween: 20,
         },
