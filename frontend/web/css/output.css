@@ -841,6 +841,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.75rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .block {
   display: block;
 }
@@ -1204,6 +1208,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   row-gap: 1rem;
 }
 
+.gap-y-8 {
+  row-gap: 2rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1344,6 +1352,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 1.5rem;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .py-14 {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
@@ -1437,6 +1449,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-12 {
   padding-left: 3rem;
   padding-right: 3rem;
+}
+
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .pb-3 {
@@ -1898,6 +1915,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .sm\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -1933,6 +1954,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:ml-56 {
     margin-left: 14rem;
+  }
+
+  .md\:ml-0 {
+    margin-left: 0px;
   }
 
   .md\:block {
@@ -1983,6 +2008,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .md\:flex-col {
     flex-direction: column;
   }
@@ -2007,6 +2036,15 @@ Ensure the default browser behavior of the `hidden` attribute.
     gap: 0.5rem;
   }
 
+  .md\:gap-x-8 {
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+  }
+
+  .md\:gap-y-12 {
+    row-gap: 3rem;
+  }
+
   .md\:rounded-none {
     border-radius: 0px;
   }
@@ -2017,6 +2055,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:p-0 {
     padding: 0px;
+  }
+
+  .md\:p-2 {
+    padding: 0.5rem;
   }
 
   .md\:px-7 {
@@ -2229,6 +2271,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .xl\:gap-10 {

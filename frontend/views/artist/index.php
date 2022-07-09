@@ -24,7 +24,7 @@ use yii\widgets\ListView;
         'dataProvider' => $dataProvider,
         'pager' => [
             'options' => [
-                'class' => 'my-12 flex rounded-lg bg-main-dark w-fit overflow-hidden',
+                'class' => 'my-12 mx-auto flex rounded-lg bg-main-dark w-fit overflow-hidden',
             ],
             'linkOptions' => [
                 'class' => 'flex justify-center items-center py-3 px-4',
@@ -35,11 +35,8 @@ use yii\widgets\ListView;
             'maxButtonCount' => 6,
         ],
         'itemView' => '@frontend/views/components/_default_card',
-        'summary' => '',
-        'options' => [
-            'class' => 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 
-            gap-x-4 gap-y-6 xl:gap-x-6 xl:gap-y-10 2xl:gap-y-16',
-        ],
+        'layout' => '<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 
+        gap-x-4 gap-y-6 xl:gap-x-6 xl:gap-y-10 2xl:gap-y-16">{items}</div>{pager}',
     ]) ?>
 
 </div>

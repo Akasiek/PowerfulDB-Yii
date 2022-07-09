@@ -83,7 +83,7 @@ $genre = Yii::$app->request->get('genre');
             </div>
         </div>
 
-        <div class="flex gap-5 mx-auto">
+        <div class="flex gap-5 ml-auto">
             <input type="submit" value="Filter" class="btn-style">
             <?= Html::a('Reset', ['/band'], ['class' => 'btn-style']) ?>
         </div>
