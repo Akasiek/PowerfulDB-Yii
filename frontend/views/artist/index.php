@@ -11,7 +11,7 @@ use yii\widgets\ListView;
 
 ?>
 
-<div class="px-14 py-8">
+<div class="px-6 lg:px-14 py-8">
 
     <?= $this->render('@frontend/views/components/_index_page_title') ?>
 
@@ -35,13 +35,10 @@ use yii\widgets\ListView;
             'maxButtonCount' => 6,
         ],
         'itemView' => '@frontend/views/components/_default_card',
-        'layout' => '<div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 
-                                 gap-x-8 gap-y-12 xl:gap-x-12 xl:gap-y-16">
-                         {items}
-                     </div>
-                     {pager}',
-        'itemOptions' => [
-            'tag' => false,
+        'summary' => '',
+        'options' => [
+            'class' => 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 
+            gap-x-4 gap-y-6 xl:gap-x-6 xl:gap-y-10 2xl:gap-y-16',
         ],
     ]) ?>
 

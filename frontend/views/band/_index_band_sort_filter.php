@@ -21,29 +21,27 @@ $genre = Yii::$app->request->get('genre');
     <div class="flex items-center  flex-wrap justify-between gap-5 mb-10 mt-[-1rem]">
 
         <div class="flex items-center flex-wrap gap-x-8 gap-y-5">
-            <div class="flex flex-col justify-center gap-2">
-                <p>Sort</p>
-                <div>
-                    <?php
-                    $sortValue = key($sort->getAttributeOrders());
-                    if (array_values($sort->getAttributeOrders())[0] == 3) {
-                        $sortValue = '-' . $sortValue;
-                    }
+            <!-- SORT SELECT -->
+            <div>
+                <?php
+                $sortValue = key($sort->getAttributeOrders());
+                if (array_values($sort->getAttributeOrders())[0] == 3) {
+                    $sortValue = '-' . $sortValue;
+                }
 
-                    echo Html::dropDownList('sort', $sortValue, [
-                        'name' => 'Name Ascending',
-                        '-name' => 'Name Descending',
-                        'founding_year' => 'Created Last',
-                        '-founding_year' => 'Created First',
-                    ], [
-                        'class' => 'input-style m-0 !py-2',
-                        'id' => 'select-slim',
-                        'onchange' => 'this.form.submit()',
-                    ]) ?>
-                </div>
+                echo Html::dropDownList('sort', $sortValue, [
+                    'name' => 'Name Ascending',
+                    '-name' => 'Name Descending',
+                    'founding_year' => 'Created Last',
+                    '-founding_year' => 'Created First',
+                ], [
+                    'class' => 'input-style m-0 !py-2',
+                    'id' => 'select-slim',
+                    'onchange' => 'this.form.submit()',
+                ]) ?>
             </div>
 
-            <div class="flex flex-col justify-center gap-2">
+            <div class="flex md:flex-col items-center md:items-start justify-center gap-2">
                 <p>Formation year:</p>
                 <div class="flex w-fit gap-1 border-2 border-main-accent rounded-3xl px-3 py-1">
 
@@ -58,7 +56,7 @@ $genre = Yii::$app->request->get('genre');
 
             </div>
 
-            <div class="flex flex-col justify-center gap-2">
+            <div class="flex md:flex-col items-center md:items-start justify-center gap-2">
                 <p>Break up year:</p>
                 <div class="flex w-fit gap-1 border-2 border-main-accent rounded-3xl px-3 py-1">
 
@@ -73,7 +71,7 @@ $genre = Yii::$app->request->get('genre');
 
             </div>
 
-            <div class="flex flex-col justify-center gap-2">
+            <div class="flex md:flex-col items-center md:items-start justify-center gap-2">
                 <p>Genre:</p>
                 <div class="flex gap-1 border-2 border-main-accent rounded-3xl px-3 py-1">
 
@@ -85,7 +83,7 @@ $genre = Yii::$app->request->get('genre');
             </div>
         </div>
 
-        <div class="flex gap-5">
+        <div class="flex gap-5 mx-auto">
             <input type="submit" value="Filter" class="btn-style">
             <?= Html::a('Reset', ['/band'], ['class' => 'btn-style']) ?>
         </div>
