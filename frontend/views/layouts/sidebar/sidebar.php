@@ -101,50 +101,55 @@ use yii\widgets\Pjax;
                 'url' => '/about',
             ]) ?>
         </div>
-    </div>
 
-    <!-- PROFILE / LOG IN -->
-    <div class="text-secondary-dark bg-main-accent absolute bottom-0 right-0 left-0 px-4 py-3">
-        <?php
-        if (Yii::$app->user->isGuest) : ?>
-            <a href="<?= Url::to('/site/login') ?>" class="flex items-center justify-start gap-4">
-                <p class="material-symbols-outlined ">
-                    login
-                </p>
-                <p class="font-bold text-lg">
-                    Log in
-                </p>
-            </a>
-        <?php else : ?>
-            <div class="flex items-center gap-4">
-                <div class="aspect-square flex-none">
-                    <?= Html::a(
-                        Html::img(
-                            Yii::$app->user->identity->profile_pic_url ?? 'https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg',
-                            ['class' => 'rounded-full w-full h-6 lg:h-8 aspect-square object-cover object-center']
-                        ),
-                        ['/user/view', 'id' => Yii::$app->user->identity->id]
-                    );
-                    ?>
-                </div>
-                <div class="truncate pr-6">
-                    <p class="lg:text-xl font-bold truncate">
-                        <?= Html::a(
-                            Yii::$app->user->identity->username,
-                            ['/user/view', 'id' => Yii::$app->user->identity->id]
-                        ) ?>
+        <!-- PROFILE / LOG IN -->
+        <div class="text-secondary-dark bg-main-accent block md:absolute w-full max-w-sm bottom-0 right-0 left-0 px-4 py-3">
+            <?php
+            if (Yii::$app->user->isGuest) : ?>
+                <a href="<?= Url::to('/site/login') ?>" class="flex items-center justify-start gap-4">
+                    <p class="material-symbols-outlined ">
+                        login
                     </p>
-                </div>
+                    <p class="font-bold text-lg">
+                        Log in
+                    </p>
+                </a>
+            <?php else : ?>
+                <div class="flex justify-between">
 
-                <div class="absolute right-4 flex">
-                    <a href="<?= Url::to('/site/logout') ?>" data-method="post" class="material-symbols-outlined text-secondary-dark font-normal !text-lg lg:!text-2xl">
-                        logout
-                    </a>
-                </div>
-            </div>
-        <?php endif; ?>
 
+                    <div class="flex items-center gap-4">
+                        <div class="aspect-square flex-none">
+                            <?= Html::a(
+                                Html::img(
+                                    Yii::$app->user->identity->profile_pic_url ?? 'https://icon-library.com/images/default-profile-icon/default-profile-icon-16.jpg',
+                                    ['class' => 'rounded-full w-full h-6 lg:h-8 aspect-square object-cover object-center']
+                                ),
+                                ['/user/view', 'id' => Yii::$app->user->identity->id]
+                            );
+                            ?>
+                        </div>
+                        <div class="truncate pr-6">
+                            <p class="lg:text-xl font-bold truncate">
+                                <?= Html::a(
+                                    Yii::$app->user->identity->username,
+                                    ['/user/view', 'id' => Yii::$app->user->identity->id]
+                                ) ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="">
+                        <a href="<?= Url::to('/site/logout') ?>" data-method="post" class="material-symbols-outlined text-secondary-dark font-normal !text-lg lg:!text-2xl">
+                            logout
+                        </a>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+        </div>
     </div>
+
+
 
 
 </aside>
