@@ -28,7 +28,7 @@ $counts = $model->getContributionsCount();
     </div>
 
     <div class="mx-6 pt-6 pb-6">
-        <div class="grid grid-cols-3 text-center">
+        <div class="grid grid-cols-3 gap-y-4 text-center">
             <div>
                 <p class="text-lg font-bold flex justify-center gap-1 items-center">
                     <span class="material-symbols-rounded !text-lg">
@@ -56,20 +56,33 @@ $counts = $model->getContributionsCount();
                 </p>
                 <p>Bands</p>
             </div>
-        </div>
-
-        <hr class="my-6 border-t-2 border-t-gray-600">
-
-        <div class="flex flex-col gap-2">
-            <p>
-                Genres added: <span class="font-bold"><?= $counts['genres'] ?></span>
-            </p>
-            <p>
-                Tracks added: <span class="font-bold"><?= $counts['tracks'] ?></span>
-            </p>
-            <p>
-                Band members added: <span class="font-bold"><?= $counts['bandMembers'] ?></span>
-            </p>
+            <div>
+                <p class="text-lg font-bold flex justify-center gap-1 items-center">
+                    <span class="material-symbols-rounded !text-lg">
+                        library_music
+                    </span>
+                    <?= $counts['tracks'] ?>
+                </p>
+                <p>Tracks</p>
+            </div>
+            <div>
+                <p class="text-lg font-bold flex justify-center gap-1 items-center">
+                    <span class="material-symbols-rounded !text-lg">
+                        collections_bookmark
+                    </span>
+                    <?= $counts['genres'] ?>
+                </p>
+                <p>Genres</p>
+            </div>
+            <div>
+                <p class="text-lg font-bold flex justify-center gap-1 items-center">
+                    <span class="material-symbols-rounded !text-lg">
+                        person_add
+                    </span>
+                    <?= $counts['bandMembers'] ?>
+                </p>
+                <p>Members</p>
+            </div>
         </div>
 
         <hr class="my-6 border-t-2 border-t-gray-600">
