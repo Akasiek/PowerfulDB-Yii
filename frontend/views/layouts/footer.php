@@ -21,7 +21,7 @@ use yii\helpers\Html;
             </a>
         </div>
 
-        <div class="flex gap-8 text-lg font-bold items-center">
+        <div class="flex gap-4 md:gap-8 sm:text-sm md:text-base lg:text-lg font-bold items-center">
             <a href="/artist">Artists</a><a href="/band">Bands</a><a href="/album">Albums</a><a href="/user">Users</a>
         </div>
 

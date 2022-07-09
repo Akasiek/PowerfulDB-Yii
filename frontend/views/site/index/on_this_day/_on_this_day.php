@@ -23,7 +23,7 @@ function ordinal($number)
 
     <h2 class="font-sans text-3xl">On this day...</h2>
 
-    <hr class="border-t-2 border-main-accent w-96 mt-2 mb-6">
+    <hr class="border-t-2 border-main-accent max-w-sm mt-2 mb-6">
 
     <?php if (empty($birthdays) && empty($death_anniversaries) && empty($album_anniversaries)) : ?>
 
