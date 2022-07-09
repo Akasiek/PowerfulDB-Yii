@@ -25,36 +25,40 @@ class SearchController extends Controller
         }
 
         $artists = new ActiveDataProvider([
-            'query' => Artist::find()->byKeyword($keyword),
+            'query' => Artist::find()->byKeyword($keyword)->limit(16),
             'sort' => [
                 'defaultOrder' => [
                     'created_at' => SORT_DESC,
                 ]
             ],
+            'pagination' => false,
         ]);
         $bands = new ActiveDataProvider([
-            'query' => Band::find()->byKeyword($keyword),
+            'query' => Band::find()->byKeyword($keyword)->limit(16),
             'sort' => [
                 'defaultOrder' => [
                     'created_at' => SORT_DESC,
                 ]
             ],
+            'pagination' => false,
         ]);
         $albums = new ActiveDataProvider([
-            'query' => Album::find()->byKeyword($keyword)->with('artist')->with('band'),
+            'query' => Album::find()->byKeyword($keyword)->with('artist')->with('band')->limit(18),
             'sort' => [
                 'defaultOrder' => [
                     'created_at' => SORT_DESC,
                 ]
             ],
+            'pagination' => false,
         ]);
         $users = new ActiveDataProvider([
-            'query' => User::find()->byKeyword($keyword),
+            'query' => User::find()->byKeyword($keyword)->limit(12),
             'sort' => [
                 'defaultOrder' => [
                     'created_at' => SORT_DESC,
                 ]
             ],
+            'pagination' => false,
         ]);
 
         return $this->render('index', [

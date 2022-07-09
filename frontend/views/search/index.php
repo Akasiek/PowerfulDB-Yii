@@ -8,9 +8,10 @@
  */
 
 use yii\data\ActiveDataProvider;
+use yii\widgets\ListView;
 
 ?>
-<div class="px-14 py-8">
+<div class="px-6 md:px-14 py-8">
     <div>
         <h1 class="font-sans text-5xl ">Search results</h1>
         <hr class="border-t-2 border-main-accent mt-3">
@@ -31,9 +32,14 @@ use yii\data\ActiveDataProvider;
 
                 <hr class="border-t-2 border-t-secondary-accent w-64 mt-1 mb-6">
 
-                <?= $this->render('@frontend/views/components/_default_swiper', [
+                <?= ListView::widget([
                     'dataProvider' => $artists,
-                    'baseUrl' => 'artist',
+                    'itemView' => '@frontend/views/components/_default_card',
+                    'summary' => '',
+                    'options' => [
+                        'class' => 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 
+                        gap-x-4 gap-y-6 xl:gap-x-8 xl:gap-y-12 2xl:gap-x-12 2xl:gap-y-16',
+                    ],
                 ]) ?>
             </div>
         <?php endif; ?>
@@ -44,9 +50,14 @@ use yii\data\ActiveDataProvider;
 
                 <hr class="border-t-2 border-t-secondary-accent w-64 mt-1 mb-6">
 
-                <?= $this->render('@frontend/views/components/_default_swiper', [
+                <?= ListView::widget([
                     'dataProvider' => $bands,
-                    'baseUrl' => 'bands',
+                    'itemView' => '@frontend/views/components/_default_card',
+                    'summary' => '',
+                    'options' => [
+                        'class' => 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 
+                        gap-x-4 gap-y-6 xl:gap-x-8 xl:gap-y-12 2xl:gap-x-12 2xl:gap-y-16',
+                    ],
                 ]) ?>
             </div>
         <?php endif; ?>
@@ -57,8 +68,13 @@ use yii\data\ActiveDataProvider;
 
                 <hr class="border-t-2 border-t-secondary-accent w-64 mt-1 mb-6">
 
-                <?= $this->render('@frontend/views/album/_album_swiper', [
+                <?= ListView::widget([
                     'dataProvider' => $albums,
+                    'itemView' => '@frontend/views/album/_album_card',
+                    'summary' => '',
+                    'options' => [
+                        'class' => 'grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 gap-x-8 gap-y-12',
+                    ],
                 ]) ?>
             </div>
         <?php endif; ?>
@@ -69,26 +85,15 @@ use yii\data\ActiveDataProvider;
 
                 <hr class="border-t-2 border-t-secondary-accent w-64 mt-1 mb-6">
 
-                <div class="swiper user-swiper w-full relative">
-                    <div class="swiper-wrapper">
-                        <?php foreach ($users->getModels() as $model) : ?>
-                            <div class="swiper-slide select-none">
-                                <?= $this->render('@frontend/views/user/_user_card', [
-                                    'model' => $model,
-                                ]) ?>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-
-                    <div class="swiper-button-prev ml-2 !z-20 select-none">
-                        <span class="material-symbols-outlined !text-6xl" style="text-shadow: 0 0 20px rgba(0,0,0,0.25)">navigate_before</span>
-                    </div>
-                    <div class="swiper-button-next mr-2 !z-20 select-none">
-                        <span class="material-symbols-outlined !text-6xl ">navigate_next</span>
-                    </div>
-
-                    <div class="absolute top-0 bottom-0 right-0 w-36 z-10 rotate-180 pointer-events-none" style="background: linear-gradient(270deg, rgba(27, 28, 34, 0) 0%, #1B1C22 100%);"></div>
-                </div>
+                <?= ListView::widget([
+                    'dataProvider' => $users,
+                    'itemView' => '@frontend/views/user/_user_card',
+                    'summary' => '',
+                    'options' => [
+                        'class' => 'grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5
+                        gap-x-4 gap-y-6 xl:gap-x-8 xl:gap-y-12 2xl:gap-x-12 2xl:gap-y-16',
+                    ],
+                ]) ?>
             </div>
         <?php endif; ?>
 
