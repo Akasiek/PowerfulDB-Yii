@@ -54,7 +54,8 @@ class AlbumController extends Controller
             ->leftJoin('band', 'band.id = album.band_id')
             ->leftJoin('album_genre', 'album_genre.album_id = album.id')
             ->leftJoin('genre', 'genre.id = album_genre.genre_id')
-            ->orderBy($sort->orders);
+            ->orderBy($sort->orders)
+            ->distinct();
 
 
         // Check if any filters are set
@@ -73,7 +74,7 @@ class AlbumController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 29,
+                'pageSize' => 24,
             ],
         ]);
         return $this->render('index', [

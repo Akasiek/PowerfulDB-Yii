@@ -45,7 +45,8 @@ class ArtistController extends Controller
 
         $query = Artist::find()->orderBy($sort->orders)
             ->leftJoin('album_genre', 'album_genre.artist_id = artist.id')
-            ->leftJoin('genre', 'genre.id = album_genre.genre_id');
+            ->leftJoin('genre', 'genre.id = album_genre.genre_id')
+            ->distinct();
 
         // Check if any filters are set
         $filters = \Yii::$app->request->get();
@@ -85,7 +86,7 @@ class ArtistController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 26,
+                'pageSize' => 24,
             ],
         ]);
         return $this->render('index', [

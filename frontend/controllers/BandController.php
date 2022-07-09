@@ -49,7 +49,8 @@ class BandController extends Controller
 
         $query = Band::find()->orderBy($sort->orders)
             ->leftJoin('album_genre', 'album_genre.band_id = band.id')
-            ->leftJoin('genre', 'genre.id = album_genre.genre_id');
+            ->leftJoin('genre', 'genre.id = album_genre.genre_id')
+            ->distinct();
 
         // Check if any filters are set
         $filters = \Yii::$app->request->get();
@@ -87,7 +88,7 @@ class BandController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => 24,
             ],
         ]);
         return $this->render('index', [
