@@ -87,7 +87,7 @@ if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
 
                     You can go ahead and
                     <?= Html::a(
-                        'add album by this ' . ($baseUrl ?? Yii::$app->controller->id),
+                        'add album by this ' . ($model instanceof Artist ?  'artist' : 'band'),
                         ['/album/create', Yii::$app->controller->id . '_id' => $model->id],
                         ['class' => 'hover:underline text-main-accent']
                     ) ?>

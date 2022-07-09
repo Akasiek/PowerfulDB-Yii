@@ -2,18 +2,16 @@
 
 /**
  * @var $model Artist | Band
- * @var $baseUrl string
  */
 
 use common\models\Artist;
 use common\models\Band;
-use yii\helpers\Html;
 use yii\helpers\Url;
 
 $genres = $model->getGenres()->limit(4)->all();
 
 ?>
-<a href="<?php echo Url::to(['/' . (isset($baseUrl) ? $baseUrl : Yii::$app->controller->id) . '/view', 'slug' => $model->slug]) ?>">
+<a href="<?= Url::to(['/' . ($model instanceof Artist ? 'artist' : 'band') . '/view', 'slug' => $model->slug]) ?>">
     <div class="rounded-3xl w-full h-40 md:h-48 !bg-cover flex flex-col justify-end items-start snap-start scroll-pl-3
                 group overflow-hidden !bg-center relative group bg-secondary-dark">
 

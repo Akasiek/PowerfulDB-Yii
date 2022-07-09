@@ -39,7 +39,6 @@ $this->title = 'My Yii Application';
 
             <?php echo $this->render('@frontend/views/components/_default_swiper', [
                 'dataProvider' => $artists,
-                'baseUrl' => 'artist'
             ]); ?>
         </div>
 
@@ -50,7 +49,6 @@ $this->title = 'My Yii Application';
 
             <?php echo $this->render('@frontend/views/components/_default_swiper', [
                 'dataProvider' => $bands,
-                'baseUrl' => 'band'
             ]); ?>
         </div>
 
