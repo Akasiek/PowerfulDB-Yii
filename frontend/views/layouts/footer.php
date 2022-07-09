@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 <div class="w-full">
 
-    <div class="bg-secondary-accent flex flex-wrap gap-6 justify-between px-12 lg:px-20 xl:px-36 py-8">
+    <div class="bg-secondary-accent flex flex-wrap gap-6 justify-between px-6 lg:px-16 xl:px-24 py-6 md:py-8">
 
         <div class="flex items-center justify-center">
             <a href="<?= Url::to('/') ?>" class="h-8">
@@ -28,7 +28,7 @@ use yii\helpers\Html;
     </div>
 
 
-    <div class="bg-main-dark flex flex-wrap items-center gap-4 justify-between px-12 lg:px-20 xl:px-36 py-4">
+    <div class="bg-main-dark flex flex-wrap items-center gap-4 justify-between px-6 lg:px-16 xl:px-24 py-4">
 
         <p class="text-base">
             Made with 💜 and
