@@ -30,7 +30,7 @@ $this->title = 'My Yii Application';
         ]); ?>
     <?php endif; ?>
 
-    <div class="py-8 px-12 flex flex-col gap-20">
+    <div class="py-8 px-6 md:px-8 lg:px-12 flex flex-col gap-20">
 
         <div>
             <h2 class="font-sans text-3xl">Popular artists</h2>
