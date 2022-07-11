@@ -13,7 +13,7 @@ use yii\widgets\ListView;
 ?>
 <div class="px-6 md:px-14 py-8">
     <div>
-        <h1 class="font-sans text-5xl ">Search results</h1>
+        <h1 class="font-sans text-4xl md:text-5xl">Search results</h1>
         <hr class="border-t-2 border-main-accent mt-3">
     </div>
 
