@@ -23,7 +23,7 @@ use yii\widgets\Pjax;
         close
     </span>
 </div>
-<aside class="h-[calc(100vh-3.5rem)] md:h-screen w-screen md:w-56 lg:w-72 position-fixed transition-all hidden md:block md:static relative inset-0" id="sidebar">
+<aside class="min-h-[40rem] h-[calc(100vh-3.5rem)] md:h-screen w-screen md:w-56 lg:w-72 position-fixed transition-all hidden md:block md:static relative inset-0" id="sidebar">
     <div class="bg-main-dark h-full pt-2 md:pt-4 sm:px-8 px-12 md:px-4 lg:px-5 gap-6 flex flex-col md:items-start items-center md:justify-start justify-center font-serif font-bold relative pb-14">
 
         <!-- LOGO -->
