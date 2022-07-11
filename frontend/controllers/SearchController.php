@@ -19,6 +19,7 @@ class SearchController extends Controller
      */
     public function actionIndex($keyword)
     {
+        $keyword = trim($keyword);
         // If keyword is shorted than 2 characters, display error message
         if (strlen($keyword) < 2) {
             throw new BadRequestHttpException('Keyword must be at least 2 characters long.');
