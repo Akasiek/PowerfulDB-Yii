@@ -25,7 +25,7 @@ use yii\widgets\ListView;
             ]) ?></p>
     <?php endif; ?>
 
-    <div class="flex flex-col gap-16 mt-16">
+    <div class="flex flex-col gap-10 md:gap-16 mt-10 md:mt-16">
         <?php if (count($artists->getModels()) > 0) : ?>
             <div>
                 <h2 class="font-sans text-3xl">Found Artists</h2>

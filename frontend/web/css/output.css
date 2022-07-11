@@ -1959,6 +1959,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-left: 14rem;
   }
 
+  .md\:mt-16 {
+    margin-top: 4rem;
+  }
+
   .md\:block {
     display: block;
   }
@@ -2033,6 +2037,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:gap-2 {
     gap: 0.5rem;
+  }
+
+  .md\:gap-16 {
+    gap: 4rem;
   }
 
   .md\:gap-x-8 {
