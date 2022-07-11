@@ -7,12 +7,22 @@
 use yii\data\ActiveDataProvider;
 use \yii\widgets\ListView;
 
+$name = Yii::$app->request->get('name');
 ?>
 
 <div class="px-14 py-8">
     <?= $this->render('@frontend/views/components/_index_page_title') ?>
 
-    <?= $this->render('_index_genre_filter') ?>
+    <?= $this->render('@frontend/views/components/_filter_sort_main.php', [
+        'stringFilters' => [
+            'name' => [
+                'label' => 'Filter genre',
+                'value' => $name,
+                'placeholder' => 'Rock',
+            ],
+        ]
+    ]) ?>
+
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,

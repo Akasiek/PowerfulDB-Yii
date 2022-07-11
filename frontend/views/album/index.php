@@ -7,14 +7,34 @@
 
 use \yii\widgets\ListView;
 
+
+$release_from_year = Yii::$app->request->get('release_from_year');
+$release_to_year = Yii::$app->request->get('release_to_year');
+$genre = Yii::$app->request->get('genre');
 ?>
 
 <div class="px-6 lg:px-14 py-8">
 
     <?= $this->render('@frontend/views/components/_index_page_title') ?>
 
-    <?= $this->render('_index_album_sort_filter', [
+    <?= $this->render('@frontend/views/components/_filter_sort_main.php', [
+        'hasGenreFilter' => true,
+        'genre' => $genre,
+        'yearFilters' => [
+            'release' => [
+                'label' => 'release_year',
+                'from_year' => $release_from_year,
+                'to_year' => $release_to_year,
+            ],
+
+        ],
         'sort' => $sort,
+        'sortOptions' => [
+            'title' => 'Title Ascending',
+            '-title' => 'Title Descending',
+            'release_date' => 'Oldest First',
+            '-release_date' => 'Newest First',
+        ]
     ]) ?>
 
 

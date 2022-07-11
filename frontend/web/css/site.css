@@ -29,6 +29,16 @@
         placeholder:text-gray-500;
     }
 
+    .filter-container {
+        @apply flex md:flex-col items-center md:items-start gap-1;
+    }
+    .filter-input-container {
+        @apply flex w-fit gap-1 border-2 border-main-accent rounded-3xl px-3 py-1;
+    }
+    .filter-input-style {
+        @apply bg-transparent focus:outline-0 placeholder:text-gray-600;
+    }
+
     .btn-style {
         @apply rounded-3xl bg-transparent border-2 border-main-accent
         px-5 py-1 md:py-1.5 cursor-pointer transition text-center

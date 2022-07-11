@@ -60,11 +60,11 @@ class AlbumController extends Controller
 
         // Check if any filters are set
         $filters = \Yii::$app->request->get();
-        if (isset($filters['from_year']) && $filters['from_year'] != '') {
-            $query->andWhere('EXTRACT(YEAR FROM release_date) >= :from_year', [':from_year' => $filters['from_year']]);
+        if (isset($filters['release_from_year']) && $filters['release_from_year'] != '') {
+            $query->andWhere('EXTRACT(YEAR FROM release_date) >= :from_year', [':from_year' => $filters['release_from_year']]);
         }
-        if (isset($filters['to_year']) && $filters['to_year'] != '') {
-            $query->andWhere('EXTRACT(YEAR FROM release_date) <= :to_year', [':to_year' => $filters['to_year']]);
+        if (isset($filters['release_to_year']) && $filters['release_to_year'] != '') {
+            $query->andWhere('EXTRACT(YEAR FROM release_date) <= :to_year', [':to_year' => $filters['release_to_year']]);
         }
         if (isset($filters['genre']) && $filters['genre'] != '') {
             $query->andWhere('genre.name ILIKE :genre', [':genre' => '%' . trim($filters['genre']) . '%']);

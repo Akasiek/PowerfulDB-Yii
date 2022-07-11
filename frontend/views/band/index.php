@@ -10,13 +10,40 @@ use yii\data\ActiveDataProvider;
 use yii\data\Sort;
 use yii\widgets\ListView;
 
+$founding_from_year = Yii::$app->request->get('founding_from_year');
+$founding_to_year = Yii::$app->request->get('founding_to_year');
+$break_up_from_year = Yii::$app->request->get('break_up_from_year');
+$break_up_to_year = Yii::$app->request->get('break_up_to_year');
+$genre = Yii::$app->request->get('genre');
+
 ?>
 <div class="px-6 lg:px-14 py-8">
 
     <?= $this->render('@frontend/views/components/_index_page_title') ?>
 
-    <?= $this->render('_index_band_sort_filter', [
+    <?= $this->render('@frontend/views/components/_filter_sort_main.php', [
+        'hasGenreFilter' => true,
+        'genre' => $genre,
+        'yearFilters' => [
+            'founding' => [
+                'label' => 'Founding year',
+                'from_year' => $founding_from_year,
+                'to_year' => $founding_to_year,
+            ],
+            'break_up' => [
+                'label' => 'Break up year',
+                'from_year' => $break_up_from_year,
+                'to_year' => $break_up_to_year,
+            ],
+
+        ],
         'sort' => $sort,
+        'sortOptions' => [
+            'name' => 'Name Ascending',
+            '-name' => 'Name Descending',
+            'founding_year' => 'Created Last',
+            '-founding_year' => 'Created First',
+        ]
     ]) ?>
 
     <?= ListView::widget([
