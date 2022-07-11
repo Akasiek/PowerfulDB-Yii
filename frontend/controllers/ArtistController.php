@@ -79,7 +79,7 @@ class ArtistController extends Controller
         if (isset($filters['genre']) && !empty($filters['genre'])) {
             $query->andWhere(
                 'genre.name ILIKE :genre',
-                [':genre' => '%' . $filters['genre'] . '%']
+                [':genre' => '%' . trim($filters['genre']) . '%']
             );
         }
 

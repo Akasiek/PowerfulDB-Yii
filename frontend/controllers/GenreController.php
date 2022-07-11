@@ -41,7 +41,7 @@ class GenreController extends Controller
         // Check if name filter is set
         $filters = \Yii::$app->request->get();
         if (isset($filters['name']) && $filters['name'] != '') {
-            $query->andWhere('genre.name ILIKE :name', [':name' => '%' . $filters['name'] . '%']);
+            $query->andWhere('genre.name ILIKE :name', [':name' => '%' . trim($filters['name']) . '%']);
         }
 
         $dataProvider = new ActiveDataProvider([
