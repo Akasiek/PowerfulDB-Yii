@@ -2003,6 +2003,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: 14rem;
   }
 
+  .md\:w-fit {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
