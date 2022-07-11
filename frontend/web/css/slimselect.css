@@ -23,7 +23,7 @@
 
 .ss-content {
     border: #292a33 2px solid !important;
-    width: 24rem !important;
+    max-width: 24rem !important;
 }
 
 .ss-search {
