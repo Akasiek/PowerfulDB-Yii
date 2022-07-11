@@ -17,7 +17,7 @@ $this->beginContent('@frontend/views/layouts/base.php');
         <?= $content ?>
     </main>
 
-    <footer class="mt-24 w-full z-10">
+    <footer class="mt-10 w-full z-10">
         <?= $this->render('footer'); ?>
     </footer>
 
