@@ -61,10 +61,16 @@ const albumSwiper = new Swiper(".album-swiper", {
             slidesPerView: 2.1,
         },
         640: {
+            slidesPerView: 3.3,
+        },
+        768: {
             slidesPerView: 2.6,
         },
+        920: {
+            slidesPerView: 3.1,
+        },
         1080: {
-            slidesPerView: 3.6,
+            slidesPerView: 3.5,
             spaceBetween: 20,
         },
         1280: {
@@ -72,7 +78,7 @@ const albumSwiper = new Swiper(".album-swiper", {
             spaceBetween: 30,
         },
         1600: {
-            slidesPerView: 5.6,
+            slidesPerView: 4.6,
             spaceBetween: 40,
         },
     },
