@@ -24,13 +24,13 @@ $genres = $model->getGenres()->limit(4)->all();
 
         <div class="px-4 md:px-7 pb-3 md:pb-4 w-full z-30">
 
-            <h3 class="font-bold text-xl md:text-2xl truncate 
+            <h3 class="font-bold text-lg md:text-xl xl:text-2xl truncate 
             transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]">
                 <?php echo $model->name ?>
             </h3>
 
             <?php if (!empty($genres)) : ?>
-                <p class="text-xs md:text-sm truncate  drop-shadow-md
+                <p class="text-xs md:text-sm truncate drop-shadow-md
                       transition-transform group-hover:delay-100">
                     <?php
                     foreach ($genres as $index => $genre) {
