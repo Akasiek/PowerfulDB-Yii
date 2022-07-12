@@ -21,15 +21,15 @@ $genres = $model->getGenres()->limit(5)->all();
     <div class="px-14 pb-10 w-full flex flex-col gap-2">
 
 
-        <div class="flex flex-col gap-1">
+        <div class="flex flex-col-reverse md:flex-col gap-1">
             <?php if (isset($model->full_name)) : ?>
-                <p class="text-gray-300 italic"><?php echo $model->full_name ?></p>
+                <p class="text-gray-300 italic drop-shadow-md"><?php echo $model->full_name ?></p>
             <?php endif; ?>
-            <h3 class="font-sans text-7xl"><?php echo $model->name ?></h3>
+            <h3 class="font-sans text-5xl md:text-6xl lg:text-7xl drop-shadow-lg"><?php echo $model->name ?></h3>
         </div>
 
         <?php if (!empty($genres)) : ?>
-            <p class="text-2xl">
+            <p class="text-sm md:text-base lg:text-lg xl:text-xl drop-shadow-md">
                 <?php
                 foreach ($genres as $index => $genre) {
                     echo $genre->name;
@@ -42,8 +42,7 @@ $genres = $model->getGenres()->limit(5)->all();
         <?php endif; ?>
 
         <?php if (isset($model->birth_date)) : ?>
-            <div>
-
+            <div class="drop-shadow-lg">
                 <p>
                     Age: <?php echo ageDiff($model->birth_date, $model->death_date) ?> years old
                 </p>
@@ -63,7 +62,7 @@ $genres = $model->getGenres()->limit(5)->all();
         <?php if (isset($model->founding_year)) : ?>
             <div>
 
-                <p>
+                <p class="drop-shadow-lg">
                     Years
                     active: <?php
                             echo $model->founding_year . ' - ';
