@@ -2,6 +2,7 @@ $("#read-more").click(() => {
     $("#article").removeClass("h-96");
     $("#read-more").addClass("hidden");
     $("#read-less").removeClass("hidden");
+    $("#read-less").addClass("flex");
 });
 
 $("#read-less").click(() => {
