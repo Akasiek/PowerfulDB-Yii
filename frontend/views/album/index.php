@@ -22,7 +22,7 @@ $genre = Yii::$app->request->get('genre');
         'genre' => $genre,
         'yearFilters' => [
             'release' => [
-                'label' => 'release_year',
+                'label' => 'Release year',
                 'from_year' => $release_from_year,
                 'to_year' => $release_to_year,
             ],
