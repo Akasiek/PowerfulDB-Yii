@@ -18,7 +18,7 @@ $genres = $model->getGenres()->limit(5)->all();
              rgba(94, 43, 255, 0.85) 100%,
              rgba(94, 43, 255, 0.85) 100%),
              url('<?php echo $model->bg_image_url ?>'); ">
-    <div class="px-14 pb-10 w-full flex flex-col gap-2">
+    <div class="px-8 md:px-12 lg:px-14 pb-6 md:pb-8 lg:pb-10 w-full flex flex-col gap-2">
 
 
         <div class="flex flex-col-reverse md:flex-col gap-1">
