@@ -9,19 +9,20 @@ use common\models\Album;
 use common\models\Artist;
 use common\models\Band;
 use yii\helpers\Html;
-use yii\helpers\Url;
 
 $articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
 
 ?>
-<div>
-    <h1 class="font-sans text-5xl">Article</h1>
-    <hr class="max-w-sm  border-t-2 border-t-main-accent mt-2 mb-6">
+<div class="relative">
+    <h1 class="section-title">Article</h1>
+    <hr class="section-hr">
 
     <?php if ($articleText) : ?>
-        <div class="mx-auto article-style w-full text-justify">
+        <article class="mx-auto prose prose-invert lg:prose-xl h-96 w-full text-justify overflow-hidden" id="article">
             <?= $articleText ?>
-        </div>
+        </article>
+        <button id="read-more" class="absolute bottom-0 w-full flex h-16 items-end text-xl font-bold justify-center" style="background: linear-gradient(180deg, rgba(27, 28, 34, 0) 0%, #1B1C22 100%);">Read more</button>
+        <button id="read-less" class="w-full flex justify-center text-xl font-bold hidden mt-2">Close article</button>
     <?php else : ?>
         <div class="article-style text-justify">
             <p>There is no article for this album yet.

@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
         'js/swiper.js',
         'js/slimselect.min.js',
         'js/slimselect.js',
+        'js/readmore.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
