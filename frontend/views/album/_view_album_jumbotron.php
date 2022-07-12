@@ -12,13 +12,13 @@ $genres = $model->getGenres()->all();
 
 ?>
 
-<div class="flex mt-16 justify-center w-full">
+<div class="flex mt-8 md:mt-12 lg:mt-16 justify-center w-full">
 
-    <div class="flex justify-center items-center gap-5 xl:gap-10 max-w-screen-xl px-16">
+    <div class="flex flex-col md:flex-row justify-center items-center gap-5 xl:gap-10 max-w-screen-xl px-4 md:px-12 lg:px-16">
         <div>
-            <img src="<?= $model->artwork_url ?>" alt="Album artwork" class="w-96">
+            <img src="<?= $model->artwork_url ?>" alt="Album artwork" class="w-64 md:w-72 lg:w-96">
         </div>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col items-center md:items-start gap-1 md:gap-2">
 
             <a href="<?= \yii\helpers\Url::to([
                             '/' . ($model->artist_id ? 'artist' : 'band') . '/view/',
@@ -27,7 +27,7 @@ $genres = $model->getGenres()->all();
                 <h3 class="text-lg lg:text-2xl"><?= $model->artist->name ?? $model->band->name ?></h3>
             </a>
 
-            <h1 class="text-2xl lg:text-5xl font-bold"><?= $model->title ?></h1>
+            <h1 class="text-2xl lg:text-4xl font-bold text-center md:text-left"><?= $model->title ?></h1>
 
             <p class="text-gray-400 text-sm lg:text-base">
                 <?php
@@ -38,7 +38,7 @@ $genres = $model->getGenres()->all();
             </p>
 
             <?php if (!empty($genres)) : ?>
-                <p class="italic">
+                <p class="text-sm md:text-base italic">
                     <?php
                     foreach ($genres as $index => $genre) {
                         echo $genre->name . ' ';

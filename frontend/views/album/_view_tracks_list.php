@@ -34,16 +34,16 @@ $fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' s
 
 
 <div>
-    <h1 class="font-sans text-5xl">Tracks</h1>
+    <h1 class="section-title">Tracks</h1>
 
-    <hr class="max-w-sm  border-t-2 border-t-main-accent mt-2 mb-6">
+    <hr class="section-hr">
 
     <?php if (!empty($tracks)) : ?>
-        <div class=" gap-x-10">
+        <div>
             <?php foreach ($tracks as $index => $track) : ?>
-                <div class="flex justify-between">
+                <div class="flex justify-between text-sm md:text-base gap-4 items-center">
 
-                    <p class="">
+                    <p>
                         <?= $track->position . '. ' ?>
                         <span class="font-bold"><?= $track->title ?></span>
                     </p>
@@ -56,11 +56,11 @@ $fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' s
                     </p>
                 </div>
 
-                <hr class="my-4 border-t-2  border-t-gray-700 ">
+                <hr class="my-3 md:my-4 border-t-1  border-t-gray-700 ">
 
             <?php endforeach; ?>
         </div>
-        <p class="italic text-gray-400">
+        <p class="italic text-gray-400 text-sm md:text-base">
             Album's full length: <span class="text-main-light"><?= $fullLength ?></span>
         </p>
 

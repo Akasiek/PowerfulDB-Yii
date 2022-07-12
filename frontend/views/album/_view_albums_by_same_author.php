@@ -26,8 +26,8 @@ $dataProvider = new \yii\data\ArrayDataProvider([
 ?>
 
 <div>
-    <h1 class="font-sans text-5xl">Albums by the same author</h1>
-    <hr class="max-w-sm  border-t-2 border-t-main-accent mt-2 mb-6">
+    <h1 class="section-title">Albums by the same author</h1>
+    <hr class="section-hr">
     <?= $this->render('_album_swiper', [
         'dataProvider' => $dataProvider,
     ]); ?>

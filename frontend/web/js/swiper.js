@@ -39,7 +39,7 @@ const swiper = new Swiper(".default-swiper", {
 
 const albumSwiper = new Swiper(".album-swiper", {
     // Default parameters
-    slidesPerView: 1.6,
+    slidesPerView: 1.9,
     spaceBetween: 10,
 
     // Optional parameters

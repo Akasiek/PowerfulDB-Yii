@@ -29,6 +29,14 @@
         placeholder:text-gray-500;
     }
 
+    .section-title {
+        @apply font-sans text-3xl md:text-4xl lg:text-5xl;
+    }
+
+    .section-hr {
+        @apply max-w-sm border-t-2 border-t-main-accent mt-1 md:mt-2 mb-4 md:mb-6;
+    }
+
     .filter-container {
         @apply flex md:flex-col items-center md:items-start gap-1;
     }
