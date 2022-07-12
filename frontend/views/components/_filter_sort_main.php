@@ -38,9 +38,9 @@ use yii\helpers\Html;
 
             <div class="flex flex-col items-center gap-3">
                 <p class="md:hidden flex items-center gap-2 btn-style" id="filters-text">
-                    Filters
+                    Filters menu
                     <span class="material-symbols-outlined !text-xl transition-transform" id="expand-icon">
-                        expand_less
+                        expand_more
                     </span>
                 </p>
                 <div class="hidden md:flex flex-col md:flex-row gap-4 flex-wrap justify-start items-start" id="filters-form">
@@ -101,6 +101,6 @@ use yii\helpers\Html;
         filtersText.addEventListener('click', () => {
             filtersForm.classList.toggle('hidden');
             filtersForm.classList.toggle('flex');
-            expandIcon.classList.toggle('!rotate-180');
+            expandIcon.classList.toggle('!-rotate-180');
         });
     </script>
