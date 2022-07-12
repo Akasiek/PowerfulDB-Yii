@@ -157,9 +157,12 @@ class Artist extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery|\common\models\query\BandMemberQuery
      */
-    public function getMemberInfo()
+    public function getMemberships()
     {
-        return $this->hasMany(BandMember::className(), ['artist_id' => 'id'])->with('band');
+        return $this
+            ->hasMany(BandMember::className(), ['artist_id' => 'id'])
+            ->with('band')
+            ->orderBy('join_year DESC');
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $model Artist
  */
@@ -20,20 +21,18 @@ echo $this->render('@frontend/views/components/_default_jumbotron', [
 ]);
 ?>
 
-<div class="flex flex-col justify-center items-center mt-5">
-    <div class="px-14 py-8 max-w-screen-lg w-full flex flex-col gap-16">
+<div class="flex flex-col gap-12 md:gap-16 px-5 md:px-10 lg:px-14 py-8 mx-auto max-w-screen-lg w-full">
 
-        <?= $this->render('@frontend/views/components/_render_article', [
-            'model' => $model,
-        ]); ?>
+    <?= $this->render('@frontend/views/components/_render_article', [
+        'model' => $model,
+    ]); ?>
 
-        <?= $this->render('@frontend/views/components/author_albums/_author_albums', [
-            'model' => $model,
-        ]); ?>
+    <?= $this->render('@frontend/views/components/author_albums/_author_albums', [
+        'model' => $model,
+    ]); ?>
 
-        <?= $this->render('_view_artist_band_memberships', [
-            'model' => $model,
-        ]); ?>
+    <?= $this->render('_view_artist_band_memberships', [
+        'model' => $model,
+    ]); ?>
 
-    </div>
 </div>

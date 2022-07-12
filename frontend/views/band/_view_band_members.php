@@ -26,18 +26,18 @@ $membersArrays = [
 
 ?>
 <div>
-    <div class="flex items-center gap-4">
-        <h1 class="font-sans text-5xl">Members</h1>
+    <div class="flex items-center gap-2 md:gap-4">
+        <h1 class="section-title">Members</h1>
         <?php if (!Yii::$app->user->isGuest) {
             echo Html::a(
                 'add',
                 ['/band/member-add', 'slug' => $model->slug],
-                ['class' => 'material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-main-accent']
+                ['class' => 'material-symbols-rounded text-secondary-dark scale-90 md:scale-100 md:p-0.5 rounded-full bg-main-accent']
             );
         } ?>
     </div>
 
-    <hr class="max-w-sm border-t-2 border-t-main-accent mt-2 mb-8">
+    <hr class="section-hr">
 
     <?php if (empty($bandMembers)) : ?>
 

@@ -10,39 +10,51 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
-$albums = $model->getAlbums()->orderBy('release_date DESC')->all();
+$albums = $model
+    ->getAlbums()
+    ->orderBy('release_date DESC')
+    ->with('genres')
+    ->all();
 
-// Check if pjax send a new display style
-$displayStyle = Yii::$app->cache->get('album_display_style');
-// If not, use the default display style
-if ($displayStyle === false) {
+
+$cookies = Yii::$app->request->cookies;
+// Check if display style is stored in cookies
+$displayStyle = $cookies->getValue('displayStyle');
+// If not, use the default display style and create a cookie
+if (!$displayStyle) {
     $displayStyle = 'grid';
-    Yii::$app->cache->set('album_display_style', $displayStyle);
+    Yii::$app->response->cookies->add(new \yii\web\Cookie([
+        'name' => 'displayStyle',
+        'value' => $displayStyle,
+    ]));
 }
-// If pjax send a new display style, use it
+// If pjax send a new display style, use it and create a cookie
 if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
     $displayStyle = Yii::$app->request->post('displayStyle');
-    Yii::$app->cache->set('album_display_style', $displayStyle);
+    Yii::$app->response->cookies->add(new \yii\web\Cookie([
+        'name' => 'displayStyle',
+        'value' => $displayStyle,
+    ]));
 }
 
 ?>
 
 <?php Pjax::begin(['id' => 'album-display-style-pjax']); ?>
 <div class="w-full m-auto">
-    <div class="flex gap-20 justify-between items-center">
+    <div class="flex gap-5 justify-between items-center">
 
-        <div class="flex items-center gap-4">
-            <h1 class="font-sans text-5xl">Albums</h1>
+        <div class="flex items-center gap-2 md:gap-4">
+            <h1 class="section-title">Albums</h1>
             <?php if (!Yii::$app->user->isGuest) {
                 echo Html::a(
                     'add',
                     ['/album/create', Yii::$app->controller->id . '_id' => $model->id],
-                    ['class' => 'material-symbols-rounded text-secondary-dark p-0.5 rounded-full bg-main-accent']
+                    ['class' => 'material-symbols-rounded text-secondary-dark scale-90 md:scale-100 md:p-0.5 rounded-full bg-main-accent']
                 );
             } ?>
         </div>
 
-        <div class="flex gap-4">
+        <div class="flex gap-2 md:gap-4">
             <?= Html::button('grid_view', [
                 'class' => 'material-symbols-rounded !text-3xl' . ($displayStyle === 'grid' ? ' text-main-accent' : ''),
                 'data-method' => 'post',
@@ -62,7 +74,7 @@ if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
 
         </div>
     </div>
-    <hr class="max-w-sm   border-t-2 border-t-main-accent mt-2 mb-6">
+    <hr class="section-hr">
     <?php if (count($albums) !== 0) : ?>
         <?php if ($displayStyle === 'grid') : ?>
 
