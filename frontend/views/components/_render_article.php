@@ -24,7 +24,7 @@ $articleText = $model->getArticle()->asArray()->one()['text'] ?? '';
         <button type="button" id="read-more" class="absolute bottom-0 w-full flex h-16 items-end text-xl font-bold justify-center" style="background: linear-gradient(180deg, rgba(27, 28, 34, 0) 0%, #1B1C22 100%);">Read more</button>
         <button type="button" id="read-less" class="w-full justify-center text-xl font-bold hidden mt-2">Close article</button>
     <?php else : ?>
-        <div class="article-style text-justify">
+        <div class="article-style text-sm md:text-base text-justify">
             <p>There is no article for this album yet.
                 <?php if (!Yii::$app->user->isGuest) : ?>
                     You can go ahead and

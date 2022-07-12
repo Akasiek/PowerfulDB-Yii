@@ -66,7 +66,8 @@ $fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' s
 
     <?php else : ?>
 
-        <p>Album has no tracks yet.
+        <p class="text-sm md:text-base">
+            Album has no tracks yet.
             <?php if (!Yii::$app->user->isGuest) : ?>
                 You can go ahead and
                 <a href="<?= Url::to(['/album/track-add', 'slug' => $model->slug]) ?>" class="text-main-accent hover:underline">
