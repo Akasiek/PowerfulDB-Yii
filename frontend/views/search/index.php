@@ -73,8 +73,8 @@ use yii\widgets\ListView;
                     'itemView' => '@frontend/views/album/_album_card',
                     'summary' => '',
                     'options' => [
-                        'class' => 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6
-                        gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12',
+                        'class' => 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6
+                        gap-x-4 xl:gap-x-8 gap-y-8 md:gap-y-12',
                     ],
                 ]) ?>
             </div>
