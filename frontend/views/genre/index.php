@@ -28,7 +28,7 @@ $name = Yii::$app->request->get('name');
         'dataProvider' => $dataProvider,
         'pager' => [
             'options' => [
-                'class' => 'my-8 flex rounded-lg bg-main-dark w-fit overflow-hidden',
+                'class' => 'my-8 flex rounded-lg bg-main-dark w-fit overflow-hidden mx-auto',
             ],
             'linkOptions' => [
                 'class' => 'flex justify-center items-center py-3 px-4',
