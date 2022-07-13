@@ -1,10 +1,12 @@
 <?php
+
 /**
  * @var $model AlbumArticle
  */
 
 use common\models\AlbumArticle;
 
+$this->title = "Create Album Article";
 ?>
 
 

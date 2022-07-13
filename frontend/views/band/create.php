@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $model Band
  */
@@ -9,6 +10,7 @@ use yii\web\View;
 
 $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
 
+$this->title = "Create Band";
 ?>
 
 <div class="py-14 px-20 w-full flex justify-center items-center">
@@ -48,13 +50,11 @@ $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
         ])->textInput(['maxlength' => 2048, 'class' => 'input-style', 'placeholder' => 'Url']) ?>
 
         <!-- BACKGROUND IMAGE PREVIEW -->
-        <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image"
-             class="w-full aspect-[315/175] object-cover object-center" alt="image uploaded by the user"/>
+        <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image" class="w-full aspect-[315/175] object-cover object-center" alt="image uploaded by the user" />
 
         <!-- SUBMIT BUTTON -->
         <div class="text-right">
-            <input type="submit" value="Submit"
-                   class="btn-style">
+            <input type="submit" value="Submit" class="btn-style">
         </div>
     </div>
 

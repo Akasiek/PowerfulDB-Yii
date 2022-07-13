@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $model Album
  */
@@ -8,6 +9,8 @@ use common\models\Artist;
 use common\models\Band;
 use yii\web\View;
 use kartik\form\ActiveForm;
+
+$this->title = "Create Album";
 
 $this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
 
@@ -55,22 +58,22 @@ array_walk($bands, function (&$band) {
             <select id="select-slim" name="author_id" class="input-style">
 
                 <!-- If artist is set, use it as a default value. Otherwise create a placeholder option-->
-                <?php if (isset($paramArtist)): ?>
+                <?php if (isset($paramArtist)) : ?>
                     <option value="<?= 'artist-' . $paramArtist->id ?>" selected><?= $paramArtist->name ?></option>
-                <?php elseif (isset($paramBand)): ?>
+                <?php elseif (isset($paramBand)) : ?>
                     <option value="<?= 'band-' . $paramBand->id ?>" selected><?= $paramBand->name ?></option>
-                <?php else: ?>
+                <?php else : ?>
                     <option data-placeholder="true" value="">Select an author</option>
                 <?php endif; ?>
 
                 <optgroup label="Artists">
-                    <?php foreach ($artists as $artist): ?>
+                    <?php foreach ($artists as $artist) : ?>
                         <option value="<?= $artist['id'] ?>"><?= $artist['name'] ?></option>
                     <?php endforeach; ?>
                 </optgroup>
 
                 <optgroup label="Bands">
-                    <?php foreach ($bands as $band): ?>
+                    <?php foreach ($bands as $band) : ?>
                         <option value="<?= $band['id'] ?>"><?= $band['name'] ?></option>
                     <?php endforeach; ?>
                 </optgroup>
@@ -102,8 +105,7 @@ array_walk($bands, function (&$band) {
             ]) ?>
 
             <!-- BACKGROUND IMAGE PREVIEW -->
-            <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image"
-                 class="w-44 aspect-square object-cover object-center" alt="image uploaded by the user"/>
+            <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image" class="w-44 aspect-square object-cover object-center" alt="image uploaded by the user" />
         </div>
 
         <!-- Display custom error message when album is a duplicate -->
@@ -113,8 +115,7 @@ array_walk($bands, function (&$band) {
 
         <!-- SUBMIT BUTTON -->
         <div class="text-right">
-            <input type="submit" value="Submit"
-                   class="btn-style">
+            <input type="submit" value="Submit" class="btn-style">
         </div>
     </div>
 

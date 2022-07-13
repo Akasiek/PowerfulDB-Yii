@@ -9,7 +9,7 @@
 use ruturajmaniyar\widgets\toast\ToastrFlashMessage;
 use yii\data\ActiveDataProvider;
 
-$this->title = 'My Yii Application';
+$this->title = 'Home Page';
 ?>
 <div>
     <?php echo $this->render('_jumbotron'); ?>

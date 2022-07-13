@@ -6,6 +6,7 @@
 
 use common\models\User;
 
+$this->title = $model->username . ' Profile';
 ?>
 
 <div class="py-20 px-24 flex relative">

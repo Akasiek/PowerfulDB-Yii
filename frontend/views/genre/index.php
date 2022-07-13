@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use \yii\widgets\ListView;
 
 $name = Yii::$app->request->get('name');
+
+$this->title = "Genres";
 ?>
 
 <div class="px-6 md:px-10 lg:px-14 py-8">

@@ -14,6 +14,7 @@ $this->registerJs('$.pjax.defaults.scrollTo = false;', \yii\web\View::POS_LOAD);
 
 if (!isset($model)) throw new NotFoundHttpException('Band not found');
 
+$this->title = $model->name
 ?>
 
 <?= $this->render('@frontend/views/components/_default_jumbotron', [

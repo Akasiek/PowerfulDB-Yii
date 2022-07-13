@@ -10,6 +10,7 @@
 use yii\data\ActiveDataProvider;
 use yii\widgets\ListView;
 
+$this->title = 'Search - ' . $keyword;
 ?>
 <div class="px-6 md:px-14 py-8">
     <div>

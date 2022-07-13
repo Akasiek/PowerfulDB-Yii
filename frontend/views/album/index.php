@@ -7,6 +7,7 @@
 
 use \yii\widgets\ListView;
 
+$this->title = "Albums";
 
 $release_from_year = Yii::$app->request->get('release_from_year');
 $release_to_year = Yii::$app->request->get('release_to_year');

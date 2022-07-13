@@ -5,21 +5,23 @@
  */
 
 use yii\widgets\ListView;
+
+$this->title = "Users";
 ?>
 
 
-<div class="px-14 py-8">
+<div class="px-6 md:px-10 lg:px-14 py-8">
 
-    <div class="mb-10">
-        <h1 class="font-sans text-5xl ">Users list</h1>
-        <hr class="border-t-2 border-main-accent mt-3">
+    <div class="mb-6">
+        <h1 class="section-title">Users list</h1>
+        <hr class="section-hr">
     </div>
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'pager' => [
             'options' => [
-                'class' => 'my-8 flex rounded-lg bg-main-dark w-fit overflow-hidden',
+                'class' => 'my-8 flex rounded-lg bg-main-dark w-fit overflow-hidden mx-auto',
             ],
             'linkOptions' => [
                 'class' => 'flex justify-center items-center py-3 px-4',

@@ -10,6 +10,8 @@ use common\models\Genre;
 use kartik\form\ActiveForm;
 use yii\helpers\Url;
 
+$this->title = 'Add Genre';
+
 $genres = Genre::find()->all();
 ?>
 

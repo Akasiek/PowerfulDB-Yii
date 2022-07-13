@@ -12,6 +12,8 @@ use kartik\form\ActiveForm;
 use yii\helpers\Url;
 
 $artists = Artist::find()->asArray()->all();
+
+$this->title = 'Add Member';
 ?>
 
 <div class="py-14 px-20 w-full  flex justify-center items-center">

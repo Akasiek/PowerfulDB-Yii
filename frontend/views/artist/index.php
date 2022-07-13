@@ -14,6 +14,8 @@ $birth_to_year = Yii::$app->request->get('birth_to_year');
 $death_from_year = Yii::$app->request->get('death_from_year');
 $death_to_year = Yii::$app->request->get('death_to_year');
 $genre = Yii::$app->request->get('genre');
+
+$this->title = "Artists";
 ?>
 
 <div class="px-6 lg:px-14 py-8">

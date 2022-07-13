@@ -9,9 +9,10 @@ use common\models\Track;
 use kartik\form\ActiveForm;
 use yii\helpers\Url;
 
-
 $tracks = Yii::$app->request->get('tracks');
 if (!isset($tracks)) $tracks = 10;
+
+$this->title = 'Add Tracks';
 ?>
 
 <div class="py-14 px-20 w-full flex flex-col justify-center items-center">

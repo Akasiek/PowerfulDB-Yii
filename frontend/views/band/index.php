@@ -16,6 +16,7 @@ $break_up_from_year = Yii::$app->request->get('break_up_from_year');
 $break_up_to_year = Yii::$app->request->get('break_up_to_year');
 $genre = Yii::$app->request->get('genre');
 
+$this->title = 'Bands';
 ?>
 <div class="px-6 lg:px-14 py-8">
 

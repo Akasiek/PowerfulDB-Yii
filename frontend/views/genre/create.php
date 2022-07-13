@@ -7,6 +7,7 @@
 use common\models\Genre;
 use kartik\form\ActiveForm;
 
+$this->title = 'Create Genre';
 ?>
 
 <div class="py-14 px-20 mt-24 w-full flex justify-center items-center">

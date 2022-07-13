@@ -12,6 +12,7 @@ $this->registerJs('$.pjax.defaults.scrollTo = false;', \yii\web\View::POS_LOAD);
 
 if (!isset($model)) throw new NotFoundHttpException('Artist not found');
 
+$this->title = $model->name;
 ?>
 
 

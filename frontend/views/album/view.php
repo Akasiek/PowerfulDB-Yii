@@ -10,8 +10,7 @@ use yii\web\NotFoundHttpException;
 
 if (!isset($model)) throw new NotFoundHttpException('Album not found');
 
-//$otherAlbums = $author->getAlbums()->where('id != :id', ['id' => $model->id])->limit(10)->all();
-
+$this->title = $model->title;
 ?>
 
 
