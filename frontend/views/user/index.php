@@ -13,8 +13,8 @@ $this->title = "Users";
 <div class="px-6 md:px-10 lg:px-14 py-8">
 
     <div class="mb-6">
-        <h1 class="section-title">Users list</h1>
-        <hr class="section-hr">
+        <h1 class="font-sans text-4xl md:text-5xl">Users list</h1>
+        <hr class="border-t-2 border-main-accent mt-3">
     </div>
 
     <?= ListView::widget([
