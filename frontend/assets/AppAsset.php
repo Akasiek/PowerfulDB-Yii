@@ -18,11 +18,17 @@ class AppAsset extends AssetBundle
         'css/slimselect.min.css',
     ];
     public $js = [
+        // Libraries initialization
         'js/isImage.js',
         'js/swiper.js',
         'js/slimselect.min.js',
         'js/slimselect.js',
+
+        // Basic scripts
         'js/readmore.js',
+        'js/sidebar.js',
+        'js/filter_sort_main.js',
+        'js/member_add.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

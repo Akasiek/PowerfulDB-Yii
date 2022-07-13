@@ -89,16 +89,3 @@ use yii\helpers\Html;
     </div>
 </div>
 <?= Html::endForm() ?>
-
-<script>
-    // On filters text click, toggle the filters form
-    const filtersText = document.getElementById('filters-text');
-    const filtersForm = document.getElementById('filters-form');
-    const expandIcon = document.getElementById('expand-icon');
-
-    filtersText.addEventListener('click', () => {
-        filtersForm.classList.toggle('hidden');
-        filtersForm.classList.toggle('flex');
-        expandIcon.classList.toggle('!-rotate-180');
-    });
-</script>

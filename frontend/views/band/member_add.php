@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $model BandMember
  * @var $band Band
@@ -30,10 +31,9 @@ $artists = Artist::find()->asArray()->all();
         <!-- ARTIST INPUT -->
         <div>
             <label for="author_id" class="text-2xl">Choose artist</label>
-            <select id="select-slim" name="BandMember[artist_id]"
-                    class="input-style disabled:placeholder:line-through disabled:border-gray-400">
+            <select id="select-slim" name="BandMember[artist_id]" class="input-style disabled:placeholder:line-through disabled:border-gray-400">
                 <option data-placeholder="true" value="0">Select an artist</option>
-                <?php foreach ($artists as $artist): ?>
+                <?php foreach ($artists as $artist) : ?>
                     <option value="<?= $artist['id'] ?>"><?= $artist['name'] ?></option>
                 <?php endforeach; ?>
             </select>
@@ -44,9 +44,11 @@ $artists = Artist::find()->asArray()->all();
             'labelOptions' => ['class' => 'text-2xl peer-disabled:line-through'],
             'errorOptions' => ['class' => 'text-red-500'],
         ])
-            ->textInput(['maxlength' => 255,
+            ->textInput([
+                'maxlength' => 255,
                 'class' => 'peer input-style disabled:border-gray-400 disabled:placeholder:line-through',
-                'id' => 'member-name', 'placeholder' => 'Jack White'])
+                'id' => 'member-name', 'placeholder' => 'Jack White'
+            ])
             ->label("Name (if artist wasn't found above)")
         ?>
 
@@ -77,29 +79,10 @@ $artists = Artist::find()->asArray()->all();
 
         <!-- SUBMIT BUTTON -->
         <div class="text-right">
-            <input type="submit" value="Submit"
-                   class="btn-style">
+            <input type="submit" value="Submit" class="btn-style">
         </div>
 
     </div>
 
     <?php ActiveForm::end() ?>
 </div>
-
-<script>
-    // Disable name input and clear it if artist is selected
-    (() => {
-        const artistIdSelector = document.getElementById('select-slim');
-        const nameInput = document.getElementById('member-name');
-
-        artistIdSelector.addEventListener('change', () => {
-            console.log(artistIdSelector.value);
-            if (artistIdSelector.value === '0') {
-                nameInput.disabled = false;
-            } else {
-                nameInput.disabled = true;
-                nameInput.value = '';
-            }
-        });
-    })();
-</script>
