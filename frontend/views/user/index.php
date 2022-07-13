@@ -32,7 +32,8 @@ $this->title = "Users";
             'maxButtonCount' => 6,
         ],
         'itemView' => '_user_card',
-        'layout' => '<div class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 gap-x-8 gap-y-12">{items}</div>{pager}',
+        'layout' => '<div class="grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6
+                                gap-x-4 md:gap-x-6 lg:gap-x-8 gap-y-8 md:gap-y-10 lg:gap-y-12">{items}</div>{pager}',
         'itemOptions' => [
             'tag' => false,
         ],
