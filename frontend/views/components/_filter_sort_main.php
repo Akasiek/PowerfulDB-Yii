@@ -68,7 +68,7 @@ use yii\helpers\Html;
 
                 <?php if (isset($hasGenreFilter) && $hasGenreFilter) : ?>
                     <div class="filter-container">
-                        <p>Genre:</p>
+                        <p>Genre</p>
                         <div class="filter-input-container">
 
                             <input type="text" name="genre" value="<?= $genre ?>" class="w-28 filter-input-style" placeholder="Rock">
@@ -83,7 +83,7 @@ use yii\helpers\Html;
 
     </div>
 
-    <div class="flex gap-5 ml-auto">
+    <div class="flex gap-5 md:ml-auto">
         <input type="submit" value="Filter" class="btn-style">
         <?= Html::a('Reset', ['/' . Yii::$app->controller->id], ['class' => 'btn-style']) ?>
     </div>
