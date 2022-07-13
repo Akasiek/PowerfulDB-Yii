@@ -73,7 +73,7 @@ $membersArrays = [
                         <div class="flex justify-center items-center w-full my-9">
 
                             <?php if (isset($member->artist) && $member->artist->bg_image_url !== null) : ?>
-                                <div class="h-32 ml-10 aspect-square rounded-full">
+                                <div class="h-24 md:h-28 lg:h-32 ml-0 md:ml-6 lg:ml-10 aspect-square rounded-full">
                                     <?= Html::a(
                                         Html::img(
                                             $member->artist->bg_image_url,
@@ -89,23 +89,24 @@ $membersArrays = [
                                 </div>
                             <?php endif ?>
 
-                            <div class="col-span-2 ml-10 w-full flex-1">
-                                <div class="flex items-center gap-2">
+                            <div class="ml-4 md:ml-8 lg:ml-10 flex-1">
+                                <div class="flex flex-col md:flex-row items-start md:items-center gap-0 md:gap-2">
                                     <?php if ($member->name !== null) : ?>
-                                        <h2 class="text-2xl"><?= $member->name ?></h2>
+                                        <h2 class="text-lg md:text-xl lg:text-2xl"><?= $member->name ?></h2>
                                     <?php elseif (isset($member->artist)) : ?>
                                         <?= Html::a(
                                             $member->artist->name,
                                             ['/artist/view', 'slug' => $member->artist->slug],
                                             [
-                                                'class' => 'text-2xl underline hover:text-main-accent transition-colors'
+                                                'class' => 'text-lg md:text-xl lg:text-2xl
+                                                underline hover:text-main-accent transition-colors'
                                             ]
                                         ) ?>
                                     <?php endif ?>
 
                                     <?php if ($member->join_year !== '') : ?>
-                                        <p class="mb-1 text-gray-600">|</p>
-                                        <p class="italic text-gray-400">
+                                        <p class="mb-1 text-gray-600 hidden md:block">|</p>
+                                        <p class="italic text-gray-400 text-xs md:text-sm lg:text-base">
                                             <?= $member->join_year ?>
                                             <?php
                                             if ($member->quit_year !== null) echo ' - ' . $member->quit_year;
@@ -116,8 +117,8 @@ $membersArrays = [
                                 </div>
 
                                 <?php if ($member->roles !== '') : ?>
-                                    <div class="w-80">
-                                        <p id="roles" class="text-sm mt-1 text-gray-400 two-line-truncate " title="<?= $member->roles ?>">
+                                    <div class="max-w-md">
+                                        <p id="roles" class="text-sm md:text-base mt-1 text-gray-400 two-line-truncate " title="<?= $member->roles ?>">
                                             <?= $member->roles ?>
                                         </p>
                                     </div>
