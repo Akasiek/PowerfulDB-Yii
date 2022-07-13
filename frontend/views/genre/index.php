@@ -10,7 +10,7 @@ use \yii\widgets\ListView;
 $name = Yii::$app->request->get('name');
 ?>
 
-<div class="px-14 py-8">
+<div class="px-6 md:px-10 lg:px-14 py-8">
     <?= $this->render('@frontend/views/components/_index_page_title') ?>
 
     <?= $this->render('@frontend/views/components/_filter_sort_main.php', [
@@ -39,7 +39,7 @@ $name = Yii::$app->request->get('name');
             'maxButtonCount' => 6,
         ],
         'itemView' => '_genre_view',
-        'layout' => '<div class="flex flex-col gap-14">{items}</div>{pager}',
+        'layout' => '<div class="flex flex-col gap-8 md:gap-14">{items}</div>{pager}',
         'itemOptions' => [
             'tag' => false,
         ],
