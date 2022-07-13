@@ -34,14 +34,14 @@ foreach ($arrayDataProvider->getModels() as $contrib) {
 // exit;
 ?>
 
-<div class="ml-16 flex-1">
+<div class="flex-1 lg:min-w-[26rem]">
     <div>
-        <h1 class="font-sans text-3xl">Latest contributions</h1>
+        <h1 class="font-sans text-2xl xl:text-3xl">Latest contributions</h1>
         <hr class="border-t-2 border-t-main-accent">
 
         <?php foreach ($contribs as $date => $dateContribs) : ?>
             <div class="">
-                <h4 class="italic text-lg mt-8 mb-2"><?= Yii::$app->formatter->asDate($date, 'long'); ?></h4>
+                <h4 class="italic xl:text-lg mt-8 mb-2"><?= Yii::$app->formatter->asDate($date, 'long'); ?></h4>
 
                 <div class="flex flex-col gap-6">
                     <?php foreach ($dateContribs as $contrib) : ?>
@@ -59,9 +59,8 @@ foreach ($arrayDataProvider->getModels() as $contrib) {
         echo \yii\widgets\LinkPager::widget(
             [
                 'pagination' => $arrayDataProvider->pagination,
-
                 'options' => [
-                    'class' => 'my-8 flex rounded-lg bg-main-dark w-fit overflow-hidden absolute right-0 left-0 mx-auto',
+                    'class' => 'mt-12 flex rounded-lg bg-main-dark w-fit overflow-hidden absolute right-0 left-0 mx-auto',
                 ],
                 'linkOptions' => [
                     'class' => 'flex justify-center items-center py-3 px-4',

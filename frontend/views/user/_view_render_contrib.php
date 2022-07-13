@@ -13,10 +13,10 @@ use common\models\Track;
 use yii\helpers\Html;
 ?>
 
-<div class="bg-main-dark rounded-2xl w-full p-6">
-    <div class="flex gap-4 items-center">
+<div class="bg-main-dark rounded-2xl w-full px-4 py-3 md:py-4 lg:py-3 xl:py-4 2xl:py-5 md:px-5">
+    <div class="flex gap-3 xl:gap-4 items-center text-sm xl:text-base">
         <?php if ($contrib instanceof Album) : ?>
-            <span class="material-symbols-rounded !text-xl">
+            <span class="material-symbols-rounded !text-lg xl:!text-xl">
                 album
             </span>
             <p>
@@ -41,7 +41,7 @@ use yii\helpers\Html;
                 }; ?>
             </p>
         <?php elseif ($contrib instanceof Artist) : ?>
-            <span class="material-symbols-rounded !text-xl">
+            <span class="material-symbols-rounded !text-lg xl:!text-xl">
                 mic_external_on
             </span>
             <p>
@@ -53,7 +53,7 @@ use yii\helpers\Html;
                 ) ?>
             </p>
         <?php elseif ($contrib instanceof Band) : ?>
-            <span class="material-symbols-rounded !text-xl">
+            <span class="material-symbols-rounded !text-lg xl:!text-xl">
                 groups
             </span>
             <p>
@@ -65,7 +65,7 @@ use yii\helpers\Html;
                 ) ?>
             </p>
         <?php elseif ($contrib instanceof AlbumGenre) : ?>
-            <span class="material-symbols-rounded !text-xl">
+            <span class="material-symbols-rounded !text-lg xl:!text-xl">
                 collections_bookmark
             </span>
             <p>
@@ -81,7 +81,7 @@ use yii\helpers\Html;
                 ) ?>
             </p>
         <?php elseif ($contrib instanceof Track) : ?>
-            <span class="material-symbols-rounded !text-xl">
+            <span class="material-symbols-rounded !text-lg xl:!text-xl">
                 library_music
             </span>
             <p>
@@ -97,7 +97,7 @@ use yii\helpers\Html;
                 ) ?>
             </p>
         <?php elseif ($contrib instanceof BandMember) : ?>
-            <span class="material-symbols-rounded !text-xl">
+            <span class="material-symbols-rounded !text-lg xl:!text-xl">
                 person_add
             </span>
             <p>

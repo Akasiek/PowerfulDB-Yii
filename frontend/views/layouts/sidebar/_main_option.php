@@ -15,10 +15,10 @@ use yii\helpers\Url;
     <a class="w-full md:w-fit flex items-center justify-start gap-4
     option text-main-light hover:text-main-accent transition-colors
     cursor-pointer hover:shadow-accent" href="<?php echo Url::to([$url]) ?>">
-        <span class="material-symbols-rounded !text-2xl lg:!text-3xl">
+        <span class="material-symbols-rounded !text-2xl xl:!text-3xl">
             <?= $icon ?>
         </span>
-        <div class="text-base lg:text-lg">
+        <div class="text-base xl:text-lg">
             <?= $text ?>
         </div>
     </a>

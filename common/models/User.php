@@ -260,15 +260,41 @@ class User extends ActiveRecord implements IdentityInterface
         );
         // TODO: Edits submission count
 
-        return [
+        $counts = [
             'albums' => $albumsCount,
             'artists' => $artistsCount,
             'bands' => $bandsCount,
             'genres' => $genresCount,
             'tracks' => $tracksCount,
-            'bandMembers' => $bandMembersCount,
+            'members' => $bandMembersCount,
             'articles' => $articlesCount,
+            'edits' => 0,
         ];
+
+        // Points table:
+        // Articles: 5 points
+        // Albums, Bands, Artists: 3 points
+        // Tracks, Genres, Band members, Edits: 1 point
+        $total = 0;
+        $points = 0;
+        foreach ($counts as $name => $count) {
+            $total += $count;
+            switch ($name) {
+                case 'articles':
+                    $points += $count * 5;
+                    break;
+                case 'albums' || 'bands' || 'artists':
+                    $points += $count * 3;
+                    break;
+                case 'tracks' || 'genres' || 'members' || 'edits':
+                    $points += $count * 1;
+                    break;
+            }
+        }
+        $counts['total'] = $total;
+        $counts['points'] = $points;
+
+        return $counts;
     }
 
     /** 

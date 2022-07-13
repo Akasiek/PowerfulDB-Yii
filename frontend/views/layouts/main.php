@@ -7,7 +7,7 @@
 $this->beginContent('@frontend/views/layouts/base.php');
 ?>
 
-<div class="flex flex-col relative  mt-14 md:mt-0 md:ml-56 lg:ml-72">
+<div class="flex flex-col relative  mt-14 md:mt-0 md:ml-56 lg:ml-60 xl:ml-72">
 
     <div class="fixed top-0 left-0 z-50">
         <?php echo $this->render('sidebar/sidebar'); ?>
