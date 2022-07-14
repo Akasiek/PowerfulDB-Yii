@@ -7,6 +7,7 @@ use common\models\BandArticle;
 use common\models\BandMember;
 use yii\data\ActiveDataProvider;
 use yii\data\Sort;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 class BandController extends Controller
@@ -100,6 +101,14 @@ class BandController extends Controller
     public function actionView($slug)
     {
         $model = Band::findOne(['slug' => $slug]);
+
+        // If user refreshed site, don't count view
+        if (Url::current() !== Url::previous()) {
+            $model->views += 1;
+            $model->save();
+            Url::remember();
+        }
+
         return $this->render('view', [
             'model' => $model,
         ]);

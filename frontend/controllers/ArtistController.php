@@ -7,6 +7,7 @@ use common\models\ArtistArticle;
 use yii\data\ActiveDataProvider;
 use yii\data\Sort;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 class ArtistController extends Controller
@@ -98,6 +99,14 @@ class ArtistController extends Controller
     public function actionView($slug)
     {
         $model = Artist::findOne(['slug' => $slug]);
+
+        // If user refreshed site, don't count view
+        if (Url::current() !== Url::previous()) {
+            $model->views += 1;
+            $model->save();
+            Url::remember();
+        }
+
         return $this->render('view', [
             'model' => $model,
         ]);

@@ -82,7 +82,7 @@ class SiteController extends Controller
             'query' => Artist::find()->limit(12),
             'sort' => [
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC,
+                    'views' => SORT_DESC,
                 ]
             ],
             'pagination' => false
@@ -92,7 +92,7 @@ class SiteController extends Controller
             'query' => Band::find()->limit(12),
             'sort' => [
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC,
+                    'views' => SORT_DESC,
                 ]
             ],
             'pagination' => false
@@ -102,7 +102,7 @@ class SiteController extends Controller
             'query' => Album::find()->limit(20),
             'sort' => [
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC,
+                    'views' => SORT_DESC,
                 ]
             ],
             'pagination' => false

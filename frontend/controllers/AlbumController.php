@@ -8,6 +8,7 @@ use common\models\AlbumGenre;
 use common\models\Track;
 use yii\data\ActiveDataProvider;
 use yii\data\Sort;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 class AlbumController extends Controller
@@ -86,6 +87,14 @@ class AlbumController extends Controller
     public function actionView($slug)
     {
         $model = Album::find()->where(['slug' => $slug])->with('artist', 'band')->one();
+
+        // If user refreshed site, don't count view
+        if (Url::current() !== Url::previous()) {
+            $model->views += 1;
+            $model->save();
+            Url::remember();
+        }
+
         return $this->render('view', [
             'model' => $model,
         ]);
