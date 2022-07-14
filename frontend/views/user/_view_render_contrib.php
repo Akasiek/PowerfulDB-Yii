@@ -20,7 +20,7 @@ use yii\helpers\Html;
                 album
             </span>
             <p>
-                <?= $model->username . ' added album called ' ?>
+                <?= $model->username . ' created album called ' ?>
                 <?= Html::a(
                     $contrib->title,
                     ['album/view', 'slug' => $contrib->slug],
@@ -45,7 +45,7 @@ use yii\helpers\Html;
                 mic_external_on
             </span>
             <p>
-                <?= $model->username . ' added artist called ' ?>
+                <?= $model->username . ' created artist called ' ?>
                 <?= Html::a(
                     $contrib->name,
                     ['artist/view', 'slug' => $contrib->slug],
@@ -57,7 +57,7 @@ use yii\helpers\Html;
                 groups
             </span>
             <p>
-                <?= $model->username . ' added band called ' ?>
+                <?= $model->username . ' created band called ' ?>
                 <?= Html::a(
                     $contrib->name,
                     ['band/view', 'slug' => $contrib->slug],
