@@ -105,21 +105,19 @@ use yii\widgets\Pjax;
         </div>
 
         <!-- PROFILE / LOG IN -->
-        <div class="text-secondary-dark bg-main-accent block md:absolute w-full max-w-sm bottom-0 right-0 left-0 px-4 py-3">
+        <div class="text-secondary-dark bg-main-accent block md:absolute w-full max-w-sm bottom-0 right-0 left-0 px-3 md:px-4 py-3">
             <?php
             if (Yii::$app->user->isGuest) : ?>
-                <a href="<?= Url::to('/site/login') ?>" class="flex items-center justify-start gap-4">
-                    <p class="material-symbols-outlined ">
+                <a href="<?= Url::to('/site/login') ?>" class="flex items-center justify-start gap-3 md:gap-4">
+                    <p class="material-symbols-outlined !text-xl md:!text-2xl">
                         login
                     </p>
-                    <p class="font-bold text-lg">
+                    <p class="font-bold md:text-lg">
                         Log in
                     </p>
                 </a>
             <?php else : ?>
                 <div class="flex justify-between">
-
-
                     <div class="flex items-center gap-4">
                         <div class="aspect-square flex-none">
                             <?= Html::a(
