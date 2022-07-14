@@ -304,22 +304,22 @@ class User extends ActiveRecord implements IdentityInterface
     {
         // Get all contribitions of a user with date column
         $albumsContrib = Album::find()->where(['created_by' => $this->id])->select(
-            'album.*, date(to_timestamp(album.created_at)) as created_date'
+            'album.*, album.created_at as ct, date(to_timestamp(album.created_at)) as created_date'
         )->with('artist', 'band')->all();
         $artistsContrib = Artist::find()->where(['created_by' => $this->id])->select(
-            'artist.*, date(to_timestamp(artist.created_at)) as created_date'
+            'artist.*, artist.created_at as ct, date(to_timestamp(artist.created_at)) as created_date'
         )->all();
         $bandsContrib = Band::find()->where(['created_by' => $this->id])->select(
-            'band.*, date(to_timestamp(band.created_at)) as created_date'
+            'band.*, band.created_at as ct, date(to_timestamp(band.created_at)) as created_date'
         )->all();
         $genresContrib = AlbumGenre::find()->where(['created_by' => $this->id])->select(
-            'album_id, count(*) as genre_count, date(to_timestamp(album_genre.created_at)) as created_date'
+            'album_id, created_at as ct, count(*) as genre_count, date(to_timestamp(album_genre.created_at)) as created_date'
         )->with('album', 'genre')->groupBy(['created_at', 'album_id'])->all();
         $trackContrib = Track::find()->where(['created_by' => $this->id])->select(
-            'album_id, count(*) as track_count, date(to_timestamp(track.created_at)) as created_date'
+            'album_id, created_at as ct, count(*) as track_count, date(to_timestamp(track.created_at)) as created_date'
         )->with('album')->groupBy(['created_at', 'album_id'])->all();
         $bandMemberContrib = BandMember::find()->where(['created_by' => $this->id])->select(
-            'band_id, count(*) as member_count, date(to_timestamp(band_member.created_at)) as created_date'
+            'band_id, max(created_at) as ct, count(*) as member_count, date(to_timestamp(band_member.created_at)) as created_date'
         )->with('band')->groupBy(['created_date', 'band_id'])->all();
 
         $contribs = [];
@@ -330,12 +330,18 @@ class User extends ActiveRecord implements IdentityInterface
         foreach ($trackContrib as $track) $contribs[] = $track;
         foreach ($bandMemberContrib as $bandMember) $contribs[] = $bandMember;
 
+
         // TODO: Array of edit contribs
 
         // Sort contribs array by date in descending order
         usort($contribs, function ($a, $b) {
-            return $b->created_date <=> $a->created_date;
+            return $b->ct <=> $a->ct;
         });
+
+        // Make sure that bandMemberContrib is also sorted but by created_date
+        // usort($contribs, function ($a, $b) {
+        //     return $b->created_date <=> $a->created_date;
+        // });
 
         $arrayDataProvider = new ArrayDataProvider([
             'allModels' => $contribs,

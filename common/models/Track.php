@@ -23,6 +23,7 @@ use yii\behaviors\SluggableBehavior;
  */
 class Track extends \yii\db\ActiveRecord
 {
+    public $ct = '';
     public $created_date = '';
     public $updated_date = '';
     public $track_count = '';

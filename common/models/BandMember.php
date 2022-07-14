@@ -24,6 +24,7 @@ use Yii;
  */
 class BandMember extends \yii\db\ActiveRecord
 {
+    public $ct = '';
     public $created_date = '';
     public $updated_date = '';
     public $member_count = '';
