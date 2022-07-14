@@ -53,10 +53,10 @@ use yii\widgets\Pjax;
 
         </form>
 
-        <div class="gap-5 md:gap-3 lg:gap-4 xl:gap-6 flex flex-col md:m-0 max-w-sm w-full md:px-0">
+        <div class="gap-4 md:gap-3 lg:gap-4 xl:gap-6 flex flex-col md:m-0 max-w-sm w-full md:px-0">
 
             <!-- MAIN OPTIONS -->
-            <div class="grid w-full gap-5 md:gap-2 lg:gap-3 xl:gap-4">
+            <div class="grid w-full gap-4 md:gap-2 lg:gap-3 xl:gap-4">
                 <?= $this->render('_main_option', [
                     'text' => 'Home Page',
                     'icon' => 'home',
