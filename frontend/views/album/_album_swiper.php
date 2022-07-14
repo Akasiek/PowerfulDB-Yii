@@ -9,7 +9,7 @@ use yii\data\ActiveDataProvider;
 
 ?>
 
-<div class="swiper album-swiper w-full relative">
+<div class="swiper <?= $location === "view" ? "album-view-swiper" : "album-swiper" ?>  w-full relative">
     <div class="swiper-wrapper">
         <?php foreach ($dataProvider->getModels() as $model) : ?>
             <div class="swiper-slide select-none">

@@ -31,6 +31,7 @@ $dataProvider = new \yii\data\ArrayDataProvider([
         <hr class="section-hr">
         <?= $this->render('_album_swiper', [
             'dataProvider' => $dataProvider,
+            'location' => 'view',
         ]); ?>
     </div>
 <?php endif; ?>

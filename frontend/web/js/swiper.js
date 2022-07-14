@@ -37,7 +37,7 @@ const swiper = new Swiper(".default-swiper", {
     },
 });
 
-const albumSwiper = new Swiper(".album-swiper", {
+const albumViewSwiper = new Swiper(".album-view-swiper", {
     // Default parameters
     slidesPerView: 1.9,
     spaceBetween: 10,
@@ -79,6 +79,45 @@ const albumSwiper = new Swiper(".album-swiper", {
         },
         1600: {
             slidesPerView: 4.6,
+            spaceBetween: 40,
+        },
+    },
+});
+
+const albumSwiper = new Swiper(".album-swiper", {
+    slidesPerView: 1.9,
+    spaceBetween: 10,
+    grabCursor: true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    autoplay: {
+        delay: 7500,
+    },
+    breakpoints: {
+        480: {
+            slidesPerView: 2.1,
+        },
+        640: {
+            slidesPerView: 3.3,
+        },
+        768: {
+            slidesPerView: 2.6,
+        },
+        920: {
+            slidesPerView: 3.1,
+        },
+        1080: {
+            slidesPerView: 3.5,
+            spaceBetween: 20,
+        },
+        1280: {
+            slidesPerView: 5.3,
+            spaceBetween: 30,
+        },
+        1600: {
+            slidesPerView: 6.6,
             spaceBetween: 40,
         },
     },
