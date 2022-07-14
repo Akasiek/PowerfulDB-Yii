@@ -4,6 +4,7 @@
  * @var yii\web\View $this
  * @var $artists ActiveDataProvider
  * @var $bands ActiveDataProvider
+ * @var $albums ActiveDataProvider
  */
 
 use ruturajmaniyar\widgets\toast\ToastrFlashMessage;
@@ -12,7 +13,7 @@ use yii\data\ActiveDataProvider;
 $this->title = 'Home Page';
 ?>
 <div>
-    <?php echo $this->render('_jumbotron'); ?>
+    <?= $this->render('_jumbotron'); ?>
 
     <?php if (Yii::$app->session->hasFlash('success')) : ?>
         <?= ToastrFlashMessage::widget([
@@ -33,26 +34,37 @@ $this->title = 'Home Page';
     <div class="py-8 px-6 md:px-8 lg:px-12 flex flex-col gap-20">
 
         <div>
-            <h2 class="font-sans text-3xl">Popular artists</h2>
+            <h2 class="font-sans text-2xl md:text-3xl">Popular artists</h2>
 
-            <hr class="border-t-2 border-main-accent max-w-sm mt-2 mb-8">
+            <hr class="section-hr">
 
-            <?php echo $this->render('@frontend/views/components/_default_swiper', [
+            <?= $this->render('@frontend/views/components/_default_swiper', [
                 'dataProvider' => $artists,
             ]); ?>
         </div>
 
         <div>
-            <h2 class="font-sans text-3xl">Popular bands</h2>
+            <h2 class="font-sans text-2xl md:text-3xl">Popular bands</h2>
 
-            <hr class="border-t-2 border-main-accent max-w-sm mt-2 mb-8">
+            <hr class="section-hr">
 
-            <?php echo $this->render('@frontend/views/components/_default_swiper', [
+            <?= $this->render('@frontend/views/components/_default_swiper', [
                 'dataProvider' => $bands,
             ]); ?>
         </div>
 
-        <?php echo $this->render('on_this_day/_on_this_day'); ?>
+        <div>
+            <h2 class="font-bold text-2xl md:text-3xl">Popular albums</h2>
+
+            <hr class="section-hr">
+
+            <?= $this->render('@frontend/views/album/_album_swiper', [
+                'dataProvider' => $albums,
+                'location' => 'index',
+            ]) ?>
+        </div>
+
+        <?= $this->render('on_this_day/_on_this_day'); ?>
 
     </div>
 </div>

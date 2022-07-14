@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Album;
 use common\models\Artist;
 use common\models\Band;
 use frontend\models\ResendVerificationEmailForm;
@@ -96,9 +97,21 @@ class SiteController extends Controller
             ],
             'pagination' => false
         ]);
+
+        $albums = new ActiveDataProvider([
+            'query' => Album::find()->limit(20),
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+            'pagination' => false
+        ]);
+
         return $this->render('index/index', [
             'artists' => $artists,
             'bands' => $bands,
+            'albums' => $albums,
         ]);
     }
 
