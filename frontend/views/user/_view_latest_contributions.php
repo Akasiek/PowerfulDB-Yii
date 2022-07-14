@@ -16,22 +16,9 @@ $arrayDataProvider = $model->getContributions();
 // Make array of all contributions using date as key.
 // This way all contributions can be grouped in according arrays.
 $contribs = [];
-
 foreach ($arrayDataProvider->getModels() as $contrib) {
     $contribs[$contrib->created_date][] = $contrib;
 }
-
-
-
-// echo '<pre>';
-// print_r($contribs);
-// foreach ($contrib as $date => $dateContrib) {
-// foreach ($dateContrib as $value) {
-// echo $date . ': ' . ($value instanceof Album ? $value->title : $value->name)  . '<br>';
-// }
-// }
-// echo '</pre>';
-// exit;
 ?>
 
 <div class="flex-1 lg:min-w-[26rem]">
