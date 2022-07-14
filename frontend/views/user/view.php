@@ -5,6 +5,9 @@
  */
 
 use common\models\User;
+use yii\web\NotFoundHttpException;
+
+if (!isset($model)) throw new NotFoundHttpException('User not found');
 
 $this->title = $model->username . ' Profile';
 ?>
