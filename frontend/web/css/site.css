@@ -23,6 +23,10 @@
         @apply scale-x-100 origin-bottom-left;
     }
 
+    .form-title {
+        @apply text-3xl md:text-4xl xl:text-5xl font-sans;
+    }
+
     .input-style {
         @apply w-full rounded-3xl bg-transparent border-2 border-main-accent px-3 md:px-4 py-1 md:py-2 my-1 md:my-2
         focus:outline-none focus:shadow-accent focus-visible:outline-none transition duration-150

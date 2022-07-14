@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $model AlbumArticle | BandArticle
  */
@@ -17,7 +18,7 @@ use kartik\form\ActiveForm;
 
 ]) ?>
 
-<h1 class="text-5xl font-sans mb-6">Add an article</h1>
+<h1 class="form-title mb-4 mb:mb-6">Add an article</h1>
 
 <div class="flex flex-col gap-10 w-full">
 
@@ -34,8 +35,7 @@ use kartik\form\ActiveForm;
 
     <!-- SUBMIT BUTTON -->
     <div class="flex justify-end ">
-        <input type="submit" value="Submit"
-               class="btn-style">
+        <input type="submit" value="Submit" class="btn-style">
     </div>
 
 
