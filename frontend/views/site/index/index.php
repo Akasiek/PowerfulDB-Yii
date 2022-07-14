@@ -54,7 +54,7 @@ $this->title = 'Home Page';
         </div>
 
         <div>
-            <h2 class="font-bold text-2xl md:text-3xl">Popular albums</h2>
+            <h2 class="font-sans text-2xl md:text-3xl">Popular albums</h2>
 
             <hr class="section-hr">
 
