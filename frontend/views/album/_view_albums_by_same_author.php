@@ -25,10 +25,12 @@ $dataProvider = new \yii\data\ArrayDataProvider([
 ]);
 ?>
 
-<div>
-    <h1 class="section-title">Albums by the same author</h1>
-    <hr class="section-hr">
-    <?= $this->render('_album_swiper', [
-        'dataProvider' => $dataProvider,
-    ]); ?>
-</div>
+<?php if ($dataProvider->count > 0) : ?>
+    <div>
+        <h1 class="section-title">Albums by the same author</h1>
+        <hr class="section-hr">
+        <?= $this->render('_album_swiper', [
+            'dataProvider' => $dataProvider,
+        ]); ?>
+    </div>
+<?php endif; ?>
