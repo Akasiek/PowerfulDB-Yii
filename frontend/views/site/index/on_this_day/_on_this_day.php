@@ -21,9 +21,9 @@ function ordinal($number)
 
 <div>
 
-    <h2 class="font-sans text-3xl">On this day...</h2>
+    <h2 class="font-sans text-2xl md:text-3xl">On this day...</h2>
 
-    <hr class="border-t-2 border-main-accent max-w-sm mt-2 mb-6">
+    <hr class="section-hr">
 
     <?php if (empty($birthdays) && empty($death_anniversaries) && empty($album_anniversaries)) : ?>
 
