@@ -15,17 +15,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <div class="flex flex-col justify-center items-center h-screen w-screen">
-    <div class="px-14 py-10 bg-main-dark rounded-3xl w-[30rem]">
+    <div class="px-6 md:px-10 lg:px-14 py-6 md:py-10 bg-main-dark rounded-3xl max-w-lg m-4">
 
-        <h1 class="font-sans text-3xl mb-1"><?= Html::encode($this->title) ?></h1>
+        <h1 class="font-sans text-2xl md:text-3xl mb-1"><?= Html::encode($this->title) ?></h1>
 
-        <p>Please fill out the following fields to signup:</p>
+        <p class="text-sm md:text-base">Please fill out the following fields to signup:</p>
 
         <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-        <div class="flex flex-col gap-6 mt-6">
+        <div class="flex flex-col gap-3 sm:gap-4 md:gap-6 mt-3 sm:mt-4 md:mt-6 text-sm sm:text-base md:text-lg ">
 
             <?= $form->field($model, 'username', [
-                'labelOptions' => ['class' => 'text-lg'],
                 'errorOptions' => ['class' => 'text-red-500'],
             ])->textInput([
                 'autofocus' => true,
@@ -34,26 +33,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div>
                 <?= $form->field($model, 'email', [
-                    'labelOptions' => ['class' => 'text-lg'],
                     'errorOptions' => ['class' => 'text-red-500'],
                 ])->input('email', [
                     'class' => 'input-style',
                 ]) ?>
 
-                <p class="text-gray-400 text-sm">
+                <p class="text-gray-400 text-xs md:text-sm">
                     Please use real email address. We will send verification mail to it.
                 </p>
             </div>
 
             <?= $form->field($model, 'password', [
-                'labelOptions' => ['class' => 'text-lg'],
                 'errorOptions' => ['class' => 'text-red-500'],
             ])->passwordInput([
                 'class' => 'input-style',
             ]) ?>
 
             <div class="flex justify-end">
-                <?= Html::submitButton('Login', [
+                <?= Html::submitButton('Signup', [
                     'class' => 'btn-style',
                     'name' => 'login-button'
                 ]) ?>
@@ -64,4 +61,3 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
 </div>
-
