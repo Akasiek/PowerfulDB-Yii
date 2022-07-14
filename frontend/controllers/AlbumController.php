@@ -38,6 +38,9 @@ class AlbumController extends Controller
     {
         $sort = new Sort([
             'attributes' => [
+                'popularity' => [
+                    'desc' => ['album.views' => SORT_DESC],
+                ],
                 'title' => [
                     'asc' => ['album.title' => SORT_ASC],
                     'desc' => ['album.title' => SORT_DESC],

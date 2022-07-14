@@ -36,6 +36,9 @@ class BandController extends Controller
     {
         $sort = new Sort([
             'attributes' => [
+                'popularity' => [
+                    'desc' => ['band.views' => SORT_DESC],
+                ],
                 'name' => [
                     'asc' => ['band.name' => SORT_ASC],
                     'desc' => ['band.name' => SORT_DESC],

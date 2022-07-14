@@ -40,6 +40,7 @@ $this->title = 'Bands';
         ],
         'sort' => $sort,
         'sortOptions' => [
+            '-popularity' => 'By popularity',
             'name' => 'Name Ascending',
             '-name' => 'Name Descending',
             'founding_year' => 'Created Last',

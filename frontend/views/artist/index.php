@@ -39,6 +39,7 @@ $this->title = "Artists";
         ],
         'sort' => $sort,
         'sortOptions' => [
+            '-popularity' => 'By popularity',
             'name' => 'Name Ascending',
             '-name' => 'Name Descending',
             'birth_date' => 'Oldest First',

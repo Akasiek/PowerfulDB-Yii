@@ -32,6 +32,9 @@ class ArtistController extends Controller
     {
         $sort = new Sort([
             'attributes' => [
+                'popularity' => [
+                    'desc' => ['artist.views' => SORT_DESC],
+                ],
                 'name' => [
                     'asc' => ['artist.name' => SORT_ASC],
                     'desc' => ['artist.name' => SORT_DESC],

@@ -31,6 +31,7 @@ $genre = Yii::$app->request->get('genre');
         ],
         'sort' => $sort,
         'sortOptions' => [
+            '-popularity' => 'By popularity',
             'title' => 'Title Ascending',
             '-title' => 'Title Descending',
             'release_date' => 'Oldest First',
