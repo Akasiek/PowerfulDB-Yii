@@ -34,7 +34,7 @@ use yii\helpers\Html;
         <?php endif; ?>
 
         <div class="flex flex-col items-center gap-3">
-            <p class="md:hidden flex items-center gap-2 btn-style" id="filters-text">
+            <p class="md:hidden flex items-center gap-2 btn-style !py-0" id="filters-text">
                 Filters menu
                 <span class="material-symbols-outlined !text-xl transition-transform" id="expand-icon">
                     expand_more
