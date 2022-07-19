@@ -126,6 +126,9 @@ class AlbumController extends Controller
                 $model->band_id = $author[1];
             }
 
+            // Set type of album
+            $model->type = \Yii::$app->request->post('type');
+
             // Check if the album already exists
             $duplicate = Album::find()
                 ->where(
