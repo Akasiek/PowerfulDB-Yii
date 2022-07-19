@@ -10,18 +10,23 @@ use yii\behaviors\SluggableBehavior;
  *
  * @property int $id
  * @property string $title
- * @property string|null $slug
+ * @property string $slug
  * @property int|null $band_id
  * @property int|null $artist_id
  * @property string|null $artwork_url
- * @property string|null $release_date
  * @property int|null $created_at
  * @property int|null $created_by
  * @property int|null $updated_at
  * @property int|null $updated_by
+ * @property string|null $release_date
+ * @property int|null $views
+ * @property string|null $type
  *
+ * @property AlbumArticle[] $albumArticles 
+ * @property AlbumGenre[] $albumGenres 
  * @property Artist $artist
  * @property Band $band
+ * @property Track[] $tracks 
  */
 class Album extends \yii\db\ActiveRecord
 {
@@ -58,10 +63,11 @@ class Album extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'slug'], 'required'],
-            [['band_id', 'artist_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['title', 'slug'], 'string', 'max' => 255],
-            [['artwork_url'], 'string', 'max' => 2048],
+            [['band_id', 'artist_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'views'], 'default', 'value' => null],
+            [['band_id', 'artist_id', 'created_at', 'created_by', 'updated_at', 'updated_by', 'views'], 'integer'],
             [['release_date'], 'safe'],
+            [['title', 'slug', 'type'], 'string', 'max' => 255],
+            [['artwork_url'], 'string', 'max' => 2048],
             [['artist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Artist::className(), 'targetAttribute' => ['artist_id' => 'id']],
             [['band_id'], 'exist', 'skipOnError' => true, 'targetClass' => Band::className(), 'targetAttribute' => ['band_id' => 'id']],
         ];
@@ -79,11 +85,13 @@ class Album extends \yii\db\ActiveRecord
             'band_id' => 'Band ID',
             'artist_id' => 'Artist ID',
             'artwork_url' => 'Artwork Url',
-            'release_date' => 'Release Date',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
+            'release_date' => 'Release Date',
+            'views' => 'Views',
+            'type' => 'Type',
         ];
     }
 

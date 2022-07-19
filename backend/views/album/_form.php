@@ -29,6 +29,17 @@ $bandMap = \yii\helpers\ArrayHelper::map($bandModels, 'id', 'name');
         'prompt' => 'Select an artist',
     ]) ?>
 
+    <?= $form->field($model, 'type')->dropDownList([
+        'LP' => 'LP',
+        'EP' => 'EP',
+        'Single' => 'Single',
+        'Compilation' => 'Compilation',
+        'Live Album' => 'Live Album',
+        'Other' => 'Other',
+    ], [
+        'prompt' => 'Select type of album',
+    ]) ?>
+
     <?= $form->field($model, 'release_date')->input('date') ?>
 
     <?= $form->field($model, 'artwork_url')->textInput(['maxlength' => true]) ?>
