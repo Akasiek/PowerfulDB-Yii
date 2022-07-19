@@ -43,6 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
             //'created_by',
             //'updated_at',
             //'updated_by',
+            //'views',
+            'type',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Album $model, $key, $index, $column) {
