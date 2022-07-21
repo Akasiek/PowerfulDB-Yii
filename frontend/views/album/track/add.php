@@ -6,13 +6,29 @@
 
 use common\models\Album;
 use common\models\Track;
+use common\models\Artist;
+use common\models\Band;
 use kartik\form\ActiveForm;
-use yii\helpers\Url;
+use yii\web\View;
+
+$this->title = 'Add Tracks';
+
 
 $tracks = Yii::$app->request->get('tracks');
 if (!isset($tracks)) $tracks = 10;
 
-$this->title = 'Add Tracks';
+// Create an array of options for dropdown list for selecting artists and bands
+$artists = Artist::find()
+    ->select(['id', 'name'])->orderBy('name')->asArray()->all();
+$bands = Band::find()
+    ->select(['id', 'name'])->orderBy('name')->asArray()->all();
+
+array_walk($artists, function (&$artist) {
+    $artist['id'] = 'artist-' . $artist['id'];
+});
+array_walk($bands, function (&$band) {
+    $band['id'] = 'band-' . $band['id'];
+});
 ?>
 
 <div class="py-10 lg:py-14 px-6 md:px-10 lg:px-20 w-full flex flex-col justify-center items-center">
@@ -34,7 +50,29 @@ $this->title = 'Add Tracks';
                 <div>
                     <div class="flex gap-2 sm:gap-4 items-center">
                         <input require name="tracks[<?= $i ?>]" class="input-style py-1 w-full" placeholder="<?= $i ?>.">
-                        <input require name="tracks-duration[<?= $i ?>]" class="input-style py-1 w-48 md:w-56" type="time" step="1" value="00:00:00">
+                        <input require name="tracks_duration[<?= $i ?>]" class="input-style py-1 w-48 md:w-56" type="time" step="1" value="00:00:00">
+                    </div>
+                    <div>
+                        <button type="button" class="hover:text-main-accent hover:underline cursor-pointer featured-btn">
+                            Add featured authors +
+                        </button>
+                        <div class="hidden mb-6 featured-select">
+                            <select name="featured_author_id[<?= $i ?>]" class="input-style slim-select" multiple>
+                                <option data-placeholder="true" value="">Select an author</option>
+
+                                <optgroup label="Artists">
+                                    <?php foreach ($artists as $artist) : ?>
+                                        <option value="<?= $artist['id'] ?>"><?= $artist['name'] ?></option>
+                                    <?php endforeach; ?>
+                                </optgroup>
+
+                                <optgroup label="Bands">
+                                    <?php foreach ($bands as $band) : ?>
+                                        <option value="<?= $band['id'] ?>"><?= $band['name'] ?></option>
+                                    <?php endforeach; ?>
+                                </optgroup>
+                            </select>
+                        </div>
                     </div>
                 </div>
 

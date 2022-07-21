@@ -5,31 +5,38 @@
  */
 
 use common\models\Album;
+use common\models\Artist;
+use common\models\Band;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
 // Fetch tracks of this album from Track table
-$tracks = $model->getTracks()->all();
+$tracks = $model->getTracks()->with(['featuredAuthors'])->all();
 
 // Calculate full length of an album
-$length = ['hours' => 0, 'minutes' => 0, 'seconds' => 0];
-foreach ($tracks as $track) {
-    $d = explode(':', $track->duration);
-    $length['hours'] += $d[0];
-    $length['minutes'] += $d[1];
-    $length['seconds'] += $d[2];
-}
-$length['minutes'] += intdiv($length['seconds'], 60);
-$length['seconds'] = $length['seconds'] % 60;
-$length['hours'] += intdiv($length['minutes'], 60);
-$length['minutes'] = $length['minutes'] % 60;
+function fullLength($tracks)
+{
+    $length = ['hours' => 0, 'minutes' => 0, 'seconds' => 0];
+    foreach ($tracks as $track) {
+        $d = explode(':', $track->duration);
+        $length['hours'] += $d[0];
+        $length['minutes'] += $d[1];
+        $length['seconds'] += $d[2];
+    }
+    $length['minutes'] += intdiv($length['seconds'], 60);
+    $length['seconds'] = $length['seconds'] % 60;
+    $length['hours'] += intdiv($length['minutes'], 60);
+    $length['minutes'] = $length['minutes'] % 60;
 
-$fullLength = '';
-if ($length['hours'] > 0) {
-    $fullLength .= $length['hours'] . ($length['hours'] === 1 ? ' hour ' : ' hours ');
+    $fullLength = '';
+    if ($length['hours'] > 0) {
+        $fullLength .= $length['hours'] . ($length['hours'] === 1 ? ' hour ' : ' hours ');
+    }
+    $fullLength .= $length['minutes'] . ($length['minutes'] === 1 ? ' minute ' : ' minutes ');
+    $fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' seconds');
+    return $fullLength;
 }
-$fullLength .= $length['minutes'] . ($length['minutes'] === 1 ? ' minute ' : ' minutes ');
-$fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' seconds');
+$length = fullLength($tracks);
 ?>
 
 
@@ -46,6 +53,24 @@ $fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' s
                     <p>
                         <?= $track->position . '. ' ?>
                         <span class="font-bold"><?= $track->title ?></span>
+                        <span class="text-gray-400">
+                            <?php if (!empty($track->featuredAuthors)) : ?>
+                                feat.
+                                <?php foreach ($track->featuredAuthors as $index => $author) {
+                                    // Find artist or band
+                                    if ($author->artist_id) $authorModel = Artist::findOne($author->artist_id);
+                                    else $authorModel = Band::findOne($author->band_id);
+                                    // Print author name as a link to their page
+                                    echo Html::a(
+                                        $authorModel->name,
+                                        Url::to(['/' . ($authorModel instanceof Artist ? 'artist' : 'band') . '/view', 'slug' => $authorModel->slug]),
+                                        ['class' => 'hover:underline']
+                                    );
+                                    // Put comma after author name except last author
+                                    if ($index < count($track->featuredAuthors) - 1) echo ', ';
+                                } ?>
+                        </span>
+                    <?php endif; ?>
                     </p>
                     <p class="w-auto italic text-gray-300">
                         <?php
@@ -61,7 +86,7 @@ $fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' s
             <?php endforeach; ?>
         </div>
         <p class="italic text-gray-400 text-sm md:text-base">
-            Album's full length: <span class="text-main-light"><?= $fullLength ?></span>
+            Album's full length: <span class="text-main-light"><?= $length ?></span>
         </p>
 
     <?php else : ?>

@@ -29,6 +29,7 @@ class AppAsset extends AssetBundle
         'js/sidebar.js',
         'js/filter_sort_main.js',
         'js/member_add.js',
+        'js/track_add.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

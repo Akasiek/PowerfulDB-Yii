@@ -32,6 +32,8 @@ $this->title = 'My Yii Application';
             Panel</a>
         <a href="<?php echo \yii\helpers\Url::to('/backend/track') ?>" class="btn btn-primary mx-0.5 my-1">Album Track
             Panel</a>
+        <a href="<?php echo \yii\helpers\Url::to('/backend/featured-author') ?>" class="btn btn-primary mx-0.5 my-1">Track Featured Author
+            Panel</a>
     </div>
     <div class="col d-flex flex-column">
         <a href="<?php echo \yii\helpers\Url::to('/backend/genre') ?>" class="btn btn-primary mx-0.5 my-1">Genre Panel</a>

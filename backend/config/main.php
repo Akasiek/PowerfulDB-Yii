@@ -47,6 +47,7 @@ return [
                 '/backend/album-article' => '/album-article/',
                 '/backend/album-genre' => '/album-genre/',
                 '/backend/track' => '/track/',
+                '/backend/featured-author' => '/featured-author',
 
                 '/backend/band' => '/band/',
                 '/backend/band-article' => '/band-article/',

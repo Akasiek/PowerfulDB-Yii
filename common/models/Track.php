@@ -20,6 +20,7 @@ use yii\behaviors\SluggableBehavior;
  * @property int|null $updated_by
  *
  * @property Album $album
+ * @property FeaturedAuthor[] $featuredAuthors 
  */
 class Track extends \yii\db\ActiveRecord
 {
@@ -92,6 +93,16 @@ class Track extends \yii\db\ActiveRecord
     public function getAlbum()
     {
         return $this->hasOne(Album::className(), ['id' => 'album_id']);
+    }
+
+    /**
+     * Gets query for [[FeaturedAuthors]]. 
+     * 
+     * @return \yii\db\ActiveQuery|\common\models\query\FeaturedAuthorQuery 
+     */
+    public function getFeaturedAuthors()
+    {
+        return $this->hasMany(FeaturedAuthor::className(), ['track_id' => 'id']);
     }
 
     /**
