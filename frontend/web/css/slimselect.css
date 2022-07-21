@@ -6,7 +6,7 @@
 .ss-main .ss-single-selected {
     background-color: transparent !important;
     border: 0 !important;
-    padding-block: 0.75rem !important;
+    padding-block: 0.6rem !important;
     padding-inline: 1rem !important;
     gap: 0.5rem;
     height: auto !important;
@@ -79,7 +79,7 @@
 
 /* Multi select */
 .ss-multi-selected {
-    padding-block: 0.75rem !important;
+    padding-block: 0.6rem !important;
     padding-inline: 1rem !important;
     background-color: transparent !important;
     border: 0 !important;
@@ -131,5 +131,10 @@
         padding-block: 0.4rem !important;
         padding-inline: 0.8rem !important;
         font-size: 0.9rem;
+    }
+    .ss-main .ss-multi-selected {
+        padding-block: 0.5rem !important;
+        padding-inline: 0.8rem !important;
+        font-size: 1rem;
     }
 }

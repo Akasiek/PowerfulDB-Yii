@@ -11,6 +11,10 @@
 
 use yii\data\Sort;
 use yii\helpers\Html;
+use common\models\Album;
+
+$album = new Album();
+$types = Yii::$app->request->get('type') ?? [];
 ?>
 
 <?= Html::beginForm(['/' . Yii::$app->controller->id . '/'], 'get'); ?>
@@ -40,7 +44,18 @@ use yii\helpers\Html;
                     expand_more
                 </span>
             </p>
-            <div class="hidden md:flex flex-col md:flex-row gap-4 flex-wrap justify-start items-start" id="filters-form">
+            <div class="hidden md:flex flex-col md:flex-row gap-4 flex-wrap justify-start md:items-center" id="filters-form">
+                <?php if (isset($hasTypeFilter) && $hasTypeFilter) : ?>
+                    <div class="filter-container gap-y-0">
+                        <p>Album type</p>
+
+                        <select name="type[]" id="select-slim-1" class="input-style !w-44 md:!w-40 lg:!w-48 xl:!w-56 !py-0" multiple>
+                            <?php foreach ($album->types as $type) : ?>
+                                <option value="<?= $type ?>" <?= in_array($type, $types) ? "selected" : "" ?>><?= $type ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                <?php endif; ?>
 
                 <?php if (isset($yearFilters)) foreach ($yearFilters as $name => $filter) : ?>
                     <div class="filter-container">
@@ -76,7 +91,6 @@ use yii\helpers\Html;
                         </div>
                     </div>
                 <?php endif; ?>
-
             </div>
         </div>
 

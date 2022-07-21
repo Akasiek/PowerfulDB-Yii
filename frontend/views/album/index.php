@@ -20,6 +20,7 @@ $genre = Yii::$app->request->get('genre');
 
     <?= $this->render('@frontend/views/components/_filter_sort_main.php', [
         'hasGenreFilter' => true,
+        'hasTypeFilter' => true,
         'genre' => $genre,
         'yearFilters' => [
             'release' => [

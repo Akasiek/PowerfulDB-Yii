@@ -73,6 +73,9 @@ class AlbumController extends Controller
         if (isset($filters['genre']) && $filters['genre'] != '') {
             $query->andWhere('genre.name ILIKE :genre', [':genre' => '%' . trim($filters['genre']) . '%']);
         }
+        if (isset($filters['type']) && $filters['type'] != '') {
+            $query->andWhere(array('IN', 'album.type', $filters['type']));
+        }
 
 
         $dataProvider = new ActiveDataProvider([
