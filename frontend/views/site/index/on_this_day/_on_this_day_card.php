@@ -53,11 +53,17 @@ use yii\helpers\Url;
 
                 <p class="text-lg drop-shadow-md font-bold">
                     <?php
-                    // If album was released year ago then type "Album was released a year ago", else "Album was released X years ago"
-                    if (date('Y') - date('Y', strtotime($model->release_date)) === 1) {
+                    // If album was released today then type "Album has its release"
+                    // Else if album was released year ago then type "Album was released a year ago"
+                    // Else "Album was released X years ago"
+                    if (date('Y-m-d') === $model->release_date) {
+                        echo $model->title . ' has its release';
+                    } elseif (date('Y') - date('Y', strtotime($model->release_date)) === 1) {
                         echo $model->title . ' was released a year ago';
-                    } else {
+                    } elseif (date('Y') - date('Y', strtotime($model->release_date)) > 1) {
                         echo $model->title . ' was released ' . date('Y') - date('Y', strtotime($model->release_date)) . ' years ago';
+                    } elseif (date('Y', strtotime($model->release_date)) < date('Y')) {
+                        echo $model->title . ' was released in ' . date('Y', strtotime($model->release_date)) . '.';
                     }
                     ?>
                 </p>

@@ -6,7 +6,10 @@ use common\models\Artist;
 $currentDate = date('m-d');
 $birthdays = Artist::find()->andWhere("TO_CHAR(birth_date, 'MM-DD') = :currentDate", [':currentDate' => $currentDate])->all();
 $death_anniversaries = Artist::find()->andWhere("TO_CHAR(death_date, 'MM-DD') = :currentDate", [':currentDate' => $currentDate])->all();
-$album_anniversaries = Album::find()->andWhere("TO_CHAR(release_date, 'MM-DD') = :currentDate", [':currentDate' => $currentDate])->all();
+$album_anniversaries = Album::find()
+    ->andWhere("TO_CHAR(release_date, 'MM-DD') = :currentDate", [':currentDate' => $currentDate])
+    ->andWhere("TO_CHAR(release_date, 'YYYY') <= :currentYear", [':currentYear' => date('Y')])
+    ->all();
 
 function ordinal($number)
 {
