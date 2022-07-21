@@ -20,7 +20,8 @@ use yii\helpers\Html;
                 album
             </span>
             <p>
-                <?= $model->username . ' created album called ' ?>
+                <?= $model->username . ' created' ?>
+                <?= $contrib->type !== "LP" ? strtolower($contrib->type) : " album " . "called" ?>
                 <?= Html::a(
                     $contrib->title,
                     ['album/view', 'slug' => $contrib->slug],
