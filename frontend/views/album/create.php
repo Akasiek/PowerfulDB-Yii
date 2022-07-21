@@ -93,12 +93,9 @@ array_walk($bands, function (&$band) {
         <div class="required">
             <label for="type" class="has-star">Choose type of album</label>
             <select id="select-slim-1" name="type" class="input-style">
-                <option value="LP" default>LP</option>
-                <option value="EP">EP</option>
-                <option value="Single">Single</option>
-                <option value="Live Album">Live Album</option>
-                <option value="Compilation">Compilation</option>
-                <option value="Other">Other</option>
+                <?php foreach ($model->types as $type) : ?>
+                    <option value="<?= $type ?>"><?= $type ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
 
