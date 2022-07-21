@@ -32,9 +32,14 @@ $genres = $model->getGenres()->all();
             <p class="text-gray-400 text-sm lg:text-base">
                 <?php
                 if (isset($model->release_date)) {
-                    echo Yii::$app->formatter->asDate($model->release_date, 'long');
+                    echo Yii::$app->formatter->asDate($model->release_date, 'long') . " | ";
                 }
                 ?>
+                <?= $model->type ?>
+            </p>
+
+            <p class="text-xs sm:text-sm md:text-base">
+
             </p>
 
             <?php if (!empty($genres)) : ?>
