@@ -117,7 +117,7 @@
 
 .ss-multi-selected .ss-values .ss-value .ss-value-text {
     padding-left: 10px !important;
-    padding-block: 0 !important;
+    padding-block: 2px !important;
     margin: 0 !important;
 }
 
