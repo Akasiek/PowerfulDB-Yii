@@ -51,7 +51,7 @@ array_walk($bands, function (&$band) {
             'placeholder' => 'The Number of the Beast'
         ]) ?>
 
-        <!-- ARTIST ID INPUT -->
+        <!-- AUTHOR ID INPUT -->
         <div class="required">
             <label for="author_id" class="has-star">Choose artist or band</label>
             <select id="select-slim" name="author_id" class="input-style">
