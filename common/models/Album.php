@@ -39,7 +39,7 @@ class Album extends \yii\db\ActiveRecord
         'Single',
         'Compilation',
         'EP',
-        'Live',
+        'Live Album',
         'Remix',
         'Soundtrack',
         'Other',
