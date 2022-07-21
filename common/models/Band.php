@@ -109,6 +109,16 @@ class Band extends \yii\db\ActiveRecord
         return $this->hasMany(Album::className(), ['band_id' => 'id']);
     }
 
+    /**
+     * Gets query for [[Album]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\AlbumQuery
+     */
+    public function getLPs()
+    {
+        return $this->hasMany(Album::className(), ['artist_id' => 'id'])->andWhere(['type' => 'LP']);
+    }
+
     public function getMembers()
     {
         return $this

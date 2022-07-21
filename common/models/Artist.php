@@ -119,6 +119,26 @@ class Artist extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[Album]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\AlbumQuery
+     */
+    public function getLPs()
+    {
+        return $this->hasMany(Album::className(), ['artist_id' => 'id'])->andWhere(['type' => 'LP']);
+    }
+
+    /**
+     * Gets query for [[Album]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\AlbumQuery
+     */
+    public function getOtherAlbums()
+    {
+        return $this->hasMany(Album::className(), ['artist_id' => 'id'])->andWhere(['!=', 'type', 'LP']);
+    }
+
+    /**
      * Gets query for [[ArtistArticle]].
      *
      * @return \yii\db\ActiveQuery|\common\models\query\AlbumArticleQuery
