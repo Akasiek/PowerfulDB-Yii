@@ -35,14 +35,14 @@ class Album extends \yii\db\ActiveRecord
     public $updated_date = '';
 
     public $types = [
-        'lp' => 'LP',
-        'single' => 'Single',
-        'compilation' => 'Compilation',
-        'ep' => 'EP',
-        'live' => 'Live',
-        'remix' => 'Remix',
-        'soundtrack' => 'Soundtrack',
-        'other' => 'Other',
+        'LP',
+        'Single',
+        'Compilation',
+        'EP',
+        'Live',
+        'Remix',
+        'Soundtrack',
+        'Other',
     ];
 
     /**
