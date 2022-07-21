@@ -207,11 +207,6 @@ class AlbumController extends Controller
             $tracksDuration = \Yii::$app->request->post('tracks_duration');
             $featuredAuthorId = \Yii::$app->request->post('featured_author_id');
 
-            // echo "<pre>";
-            // print_r($featuredAuthorId);
-            // echo "</pre>";
-            // exit;
-
             foreach ($tracks as $position => $track) {
                 $trackModel = new Track();
                 $trackModel->album_id = $album->id;
@@ -221,22 +216,24 @@ class AlbumController extends Controller
                 $trackModel->save();
             }
 
-            foreach ($featuredAuthorId as $authorTrackPos => $featuredAuthor) {
-                $authorModel = new FeaturedAuthor();
+            if (isset($featuredAuthor)) {
+                foreach ($featuredAuthorId as $authorTrackPos => $featuredAuthor) {
+                    $authorModel = new FeaturedAuthor();
 
-                // Find track for this author
-                $authorTrack = Track::find()
-                    ->where(['album_id' => $album->id, 'position' => $authorTrackPos])->one();
-                $authorModel->track_id = $authorTrack->id;
+                    // Find track for this author
+                    $authorTrack = Track::find()
+                        ->where(['album_id' => $album->id, 'position' => $authorTrackPos])->one();
+                    $authorModel->track_id = $authorTrack->id;
 
-                // Check if author is an artist or band and set the appropriate id
-                $author = explode('-', $featuredAuthor);
-                if ($author[0] == 'artist') {
-                    $authorModel->artist_id = $author[1];
-                } else {
-                    $authorModel->band_id = $author[1];
+                    // Check if author is an artist or band and set the appropriate id
+                    $author = explode('-', $featuredAuthor);
+                    if ($author[0] == 'artist') {
+                        $authorModel->artist_id = $author[1];
+                    } else {
+                        $authorModel->band_id = $author[1];
+                    }
+                    $authorModel->save();
                 }
-                $authorModel->save();
             }
             return $this->redirect(['/album/view', 'slug' => $slug]);
         } else {
