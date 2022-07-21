@@ -18,16 +18,17 @@ $genreText = implode(' • ', array_map(function ($genre) {
 
 <div class="group">
 
-    <a href="<?= Url::to([
-                    '/album/view',
-                    'slug' => $model->slug,
-                ]) ?>">
-
-        <img src="<?= $model->artwork_url ?>" alt="Album artwork" class="shadow-lg group-hover:scale-95 transition-transform ease-in-out">
+    <a href="<?= Url::to(['/album/view', 'slug' => $model->slug,]) ?>" class="block
+    relative shadow-lg group-hover:scale-95 transition-transform ease-in-out">
+        <img src="<?= $model->artwork_url ?>" alt="Album artwork" class=" ">
+        <?php if ($model->type !== "LP") : ?>
+            <p class="absolute bottom-0 right-0 text-xs md:text-sm font-bold bg-secondary-accent pr-1 md:pr-2 pl-2 md:pl-3 py-1 rounded-tl-xl md:rounded-tl-2xl">
+                <?= $model->type ?>
+            </p>
+        <?php endif ?>
     </a>
 
     <div class="flex flex-col px-1 py-2 xl:p-2 truncate">
-
         <h3 class="font-bold text-sm lg:text-base xl:text-lg truncate">
             <a href="<?= Url::to([
                             '/album/view',
