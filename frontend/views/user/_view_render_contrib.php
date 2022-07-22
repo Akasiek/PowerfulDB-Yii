@@ -1,7 +1,8 @@
 <?php
 
-/** 
- * @contrib Album | Artist | Band | AlbumGenre
+/**
+ * @var $contrib Album | Artist | Band | AlbumGenre | BandMember | Track
+ * @var $model User
  */
 
 use common\models\Album;
@@ -10,7 +11,9 @@ use common\models\Band;
 use common\models\AlbumGenre;
 use common\models\BandMember;
 use common\models\Track;
+use common\models\User;
 use yii\helpers\Html;
+
 ?>
 
 <div class="bg-main-dark rounded-2xl w-full px-4 py-3 md:py-4 lg:py-3 xl:py-4 2xl:py-5 md:px-5">
