@@ -38,10 +38,6 @@ $genres = $model->getGenres()->all();
                 <?= $model->type ?>
             </p>
 
-            <p class="text-xs sm:text-sm md:text-base">
-
-            </p>
-
             <?php if (!empty($genres)) : ?>
                 <p class="text-sm md:text-base italic">
                     <?php
