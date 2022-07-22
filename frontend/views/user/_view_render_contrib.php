@@ -146,17 +146,17 @@ use yii\helpers\Html;
                 <?php
                 if ($contrib instanceof AlbumArticle) echo 'album called ' . Html::a(
                         $contrib->album->title,
-                        ['album/view', 'slug' => $contrib->album->slug, '#' => 'article'],
+                        ['album/view', 'slug' => $contrib->album->slug, '#' => 'article-container'],
                         ['class' => 'italic text-main-accent hover:underline']
                     );
                 elseif ($contrib instanceof ArtistArticle) echo 'artist called ' . Html::a(
                         $contrib->artist->name,
-                        ['artist/view', 'slug' => $contrib->artist->slug, '#' => 'article'],
+                        ['artist/view', 'slug' => $contrib->artist->slug, '#' => 'article-container'],
                         ['class' => 'italic text-main-accent hover:underline']
                     );
                 elseif ($contrib instanceof BandArticle) echo 'band called ' . Html::a(
                         $contrib->band->name,
-                        ['band/view', 'slug' => $contrib->band->slug, '#' => 'article'],
+                        ['band/view', 'slug' => $contrib->band->slug, '#' => 'article-container'],
                         ['class' => 'italic text-main-accent hover:underline']
                     ); ?>
                 <span class="text-gray-500 italic hidden md:inline">
