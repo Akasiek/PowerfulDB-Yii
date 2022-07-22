@@ -33,6 +33,10 @@ $artistMap = ArrayHelper::map($artistModels, 'id', 'name');
         ]
     ]) ?>
 
+    <?= $form->field($model, 'source')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'source_url')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

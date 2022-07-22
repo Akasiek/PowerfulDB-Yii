@@ -14,6 +14,8 @@ use Yii;
  * @property int|null $created_by
  * @property int|null $updated_at
  * @property int|null $updated_by
+ * @property string|null $source
+ * @property string|null $source_url
  *
  * @property Artist $artist
  */
@@ -40,6 +42,8 @@ class ArtistArticle extends \yii\db\ActiveRecord
             [['artist_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
             [['artist_id', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['text'], 'string'],
+            [['source'], 'string', 'max' => 255],
+            [['source_url'], 'string', 'max' => 2048],
             [['artist_id'], 'exist', 'skipOnError' => true, 'targetClass' => Artist::className(), 'targetAttribute' => ['artist_id' => 'id']],
         ];
     }
@@ -57,6 +61,8 @@ class ArtistArticle extends \yii\db\ActiveRecord
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
+            'source' => 'Source',
+            'source_url' => 'Source URL',
         ];
     }
 
