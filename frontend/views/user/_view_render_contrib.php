@@ -42,7 +42,10 @@ use yii\helpers\Html;
                         ['band/view', 'slug' => $contrib->band->slug],
                         ['class' => 'italic text-main-accent hover:underline']
                     );
-                }; ?>
+                } ?>
+                <span class="text-gray-500 italic hidden md:inline">
+                    + 3 points
+                </span>
             </p>
         <?php elseif ($contrib instanceof Artist) : ?>
             <span class="material-symbols-rounded !text-lg xl:!text-xl">
@@ -55,6 +58,9 @@ use yii\helpers\Html;
                     ['artist/view', 'slug' => $contrib->slug],
                     ['class' => 'font-bold text-main-accent hover:underline']
                 ) ?>
+                <span class="text-gray-500 italic hidden md:inline">
+                    + 3 points
+                </span>
             </p>
         <?php elseif ($contrib instanceof Band) : ?>
             <span class="material-symbols-rounded !text-lg xl:!text-xl">
@@ -67,6 +73,9 @@ use yii\helpers\Html;
                     ['band/view', 'slug' => $contrib->slug],
                     ['class' => 'font-bold text-main-accent hover:underline']
                 ) ?>
+                <span class="text-gray-500 italic hidden md:inline">
+                    + 3 points
+                </span>
             </p>
         <?php elseif ($contrib instanceof AlbumGenre) : ?>
             <span class="material-symbols-rounded !text-lg xl:!text-xl">
@@ -83,6 +92,9 @@ use yii\helpers\Html;
                     ['album/view', 'slug' => $contrib->album->slug],
                     ['class' => 'italic text-main-accent hover:underline']
                 ) ?>
+                <span class="text-gray-500 italic hidden md:inline">
+                    <?= '+ ' . $contrib->genre_count . ($contrib->genre_count === 1 ? ' point' : ' points') ?>
+                </span>
             </p>
         <?php elseif ($contrib instanceof Track) : ?>
             <span class="material-symbols-rounded !text-lg xl:!text-xl">
@@ -99,6 +111,9 @@ use yii\helpers\Html;
                     ['album/view', 'slug' => $contrib->album->slug],
                     ['class' => 'italic text-main-accent hover:underline']
                 ) ?>
+                <span class="text-gray-500 italic hidden md:inline">
+                    <?= '+ ' . $contrib->track_count . ($contrib->track_count === 1 ? ' point' : ' points') ?>
+                </span>
             </p>
         <?php elseif ($contrib instanceof BandMember) : ?>
             <span class="material-symbols-rounded !text-lg xl:!text-xl">
@@ -115,6 +130,9 @@ use yii\helpers\Html;
                     ['band/view', 'slug' => $contrib->band->slug],
                     ['class' => 'italic text-main-accent hover:underline']
                 ) ?>
+                <span class="text-gray-500 italic hidden md:inline">
+                    <?= '+ ' . $contrib->member_count . ($contrib->member_count === 1 ? ' point' : ' points') ?>
+                </span>
             </p>
         <?php endif; ?>
     </div>
