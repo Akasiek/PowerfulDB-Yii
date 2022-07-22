@@ -27,8 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'album_id',
-            'text:ntext',
+            [
+                'label' => 'Album title',
+                'attribute' => 'album.title',
+            ],
+            // 'text:ntext',
+            'source',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, AlbumArticle $model, $key, $index, $column) {
