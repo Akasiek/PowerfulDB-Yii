@@ -106,9 +106,14 @@ if (Yii::$app->request->isPjax && Yii::$app->request->post('displayStyle')) {
             'layout' => $displayStyle === 'grid' ? '<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3
                 lg:grid-cols-4 gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-6 md:gap-y-12">{items}</div>{pager}'
                 : '<div class="flex flex-col justify-center items-center m-auto">{items}</div>{pager}',
-            'itemOptions' => [
-                'class' => 'w-full mx-auto',
-            ],
+            'itemOptions' => function ($model, $key, $index, $widget) {
+                $options['class'] = 'w-full mx-auto';
+                // If album is last, add id "last" to it
+                if ($index + 1 === $widget->dataProvider->count) {
+                    $options['id'] = 'last';
+                }
+                return $options;
+            },
             'pager' => [
                 'options' => [
                     'class' => 'my-8 mx-auto flex rounded-lg bg-main-dark w-fit overflow-hidden',
