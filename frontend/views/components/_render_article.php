@@ -13,7 +13,7 @@ use yii\helpers\Html;
 $article = $model->getArticle()->one() ?? '';
 
 ?>
-<div class="relative">
+<div class="relative" id="article">
     <h1 class="section-title">Article</h1>
     <hr class="section-hr">
 

@@ -6,11 +6,14 @@
  */
 
 use common\models\Album;
-use common\models\Artist;
-use common\models\Band;
+use common\models\AlbumArticle;
 use common\models\AlbumGenre;
-use common\models\BandMember;
 use common\models\Track;
+use common\models\Artist;
+use common\models\ArtistArticle;
+use common\models\Band;
+use common\models\BandArticle;
+use common\models\BandMember;
 use common\models\User;
 use yii\helpers\Html;
 
@@ -134,6 +137,33 @@ use yii\helpers\Html;
                     <?= '+ ' . $contrib->member_count . ($contrib->member_count === 1 ? ' point' : ' points') ?>
                 </span>
             </p>
+        <?php elseif ($contrib instanceof AlbumArticle || $contrib instanceof ArtistArticle || $contrib instanceof BandArticle) : ?>
+            <span class="material-symbols-rounded !text-lg xl:!text-xl">
+                feed
+            </span>
+            <p>
+                <?= $model->username . ' wrote article for ' ?>
+                <?php
+                if ($contrib instanceof AlbumArticle) echo 'album called ' . Html::a(
+                        $contrib->album->title,
+                        ['album/view', 'slug' => $contrib->album->slug, '#' => 'article'],
+                        ['class' => 'italic text-main-accent hover:underline']
+                    );
+                elseif ($contrib instanceof ArtistArticle) echo 'artist called ' . Html::a(
+                        $contrib->artist->name,
+                        ['artist/view', 'slug' => $contrib->artist->slug, '#' => 'article'],
+                        ['class' => 'italic text-main-accent hover:underline']
+                    );
+                elseif ($contrib instanceof BandArticle) echo 'band called ' . Html::a(
+                        $contrib->band->name,
+                        ['band/view', 'slug' => $contrib->band->slug, '#' => 'article'],
+                        ['class' => 'italic text-main-accent hover:underline']
+                    ); ?>
+                <span class="text-gray-500 italic hidden md:inline">
+                    + 5 points
+                </span>
+            </p>
+
         <?php endif; ?>
     </div>
 </div>

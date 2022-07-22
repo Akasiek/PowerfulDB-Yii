@@ -144,7 +144,7 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
@@ -165,7 +165,7 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->auth_key;
     }
 
-    /** 
+    /**
      * {@inheritdoc}
      */
     public function getProfilePic()
@@ -243,7 +243,7 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-    /** 
+    /**
      * Get count of contributions of a user
      */
     public function getContributionsCount()
@@ -297,7 +297,7 @@ class User extends ActiveRecord implements IdentityInterface
         return $counts;
     }
 
-    /** 
+    /**
      * Get all contributions of a user and date they were created
      */
     public function getContributions()
@@ -321,6 +321,17 @@ class User extends ActiveRecord implements IdentityInterface
         $bandMemberContrib = BandMember::find()->where(['created_by' => $this->id])->select(
             'band_id, max(created_at) as ct, count(*) as member_count, date(to_timestamp(band_member.created_at)) as created_date'
         )->with('band')->groupBy(['created_date', 'band_id'])->all();
+        // Articles
+        $albumArticlesContrib = AlbumArticle::find()->where(['created_by' => $this->id])->select(
+            'album_article.*, created_at as ct, date(to_timestamp(album_article.created_at)) as created_date'
+        )->with('album')->all();
+        $artistArticlesContrib = ArtistArticle::find()->where(['created_by' => $this->id])->select(
+            'artist_article.*, created_at as ct, date(to_timestamp(artist_article.created_at)) as created_date'
+        )->with('artist')->all();
+        $bandArticlesContrib = BandArticle::find()->where(['created_by' => $this->id])->select(
+            'band_article.*, created_at as ct, date(to_timestamp(band_article.created_at)) as created_date'
+        )->with('band')->all();
+
 
         $contribs = [];
         foreach ($albumsContrib as $album) $contribs[] = $album;
@@ -329,8 +340,10 @@ class User extends ActiveRecord implements IdentityInterface
         foreach ($genresContrib as $genre) $contribs[] = $genre;
         foreach ($trackContrib as $track) $contribs[] = $track;
         foreach ($bandMemberContrib as $bandMember) $contribs[] = $bandMember;
-
-
+        foreach ($albumArticlesContrib as $albumArticle) $contribs[] = $albumArticle;
+        foreach ($artistArticlesContrib as $artistArticle) $contribs[] = $artistArticle;
+        foreach ($bandArticlesContrib as $bandArticle) $contribs[] = $bandArticle;
+        
         // TODO: Array of edit contribs
 
         // Sort contribs array by date in descending order
@@ -338,18 +351,11 @@ class User extends ActiveRecord implements IdentityInterface
             return $b->ct <=> $a->ct;
         });
 
-        // Make sure that bandMemberContrib is also sorted but by created_date
-        // usort($contribs, function ($a, $b) {
-        //     return $b->created_date <=> $a->created_date;
-        // });
-
-        $arrayDataProvider = new ArrayDataProvider([
+        return new ArrayDataProvider([
             'allModels' => $contribs,
             'pagination' => [
                 'pageSize' => 24,
             ],
         ]);
-
-        return $arrayDataProvider;
     }
 }

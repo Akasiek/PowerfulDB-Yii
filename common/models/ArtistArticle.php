@@ -19,6 +19,10 @@ use Yii;
  */
 class ArtistArticle extends \yii\db\ActiveRecord
 {
+    public $ct = '';
+    public $created_date = '';
+    public $updated_date = '';
+
     /**
      * {@inheritdoc}
      */
