@@ -20,18 +20,20 @@ $article = $model->getArticle()->one() ?? '';
     <?php if ($article) : ?>
         <article class="mx-auto prose prose-invert lg:prose-xl h-96 w-full text-justify overflow-hidden" id="article">
             <?= $article->text ?>
-            <p class="italic">
-                Source:
-                <?php if ($article->source_url) {
-                    echo Html::a($article->source, $article->source_url, [
-                        'target' => '_blank',
-                        'class' => 'hover:underline no-underline',
-                        'rel' => 'noopener noreferrer'
-                    ]);
-                } else {
-                    echo $article->source;
-                } ?>
-            </p>
+            <?php if ($article->source || $article->source_url): ?>
+                <p class="italic">
+                    Source:
+                    <?php if ($article->source_url) {
+                        echo Html::a(($article->source ?: $article->source_url), $article->source_url, [
+                            'target' => '_blank',
+                            'class' => 'hover:underline no-underline',
+                            'rel' => 'noopener noreferrer'
+                        ]);
+                    } else {
+                        echo $article->source;
+                    } ?>
+                </p>
+            <?php endif; ?>
         </article>
         <button type="button" id="read-more"
                 class="absolute bottom-0 w-full flex h-16 items-end text-xl font-bold justify-center"
