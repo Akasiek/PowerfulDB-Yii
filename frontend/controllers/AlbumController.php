@@ -22,6 +22,7 @@ class AlbumController extends Controller
                 'class' => \yii\filters\AccessControl::className(),
                 'only' => [
                     'create',
+                    'edit',
                     'article-create',
                     'genre-add',
                     'track-add'
