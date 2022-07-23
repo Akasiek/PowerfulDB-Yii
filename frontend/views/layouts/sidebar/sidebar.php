@@ -23,7 +23,8 @@ use yii\widgets\Pjax;
         close
     </span>
 </div>
-<aside class="min-h-[40rem] h-[calc(100vh-3.5rem)] md:h-screen w-screen md:w-56 lg:w-60 xl:w-72 position-fixed transition-all hidden md:block md:static relative inset-0" id="sidebar">
+<aside class="min-h-[40rem] h-[calc(100vh-3.5rem)] md:h-screen w-screen md:w-56 lg:w-60 xl:w-72 position-fixed transition-all hidden md:block md:static relative inset-0"
+       id="sidebar">
     <div class="bg-main-dark h-full pt-2 md:pt-4 sm:px-8 px-12 md:px-4 lg:px-5 gap-6 md:gap-4 xl:gap-6 flex flex-col md:items-start items-center md:justify-start justify-center font-serif font-bold relative pb-14">
 
         <!-- LOGO -->
@@ -42,13 +43,15 @@ use yii\widgets\Pjax;
 
         <!-- SEARCHBAR -->
         <form action="/search" method="get" class="relative flex items-center max-w-sm w-full">
-            <input id="search-input" type="text" placeholder="Search..." autocomplete="none" name="keyword" minlength="2" class="w-full
+            <input id="search-input" type="text" placeholder="Search..." autocomplete="none" name="keyword"
+                   minlength="2" class="w-full
                     px-4 py-1 xl:py-1.5 border-2 border-main-accent rounded-3xl bg-transparent
                     font-bold xl:text-lg text-main-light focus:outline-none focus:bg-main-accent
                     focus:text-secondary-dark focus:placeholder:text-secondary-dark shadow-accent
                     peer transition-all duration-300">
             <div class="absolute flex right-4 text-main-accent peer-focus:text-main-dark transition-all duration-300">
-                <input id="search-submit" type="submit" value="search" class="material-symbols-rounded cursor-pointer disabled:cursor-default !text-xl xl:!text-2xl" />
+                <input id="search-submit" type="submit" value="search"
+                       class="material-symbols-rounded cursor-pointer disabled:cursor-default !text-xl xl:!text-2xl"/>
             </div>
 
         </form>
@@ -92,6 +95,15 @@ use yii\widgets\Pjax;
                     'icon' => 'account_circle',
                     'url' => '/user',
                 ]) ?>
+
+                <!-- IF USER IS ADMIN DISPLAY SUBMISSION BTN-->
+                <?php if (Yii::$app->user->can('submissionPanel')): ?>
+                    <?= $this->render('_main_option', [
+                        'text' => 'Submissions',
+                        'icon' => 'edit_note',
+                        'url' => '/submission',
+                    ]) ?>
+                <?php endif; ?>
             </div>
 
             <hr class="border-t-2 border-t-[rgba(255,255,255,0.15)]">
@@ -139,7 +151,8 @@ use yii\widgets\Pjax;
                         </div>
                     </div>
                     <div class="">
-                        <a href="<?= Url::to('/site/logout') ?>" data-method="post" class="material-symbols-outlined text-secondary-dark font-normal !text-lg lg:!text-2xl">
+                        <a href="<?= Url::to('/site/logout') ?>" data-method="post"
+                           class="material-symbols-outlined text-secondary-dark font-normal !text-lg lg:!text-2xl">
                             logout
                         </a>
                     </div>

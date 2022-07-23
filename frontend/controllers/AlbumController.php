@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Album;
 use common\models\AlbumArticle;
 use common\models\AlbumGenre;
+use common\models\EditSubmission;
 use common\models\FeaturedAuthor;
 use common\models\Track;
 use yii\data\ActiveDataProvider;
@@ -33,6 +34,24 @@ class AlbumController extends Controller
                 ],
             ],
         ];
+    }
+
+    function checkModelDifference($oldModel, $newModel)
+    {
+        $diff = array_diff_assoc($oldModel->attributes, $newModel->attributes);
+        if (count($diff) > 0) {
+            $diff = [];
+            foreach ($oldModel->attributes as $key => $value) {
+                if ($oldModel->{$key} != $newModel->{$key}) {
+                    $diff[$key] = [
+                        'old' => $oldModel->{$key},
+                        'new' => $newModel->{$key},
+                    ];
+                }
+            }
+            return $diff;
+        }
+        return false;
     }
 
     public function actionIndex()
@@ -153,6 +172,37 @@ class AlbumController extends Controller
             }
         } else {
             return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionEdit($slug)
+    {
+        $model = Album::find()->where(['slug' => $slug])->one();
+
+        if ($model->load(\Yii::$app->request->post())) {
+            $old_model = Album::find()->where(['slug' => $slug])->one();
+
+
+            // Check for differences in models
+            $diff = $this->checkModelDifference($old_model, $model);
+            foreach ($diff as $key => $value) {
+                $submission = new EditSubmission();
+                $submission->table = 'album';
+                $submission->column = $key;
+                $submission->element_id = $model->id;
+                $submission->old_data = $value['old'];
+                $submission->new_data = $value['new'];
+                $submission->status = EditSubmission::STATUSES['pending'];
+                $submission->created_at = time();
+                $submission->created_by = \Yii::$app->user->id;
+                $submission->save();
+            }
+
+            return $this->redirect(['view', 'slug' => $model->slug]);
+        } else {
+            return $this->render('edit', [
                 'model' => $model,
             ]);
         }

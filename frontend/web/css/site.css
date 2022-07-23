@@ -44,9 +44,11 @@
     .filter-container {
         @apply flex md:flex-col items-center md:items-start gap-y-1 gap-x-2;
     }
+
     .filter-input-container {
         @apply flex w-fit gap-1 border-2 border-main-accent rounded-3xl px-3 py-1;
     }
+
     .filter-input-style {
         @apply bg-transparent focus:outline-0 placeholder:text-gray-600;
     }
@@ -67,5 +69,25 @@
         peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-600
         peer-placeholder-shown:top-2 peer-focus:-top-3.5
         peer-focus:text-gray-300 peer-focus:text-sm;
+    }
+
+    .submission-table-row {
+        @apply flex items-center pb-1 md:pb-2 mb-2 md:mb-4 truncate;
+    }
+
+    .submission-table-row:not(:last-child) {
+        @apply border-b border-gray-600 ;
+    }
+
+    .submission-table-row * {
+        @apply m-1 xl:m-2 px-1 lg:px-2 2xl:px-4 w-full truncate;
+    }
+
+    .submission-table-row a:not(.material-symbols-outlined) {
+        @apply text-main-accent hover:underline;
+    }
+
+    .submission-table-row *:not(:last-child) {
+        @apply border-r border-gray-600;
     }
 }
