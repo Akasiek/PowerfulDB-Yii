@@ -13,6 +13,8 @@ use yii\data\Sort;
 use yii\helpers\Url;
 use yii\web\Controller;
 
+include Yii::getAlias('@frontend/web/checkModelDiff.php');
+
 class AlbumController extends Controller
 {
     public function behaviors()
@@ -37,23 +39,6 @@ class AlbumController extends Controller
         ];
     }
 
-    function checkModelDifference($oldModel, $newModel)
-    {
-        $diff = array_diff_assoc($oldModel->attributes, $newModel->attributes);
-        if (count($diff) > 0) {
-            $diff = [];
-            foreach ($oldModel->attributes as $key => $value) {
-                if ($oldModel->{$key} != $newModel->{$key}) {
-                    $diff[$key] = [
-                        'old' => $oldModel->{$key},
-                        'new' => $newModel->{$key},
-                    ];
-                }
-            }
-            return $diff;
-        }
-        return false;
-    }
 
     public function actionIndex()
     {
