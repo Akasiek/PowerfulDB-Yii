@@ -39,8 +39,8 @@ class EditSubmission extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['table', 'column', 'old_data', 'new_data', 'status', 'element_id'], 'required'],
-            [['status', 'created_by', 'created_at', 'element_id'], 'default', 'value' => null],
+            [['table', 'column', 'status', 'element_id'], 'required'],
+            [['old_data', 'new_data', 'status', 'created_by', 'created_at', 'element_id'], 'default', 'value' => null],
             [['status', 'created_by', 'created_at', 'element_id'], 'integer'],
             [['table', 'column', 'old_data', 'new_data'], 'string', 'max' => 255],
         ];
@@ -83,10 +83,13 @@ class EditSubmission extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 
+
     public function getElement()
     {
         return match ($this->table) {
             'album' => Album::findOne($this->element_id),
+            'artist' => Artist::findOne($this->element_id),
+            'band' => Band::findOne($this->element_id),
             default => null,
         };
     }

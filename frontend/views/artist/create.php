@@ -9,8 +9,6 @@ use kartik\form\ActiveForm;
 use yii\helpers\Url;
 use yii\web\View;
 
-$this->registerJsFile('@web/js/showBgImage.js', ['position' => View::POS_HEAD]);
-
 $this->title = "Create Artist";
 ?>
 
@@ -23,61 +21,17 @@ $this->title = "Create Artist";
 
     <div class="flex flex-col gap-6 md:gap-10 max-w-lg xl:max-w-2xl text-sm sm:text-base md:text-lg">
 
-
-        <p class="text-xs sm:text-sm md:text-base"><b class="text-red-500">Warning:</b> Artist can be <b>only</b> a solo artist or a member of a
+        <p class="text-xs sm:text-sm md:text-base"><b class="text-red-500">Warning:</b> Artist can be <b>only</b> a solo
+            artist or a member of a
             band. If you want to add a <b>band</b> go
             <a class="text-main-accent hover:underline" href="<?php echo Url::to('/band/create') ?>">here</a>
         </p>
 
-        <!-- NAME INPUT -->
-        <?= $form->field($model, 'name', [
-            'errorOptions' => ['class' => 'text-red-500'],
-        ])->textInput([
-            'maxlength' => 255,
-            'class' => 'input-style',
-            'placeholder' => 'Jack White'
+        <?= $this->render('_form', [
+            'model' => $model,
+            'form' => $form,
         ]) ?>
 
-        <!-- FULL NAME INPUT -->
-        <?= $form->field($model, 'full_name', [
-            'errorOptions' => ['class' => 'text-red-500'],
-        ])->textInput([
-            'maxlength' => 255,
-            'class' => 'input-style',
-            'placeholder' => 'John Anthony White (provide if different)',
-        ]) ?>
-
-
-        <div class="grid grid-cols-2 gap-4 sm:gap-8 md:gap-10">
-
-            <!-- BIRTH DATE INPUT -->
-            <?= $form->field($model, 'birth_date', [
-                'errorOptions' => ['class' => 'text-red-500'],
-            ])->input('date', ['class' => 'input-style']) ?>
-
-            <!-- DEATH DATE INPUT -->
-            <?= $form->field($model, 'death_date', [
-                'errorOptions' => ['class' => 'text-red-500'],
-            ])->input('date', ['class' => 'input-style']) ?>
-
-        </div>
-
-        <!-- BACKGROUND IMAGE URL INPUT -->
-        <?= $form->field($model, 'bg_image_url', [
-            'errorOptions' => ['class' => 'text-red-500'],
-        ])->textInput([
-            'maxlength' => 2048,
-            'class' => 'input-style',
-            'placeholder' => 'Url'
-        ]) ?>
-
-        <!-- BACKGROUND IMAGE PREVIEW -->
-        <img src="<?php echo Yii::getAlias('@web/resources/images/no_image.jpg') ?>" id="user_image" class="w-full aspect-[315/175] object-cover object-center" alt="image uploaded by the user" />
-
-        <!-- SUBMIT BUTTON -->
-        <div class="text-right">
-            <input type="submit" value="Submit" class="btn-style">
-        </div>
     </div>
 
 

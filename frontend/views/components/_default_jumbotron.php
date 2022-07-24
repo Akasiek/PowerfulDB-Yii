@@ -6,6 +6,7 @@
 
 use common\models\Artist;
 use common\models\Band;
+use yii\helpers\Url;
 
 include Yii::getAlias('@frontend/web/ageDiff.php');
 
@@ -13,7 +14,9 @@ $genres = $model->getGenres()->limit(5)->all();
 
 ?>
 
-<div class="!bg-cover !bg-center flex flex-col justify-end items-start w-full h-[650px] lg:h-[750px]" style="background:
+<div class="!bg-cover !bg-center flex flex-col justify-end items-start w-full h-[650px] lg:h-[750px]
+     relative group overflow-hidden"
+     style="background:
              linear-gradient(180deg, rgba(94, 43, 255, 0) 30%,
              rgba(94, 43, 255, 0.85) 100%,
              rgba(94, 43, 255, 0.85) 100%),
@@ -65,12 +68,22 @@ $genres = $model->getGenres()->limit(5)->all();
                 <p class="drop-shadow-lg">
                     Years
                     active: <?php
-                            echo $model->founding_year . ' - ';
-                            echo $model->breakup_year ?? "present"; ?>
+                    echo $model->founding_year . ' - ';
+                    echo $model->breakup_year ?? "present"; ?>
                 </p>
 
             </div>
         <?php endif; ?>
-
     </div>
+
+    <?php if (!Yii::$app->user->isGuest): ?>
+        <a href="<?= Url::to(['edit', 'slug' => $model->slug]) ?>"
+           class="absolute bottom-0 right-0 pl-6 pr-1 pt-6 pb-1 lg:pl-8 lg:pr-2 lg:pt-8 lg:pb-2
+                   md:translate-x-20 group-hover:translate-x-0 transition-transform aspect-square"
+           style="background: linear-gradient(to bottom right, transparent 0%, transparent 50%, #4EFFA6 50%, #4EFFA6 100%)">
+            <div class="material-symbols-outlined align-top text-secondary-dark lg:!text-3xl">
+                edit
+            </div>
+        </a>
+    <?php endif; ?>
 </div>

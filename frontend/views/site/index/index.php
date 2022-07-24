@@ -15,22 +15,6 @@ $this->title = 'Home Page';
 <div>
     <?= $this->render('_jumbotron'); ?>
 
-    <?php if (Yii::$app->session->hasFlash('success')) : ?>
-        <?= ToastrFlashMessage::widget([
-            'type' => 'success',
-            'title' => 'Success',
-            'message' => Yii::$app->session->getFlash('success')
-        ]); ?>
-    <?php endif; ?>
-
-    <?php if (Yii::$app->session->hasFlash('error')) : ?>
-        <?= ToastrFlashMessage::widget([
-            'type' => 'error',
-            'title' => 'Error',
-            'message' => Yii::$app->session->getFlash('error')
-        ]); ?>
-    <?php endif; ?>
-
     <div class="py-8 px-6 md:px-8 lg:px-12 flex flex-col gap-20">
 
         <div>

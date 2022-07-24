@@ -5,10 +5,13 @@ namespace frontend\controllers;
 use common\models\Band;
 use common\models\BandArticle;
 use common\models\BandMember;
+use common\models\EditSubmission;
 use yii\data\ActiveDataProvider;
 use yii\data\Sort;
 use yii\helpers\Url;
 use yii\web\Controller;
+
+include \Yii::getAlias('@frontend/web/checkModelDiff.php');
 
 class BandController extends Controller
 {
@@ -125,6 +128,39 @@ class BandController extends Controller
             return $this->redirect(['view', 'slug' => $model->slug]);
         } else {
             return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionEdit($slug)
+    {
+        $model = Band::findOne(['slug' => $slug]);
+
+        if ($model->load(\Yii::$app->request->post())) {
+            $diff = checkModelDiff($model);
+            
+            foreach ($diff as $key => $value) {
+                $submission = new EditSubmission();
+                $submission->table = 'band';
+                $submission->column = $key;
+                $submission->element_id = $model->id;
+                $submission->old_data = (string)$value['old'];
+                $submission->new_data = (string)$value['new'];
+                $submission->setValues();
+                if ($submission->save()) {
+                    \Yii::$app->session->setFlash('success', 'Submission saved');
+                } else {
+                    foreach ($submission->getErrors() as $attributes) {
+                        foreach ($attributes as $error) {
+                            \Yii::$app->session->setFlash('error', $error);
+                        }
+                    }
+                }
+            }
+            return $this->redirect(['view', 'slug' => $model->slug]);
+        } else {
+            return $this->render('edit', [
                 'model' => $model,
             ]);
         }

@@ -48,11 +48,13 @@ return [
                 '/artist/' => '/artist/index',
                 '/artist/create' => '/artist/create',
                 '/artist/<slug>' => '/artist/view',
+                '/artist/<slug>/edit' => '/artist/edit',
                 '/artist/<slug>/article/create' => '/artist/article-create',
 
                 '/band/' => '/band/index',
                 '/band/create' => '/band/create',
                 '/band/<slug>' => '/band/view',
+                '/band/<slug>/edit' => '/band/edit',
                 '/band/<slug>/article/create' => '/band/article-create',
                 '/band/<slug>/member/add' => '/band/member-add',
 

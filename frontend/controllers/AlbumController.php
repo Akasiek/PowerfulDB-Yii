@@ -164,14 +164,25 @@ class AlbumController extends Controller
     {
         $model = Album::find()->where(['slug' => $slug])->one();
 
-        if ($model->load(\Yii::$app->request->post())) {
-            $old_model = Album::find()->where(['slug' => $slug])->one();
+        function saveSubmission($submission)
+        {
+            if ($submission->save()) {
+                \Yii::$app->session->setFlash('success', 'Submission saved');
+            } else {
+                foreach ($submission->getErrors() as $attributes) {
+                    foreach ($attributes as $error) {
+                        \Yii::$app->session->setFlash('error', $error);
+                    }
+                }
+            }
+        }
 
+        if ($model->load(\Yii::$app->request->post())) {
             // Add type to model from post
             $model->type = \Yii::$app->request->post('type');
 
             // Check for differences in models
-            $diff = checkModelDiff($old_model, $model);
+            $diff = checkModelDiff($model);
             foreach ($diff as $key => $value) {
                 $submission = new EditSubmission();
                 $submission->table = 'album';
@@ -180,7 +191,7 @@ class AlbumController extends Controller
                 $submission->old_data = $value['old'];
                 $submission->new_data = $value['new'];
                 $submission->setValues();
-                $submission->save();
+                saveSubmission($submission);
             }
 
             // Get model artist or band and add prefix to it
@@ -196,7 +207,7 @@ class AlbumController extends Controller
                 $submission->old_data = $modelAuthor;
                 $submission->new_data = $author;
                 $submission->setValues();
-                $submission->save();
+                saveSubmission($submission);
             }
 
             return $this->redirect(['view', 'slug' => $model->slug]);

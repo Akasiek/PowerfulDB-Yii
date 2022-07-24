@@ -14,10 +14,12 @@ $element = $model->getElement();
 <div class="submission-table-row">
     <p><?= $model->table . '[' . $model->column . ']' ?></p>
     <?php if (isset($element)) {
-        echo Html::a($element->title, ['album/view', 'slug' => $element->slug]);
+        echo Html::a(
+            ($model->table === "album" ? $element->title : $element->name),
+            [$model->table . '/view', 'slug' => $element->slug]);
     } ?>
-    <p><?= $model->old_data ?></p>
-    <p><?= $model->new_data ?></p>
+    <p><?= $model->old_data ?: "null" ?></p>
+    <p><?= $model->new_data ?: "null" ?></p>
     <?= Html::a($model->user->username, ['user/view', 'id' => $model->user->id]) ?>
     <?= Html::a('visibility', [
         'submission/view',

@@ -20,9 +20,10 @@ use yii\helpers\Html;
         </p>
         <p>
             <i class="text-gray-400">Element:</i>
-            <?= Html::a($element->title, ['album/view', 'slug' => $element->slug], [
-                'class' => 'text-main-accent hover:underline',
-            ]) ?>
+            <?= Html::a(
+                ($model->table === "album" ? $element->title : $element->name),
+                ['album/view', 'slug' => $element->slug],
+                ['class' => 'text-main-accent hover:underline',]) ?>
         </p>
         <p>
             <i class="text-gray-400">Old Data:</i> <?= $model->old_data ?>
