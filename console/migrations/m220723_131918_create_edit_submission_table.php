@@ -16,6 +16,7 @@ class m220723_131918_create_edit_submission_table extends Migration
             'id' => $this->primaryKey(),
             'table' => $this->string()->notNull(),
             'column' => $this->string()->notNull(),
+            'element_id' => $this->integer()->notNull(),
             'old_data' => $this->string()->notNull(),
             'new_data' => $this->string()->notNull(),
             'status' => $this->integer()->notNull(),
