@@ -13,7 +13,7 @@ use yii\data\Sort;
 use yii\helpers\Url;
 use yii\web\Controller;
 
-include Yii::getAlias('@frontend/web/checkModelDiff.php');
+include \Yii::getAlias('@frontend/web/checkModelDiff.php');
 
 class AlbumController extends Controller
 {
@@ -129,11 +129,8 @@ class AlbumController extends Controller
 
             // Check if author is an artist or band and set the appropriate id
             $author = explode('-', $author_id);
-            if ($author[0] == 'artist') {
-                $model->artist_id = $author[1];
-            } else {
-                $model->band_id = $author[1];
-            }
+            if ($author[0] == 'artist') $model->artist_id = $author[1];
+            else $model->band_id = $author[1];
 
             // Set type of album
             $model->type = \Yii::$app->request->post('type');
@@ -170,9 +167,11 @@ class AlbumController extends Controller
         if ($model->load(\Yii::$app->request->post())) {
             $old_model = Album::find()->where(['slug' => $slug])->one();
 
+            // Add type to model from post
+            $model->type = \Yii::$app->request->post('type');
 
             // Check for differences in models
-            $diff = $this->checkModelDifference($old_model, $model);
+            $diff = checkModelDiff($old_model, $model);
             foreach ($diff as $key => $value) {
                 $submission = new EditSubmission();
                 $submission->table = 'album';
@@ -180,18 +179,32 @@ class AlbumController extends Controller
                 $submission->element_id = $model->id;
                 $submission->old_data = $value['old'];
                 $submission->new_data = $value['new'];
-                $submission->status = EditSubmission::STATUSES['pending'];
-                $submission->created_at = time();
-                $submission->created_by = \Yii::$app->user->id;
+                $submission->setValues();
+                $submission->save();
+            }
+
+            // Get model artist or band and add prefix to it
+            if ($model->artist_id) $modelAuthor = 'artist-' . $model->artist_id;
+            else $modelAuthor = 'band-' . $model->band_id;
+
+            if (\Yii::$app->request->post('author_id') !== $modelAuthor) {
+                $author = \Yii::$app->request->post('author_id');
+                $submission = new EditSubmission();
+                $submission->table = 'album';
+                $submission->column = 'author_id';
+                $submission->element_id = $model->id;
+                $submission->old_data = $modelAuthor;
+                $submission->new_data = $author;
+                $submission->setValues();
                 $submission->save();
             }
 
             return $this->redirect(['view', 'slug' => $model->slug]);
-        } else {
-            return $this->render('edit', [
-                'model' => $model,
-            ]);
         }
+        return $this->render('edit', [
+            'model' => $model,
+        ]);
+
     }
 
     public function actionArticleCreate($slug)

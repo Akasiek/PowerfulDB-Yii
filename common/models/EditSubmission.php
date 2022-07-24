@@ -90,4 +90,11 @@ class EditSubmission extends \yii\db\ActiveRecord
             default => null,
         };
     }
+
+    public function setValues()
+    {
+        $this->status = EditSubmission::STATUSES['pending'];
+        $this->created_at = time();
+        $this->created_by = \Yii::$app->user->id;
+    }
 }

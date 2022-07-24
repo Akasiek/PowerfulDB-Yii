@@ -59,8 +59,24 @@ class SubmissionController extends Controller
     {
         $model = EditSubmission::find()->where(['id' => $id])->one();
         $element = $model->getElement();
+        if ($element instanceof Album && $model->column === 'author_id') {
+            // Set artist and band ids to null to make sure that if author is different type, there will be no double artist or band
+            $element->artist_id = null;
+            $element->band_id = null;
 
-        $element->{$model->column} = $model->new_data;
+            $newAuthor = explode('-', $model->new_data);
+            if ($newAuthor[0] === 'artist') {
+                $element->artist_id = $newAuthor[1];
+            } elseif ($newAuthor[0] === 'band') {
+                $element->band_id = $newAuthor[1];
+            }
+
+        } else {
+            $element->{$model->column} = $model->new_data;
+        }
+        
+        $element->updated_at = $model->created_at;
+        $element->updated_by = $model->created_by;
         if ($element->save()) {
             $model->status = EditSubmission::STATUSES['approved'];
             if ($model->save()) $this->redirect([

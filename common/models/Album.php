@@ -22,11 +22,11 @@ use yii\behaviors\SluggableBehavior;
  * @property int|null $views
  * @property string|null $type
  *
- * @property AlbumArticle[] $albumArticles 
- * @property AlbumGenre[] $albumGenres 
+ * @property AlbumArticle[] $albumArticles
+ * @property AlbumGenre[] $albumGenres
  * @property Artist $artist
  * @property Band $band
- * @property Track[] $tracks 
+ * @property Track[] $tracks
  */
 class Album extends \yii\db\ActiveRecord
 {
@@ -34,7 +34,7 @@ class Album extends \yii\db\ActiveRecord
     public $created_date = '';
     public $updated_date = '';
 
-    public $types = [
+    const TYPES = [
         'LP',
         'Single',
         'Compilation',
@@ -166,9 +166,9 @@ class Album extends \yii\db\ActiveRecord
         return $this->hasMany(Genre::className(), ['id' => 'genre_id'])->viaTable('album_genre', ['album_id' => 'id']);
     }
 
-    /** 
+    /**
      * Gets query for [[Track]].
-     * 
+     *
      * @return \yii\db\ActiveQuery|\common\models\query\TrackQuery
      */
     public function getTracks()
@@ -191,9 +191,6 @@ class Album extends \yii\db\ActiveRecord
             $this->created_at = time();
             $this->created_by = Yii::$app->user->id;
         }
-        $this->updated_at = time();
-        $this->updated_by = Yii::$app->user->id;
-
         return parent::save($runValidation, $attributeNames);
     }
 }

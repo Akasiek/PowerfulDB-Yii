@@ -1,5 +1,5 @@
 <?php
-function checkModelDifference($oldModel, $newModel)
+function checkModelDiff($oldModel, $newModel)
 {
     $diff = array_diff_assoc($oldModel->attributes, $newModel->attributes);
     if (count($diff) > 0) {
@@ -14,6 +14,6 @@ function checkModelDifference($oldModel, $newModel)
         }
         return $diff;
     }
-    return false;
+    return [];
 }
 
