@@ -163,7 +163,8 @@ class Band extends \yii\db\ActiveRecord
         return Genre::find()
             ->select(['genre.name', 'COUNT(genre.name) AS countgenre'])
             ->innerJoin('album_genre', 'album_genre.genre_id = genre.id')
-            ->where(['album_genre.band_id' => $this->id])
+            ->innerJoin('album', 'album.id = album_genre.album_id')
+            ->where(['album.band_id' => $this->id])
             ->groupBy('genre.name')
             ->orderBy('countgenre DESC');
     }

@@ -51,7 +51,8 @@ class ArtistController extends Controller
         ]);
 
         $query = Artist::find()->orderBy($sort->orders)
-            ->leftJoin('album_genre', 'album_genre.artist_id = artist.id')
+            ->leftJoin('album', 'album.artist_id = artist.id')
+            ->leftJoin('album_genre', 'album_genre.album_id = album.id')
             ->leftJoin('genre', 'genre.id = album_genre.genre_id')
             ->distinct();
 

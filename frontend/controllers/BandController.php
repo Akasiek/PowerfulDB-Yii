@@ -55,7 +55,8 @@ class BandController extends Controller
         ]);
 
         $query = Band::find()->orderBy($sort->orders)
-            ->leftJoin('album_genre', 'album_genre.band_id = band.id')
+            ->leftJoin('album', 'album.band_id = band.id')
+            ->leftJoin('album_genre', 'album_genre.album_id = album.id')
             ->leftJoin('genre', 'genre.id = album_genre.genre_id')
             ->distinct();
 
@@ -139,7 +140,7 @@ class BandController extends Controller
 
         if ($model->load(\Yii::$app->request->post())) {
             $diff = checkModelDiff($model);
-            
+
             foreach ($diff as $key => $value) {
                 $submission = new EditSubmission();
                 $submission->table = 'band';

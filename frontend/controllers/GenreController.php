@@ -30,11 +30,12 @@ class GenreController extends Controller
         $query = Genre::find()->select([
             'genre.name',
             'genre.slug',
-            'COUNT(DISTINCT album_genre.album_id) AS countAlbum',
-            'COUNT(DISTINCT album_genre.artist_id) AS countArtist',
-            'COUNT(DISTINCT album_genre.band_id) AS countBand',
+            'COUNT(DISTINCT album.id) AS countAlbum',
+            'COUNT(DISTINCT album.artist_id) AS countArtist',
+            'COUNT(DISTINCT album.band_id) AS countBand',
         ])
             ->leftJoin('album_genre', 'album_genre.genre_id = genre.id')
+            ->leftJoin('album', 'album.id = album_genre.album_id')
             ->groupBy(['genre.name', 'genre.slug'])
             ->orderBy('countAlbum DESC, countBand DESC, countArtist DESC');
 
