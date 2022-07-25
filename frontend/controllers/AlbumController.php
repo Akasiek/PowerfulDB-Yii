@@ -164,8 +164,7 @@ class AlbumController extends Controller
     public function actionEdit($slug)
     {
         $model = Album::find()->where(['slug' => $slug])->one();
-
-
+        
         if ($model->load(\Yii::$app->request->post())) {
             // Add type to model from post
             $model->type = \Yii::$app->request->post('type');

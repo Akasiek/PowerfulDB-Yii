@@ -1529,6 +1529,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   pointer-events: none;
 }
 
+.visible {
+  visibility: visible;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1566,6 +1570,58 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .right-4 {
   right: 1rem;
+}
+
+.bottom-\[-100\%\] {
+  bottom: -100%;
+}
+
+.right-2 {
+  right: 0.5rem;
+}
+
+.left-2 {
+  left: 0.5rem;
+}
+
+.bottom-\[calc\(-100\%\2c 4rem\)\] {
+  bottom: calc(-100%,4rem);
+}
+
+.bottom-\[calc\(-100\%\2c 0\.5rem\)\] {
+  bottom: calc(-100%,0.5rem);
+}
+
+.bottom-\[calc\(-100\%\+0\.5rem\)\] {
+  bottom: calc(-100% + 0.5rem);
+}
+
+.bottom-\[calc\(-100\%-0\.5rem\)\] {
+  bottom: calc(-100% - 0.5rem);
+}
+
+.bottom-\[calc\(-100\%-1rem\)\] {
+  bottom: calc(-100% - 1rem);
+}
+
+.bottom-\[calc\(-100\%-0\.75rem\)\] {
+  bottom: calc(-100% - 0.75rem);
+}
+
+.bottom-\[calc\(-100\%-1\.25rem\)\] {
+  bottom: calc(-100% - 1.25rem);
+}
+
+.bottom-\[calc\(-100\%\)\] {
+  bottom: calc(-100%);
+}
+
+.bottom-\[calc\(-100\%-1\.5rem\)\] {
+  bottom: calc(-100% - 1.5rem);
+}
+
+.bottom-\[calc\(-100\%-2rem\)\] {
+  bottom: calc(-100% - 2rem);
 }
 
 .\!z-20 {
@@ -1641,6 +1697,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-6 {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+}
+
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mb-4 {
@@ -1829,6 +1900,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 11rem;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1925,6 +2000,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-sm {
   max-width: 24rem;
+}
+
+.max-w-3xl {
+  max-width: 48rem;
 }
 
 .flex-1 {
@@ -2121,6 +2200,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .rounded-3xl {
   border-radius: 1.5rem;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
 }
 
 .rounded-tl-xl {
@@ -2471,9 +2554,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-style: italic;
 }
 
+.not-italic {
+  font-style: normal;
+}
+
 .ordinal {
   --tw-ordinal: ordinal;
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+
+.\!leading-none {
+  line-height: 1 !important;
 }
 
 .text-gray-500 {
@@ -2524,6 +2615,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-gray-700 {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2728,6 +2824,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .disabled\:placeholder\:line-through:disabled::placeholder {
   -webkit-text-decoration-line: line-through;
           text-decoration-line: line-through;
+}
+
+.group:hover .group-hover\:visible {
+  visibility: visible;
+}
+
+.group:hover .group-hover\:\!visible {
+  visibility: visible !important;
+}
+
+.group:hover .group-hover\:block {
+  display: block;
 }
 
 .group:hover .group-hover\:translate-x-0 {
@@ -3455,6 +3563,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     text-align: left;
   }
 
+  .md\:text-right {
+    text-align: right;
+  }
+
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -4038,6 +4150,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     gap: 0.75rem;
   }
 
+  .lg\:gap-2 {
+    gap: 0.5rem;
+  }
+
   .lg\:gap-x-8 {
     -moz-column-gap: 2rem;
          column-gap: 2rem;
@@ -4236,6 +4352,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .xl\:gap-3 {
+    gap: 0.75rem;
   }
 
   .xl\:gap-x-6 {

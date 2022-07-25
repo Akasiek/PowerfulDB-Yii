@@ -16,10 +16,10 @@ use yii\widgets\Pjax;
             ]
         ) ?>
     </a>
-    <span class="material-symbols-rounded mb-1" id="menu-show">
+    <span class="material-symbols-rounded mb-1 cursor-pointer" id="menu-show">
         menu
     </span>
-    <span class="material-symbols-rounded mb-1 !hidden" id="menu-hide">
+    <span class="material-symbols-rounded mb-1 !hidden cursor-pointer" id="menu-hide">
         close
     </span>
 </div>
@@ -56,10 +56,10 @@ use yii\widgets\Pjax;
 
         </form>
 
-        <div class="gap-4 md:gap-3 lg:gap-4 xl:gap-6 flex flex-col md:m-0 max-w-sm w-full md:px-0">
+        <div class="gap-4 md:gap-3 lg:gap-4 xl:gap-4 flex flex-col md:m-0 max-w-sm w-full md:px-0">
 
             <!-- MAIN OPTIONS -->
-            <div class="grid w-full gap-4 md:gap-2 lg:gap-3 xl:gap-4">
+            <div class="grid w-full gap-3 md:gap-2 xl:gap-3">
                 <?= $this->render('_main_option', [
                     'text' => 'Home Page',
                     'icon' => 'home',

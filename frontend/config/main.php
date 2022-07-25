@@ -64,6 +64,7 @@ return [
                 '/album/<slug>/edit' => '/album/edit',
                 '/album/<slug>/article/create' => '/album/article-create',
                 '/album/<slug>/genre/add' => '/album/genre-add',
+                '/album/<slug>/genre/edit' => '/album/genre-edit',
                 '/album/<slug>/track/add' => '/album/track-add',
 
                 '/submission/view/<id>' => '/submission/view',

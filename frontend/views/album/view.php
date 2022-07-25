@@ -33,4 +33,16 @@ $this->title = $model->title;
         'model' => $model,
     ]); ?>
 
+    <div class="flex flex-wrap gap-4">
+
+        <?= \yii\helpers\Html::a('Edit album', ['edit', 'slug' => $model->slug], [
+            'class' => 'rounded-xl px-4 py-1 bg-main-accent text-secondary-dark font-bold',
+        ]) ?>
+
+        <?= \yii\helpers\Html::a('Edit genres', ['genre-edit', 'slug' => $model->slug], [
+            'class' => 'rounded-xl px-4 py-1 bg-main-accent text-secondary-dark font-bold',
+        ]) ?>
+
+    </div>
+
 </div>

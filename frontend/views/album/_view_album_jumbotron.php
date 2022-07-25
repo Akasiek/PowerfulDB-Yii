@@ -5,6 +5,7 @@
  */
 
 use common\models\Album;
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 $genres = $model->getGenres()->all();
@@ -48,16 +49,11 @@ $genres = $model->getGenres()->all();
             </p>
 
             <?php if (!empty($genres)) : ?>
-                <p class="text-sm md:text-base italic">
-                    <?php
-                    foreach ($genres as $index => $genre) {
-                        echo $genre->name . ' ';
-                        if ($index < count($genres) - 1) {
-                            echo '• ';
-                        }
-                    }
-                    ?>
-                </p>
+                <div class="text-sm md:text-base italic text-center md:text-left">
+                    <?= implode(' • ', array_map(function ($genre) {
+                        return $genre->name;
+                    }, $genres)) ?>
+                </div>
             <?php elseif (!Yii::$app->user->isGuest) : ?>
                 <a class="text-sm underline text-gray-400"
                    href="<?= Url::to(['/album/genre-add', 'slug' => $model->slug]) ?>">
