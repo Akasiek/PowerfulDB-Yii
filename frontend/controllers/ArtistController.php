@@ -139,23 +139,16 @@ class ArtistController extends Controller
         if ($model->load(\Yii::$app->request->post())) {
             $diff = checkModelDiff($model);
 
-            foreach ($diff as $key => $value) {
+            foreach ($diff as $column => $value) {
                 $submission = new EditSubmission();
-                $submission->table = 'artist';
-                $submission->column = $key;
-                $submission->element_id = $model->id;
-                $submission->old_data = $value['old'];
-                $submission->new_data = $value['new'];
-                $submission->setValues();
-                if ($submission->save()) {
-                    \Yii::$app->session->setFlash('success', 'Submission saved');
-                } else {
-                    foreach ($submission->getErrors() as $attributes) {
-                        foreach ($attributes as $error) {
-                            \Yii::$app->session->setFlash('error', $error);
-                        }
-                    }
-                }
+                $submission->setValues([
+                    'table' => 'artist',
+                    'column' => $column,
+                    'element_id' => $model->id,
+                    'old_data' => (string)$value['old'],
+                    'new_data' => (string)$value['new'],
+                ]);
+                $submission->saveSubmission();
             }
             return $this->redirect(['view', 'slug' => $model->slug]);
         } else {

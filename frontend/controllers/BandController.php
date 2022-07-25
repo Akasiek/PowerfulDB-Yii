@@ -141,23 +141,16 @@ class BandController extends Controller
         if ($model->load(\Yii::$app->request->post())) {
             $diff = checkModelDiff($model);
 
-            foreach ($diff as $key => $value) {
+            foreach ($diff as $column => $value) {
                 $submission = new EditSubmission();
-                $submission->table = 'band';
-                $submission->column = $key;
-                $submission->element_id = $model->id;
-                $submission->old_data = (string)$value['old'];
-                $submission->new_data = (string)$value['new'];
-                $submission->setValues();
-                if ($submission->save()) {
-                    \Yii::$app->session->setFlash('success', 'Submission saved');
-                } else {
-                    foreach ($submission->getErrors() as $attributes) {
-                        foreach ($attributes as $error) {
-                            \Yii::$app->session->setFlash('error', $error);
-                        }
-                    }
-                }
+                $submission->setValues([
+                    'table' => 'band',
+                    'column' => $column,
+                    'element_id' => $model->id,
+                    'old_data' => (string)$value['old'],
+                    'new_data' => (string)$value['new'],
+                ]);
+                $submission->saveSubmission();
             }
             return $this->redirect(['view', 'slug' => $model->slug]);
         } else {

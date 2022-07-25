@@ -94,10 +94,29 @@ class EditSubmission extends \yii\db\ActiveRecord
         };
     }
 
-    public function setValues()
+
+    public function setValues($values)
     {
+        $this->table = $values['table'];
+        $this->column = $values['column'];
+        $this->element_id = $values['element_id'];
+        $this->old_data = $values['old_data'];
+        $this->new_data = $values['new_data'];
         $this->status = EditSubmission::STATUSES['pending'];
         $this->created_at = time();
         $this->created_by = \Yii::$app->user->id;
+    }
+
+    public function saveSubmission()
+    {
+        if ($this->save()) {
+            \Yii::$app->session->setFlash('success', 'Submission saved');
+        } else {
+            foreach ($this->getErrors() as $attributes) {
+                foreach ($attributes as $error) {
+                    \Yii::$app->session->setFlash('error', $error);
+                }
+            }
+        }
     }
 }

@@ -164,18 +164,6 @@ class AlbumController extends Controller
     {
         $model = Album::find()->where(['slug' => $slug])->one();
 
-        function saveSubmission($submission)
-        {
-            if ($submission->save()) {
-                \Yii::$app->session->setFlash('success', 'Submission saved');
-            } else {
-                foreach ($submission->getErrors() as $attributes) {
-                    foreach ($attributes as $error) {
-                        \Yii::$app->session->setFlash('error', $error);
-                    }
-                }
-            }
-        }
 
         if ($model->load(\Yii::$app->request->post())) {
             // Add type to model from post
@@ -183,15 +171,16 @@ class AlbumController extends Controller
 
             // Check for differences in models
             $diff = checkModelDiff($model);
-            foreach ($diff as $key => $value) {
+            foreach ($diff as $column => $value) {
                 $submission = new EditSubmission();
-                $submission->table = 'album';
-                $submission->column = $key;
-                $submission->element_id = $model->id;
-                $submission->old_data = $value['old'];
-                $submission->new_data = $value['new'];
-                $submission->setValues();
-                saveSubmission($submission);
+                $submission->setValues([
+                    'table' => 'album',
+                    'column' => $column,
+                    'element_id' => $model->id,
+                    'old_data' => $value['old'],
+                    'new_data' => $value['new'],
+                ]);
+                $submission->saveSubmission();
             }
 
             // Get model artist or band and add prefix to it
@@ -201,13 +190,14 @@ class AlbumController extends Controller
             if (\Yii::$app->request->post('author_id') !== $modelAuthor) {
                 $author = \Yii::$app->request->post('author_id');
                 $submission = new EditSubmission();
-                $submission->table = 'album';
-                $submission->column = 'author_id';
-                $submission->element_id = $model->id;
-                $submission->old_data = $modelAuthor;
-                $submission->new_data = $author;
-                $submission->setValues();
-                saveSubmission($submission);
+                $submission->setValues([
+                    'table' => 'album',
+                    'column' => 'author_id',
+                    'element_id' => $model->id,
+                    'old_data' => $modelAuthor,
+                    'new_data' => $author,
+                ]);
+                $submission->saveSubmission();
             }
 
             return $this->redirect(['view', 'slug' => $model->slug]);
