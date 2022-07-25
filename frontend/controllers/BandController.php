@@ -143,13 +143,7 @@ class BandController extends Controller
 
             foreach ($diff as $column => $value) {
                 $submission = new EditSubmission();
-                $submission->setValues([
-                    'table' => 'band',
-                    'column' => $column,
-                    'element_id' => $model->id,
-                    'old_data' => (string)$value['old'],
-                    'new_data' => (string)$value['new'],
-                ]);
+                $submission->setValues('band', $column, $model->id, (string)$value['old'], (string)$value['new']);
                 $submission->saveSubmission();
             }
             return $this->redirect(['view', 'slug' => $model->slug]);

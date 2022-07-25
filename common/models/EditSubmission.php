@@ -94,14 +94,21 @@ class EditSubmission extends \yii\db\ActiveRecord
         };
     }
 
-
-    public function setValues($values)
+    /**
+     * @param $table
+     * @param $col
+     * @param $elemId
+     * @param $old
+     * @param $new
+     * @return void
+     */
+    public function setValues($table, $col, $elemId, $old, $new): void
     {
-        $this->table = $values['table'];
-        $this->column = $values['column'];
-        $this->element_id = $values['element_id'];
-        $this->old_data = $values['old_data'];
-        $this->new_data = $values['new_data'];
+        $this->table = $table;
+        $this->column = $col;
+        $this->element_id = $elemId;
+        $this->old_data = $old;
+        $this->new_data = $new;
         $this->status = EditSubmission::STATUSES['pending'];
         $this->created_at = time();
         $this->created_by = \Yii::$app->user->id;

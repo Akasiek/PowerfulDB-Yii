@@ -14,6 +14,7 @@ use yii\helpers\Url;
 use yii\web\Controller;
 
 include \Yii::getAlias('@frontend/web/checkModelDiff.php');
+include \Yii::getAlias('@frontend/web/arrayEqual.php');
 
 class AlbumController extends Controller
 {
@@ -173,13 +174,7 @@ class AlbumController extends Controller
             $diff = checkModelDiff($model);
             foreach ($diff as $column => $value) {
                 $submission = new EditSubmission();
-                $submission->setValues([
-                    'table' => 'album',
-                    'column' => $column,
-                    'element_id' => $model->id,
-                    'old_data' => $value['old'],
-                    'new_data' => $value['new'],
-                ]);
+                $submission->setValues('album', $column, $model->id, $value['old'], $value['new']);
                 $submission->saveSubmission();
             }
 
@@ -190,13 +185,7 @@ class AlbumController extends Controller
             if (\Yii::$app->request->post('author_id') !== $modelAuthor) {
                 $author = \Yii::$app->request->post('author_id');
                 $submission = new EditSubmission();
-                $submission->setValues([
-                    'table' => 'album',
-                    'column' => 'author_id',
-                    'element_id' => $model->id,
-                    'old_data' => $modelAuthor,
-                    'new_data' => $author,
-                ]);
+                $submission->setValues('album', 'author_id', $model->id, $modelAuthor, $author);
                 $submission->saveSubmission();
             }
 
@@ -244,6 +233,44 @@ class AlbumController extends Controller
                 'album' => $album,
             ]);
         }
+    }
+
+    public function actionGenreEdit($slug)
+    {
+        $album = Album::findOne(['slug' => $slug]);
+        $albumGenres = AlbumGenre::find()->where(['album_id' => $album->id])->all();
+
+        if (\Yii::$app->request->post()) {
+            // Create array of new and old genres
+            $newGenres = \Yii::$app->request->post('genres');
+            $oldGenres = [];
+            foreach ($albumGenres as $genre) {
+                $oldGenres[] = $genre->genre_id;
+            }
+
+            // Check if arrays are identical, if yes, don't create new submission
+            if (arrayEqual($oldGenres, $newGenres)) {
+                \Yii::$app->session->setFlash('error', 'No changes made.');
+                return $this->redirect(['/album/view', 'slug' => $slug]);
+            }
+
+            // Create string representation of genre arrays
+            $newData = '[' . implode(', ', $newGenres) . ']';
+            $oldData = '[' . implode(', ', $oldGenres) . ']';
+
+            // Create submission
+            $submission = new EditSubmission();
+            $submission->setValues('album', 'genre_id', $album->id, $oldData, $newData);
+            $submission->saveSubmission();
+
+            return $this->redirect(['/album/view', 'slug' => $slug]);
+        } else {
+            return $this->render('genre/edit', [
+                'album' => $album,
+                'albumGenres' => $albumGenres,
+            ]);
+        }
+
     }
 
     public function actionTrackAdd($slug)
