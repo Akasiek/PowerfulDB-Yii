@@ -8,6 +8,7 @@ use common\models\Album;
 use common\models\EditSubmission;
 use yii\helpers\Html;
 
+$this->title = "Edit " . ($model->table === "album" ? $element->title : $element->name);
 ?>
 
 <div class="w-full mx-auto px-6 lg:px-14 py-8">
@@ -39,6 +40,7 @@ use yii\helpers\Html;
         </p>
         <p>
             <i class="text-gray-400">Status:</i> <?= $model->status ?>
+            (<?= array_search($model->status, EditSubmission::STATUSES) ?>)
         </p>
     </div>
 
