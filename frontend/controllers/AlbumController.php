@@ -246,8 +246,6 @@ class AlbumController extends Controller
                 $albumGenre = new AlbumGenre();
                 $albumGenre->genre_id = $genre;
                 $albumGenre->album_id = $album->id;
-                if ($album->artist_id) $albumGenre->artist_id = $album->artist_id;
-                else $albumGenre->band_id = $album->band_id;
                 $albumGenre->save();
             }
             return $this->redirect(['/album/view', 'slug' => $slug]);
