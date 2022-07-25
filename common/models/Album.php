@@ -190,6 +190,8 @@ class Album extends \yii\db\ActiveRecord
         if ($this->isNewRecord) {
             $this->created_at = time();
             $this->created_by = Yii::$app->user->id;
+            $this->updated_at = time();
+            $this->updated_by = Yii::$app->user->id;
         }
         return parent::save($runValidation, $attributeNames);
     }

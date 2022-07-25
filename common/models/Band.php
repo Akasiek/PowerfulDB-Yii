@@ -130,9 +130,9 @@ class Band extends \yii\db\ActiveRecord
         return $this->hasMany(Album::className(), ['band_id' => 'id'])->andWhere(['!=', 'type', 'LP']);
     }
 
-    /** 
+    /**
      * Gets query for [[BandMembers]].
-     * 
+     *
      * @return \yii\db\ActiveQuery|\common\models\query\BandMemberQuery
      */
     public function getMembers()
@@ -153,10 +153,10 @@ class Band extends \yii\db\ActiveRecord
         return $this->hasOne(BandArticle::className(), ['band_id' => 'id']);
     }
 
-    /** 
+    /**
      * Gets query for [[Genre]].
-     * 
-     * @return \yii\db\ActiveQuery|\common\models\query\GenreQuery 
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\GenreQuery
      */
     public function getGenres()
     {
@@ -182,10 +182,9 @@ class Band extends \yii\db\ActiveRecord
         if ($this->isNewRecord) {
             $this->created_at = time();
             $this->created_by = Yii::$app->user->id;
+            $this->updated_at = time();
+            $this->updated_by = Yii::$app->user->id;
         }
-        $this->updated_at = time();
-        $this->updated_by = Yii::$app->user->id;
-
         return parent::save($runValidation, $attributeNames);
     }
 }

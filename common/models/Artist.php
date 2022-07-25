@@ -158,10 +158,10 @@ class Artist extends \yii\db\ActiveRecord
         return $this->hasMany(Band::className(), ['id' => 'band_id'])->viaTable('band_member', ['artist_id' => 'id']);
     }
 
-    /** 
+    /**
      * Gets query for [[Genre]].
-     * 
-     * @return \yii\db\ActiveQuery|\common\models\query\GenreQuery 
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\GenreQuery
      */
     public function getGenres()
     {
@@ -200,10 +200,9 @@ class Artist extends \yii\db\ActiveRecord
         if ($this->isNewRecord) {
             $this->created_at = time();
             $this->created_by = Yii::$app->user->id;
+            $this->updated_at = time();
+            $this->updated_by = Yii::$app->user->id;
         }
-        $this->updated_at = time();
-        $this->updated_by = Yii::$app->user->id;
-
         return parent::save($runValidation, $attributeNames);
     }
 }
