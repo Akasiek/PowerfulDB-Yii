@@ -74,7 +74,7 @@ class SubmissionController extends Controller
         } else {
             $element->{$model->column} = $model->new_data;
         }
-        
+
         $element->updated_at = $model->created_at;
         $element->updated_by = $model->created_by;
         if ($element->save()) {
@@ -84,5 +84,12 @@ class SubmissionController extends Controller
                 'slug' => $element->slug,
             ]);
         }
+    }
+
+    public function actionReject($id)
+    {
+        $model = EditSubmission::find()->where(['id' => $id])->one();
+        $model->status = EditSubmission::STATUSES['rejected'];
+        if ($model->save()) $this->redirect(['index']);
     }
 }
