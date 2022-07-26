@@ -61,6 +61,13 @@ jsonString($model);
         </p>
     </div>
 
+    <?php if ($model->column === "delete") : ?>
+        <p class="mb-4">
+            <span class="text-red-500">Warning:</span>
+            Approving this submission means permanent deletion of a record. Approve if you're 100% sure!
+        </p>
+    <?php endif; ?>
+
     <div class="flex gap-4">
         <?= Html::a('Approve', [
             'submission/approve',

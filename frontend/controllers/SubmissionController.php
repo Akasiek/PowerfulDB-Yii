@@ -80,6 +80,10 @@ class SubmissionController extends Controller
             $this->editAlbumGenre($model);
         } elseif ($model->table === "track" && $model->column === "author_id") {
             $this->editFeaturedAuthor($model);
+        } elseif ($model->table === "track" && $model->column === "position") {
+            $this->editTrackPosition($model, $element);
+        } elseif ($model->column === "delete") {
+            $this->deleteElement($model, $element);
         } else {
             $element->{$model->column} = $model->new_data;
         }
@@ -97,6 +101,8 @@ class SubmissionController extends Controller
                 $model->table . '/view',
                 'slug' => $element->slug,
             ]);
+        } elseif ($model->column === "delete") {
+            return $this->redirect(['index']);
         } else {
             $track = Track::find()->where(['id' => $model->element_id])->one();
 
@@ -110,9 +116,26 @@ class SubmissionController extends Controller
 
     public function actionReject($id)
     {
-        $model = EditSubmission::find()->where(['id' => $id])->one();
+        $model = EditSubmission::findOne($id);
         $model->status = EditSubmission::STATUSES['rejected'];
         if ($model->save()) return $this->redirect(['index']);
+    }
+
+    function deleteElement($model, $element)
+    {
+        if ($model->table === "track") {
+            // Move all tracks after deleted track to the previous position
+            $tracks = Track::find()
+                ->andWhere(['album_id' => $element->album_id])
+                ->andWhere(['>', 'position', $element->position])->all();
+            foreach ($tracks as $track) {
+                $track->position--;
+                $track->save();
+            }
+
+            // Delete track
+            Track::findOne($model->element_id)->delete();
+        }
     }
 
     function editAlbumGenre($model)
@@ -149,6 +172,29 @@ class SubmissionController extends Controller
                 ->where(['track_id' => $model->element_id, $author[0] . "_id" => $author[1]])->one();
             $record->delete();
         }
+    }
+
+    function editTrackPosition($model, $element)
+    {
+        // Move all tracks above the old position, one position up
+        $tracks = Track::find()
+            ->andWhere(['album_id' => $element->album_id])
+            ->andWhere(['>', 'position', $model->old_data])->all();
+        foreach ($tracks as $track) {
+            $track->position--;
+            $track->save();
+        }
+
+        // Move all tracks above and on the same position as new position, one position down
+        $tracks = Track::find()
+            ->andWhere(['album_id' => $element->album_id])
+            ->andWhere(['>=', 'position', $model->new_data])->all();
+        foreach ($tracks as $track) {
+            $track->position++;
+            $track->save();
+        }
+        // Save new position
+        $element->position = $model->new_data;
     }
 
     #[ArrayShape(["add" => "array", "remove" => "array"])] function diffInJson($model): array

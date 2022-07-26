@@ -42,7 +42,17 @@ $length = fullLength($tracks);
 
 
 <div>
-    <h1 class="section-title">Tracks</h1>
+
+    <div class="flex items-center gap-2 md:gap-4">
+        <h1 class="section-title">Tracks</h1>
+        <?php if (!Yii::$app->user->isGuest) {
+            echo Html::a(
+                'add',
+                ['track-add', 'slug' => $model->slug],
+                ['class' => 'material-symbols-rounded text-secondary-dark scale-90 md:scale-100 md:p-0.5 rounded-full bg-main-accent']
+            );
+        } ?>
+    </div>
 
     <hr class="section-hr">
 
@@ -98,7 +108,7 @@ $length = fullLength($tracks);
             Album has no tracks yet.
             <?php if (!Yii::$app->user->isGuest) : ?>
                 You can go ahead and
-                <a href="<?= Url::to(['/album/track-add', 'slug' => $model->slug]) ?>"
+                <a href="<?= Url::to(['/album/track-create', 'slug' => $model->slug]) ?>"
                    class="text-main-accent hover:underline">
                     add tracks here
                 </a>

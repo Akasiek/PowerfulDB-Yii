@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Album;
 use common\models\AlbumArticle;
 use common\models\AlbumGenre;
+use common\models\DeleteSubmission;
 use common\models\EditSubmission;
 use common\models\FeaturedAuthor;
 use common\models\Track;
@@ -272,7 +273,7 @@ class AlbumController extends Controller
 
     }
 
-    public function actionTrackAdd($slug)
+    public function actionTrackCreate($slug)
     {
         $album = Album::findOne(['slug' => $slug]);
 
@@ -311,7 +312,59 @@ class AlbumController extends Controller
             }
             return $this->redirect(['/album/view', 'slug' => $slug]);
         } else {
+            return $this->render('track/create', [
+                'album' => $album,
+            ]);
+        }
+    }
+
+    public function actionTrackAdd($slug)
+    {
+        $model = new Track();
+        $album = Album::findOne(['slug' => $slug]);
+
+        if ($model->load(\Yii::$app->request->post())) {
+            // Check if track already exists
+            $track = Track::find()->where([
+                'album_id' => $album->id,
+                'title' => $model->title,
+                'position' => $model->position,
+                'duration' => $model->duration,
+            ])->one();
+            if ($track) {
+                \Yii::$app->session->setFlash('error', 'Track already exists.');
+                return $this->redirect(['/album/view', 'slug' => $slug]);
+            }
+
+            // Get all tracks that have position greater or equal than the new track
+            $tracks = Track::find()
+                ->andWhere(['album_id' => $album->id])
+                ->andWhere(['>=', 'position', $model->position])->all();
+            // Increase position of all tracks by 1
+            foreach ($tracks as $track) {
+                $track->position = $track->position + 1;
+                $track->save();
+            }
+
+            // Save new track
+            $model->album_id = $album->id;
+            if ($model->save()) {
+                // Check if featured author is set and save it
+                $featuredAuthor = \Yii::$app->request->post('featured_author');
+                if (isset($featuredAuthor)) {
+                    $authorModel = new FeaturedAuthor();
+                    $authorModel->track_id = $model->id;
+                    $author = implode('-', $featuredAuthor);
+                    if ($author[0] == 'artist') $authorModel->artist_id = $author[1];
+                    else $authorModel->band_id = $author[1];
+                    $authorModel->save();
+                }
+
+                return $this->redirect(['/album/view', 'slug' => $slug]);
+            }
+        } else {
             return $this->render('track/add', [
+                'model' => $model,
                 'album' => $album,
             ]);
         }
@@ -338,7 +391,7 @@ class AlbumController extends Controller
                 if ($author->artist) $oldFeaturedAuthors[] = 'artist-' . $author->artist_id;
                 else $oldFeaturedAuthors[] = 'band-' . $author->band_id;
             }
-            $newFeaturedAuthors = \Yii::$app->request->post('featured_author');
+            $newFeaturedAuthors = \Yii::$app->request->post('featured_author') ?: [];
             if (!arrayEqual($newFeaturedAuthors, $oldFeaturedAuthors)) {
                 $submission = new EditSubmission();
                 $submission->setValues(
@@ -358,5 +411,15 @@ class AlbumController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionTrackDelete($id)
+    {
+        // Create submission for track deletion
+        $track = Track::findOne($id);
+        $submission = new EditSubmission();
+        $submission->setValues('track', 'delete', $track->id, (string)$track->id, '0');
+        $submission->saveSubmission();
+        return $this->redirect(['/album/view', 'slug' => Album::findOne($track->album_id)->slug]);
     }
 }
