@@ -10,8 +10,8 @@ use common\models\EditSubmission;
 use yii\helpers\Url;
 
 ?>
-<div class="main-options flex flex-1">
-    <a class="w-full md:w-fit flex items-center justify-start gap-4
+<div class="main-options w-full">
+    <a class="w-full flex items-center justify-start gap-4
     option text-main-light hover:text-main-accent transition-colors
     cursor-pointer hover:shadow-accent group" href="<?php echo Url::to([$url]) ?>">
         <span class="material-symbols-rounded !text-2xl xl:!text-3xl">
