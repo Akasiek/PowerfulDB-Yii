@@ -7,6 +7,11 @@ use yii\data\ActiveDataProvider;
 use yii\widgets\ListView;
 
 $this->title = "Submissions Panel";
+
+include Yii::getAlias('@frontend/web/jsonString.php');
+foreach ($dataProvider->models as $model) {
+    jsonString($model);
+}
 ?>
 <div class="w-full mx-auto px-6 lg:px-14 py-8">
     <h1 class="section-title">Submission panel</h1>

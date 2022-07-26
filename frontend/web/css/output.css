@@ -1460,9 +1460,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   padding-bottom: 0.25rem;
 }
 
@@ -1482,9 +1479,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .submission-table-row * {
   margin: 0.25rem;
   width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
@@ -1825,16 +1819,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1.5rem;
 }
 
-.h-44 {
-  height: 11rem;
-}
-
-.h-4 {
-  height: 1rem;
-}
-
 .h-5 {
   height: 1.25rem;
+}
+
+.h-44 {
+  height: 11rem;
 }
 
 .min-h-screen {
@@ -2248,10 +2238,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 1rem;
 }
 
-.p-2 {
-  padding: 0.5rem;
-}
-
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -2546,11 +2532,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
-.\!text-secondary-dark {
-  --tw-text-opacity: 1 !important;
-  color: rgb(27 28 34 / var(--tw-text-opacity)) !important;
-}
-
 .\!text-main-light {
   --tw-text-opacity: 1 !important;
   color: rgb(243 239 245 / var(--tw-text-opacity)) !important;
@@ -2785,16 +2766,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .group:hover .group-hover\:text-main-accent {
   --tw-text-opacity: 1;
   color: rgb(78 255 166 / var(--tw-text-opacity));
-}
-
-.group:hover .group-hover\:\!text-secondary-dark {
-  --tw-text-opacity: 1 !important;
-  color: rgb(27 28 34 / var(--tw-text-opacity)) !important;
-}
-
-.group:hover .group-hover\:text-secondary-dark {
-  --tw-text-opacity: 1;
-  color: rgb(27 28 34 / var(--tw-text-opacity));
 }
 
 .group:hover .group-hover\:underline {
@@ -3383,16 +3354,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     row-gap: 2.5rem;
   }
 
-  .md\:rounded-none {
-    border-radius: 0px;
-  }
-
   .md\:rounded-tl-2xl {
     border-top-left-radius: 1rem;
-  }
-
-  .md\:bg-transparent {
-    background-color: transparent;
   }
 
   .md\:p-0\.5 {
@@ -4052,6 +4015,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:min-w-\[26rem\] {
     min-width: 26rem;
+  }
+
+  .lg\:max-w-3xl {
+    max-width: 48rem;
   }
 
   .lg\:grid-cols-4 {

@@ -25,6 +25,8 @@ class EditSubmission extends \yii\db\ActiveRecord
         'rejected' => 2,
     ];
 
+    public $jsonString;
+
     /**
      * {@inheritdoc}
      */
@@ -88,6 +90,7 @@ class EditSubmission extends \yii\db\ActiveRecord
     {
         return match ($this->table) {
             'album' => Album::findOne($this->element_id),
+            'track' => Track::findOne($this->element_id),
             'artist' => Artist::findOne($this->element_id),
             'band' => Band::findOne($this->element_id),
             default => null,

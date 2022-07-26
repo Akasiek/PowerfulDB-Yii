@@ -72,15 +72,15 @@
     }
 
     .submission-table-row {
-        @apply grid grid-cols-6 items-center pb-1 md:pb-2 mb-2 md:mb-4 truncate;
+        @apply grid grid-cols-6 items-center pb-1 md:pb-2 mb-2 md:mb-4;
     }
 
     .submission-table-row:not(:last-child) {
-        @apply border-b border-gray-600 ;
+        @apply border-b border-gray-600;
     }
 
     .submission-table-row * {
-        @apply m-1 xl:m-2 px-1 lg:px-2 2xl:px-4 w-full truncate;
+        @apply m-1 xl:m-2 px-1 lg:px-2 2xl:px-4 w-full;
     }
 
     .submission-table-row a:not(.material-symbols-outlined) {

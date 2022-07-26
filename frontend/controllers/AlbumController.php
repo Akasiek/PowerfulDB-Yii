@@ -164,7 +164,7 @@ class AlbumController extends Controller
     public function actionEdit($slug)
     {
         $model = Album::find()->where(['slug' => $slug])->one();
-        
+
         if ($model->load(\Yii::$app->request->post())) {
             // Add type to model from post
             $model->type = \Yii::$app->request->post('type');
@@ -253,9 +253,9 @@ class AlbumController extends Controller
                 return $this->redirect(['/album/view', 'slug' => $slug]);
             }
 
-            // Create string representation of genre arrays
-            $newData = '[' . implode(', ', $newGenres) . ']';
-            $oldData = '[' . implode(', ', $oldGenres) . ']';
+            // Create json decode of genre arrays
+            $newData = json_encode($newGenres);
+            $oldData = json_encode($oldGenres);
 
             // Create submission
             $submission = new EditSubmission();
@@ -313,6 +313,49 @@ class AlbumController extends Controller
         } else {
             return $this->render('track/add', [
                 'album' => $album,
+            ]);
+        }
+    }
+
+    public function actionTrackEdit($albumSlug, $trackSlug)
+    {
+        $album = Album::findOne(['slug' => $albumSlug]);
+        $model = Track::findOne(['slug' => $trackSlug]);
+
+
+        if ($model->load(\Yii::$app->request->post())) {
+            // Check normal model difference (title, duration, position)
+            $diff = checkModelDiff($model);
+            foreach ($diff as $col => $data) {
+                $submission = new EditSubmission();
+                $submission->setValues('track', $col, $model->id, (string)$data['old'], (string)$data['new']);
+                $submission->saveSubmission();
+            }
+
+            // Check featured author difference
+            $oldFeaturedAuthors = [];
+            foreach ($model->getFeaturedAuthors()->all() as $author) {
+                if ($author->artist) $oldFeaturedAuthors[] = 'artist-' . $author->artist_id;
+                else $oldFeaturedAuthors[] = 'band-' . $author->band_id;
+            }
+            $newFeaturedAuthors = \Yii::$app->request->post('featured_author');
+            if (!arrayEqual($newFeaturedAuthors, $oldFeaturedAuthors)) {
+                $submission = new EditSubmission();
+                $submission->setValues(
+                    'track',
+                    'author_id',
+                    $model->id,
+                    json_encode($oldFeaturedAuthors),
+                    json_encode($newFeaturedAuthors)
+                );
+                $submission->saveSubmission();
+            }
+
+            return $this->redirect(['/album/view', 'slug' => $albumSlug]);
+        } else {
+            return $this->render('track/edit', [
+                'album' => $album,
+                'model' => $model,
             ]);
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * @var $album Album
  */
 
@@ -49,11 +49,18 @@ array_walk($bands, function (&$band) {
 
                 <div>
                     <div class="flex gap-2 sm:gap-4 items-center">
-                        <input require name="tracks[<?= $i ?>]" class="input-style py-1 w-full" placeholder="<?= $i ?>.">
-                        <input require name="tracks_duration[<?= $i ?>]" class="input-style py-1 w-48 md:w-56" type="time" step="1" value="00:00:00">
+                        <label class="w-full">
+                            <input required name="tracks[<?= $i ?>]" class="input-style py-1"
+                                   placeholder="<?= $i ?>.">
+                        </label>
+                        <label class="w-48 md:w-56">
+                            <input required name="tracks_duration[<?= $i ?>]" class="input-style py-1 "
+                                   type="time" step="1" value="00:00:00">
+                        </label>
                     </div>
                     <div>
-                        <button type="button" class="hover:text-main-accent hover:underline cursor-pointer featured-btn">
+                        <button type="button"
+                                class="hover:text-main-accent hover:underline cursor-pointer featured-btn">
                             Add featured authors +
                         </button>
                         <div class="hidden mb-6 featured-select">

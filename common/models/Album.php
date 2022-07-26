@@ -173,7 +173,7 @@ class Album extends \yii\db\ActiveRecord
      */
     public function getTracks()
     {
-        return $this->hasMany(Track::className(), ['album_id' => 'id']);
+        return $this->hasMany(Track::className(), ['album_id' => 'id'])->orderBy('position');
     }
 
     /**

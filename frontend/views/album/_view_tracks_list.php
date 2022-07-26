@@ -1,6 +1,6 @@
 <?php
 
-/** 
+/**
  * @var $model Album
  */
 
@@ -36,6 +36,7 @@ function fullLength($tracks)
     $fullLength .= $length['seconds'] . ($length['seconds'] === 1 ? ' seconds' : ' seconds');
     return $fullLength;
 }
+
 $length = fullLength($tracks);
 ?>
 
@@ -71,6 +72,7 @@ $length = fullLength($tracks);
                                 } ?>
                         </span>
                     <?php endif; ?>
+                        <?= Html::a('edit', ['track-edit', 'albumSlug' => $model->slug, 'trackSlug' => $track->slug]) ?>
                     </p>
                     <p class="w-auto italic text-gray-300">
                         <?php
@@ -79,6 +81,7 @@ $length = fullLength($tracks);
                         echo $duration[1] . ':' . $duration[2];
                         ?>
                     </p>
+
                 </div>
 
                 <hr class="my-3 md:my-4 border-t-1  border-t-gray-700 ">
@@ -95,7 +98,8 @@ $length = fullLength($tracks);
             Album has no tracks yet.
             <?php if (!Yii::$app->user->isGuest) : ?>
                 You can go ahead and
-                <a href="<?= Url::to(['/album/track-add', 'slug' => $model->slug]) ?>" class="text-main-accent hover:underline">
+                <a href="<?= Url::to(['/album/track-add', 'slug' => $model->slug]) ?>"
+                   class="text-main-accent hover:underline">
                     add tracks here
                 </a>
             <?php else : ?>
