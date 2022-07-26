@@ -11,6 +11,8 @@ use yii\web\NotFoundHttpException;
 if (!isset($model)) throw new NotFoundHttpException('Album not found');
 
 $this->title = $model->title;
+
+$genreCount = $model->getGenres()->count();
 ?>
 
 
@@ -33,16 +35,19 @@ $this->title = $model->title;
         'model' => $model,
     ]); ?>
 
-    <div class="flex flex-wrap gap-4">
+    <?php if (!Yii::$app->user->isGuest): ?>
+        <div class="flex flex-wrap gap-4">
 
-        <?= \yii\helpers\Html::a('Edit album', ['edit', 'slug' => $model->slug], [
-            'class' => 'rounded-xl px-4 py-1 bg-main-accent text-secondary-dark font-bold',
-        ]) ?>
+            <?= \yii\helpers\Html::a('Edit album', ['edit', 'slug' => $model->slug], [
+                'class' => 'rounded-xl px-4 py-1 bg-main-accent text-secondary-dark font-bold',
+            ]) ?>
 
-        <?= \yii\helpers\Html::a('Edit genres', ['genre-edit', 'slug' => $model->slug], [
-            'class' => 'rounded-xl px-4 py-1 bg-main-accent text-secondary-dark font-bold',
-        ]) ?>
+            <?php if ($genreCount > 0): ?>
+                <?= \yii\helpers\Html::a('Edit genres', ['genre-edit', 'slug' => $model->slug], [
+                    'class' => 'rounded-xl px-4 py-1 bg-main-accent text-secondary-dark font-bold',
+                ]) ?>
+            <?php endif; ?>
 
-    </div>
-
+        </div>
+    <?php endif; ?>
 </div>
