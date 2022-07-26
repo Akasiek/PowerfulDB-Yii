@@ -64,8 +64,8 @@ $length = fullLength($tracks);
                     <p>
                         <?= $track->position . '. ' ?>
                         <span class="font-bold"><?= $track->title ?></span>
-                        <span class="text-gray-400">
-                            <?php if (!empty($track->featuredAuthors)) : ?>
+                        <?php if (!empty($track->featuredAuthors)) : ?>
+                            <span class="text-gray-400">
                                 feat.
                                 <?php foreach ($track->featuredAuthors as $index => $author) {
                                     // Find artist or band
@@ -81,15 +81,21 @@ $length = fullLength($tracks);
                                     if ($index < count($track->featuredAuthors) - 1) echo ', ';
                                 } ?>
                         </span>
-                    <?php endif; ?>
-                        <?= Html::a('edit', ['track-edit', 'albumSlug' => $model->slug, 'trackSlug' => $track->slug]) ?>
+                        <?php endif; ?>
                     </p>
-                    <p class="w-auto italic text-gray-300">
+                    <p class="w-auto italic text-gray-300 flex gap-1 items-center">
                         <?php
                         $duration = explode(':', $track->duration);
                         if ($duration[0] !== '00') echo $duration[0] . ':';
                         echo $duration[1] . ':' . $duration[2];
                         ?>
+                        <?php if (!Yii::$app->user->isGuest) {
+                            echo Html::a(
+                                'edit',
+                                ['track-edit', 'albumSlug' => $model->slug, 'trackSlug' => $track->slug],
+                                ['class' => 'material-symbols-outlined text-gray-600 h-full !text-lg !leading-none']
+                            );
+                        } ?>
                     </p>
 
                 </div>
