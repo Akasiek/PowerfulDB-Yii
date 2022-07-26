@@ -24,8 +24,8 @@ $element = $model->getElement();
         <p><?= $model->jsonString['old'] ?></p>
         <p><?= $model->jsonString['new'] ?></p>
     <?php else: ?>
-        <p><?= $model->new_data ?: "null" ?></p>
         <p><?= $model->old_data ?: "null" ?></p>
+        <p><?= $model->new_data ?: "null" ?></p>
     <?php endif; ?>
 
     <?= Html::a($model->user->username, ['user/view', 'id' => $model->user->id]) ?>
