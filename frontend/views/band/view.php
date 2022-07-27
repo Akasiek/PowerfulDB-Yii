@@ -28,13 +28,18 @@ $this->title = $model->name
         'model' => $model,
     ]); ?>
 
-
     <?= $this->render('@frontend/views/components/author_albums/_author_albums', [
         'model' => $model,
     ]); ?>
 
-
     <?= $this->render('_view_band_members', [
         'model' => $model,
     ]); ?>
+
+    <?php if (!Yii::$app->user->isGuest) {
+        echo Html::a('Edit band', ['edit', 'slug' => $model->slug], [
+            'class' => 'rounded-xl px-4 py-1 bg-main-accent text-secondary-dark font-bold w-fit',
+        ]);
+    } ?>
+
 </div>

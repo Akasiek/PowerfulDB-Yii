@@ -5,6 +5,7 @@
  */
 
 use common\models\Artist;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 
 // Wierd fix for pjax to not scroll to top
@@ -36,4 +37,10 @@ echo $this->render('@frontend/views/components/_default_jumbotron', [
         'model' => $model,
     ]); ?>
 
+    <?php if (!Yii::$app->user->isGuest) {
+        echo Html::a('Edit artist', ['edit', 'slug' => $model->slug], [
+            'class' => 'rounded-xl px-4 py-1 bg-main-accent text-secondary-dark font-bold w-fit',
+        ]);
+    } ?>
+    
 </div>
