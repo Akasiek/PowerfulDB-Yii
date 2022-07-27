@@ -133,6 +133,9 @@ class SubmissionController extends Controller
                 $track->save();
             }
 
+            // Delete featured authors associated with deleted track
+            FeaturedAuthor::deleteAll(['track_id' => $element->id]);
+
             // Delete track
             Track::findOne($model->element_id)->delete();
         }
