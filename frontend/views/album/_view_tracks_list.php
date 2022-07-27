@@ -45,7 +45,7 @@ $length = fullLength($tracks);
 
     <div class="flex items-center gap-2 md:gap-4">
         <h1 class="section-title">Tracks</h1>
-        <?php if (!Yii::$app->user->isGuest) {
+        <?php if (!Yii::$app->user->isGuest && count($tracks) > 0) {
             echo Html::a(
                 'add',
                 ['track-add', 'slug' => $model->slug],
@@ -93,7 +93,8 @@ $length = fullLength($tracks);
                             echo Html::a(
                                 'edit',
                                 ['track-edit', 'albumSlug' => $model->slug, 'trackSlug' => $track->slug],
-                                ['class' => 'material-symbols-outlined text-gray-600 h-full !text-lg !leading-none']
+                                ['class' => 'material-symbols-outlined text-gray-600 h-full !text-lg
+                                !leading-none hover:text-main-accent transition hover:!shadow-accent ']
                             );
                         } ?>
                     </p>
