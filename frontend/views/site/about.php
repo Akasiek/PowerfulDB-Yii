@@ -43,4 +43,28 @@ $this->title = 'About';
         A. An artist is a person who is a member of a band or a solo artist. A band is a group of artists. When creating
         band you don't have to add all members as artists.
     </p>
+    <p>
+        Q. <i>How can I edit album/artist/band</i><br>
+        A. There are edit buttons at the bottom of all album/artist/band pages. After changing the data and submitting
+        the edit, edit submission is created. Admins, who have the rights to edit the data,can approve or reject
+        the submission. After the submission is approved, the data is updated.
+    </p>
+
+    <h2>About author</h2>
+    <p>
+        I'm Kamil and this page was created as a project to learn Yii Framework. I love music, so I try to combine my
+        passions and make something great. I hope you'll enjoy this little website.
+    </p>
+    <p>
+        You can find me here:
+    </p>
+    <ul>
+        <li><?= Html::a('GitHub', 'https://github.com/Akasiek', ['target' => '_blank']) ?></li>
+        <li><?= Html::a('LinkedIn', 'https://www.linkedin.com/in/kamil-pomykala/', ['target' => '_blank']) ?></li>
+        <li><?= Html::a('Twitter', 'https://twitter.com/dziwnykamil', ['target' => '_blank']) ?></li>
+        <li><?= Html::a('E-mail', 'mailto:kpomykala2002@gmail.com', ['target' => '_blank']) ?></li>
+        <li><?= Html::a('Linktr.ee', 'https://linktr.ee/kamilpomykala', ['target' => '_blank']) ?></li>
+    </ul>
 </div>
+
+
