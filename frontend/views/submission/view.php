@@ -77,6 +77,6 @@ jsonString($model);
         <?= Html::a('Reject', [
             'submission/reject',
             'id' => $model->id,
-        ], ['class' => 'btn-style']) ?>
+        ], ['class' => 'btn-style-warning']) ?>
     </div>
 </div>
