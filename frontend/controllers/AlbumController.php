@@ -349,15 +349,15 @@ class AlbumController extends Controller
             // Save new track
             $model->album_id = $album->id;
             if ($model->save()) {
-                // Check if featured author is set and save it
-                $featuredAuthor = \Yii::$app->request->post('featured_author');
-                if (isset($featuredAuthor)) {
-                    $authorModel = new FeaturedAuthor();
-                    $authorModel->track_id = $model->id;
-                    $author = implode('-', $featuredAuthor);
-                    if ($author[0] == 'artist') $authorModel->artist_id = $author[1];
-                    else $authorModel->band_id = $author[1];
-                    $authorModel->save();
+                // Set featured authors for new track
+                $authorsPost = \Yii::$app->request->post('featured_author') ?? [];
+                foreach ($authorsPost as $authorPost) {
+                    $featuredAuthor = new FeaturedAuthor();
+                    $featuredAuthor->track_id = $model->id;
+                    $author = explode('-', $authorPost);
+                    if ($author[0] == 'artist') $featuredAuthor->artist_id = $author[1];
+                    else $featuredAuthor->band_id = $author[1];
+                    $featuredAuthor->save();
                 }
 
                 return $this->redirect(['/album/view', 'slug' => $slug]);
@@ -391,7 +391,7 @@ class AlbumController extends Controller
                 if ($author->artist) $oldFeaturedAuthors[] = 'artist-' . $author->artist_id;
                 else $oldFeaturedAuthors[] = 'band-' . $author->band_id;
             }
-            $newFeaturedAuthors = \Yii::$app->request->post('featured_author') ?: [];
+            $newFeaturedAuthors = \Yii::$app->request->post('featured_author') ?? [];
             if (!arrayEqual($newFeaturedAuthors, $oldFeaturedAuthors)) {
                 $submission = new EditSubmission();
                 $submission->setValues(
