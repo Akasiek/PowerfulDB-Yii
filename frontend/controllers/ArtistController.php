@@ -20,7 +20,7 @@ class ArtistController extends Controller
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['create', 'article-create'],
+                'only' => ['create', 'edit', 'article-create'],
                 'rules' => [
                     [
                         'allow' => true,

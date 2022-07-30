@@ -29,7 +29,11 @@ class AlbumController extends Controller
                     'edit',
                     'article-create',
                     'genre-add',
-                    'track-add'
+                    'genre-edit',
+                    'track-create',
+                    'track-add',
+                    'track-edit',
+                    'track-delete',
                 ],
                 'rules' => [
                     [
