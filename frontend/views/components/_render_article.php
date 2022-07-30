@@ -17,7 +17,7 @@ $article = $model->getArticle()->one() ?? '';
     <div class="flex items-center gap-2 md:gap-4">
         <h1 class="section-title">Article</h1>
 
-        <?php if (!Yii::$app->user->isGuest && $article->text) {
+        <?php if (!Yii::$app->user->isGuest && isset($article->text)) {
             echo Html::a(
                 Html::tag('span', 'edit', [
                     'class' => 'material-symbols-rounded text-secondary-dark !text-base md:!text-xl'
