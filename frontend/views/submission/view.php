@@ -8,7 +8,7 @@ use common\models\Album;
 use common\models\EditSubmission;
 use yii\helpers\Html;
 
-$this->title = "Edit " . ($model->table === "album" || $model->table === "track" ? $element->title : $element->name);
+$this->title = "Edit Submission";
 
 include Yii::getAlias('@frontend/web/jsonString.php');
 jsonString($model);
@@ -32,6 +32,14 @@ jsonString($model);
                     ['/band/view', 'slug' => $element->band->slug, '#' => 'members'],
                     ['class' => 'text-main-accent']
                 ) ?>
+            <?php elseif (in_array($model->table, ['album_article', 'band_article', 'artist_article'])): ?>
+                <?php
+                $table = explode('_', $model->table);
+                echo Html::a(
+                    $element->{$table[0]}->name ?? $element->{$table[0]}->title,
+                    ['/' . $table[0] . '/view', 'slug' => $element->{$table[0]}->slug],
+                    ['class' => 'text-main-accent hover:underline',]
+                ) ?>
             <?php else : ?>
                 <?= Html::a(
                     ($model->table === 'album' ? $element->title : $element->name),
@@ -47,7 +55,7 @@ jsonString($model);
             <p>
                 <i class="text-gray-400">New Data:</i> <?= $model->jsonString['new'] ?>
             </p>
-        <?php else: ?>
+        <?php elseif (!$model->new_article && !$model->old_article): ?>
             <p>
                 <i class="text-gray-400">Old Data:</i> <?= $model->old_data ?>
             </p>
@@ -72,6 +80,17 @@ jsonString($model);
             <span class="text-red-500">Warning:</span>
             Approving this submission means permanent deletion of a record. Approve if you're 100% sure!
         </p>
+    <?php endif; ?>
+
+    <?php if ($model->new_article && $model->old_article): ?>
+        <h1 class="text-3xl text-center">New Article</h1>
+        <article class="mx-auto prose prose-invert lg:prose-xl w-full text-justify overflow-hidden mb-20">
+            <?= $model->new_article ?>
+        </article>
+        <h1 class="text-3xl text-center">Old Article</h1>
+        <article class="mx-auto prose prose-invert lg:prose-xl w-full text-justify overflow-hidden">
+            <?= $model->old_article ?>
+        </article>
     <?php endif; ?>
 
     <div class="flex gap-4">

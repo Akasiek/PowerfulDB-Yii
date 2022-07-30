@@ -77,14 +77,21 @@ class SubmissionController extends Controller
                 $element->band_id = $newAuthor[1];
             }
 
+        } elseif ($model->column === "delete") {
+            // Only when deleting
+            $this->deleteElement($model, $element);
+        } elseif ($model->column === 'text') {
+            // Only for articles' text
+            $element->text = $model->new_article;
         } elseif ($model->table === "album" && $model->column === "genre_id") {
+            // Only for genres
             $this->editAlbumGenre($model);
         } elseif ($model->table === "track" && $model->column === "author_id") {
+            // Only for tracks' featured authors
             $this->editFeaturedAuthor($model);
         } elseif ($model->table === "track" && $model->column === "position") {
+            // Only for tracks' positions
             $this->editTrackPosition($model, $element);
-        } elseif ($model->column === "delete") {
-            $this->deleteElement($model, $element);
         } else {
             $element->{$model->column} = $model->new_data;
         }
@@ -97,17 +104,24 @@ class SubmissionController extends Controller
 
         $model->status = EditSubmission::STATUSES['approved'];
         $model->save();
-        if ($model->column === "delete") {
+        if ($model->column === 'delete') {
             return $this->redirect(['index']);
-        } elseif ($model->table === "track") {
+        } elseif ($model->table === 'track') {
             $track = Track::find()->where(['id' => $model->element_id])->one();
 
             return $this->redirect([
                 'album/view',
                 'slug' => Album::find()->where(['id' => $track->album_id])->one()->slug,
             ]);
-        } elseif ($model->table === "band_member") {
+        } elseif ($model->table === 'band_member') {
             return $this->redirect(['band/view', 'slug' => $element->band->slug, '#' => 'members']);
+        } elseif (in_array($model->table, ['album_article', 'band_article', 'artist_article'])) {
+            $table = explode('_', $model->table);
+            return $this->redirect([
+                '/' . $table[0] . '/view',
+                'slug' => $element->{$table[0]}->slug,
+                '#' => 'article'
+            ]);
         } else {
             return $this->redirect([
                 $model->table . '/view',

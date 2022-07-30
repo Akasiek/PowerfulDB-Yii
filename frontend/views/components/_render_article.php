@@ -14,7 +14,20 @@ $article = $model->getArticle()->one() ?? '';
 
 ?>
 <div class="relative" id="article-container">
-    <h1 class="section-title">Article</h1>
+    <div class="flex items-center gap-2 md:gap-4">
+        <h1 class="section-title">Article</h1>
+
+        <?php if (!Yii::$app->user->isGuest && $article->text) {
+            echo Html::a(
+                Html::tag('span', 'edit', [
+                    'class' => 'material-symbols-rounded text-secondary-dark !text-base md:!text-xl'
+                ]),
+                ['article-edit', 'slug' => $model->slug],
+                ['class' => 'md:p-0.5 rounded-full bg-main-accent aspect-square
+                h-6 md:h-8 flex items-center justify-center']
+            );
+        } ?>
+    </div>
     <hr class="section-hr">
 
     <?php if ($article) : ?>

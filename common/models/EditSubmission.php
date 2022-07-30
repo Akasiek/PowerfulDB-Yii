@@ -16,6 +16,8 @@ use Yii;
  * @property int|null $created_by
  * @property int|null $created_at
  * @property int $element_id
+ * @property string|null $new_article
+ * @property string|null $old_article
  */
 class EditSubmission extends \yii\db\ActiveRecord
 {
@@ -41,9 +43,10 @@ class EditSubmission extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['table', 'column', 'status', 'element_id'], 'required'],
-            [['old_data', 'new_data', 'status', 'created_by', 'created_at', 'element_id'], 'default', 'value' => null],
-            [['status', 'created_by', 'created_at', 'element_id'], 'integer'],
+            [['table', 'column', 'element_id', 'status'], 'required'],
+            [['element_id', 'status', 'created_by', 'created_at'], 'default', 'value' => null],
+            [['element_id', 'status', 'created_by', 'created_at'], 'integer'],
+            [['new_article', 'old_article'], 'string'],
             [['table', 'column', 'old_data', 'new_data'], 'string', 'max' => 255],
         ];
     }
@@ -57,12 +60,14 @@ class EditSubmission extends \yii\db\ActiveRecord
             'id' => 'ID',
             'table' => 'Table',
             'column' => 'Column',
+            'element_id' => 'Element ID',
             'old_data' => 'Old Data',
             'new_data' => 'New Data',
             'status' => 'Status',
             'created_by' => 'Created By',
             'created_at' => 'Created At',
-            'element_id' => 'Element ID',
+            'new_article' => 'New Article',
+            'old_article' => 'Old Article',
         ];
     }
 
@@ -97,6 +102,9 @@ class EditSubmission extends \yii\db\ActiveRecord
                 ->where(['id' => $this->element_id])
                 ->with(['artist', 'band'])
                 ->one(),
+            'album_article' => AlbumArticle::find()->where(['id' => $this->element_id])->with('album')->one(),
+            'band_article' => BandArticle::find()->where(['id' => $this->element_id])->with('band')->one(),
+            'artist_article' => ArtistArticle::find()->where(['id' => $this->element_id])->with('artist')->one(),
             default => null,
         };
     }
@@ -109,16 +117,29 @@ class EditSubmission extends \yii\db\ActiveRecord
      * @param $new
      * @return void
      */
-    public function setValues($table, $col, $elemId, $old, $new): void
+    public function setMainValues($table, $col, $elemId)
     {
         $this->table = $table;
         $this->column = $col;
         $this->element_id = $elemId;
-        $this->old_data = $old;
-        $this->new_data = $new;
         $this->status = EditSubmission::STATUSES['pending'];
         $this->created_at = time();
         $this->created_by = \Yii::$app->user->id;
+    }
+
+    public function setValues($table, $col, $elemId, $old, $new): void
+    {
+        $this->setMainValues($table, $col, $elemId);
+        $this->old_data = $old;
+        $this->new_data = $new;
+    }
+
+
+    public function setArticleValues($table, $col, $elemId, $old, $new): void
+    {
+        $this->setMainValues($table, $col, $elemId);
+        $this->old_article = $old;
+        $this->new_article = $new;
     }
 
     public function saveSubmission()

@@ -56,6 +56,7 @@ return [
                 '/band/<slug>' => '/band/view',
                 '/band/<slug>/edit' => '/band/edit',
                 '/band/<slug>/article/create' => '/band/article-create',
+                '/band/<slug>/article/edit' => '/band/article-edit',
                 '/band/<slug>/member/add' => '/band/member-add',
                 '/band/<bandSlug>/member/<memberId>/delete' => '/band/member-delete',
                 '/band/<bandSlug>/member/<memberId>/edit' => '/band/member-edit',
