@@ -99,7 +99,7 @@ $membersArrays = [
                                             ['/artist/view', 'slug' => $member->artist->slug],
                                             [
                                                 'class' => 'text-lg md:text-xl lg:text-2xl
-                                                underline hover:text-main-accent transition-colors'
+                                                hover:text-main-accent transition-colors'
                                             ]
                                         ) ?>
                                     <?php endif ?>
@@ -118,7 +118,8 @@ $membersArrays = [
 
                                 <?php if ($member->roles !== '') : ?>
                                     <div class="max-w-md">
-                                        <p id="roles" class="text-sm md:text-base mt-1 text-gray-400 two-line-truncate " title="<?= $member->roles ?>">
+                                        <p id="roles" class="text-sm md:text-base mt-1 text-gray-400 two-line-truncate "
+                                           title="<?= $member->roles ?>">
                                             <?= $member->roles ?>
                                         </p>
                                     </div>
