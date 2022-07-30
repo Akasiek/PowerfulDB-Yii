@@ -22,8 +22,11 @@ class BandController extends Controller
                 'class' => \yii\filters\AccessControl::className(),
                 'only' => [
                     'create',
+                    'edit',
                     'article-create',
-                    'member-add'
+                    'member-add',
+                    'member-edit',
+                    'member-delete',
                 ],
                 'rules' => [
                     [
@@ -184,10 +187,42 @@ class BandController extends Controller
                 return $this->redirect(['view', 'slug' => $slug]);
             }
         } else {
-            return $this->render('member_add', [
+            return $this->render('member/add', [
                 'model' => $model,
                 'band' => $band,
             ]);
         }
+    }
+
+    public function actionMemberEdit($bandSlug, $memberId)
+    {
+        $model = BandMember::find()->where(['id' => $memberId])->with(['artist', 'band'])->one();
+        $band = Band::findOne(['slug' => $bandSlug]);
+
+        if ($model->load(\Yii::$app->request->post())) {
+            // Create edit submission for each changed field
+            $diff = checkModelDiff($model);
+            foreach ($diff as $column => $value) {
+                $submission = new EditSubmission();
+                $submission->setValues('band_member', $column, $model->id, (string)$value['old'], (string)$value['new']);
+                $submission->saveSubmission();
+            }
+            return $this->redirect(['view', 'slug' => $bandSlug]);
+        } else {
+            return $this->render('member/edit', [
+                'model' => $model,
+                'band' => $band,
+            ]);
+        }
+    }
+
+    public function actionMemberDelete($bandSlug, $memberId)
+    {
+        // Create submission for member deletion
+        $bandMember = BandMember::findOne($memberId);
+        $submission = new EditSubmission();
+        $submission->setValues('band_member', 'delete', $bandMember->id, (string)$bandMember->id, '0');
+        $submission->saveSubmission();
+        return $this->redirect(['/band/view', 'slug' => $bandSlug]);
     }
 }

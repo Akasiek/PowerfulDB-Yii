@@ -93,6 +93,10 @@ class EditSubmission extends \yii\db\ActiveRecord
             'track' => Track::findOne($this->element_id),
             'artist' => Artist::findOne($this->element_id),
             'band' => Band::findOne($this->element_id),
+            'band_member' => BandMember::find()
+                ->where(['id' => $this->element_id])
+                ->with(['artist', 'band'])
+                ->one(),
             default => null,
         };
     }

@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Album;
 use common\models\AlbumGenre;
+use common\models\BandMember;
 use common\models\EditSubmission;
 use common\models\FeaturedAuthor;
 use common\models\Track;
@@ -96,19 +97,21 @@ class SubmissionController extends Controller
 
         $model->status = EditSubmission::STATUSES['approved'];
         $model->save();
-        if ($model->table !== "track") {
-            return $this->redirect([
-                $model->table . '/view',
-                'slug' => $element->slug,
-            ]);
-        } elseif ($model->column === "delete") {
+        if ($model->column === "delete") {
             return $this->redirect(['index']);
-        } else {
+        } elseif ($model->table === "track") {
             $track = Track::find()->where(['id' => $model->element_id])->one();
 
             return $this->redirect([
                 'album/view',
                 'slug' => Album::find()->where(['id' => $track->album_id])->one()->slug,
+            ]);
+        } elseif ($model->table === "band_member") {
+            return $this->redirect(['band/view', 'slug' => $element->band->slug, '#' => 'members']);
+        } else {
+            return $this->redirect([
+                $model->table . '/view',
+                'slug' => $element->slug,
             ]);
         }
 
@@ -123,7 +126,7 @@ class SubmissionController extends Controller
 
     function deleteElement($model, $element)
     {
-        if ($model->table === "track") {
+        if ($model->table === 'track') {
             // Move all tracks after deleted track to the previous position
             $tracks = Track::find()
                 ->andWhere(['album_id' => $element->album_id])
@@ -138,6 +141,9 @@ class SubmissionController extends Controller
 
             // Delete track
             Track::findOne($model->element_id)->delete();
+        } elseif ($model->table === 'band_member') {
+            // Delete band member
+            BandMember::findOne($model->element_id)->delete();
         }
     }
 

@@ -12,12 +12,18 @@ $element = $model->getElement();
 <div class="submission-table-row">
     <p><?= $model->table . ' [' . $model->column . ']' ?></p>
     <?php if (isset($element)) {
-        if ($model->table !== "track" && $model->table !== "featured_author") {
+        if ($model->table === 'track' && $model->table === 'featured_author') {
+            echo '<p>' . $element->title . '</p>';
+        } elseif ($model->table === 'band_member') {
+            echo Html::a(
+                $element->artist->name ?? $element->name,
+                ['/band/view', 'slug' => $element->band->slug, '#' => 'members'],
+                ['class' => 'text-main-accent']
+            );
+        } else {
             echo Html::a(
                 ($model->table === "album" ? $element->title : $element->name),
                 [$model->table . '/view', 'slug' => $element->slug]);
-        } else {
-            echo '<p>' . $element->title . '</p>';
         }
     } ?>
     <?php if (isset($model->jsonString)): ?>

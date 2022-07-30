@@ -24,13 +24,19 @@ jsonString($model);
         </p>
         <p>
             <i class="text-gray-400">Element:</i>
-            <?php if ($model->table !== 'track') : ?>
+            <?php if ($model->table === 'track') : ?>
+                <?= $element->title ?>
+            <?php elseif ($model->table === 'band_member'): ?>
+                <?= Html::a(
+                    $element->artist->name ?? $element->name,
+                    ['/band/view', 'slug' => $element->band->slug, '#' => 'members'],
+                    ['class' => 'text-main-accent']
+                ) ?>
+            <?php else : ?>
                 <?= Html::a(
                     ($model->table === 'album' ? $element->title : $element->name),
                     ['album/view', 'slug' => $element->slug],
                     ['class' => 'text-main-accent hover:underline',]) ?>
-            <?php else : ?>
-                <?= $element->title ?>
             <?php endif ?>
 
         </p>

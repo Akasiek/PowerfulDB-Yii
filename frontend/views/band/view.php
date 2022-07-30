@@ -32,7 +32,7 @@ $this->title = $model->name
         'model' => $model,
     ]); ?>
 
-    <?= $this->render('_view_band_members', [
+    <?= $this->render('_view_members_container', [
         'model' => $model,
     ]); ?>
 
