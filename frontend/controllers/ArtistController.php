@@ -168,4 +168,29 @@ class ArtistController extends Controller
             ]);
         }
     }
+
+    public function actionArticleEdit($slug)
+    {
+        $artist = Artist::findOne(['slug' => $slug]);
+        $model = ArtistArticle::findOne(['artist_id' => $artist->id]);
+
+        if ($model->load(\Yii::$app->request->post())) {
+            // For each changed field, create a new edit submission
+            $diff = checkModelDiff($model);
+            foreach ($diff as $column => $value) {
+                $submission = new EditSubmission();
+                if ($column === 'text') {
+                    $submission->setArticleValues('artist_article', $column, $model->id, (string)$value['old'], (string)$value['new']);
+                } else {
+                    $submission->setValues('artist_article', $column, $model->id, (string)$value['old'], (string)$value['new']);
+                }
+                $submission->saveSubmission();
+            }
+            return $this->redirect(['view', 'slug' => $slug]);
+        } else {
+            return $this->render('article/edit', [
+                'model' => $model,
+            ]);
+        }
+    }
 }

@@ -5,6 +5,8 @@ namespace frontend\controllers;
 use common\models\Album;
 use common\models\AlbumArticle;
 use common\models\AlbumGenre;
+use common\models\Artist;
+use common\models\ArtistArticle;
 use common\models\DeleteSubmission;
 use common\models\EditSubmission;
 use common\models\FeaturedAuthor;
@@ -214,6 +216,31 @@ class AlbumController extends Controller
             }
         } else {
             return $this->render('article/create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionArticleEdit($slug)
+    {
+        $album = Album::findOne(['slug' => $slug]);
+        $model = AlbumArticle::findOne(['album_id' => $album->id]);
+
+        if ($model->load(\Yii::$app->request->post())) {
+            // For each changed field, create a new edit submission
+            $diff = checkModelDiff($model);
+            foreach ($diff as $column => $value) {
+                $submission = new EditSubmission();
+                if ($column === 'text') {
+                    $submission->setArticleValues('album_article', $column, $model->id, (string)$value['old'], (string)$value['new']);
+                } else {
+                    $submission->setValues('album_article', $column, $model->id, (string)$value['old'], (string)$value['new']);
+                }
+                $submission->saveSubmission();
+            }
+            return $this->redirect(['view', 'slug' => $slug]);
+        } else {
+            return $this->render('article/edit', [
                 'model' => $model,
             ]);
         }

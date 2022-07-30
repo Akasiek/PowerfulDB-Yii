@@ -50,6 +50,7 @@ return [
                 '/artist/<slug>' => '/artist/view',
                 '/artist/<slug>/edit' => '/artist/edit',
                 '/artist/<slug>/article/create' => '/artist/article-create',
+                '/artist/<slug>/article/edit' => '/artist/article-edit',
 
                 '/band/' => '/band/index',
                 '/band/create' => '/band/create',
@@ -66,6 +67,7 @@ return [
                 '/album/<slug>' => '/album/view',
                 '/album/<slug>/edit' => '/album/edit',
                 '/album/<slug>/article/create' => '/album/article-create',
+                '/album/<slug>/article/edit' => '/album/article-edit',
                 '/album/<slug>/genre/add' => '/album/genre-add',
                 '/album/<slug>/genre/edit' => '/album/genre-edit',
                 '/album/<slug>/track/create' => '/album/track-create',

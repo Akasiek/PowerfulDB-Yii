@@ -88,7 +88,7 @@
     }
 
     .submission-table-row * {
-        @apply m-1 xl:m-2 px-1 lg:px-2 2xl:px-4 w-full;
+        @apply m-1 xl:m-2 px-1 lg:px-2 2xl:px-4 w-full overflow-hidden;
     }
 
     .submission-table-row a:not(.material-symbols-outlined) {
