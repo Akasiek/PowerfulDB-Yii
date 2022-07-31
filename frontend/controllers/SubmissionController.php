@@ -38,9 +38,17 @@ class SubmissionController extends Controller
 
     public function actionIndex()
     {
+        $query = EditSubmission::find();
+
+        // Get status parameter from request
+        $status = \Yii::$app->request->get('status') ?? 'pending';
+        if ($status) {
+            $query->andWhere(['status' => EditSubmission::STATUSES[$status]]);
+        }
+
         // Get submission where status is pending
         $dataProvider = new ActiveDataProvider([
-            'query' => EditSubmission::find()->where(['status' => EditSubmission::STATUSES['pending']])->with('user'),
+            'query' => $query->with('user'),
             'pagination' => [
                 'pageSize' => 16,
             ],

@@ -32,10 +32,12 @@ $element = $model->getElement();
                 ($model->table === "album" ? $element->title : $element->name),
                 [$model->table . '/view', 'slug' => $element->slug]);
         }
+    } else {
+        echo '<p>deleted</p>';
     } ?>
     <?php if (isset($model->jsonString)): ?>
-        <p><?= $model->jsonString['old'] ?></p>
-        <p><?= $model->jsonString['new'] ?></p>
+        <p><?= $model->jsonString['old'] ?: "null" ?></p>
+        <p><?= $model->jsonString['new'] ?: "null" ?></p>
     <?php elseif ($model->new_article && $model->old_article): ?>
         <p>Old Article</p>
         <p>New Article</p>

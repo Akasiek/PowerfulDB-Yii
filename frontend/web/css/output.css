@@ -1511,24 +1511,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .submission-table-row {
-  margin-bottom: 0.5rem;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   align-items: center;
-  padding-bottom: 0.25rem;
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 @media (min-width: 768px) {
   .submission-table-row {
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
-}
-
-.submission-table-row:not(:last-child) {
-  border-bottom-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(75 85 99 / var(--tw-border-opacity));
 }
 
 .submission-table-row * {
@@ -1785,6 +1782,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: auto;
 }
 
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1947,6 +1948,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-screen {
   width: 100vw;
+}
+
+.\!w-56 {
+  width: 14rem !important;
 }
 
 .w-48 {
@@ -2238,10 +2243,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-t-main-accent {
   --tw-border-opacity: 1;
   border-top-color: rgb(78 255 166 / var(--tw-border-opacity));
-}
-
-.border-t-\[rgba\(255\2c 255\2c 255\2c 0\.15\)\] {
-  border-top-color: rgba(255,255,255,0.15);
 }
 
 .border-t-gray-600 {
@@ -4303,10 +4304,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     max-width: 24rem;
   }
 
-  .xl\:max-w-4xl {
-    max-width: 56rem;
-  }
-
   .xl\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
@@ -4424,11 +4421,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     line-height: 1.5rem;
   }
 
-  .xl\:\!text-xl {
-    font-size: 1.25rem !important;
-    line-height: 1.75rem !important;
-  }
-
   .xl\:\!text-2xl {
     font-size: 1.5rem !important;
     line-height: 2rem !important;
@@ -4437,6 +4429,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .xl\:\!text-3xl {
     font-size: 1.875rem !important;
     line-height: 2.25rem !important;
+  }
+
+  .xl\:\!text-xl {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
   }
 
   .xl\:opacity-80 {

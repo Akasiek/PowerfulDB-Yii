@@ -4,6 +4,7 @@
  */
 
 use yii\data\ActiveDataProvider;
+use yii\helpers\Html;
 use yii\widgets\ListView;
 
 $this->title = "Submissions Panel";
@@ -14,8 +15,27 @@ foreach ($dataProvider->models as $model) {
 }
 ?>
 <div class="w-full mx-auto px-6 lg:px-14 py-8">
+
     <h1 class="section-title">Submission panel</h1>
+
     <hr class="section-hr">
+
+    <!-- SUBMISSION STATUS SELECT -->
+    <?php echo Html::beginForm('/submission/index', 'get');
+    $sortOptions = [
+        'pending' => 'Pending',
+        'approved' => 'Approved',
+        'rejected' => 'Rejected',
+    ];
+    $sortValue = Yii::$app->request->get('status') ?? 'pending';
+
+    echo Html::dropDownList('status', $sortValue, $sortOptions, [
+        'class' => 'input-style m-0 !py-2 !w-56',
+        'id' => 'select-slim',
+        'onchange' => 'this.form.submit()',
+    ]);
+    echo Html::endForm() ?>
+
     <div class="w-full text-sm md:text-lg">
         <div class="submission-table-row font-bold">
             <p title="Table[column]">Table[column]</p>

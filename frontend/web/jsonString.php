@@ -19,17 +19,21 @@ function jsonString($model)
 
         $arrays = ['new' => [], 'old' => []];
         foreach ($jsonArrays as $name => $array) {
-            foreach ($array as $value) {
-                if ($model->column === 'genre_id') {
-                    $arrays[$name][] = Genre::findOne($value)->name;
-                } elseif ($model->column === 'author_id') {
-                    $author = explode('-', $value);
-                    if ($author[0] === 'artist') {
-                        $arrays[$name][] = Artist::findOne($author[1])->name;
-                    } else {
-                        $arrays[$name][] = Band::findOne($author[1])->name;
+            if (isset($array)) {
+                foreach ($array as $value) {
+                    if ($model->column === 'genre_id') {
+                        $arrays[$name][] = Genre::findOne($value)->name;
+                    } elseif ($model->column === 'author_id') {
+                        $author = explode('-', $value);
+                        if ($author[0] === 'artist') {
+                            $arrays[$name][] = Artist::findOne($author[1])->name;
+                        } else {
+                            $arrays[$name][] = Band::findOne($author[1])->name;
+                        }
                     }
                 }
+            } else {
+                $arrays[$name][] = "null";
             }
         }
         $jsonString = [
