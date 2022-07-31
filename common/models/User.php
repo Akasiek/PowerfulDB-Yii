@@ -258,6 +258,7 @@ class User extends ActiveRecord implements IdentityInterface
             ArtistArticle::find()->where(['created_by' => $this->id])->count() +
             BandArticle::find()->where(['created_by' => $this->id])->count()
         );
+        $editSubmissionsCount = EditSubmission::find()->where(['created_by' => $this->id, 'status' => 1])->count();
         // TODO: Edits submission count
 
         $counts = [
@@ -268,7 +269,7 @@ class User extends ActiveRecord implements IdentityInterface
             'tracks' => $tracksCount,
             'members' => $bandMembersCount,
             'articles' => $articlesCount,
-            'edits' => 0,
+            'edits' => $editSubmissionsCount,
         ];
 
         // Points table:
@@ -321,6 +322,7 @@ class User extends ActiveRecord implements IdentityInterface
         $bandMemberContrib = BandMember::find()->where(['created_by' => $this->id])->select(
             'band_id, max(created_at) as ct, count(*) as member_count, date(to_timestamp(band_member.created_at)) as created_date'
         )->with('band')->groupBy(['created_date', 'band_id'])->all();
+
         // Articles
         $albumArticlesContrib = AlbumArticle::find()->where(['created_by' => $this->id])->select(
             'album_article.*, created_at as ct, date(to_timestamp(album_article.created_at)) as created_date'
@@ -332,6 +334,10 @@ class User extends ActiveRecord implements IdentityInterface
             'band_article.*, created_at as ct, date(to_timestamp(band_article.created_at)) as created_date'
         )->with('band')->all();
 
+        // Edits submissions
+        $editSubmissionsContrib = EditSubmission::find()->where(['created_by' => $this->id, 'status' => 1])->select(
+            'table, column, element_id, created_at as ct, date(to_timestamp(edit_submission.created_at)) as created_date'
+        )->all();
 
         $contribs = [];
         foreach ($albumsContrib as $album) $contribs[] = $album;
@@ -343,8 +349,7 @@ class User extends ActiveRecord implements IdentityInterface
         foreach ($albumArticlesContrib as $albumArticle) $contribs[] = $albumArticle;
         foreach ($artistArticlesContrib as $artistArticle) $contribs[] = $artistArticle;
         foreach ($bandArticlesContrib as $bandArticle) $contribs[] = $bandArticle;
-        
-        // TODO: Array of edit contribs
+        foreach ($editSubmissionsContrib as $editSubmission) $contribs[] = $editSubmission;
 
         // Sort contribs array by date in descending order
         usort($contribs, function ($a, $b) {

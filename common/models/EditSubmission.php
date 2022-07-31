@@ -21,6 +21,9 @@ use Yii;
  */
 class EditSubmission extends \yii\db\ActiveRecord
 {
+    public string $ct = '';
+    public string $created_date = '';
+
     const STATUSES = [
         'pending' => 0,
         'approved' => 1,
@@ -95,7 +98,7 @@ class EditSubmission extends \yii\db\ActiveRecord
     {
         return match ($this->table) {
             'album' => Album::findOne($this->element_id),
-            'track' => Track::findOne($this->element_id),
+            'track' => Track::find()->where(['id' => $this->element_id])->with('album')->one(),
             'artist' => Artist::findOne($this->element_id),
             'band' => Band::findOne($this->element_id),
             'band_member' => BandMember::find()

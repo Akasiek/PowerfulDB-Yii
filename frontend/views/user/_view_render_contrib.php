@@ -8,6 +8,7 @@
 use common\models\Album;
 use common\models\AlbumArticle;
 use common\models\AlbumGenre;
+use common\models\EditSubmission;
 use common\models\Track;
 use common\models\Artist;
 use common\models\ArtistArticle;
@@ -144,26 +145,24 @@ use yii\helpers\Html;
             <p>
                 <?= $model->username . ' wrote article for ' ?>
                 <?php
-                if ($contrib instanceof AlbumArticle) echo 'album called ' . Html::a(
-                        $contrib->album->title,
-                        ['album/view', 'slug' => $contrib->album->slug, '#' => 'article-container'],
-                        ['class' => 'italic text-main-accent hover:underline']
-                    );
-                elseif ($contrib instanceof ArtistArticle) echo 'artist called ' . Html::a(
-                        $contrib->artist->name,
-                        ['artist/view', 'slug' => $contrib->artist->slug, '#' => 'article-container'],
-                        ['class' => 'italic text-main-accent hover:underline']
-                    );
-                elseif ($contrib instanceof BandArticle) echo 'band called ' . Html::a(
-                        $contrib->band->name,
-                        ['band/view', 'slug' => $contrib->band->slug, '#' => 'article-container'],
+                if ($contrib instanceof AlbumArticle) $elemType = 'album';
+                elseif ($contrib instanceof ArtistArticle) $elemType = 'artist';
+                elseif ($contrib instanceof BandArticle) $elemType = 'band';
+
+                echo $elemType . ' called ' . Html::a(
+                        $contrib->{$elemType}->title ?? $contrib->{$elemType}->name,
+                        [$elemType . '/view', 'slug' => $contrib->{$elemType}->slug],
                         ['class' => 'italic text-main-accent hover:underline']
                     ); ?>
                 <span class="text-gray-500 italic hidden md:inline">
                     + 5 points
                 </span>
             </p>
-
+        <?php elseif ($contrib instanceof EditSubmission) : ?>
+            <?= $this->render('contributions/_contrib_edit', [
+                'contrib' => $contrib,
+                'model' => $model,
+            ]) ?>
         <?php endif; ?>
     </div>
 </div>
