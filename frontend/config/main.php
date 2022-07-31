@@ -43,6 +43,7 @@ return [
                 '/about' => '/site/about',
                 '/login' => '/site/login',
 
+                '/user/settings' => '/user/settings',
                 '/user/<id>' => '/user/view',
 
                 '/artist/' => '/artist/index',

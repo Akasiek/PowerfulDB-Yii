@@ -2244,6 +2244,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-top-color: rgba(255,255,255,0.15);
 }
 
+.border-t-gray-600 {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(75 85 99 / var(--tw-border-opacity));
+}
+
 .bg-main-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(41 42 51 / var(--tw-bg-opacity));
@@ -4296,6 +4301,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:max-w-sm {
     max-width: 24rem;
+  }
+
+  .xl\:max-w-4xl {
+    max-width: 56rem;
   }
 
   .xl\:grid-cols-5 {

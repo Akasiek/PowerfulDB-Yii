@@ -28,4 +28,17 @@ class UserController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionSettings()
+    {
+        $model = User::findOne(\Yii::$app->user->id);
+        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
+            \Yii::$app->session->setFlash('success', 'Settings saved');
+            return $this->redirect(['/user/view', 'id' => $model->id]);
+        } else {
+            return $this->render('settings', [
+                'model' => $model,
+            ]);
+        }
+    }
 }

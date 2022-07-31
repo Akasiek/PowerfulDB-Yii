@@ -106,7 +106,16 @@ use yii\widgets\Pjax;
                 <?php endif; ?>
             </div>
 
-            <hr class="border-t-2 border-t-[rgba(255,255,255,0.15)]">
+            <hr class="border-t-2 border-t-gray-600">
+
+            <?php if (!Yii::$app->user->isGuest): ?>
+                <!-- USER SETTINGS -->
+                <?= $this->render('_main_option', [
+                    'text' => 'User Settings',
+                    'icon' => 'settings',
+                    'url' => '/user/settings',
+                ]) ?>
+            <?php endif; ?>
 
             <!-- SIDE OPTIONS -->
             <?= $this->render('_main_option', [
