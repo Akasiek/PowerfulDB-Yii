@@ -20,7 +20,7 @@ $genres = $model->getGenres()->limit(5)->all();
              linear-gradient(180deg, rgba(94, 43, 255, 0) 30%,
              rgba(94, 43, 255, 0.85) 100%,
              rgba(94, 43, 255, 0.85) 100%),
-             url('<?php echo $model->bg_image_url ?>'); ">
+             url('<?php echo $model->bg_image_url ?: Yii::getAlias('@web/resources/images/no_image.jpg') ?>'); ">
     <div class="px-6 md:px-12 lg:px-14 pb-6 md:pb-8 lg:pb-10 w-full flex flex-col gap-2">
 
 

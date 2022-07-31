@@ -15,7 +15,9 @@ $genres = $model->getGenres()->limit(4)->all();
     <div class="rounded-3xl w-full h-40 md:h-48 !bg-cover flex flex-col justify-end items-start snap-start scroll-pl-3
                 group overflow-hidden !bg-center relative group bg-secondary-dark">
 
-        <img src="<?= $model->bg_image_url ?>" alt="" class="absolute h-full w-full object-center object-cover z-10
+        <img src="<?= $model->bg_image_url ?: Yii::getAlias('@web/resources/images/no_image.jpg') ?>"
+             alt="artist background image"
+             class="absolute h-full w-full object-center object-cover z-10
                     transition-all xl:group-hover:scale-110 opacity-95 xl:opacity-80 group-hover:opacity-100">
 
         <div class="absolute top-0 bottom-0 left-0 right-0 w-full z-20 group-hover:scale-125 transition-all" style="background: linear-gradient(180deg, rgba(94, 43, 255, 0),

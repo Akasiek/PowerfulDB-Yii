@@ -16,7 +16,8 @@ $genres = $model->getGenres()->all();
 
     <div class="flex flex-col md:flex-row justify-center items-center gap-5 xl:gap-10 max-w-screen-xl px-4 md:px-12 lg:px-16">
         <div class="relative group overflow-hidden">
-            <img src="<?= $model->artwork_url ?>" alt="Album artwork" class="w-64 md:w-72 lg:w-96">
+            <img src="<?= $model->artwork_url ?: Yii::getAlias('@web/resources/images/no_image.jpg') ?>"
+                 alt="Album artwork" class="w-64 md:w-72 lg:w-96 aspect-square object-cover object-center">
             <?php if (!Yii::$app->user->isGuest): ?>
                 <a href="<?= Url::to(['edit', 'slug' => $model->slug]) ?>"
                    class="absolute bottom-0 right-0 pl-6 pr-1 pt-6 pb-1 lg:pl-8 lg:pr-2 lg:pt-8 lg:pb-2
