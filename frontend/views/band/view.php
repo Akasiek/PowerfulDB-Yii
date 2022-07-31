@@ -32,6 +32,10 @@ $this->title = $model->name
         'model' => $model,
     ]); ?>
 
+    <?= $this->render('@frontend/views/components/_appears_on', [
+        'model' => $model,
+    ]); ?>
+
     <?= $this->render('_view_members_container', [
         'model' => $model,
     ]); ?>

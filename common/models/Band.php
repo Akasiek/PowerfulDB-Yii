@@ -131,6 +131,21 @@ class Band extends \yii\db\ActiveRecord
     }
 
     /**
+     * Gets query for [[Album]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\AlbumQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getAlbumsAppearedOn(): \yii\db\ActiveQuery|query\AlbumQuery
+    {
+        return Album::find()
+            ->select('album.*')
+            ->innerJoin('track', 'track.album_id = album.id')
+            ->innerJoin('featured_author', 'featured_author.track_id = track.id')
+            ->where(['featured_author.band_id' => $this->id]);
+    }
+
+    /**
      * Gets query for [[BandMembers]].
      *
      * @return \yii\db\ActiveQuery|\common\models\query\BandMemberQuery

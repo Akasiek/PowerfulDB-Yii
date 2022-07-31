@@ -5,6 +5,7 @@ namespace common\models;
 use common\models\query\GenreQuery;
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use yii\db\Query;
 
 /**
  * This is the model class for table "artist".
@@ -136,6 +137,21 @@ class Artist extends \yii\db\ActiveRecord
     public function getOtherAlbums()
     {
         return $this->hasMany(Album::className(), ['artist_id' => 'id'])->andWhere(['!=', 'type', 'LP']);
+    }
+
+    /**
+     * Gets query for [[Album]].
+     *
+     * @return \yii\db\ActiveQuery|\common\models\query\AlbumQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getAlbumsAppearedOn(): \yii\db\ActiveQuery|query\AlbumQuery
+    {
+        return Album::find()
+            ->select('album.*')
+            ->innerJoin('track', 'track.album_id = album.id')
+            ->innerJoin('featured_author', 'featured_author.track_id = track.id')
+            ->where(['featured_author.artist_id' => $this->id]);
     }
 
     /**

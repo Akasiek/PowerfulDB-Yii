@@ -33,6 +33,10 @@ echo $this->render('@frontend/views/components/_default_jumbotron', [
         'model' => $model,
     ]); ?>
 
+    <?= $this->render('@frontend/views/components/_appears_on', [
+        'model' => $model,
+    ]); ?>
+
     <?= $this->render('_view_artist_band_memberships', [
         'model' => $model,
     ]); ?>
@@ -42,5 +46,5 @@ echo $this->render('@frontend/views/components/_default_jumbotron', [
             'class' => 'rounded-xl px-4 py-1 bg-main-accent text-secondary-dark font-bold w-fit',
         ]);
     } ?>
-    
+
 </div>
