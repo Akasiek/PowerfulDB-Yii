@@ -30,7 +30,7 @@ class AppAsset extends AssetBundle
         'js/filter_sort_main.js',
         'js/member_add.js',
         'js/track_add.js',
-        'js/from_display_input_image.js',
+        'js/form_display_input_image.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
