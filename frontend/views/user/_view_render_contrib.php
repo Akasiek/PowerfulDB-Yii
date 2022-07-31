@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @var $contrib Album | Artist | Band | AlbumGenre | BandMember | Track
+ * @var $contrib Album | Artist | Band | AlbumGenre | BandMember | Track | AlbumArticle | ArtistArticle | BandArticle | EditSubmission
  * @var $model User
  */
 
@@ -16,7 +16,6 @@ use common\models\Band;
 use common\models\BandArticle;
 use common\models\BandMember;
 use common\models\User;
-use yii\helpers\Html;
 
 ?>
 
