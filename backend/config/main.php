@@ -57,6 +57,11 @@ return [
                 '/backend/artist-article' => '/artist-article/',
 
                 '/backend/genre' => '/genre/',
+
+                '/backend/auth-assignment' => '/auth-assignment/',
+                '/backend/auth-item' => '/auth-item/',
+                '/backend/auth-item-child' => '/auth-item-child/',
+                '/backend/auth-rule' => '/auth-rule/',
             ],
         ],
         'assetManager' => [
