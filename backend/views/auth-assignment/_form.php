@@ -20,9 +20,7 @@ $userMap = \yii\helpers\ArrayHelper::map($userModels, 'id', 'username');
     <?= $form->field($model, 'user_id')->dropDownList($userMap, [
         'prompt' => 'Select an user',
     ]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
+    
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
