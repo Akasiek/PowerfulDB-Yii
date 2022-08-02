@@ -26,7 +26,7 @@ $genres = $model->getGenres()->limit(4)->all();
 
         <div class="px-4 md:px-7 pb-3 md:pb-4 w-full z-30">
 
-            <h3 class="font-bold text-lg md:text-xl xl:text-2xl truncate 
+            <h3 title="<?= $model->name ?>" class="font-bold text-lg md:text-xl xl:text-2xl truncate 
             transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.15)]">
                 <?php echo $model->name ?>
             </h3>
