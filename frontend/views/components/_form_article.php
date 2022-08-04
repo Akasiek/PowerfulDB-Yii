@@ -25,6 +25,7 @@ use kartik\form\ActiveForm;
         <?= $form->field($model, 'text')->widget(TinyMce::className(), [
             'language' => 'en_GB',
             'clientOptions' => [
+                'toolbar_sticky' => true,
                 'plugins' => [
                     'image', 'emoticons', 'autolink', 'autoresize', 'link'
                 ],
