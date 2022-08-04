@@ -1,7 +1,10 @@
-new SlimSelect({
-    select: "#select-slim",
-});
+// For each select element on page create slimSelect
+const selects = document.querySelectorAll("select");
+if (selects) {
+    selects.forEach(select => {
+        new SlimSelect({
+            select: select,
+        });
+    });
 
-new SlimSelect({
-    select: "#select-slim-1",
-});
+}

@@ -84,11 +84,8 @@ class ArtistController extends Controller
                 [':to_year' => $filters['death_to_year']]
             );
         }
-        if (isset($filters['genre']) && !empty($filters['genre'])) {
-            $query->andWhere(
-                'genre.name ILIKE :genre',
-                [':genre' => '%' . trim($filters['genre']) . '%']
-            );
+        if (isset($filters['genre']) && $filters['genre'] != '') {
+            $query->andWhere(array('IN', 'album_genre.genre_id', $filters['genre']));
         }
 
         $dataProvider = new ActiveDataProvider([

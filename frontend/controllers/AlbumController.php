@@ -85,7 +85,7 @@ class AlbumController extends Controller
             $query->andWhere('EXTRACT(YEAR FROM release_date) <= :to_year', [':to_year' => $filters['release_to_year']]);
         }
         if (isset($filters['genre']) && $filters['genre'] != '') {
-            $query->andWhere('genre.name ILIKE :genre', [':genre' => '%' . trim($filters['genre']) . '%']);
+            $query->andWhere(array('IN', 'album_genre.genre_id', $filters['genre']));
         }
         if (isset($filters['type']) && $filters['type'] != '') {
             $query->andWhere(array('IN', 'album.type', $filters['type']));
