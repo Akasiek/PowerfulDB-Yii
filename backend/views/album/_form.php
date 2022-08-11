@@ -21,6 +21,8 @@ $bandMap = \yii\helpers\ArrayHelper::map($bandModels, 'id', 'name');
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'band_id')->dropDownList($bandMap, [
         'prompt' => 'Select a band',
     ]) ?>
